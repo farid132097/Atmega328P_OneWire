@@ -1,0 +1,82 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	main
+  18               	main:
+  19               	.LFB6:
+  20               	.LM1:
+  21 0000 CF93      		push r28
+  22 0002 DF93      		push r29
+  23               	/* prologue: function */
+  24               	/* frame size = 0 */
+  25               	.LM2:
+  26 0004 0E94 0000 		call OneWire_Init
+  27               	.LBB12:
+  28               	.LBB13:
+  29               	.LBB14:
+  30               	.LBB15:
+  31               	.LM3:
+  32 0008 CCE2      		ldi r28,lo8(300)
+  33 000a D1E0      		ldi r29,hi8(300)
+  34               	.LVL0:
+  35               	.L3:
+  36               	.LBE15:
+  37               	.LBE14:
+  38               	.LBE13:
+  39               	.LBE12:
+  40               	.LM4:
+  41 000c 8AEA      		ldi r24,lo8(2730)
+  42 000e 9AE0      		ldi r25,hi8(2730)
+  43               	.LVL1:
+  44 0010 0E94 0000 		call OneWire_TRX_Byte
+  45               	.LVL2:
+  46               	.LM5:
+  47 0014 8AEA      		ldi r24,lo8(2730)
+  48 0016 9AE0      		ldi r25,hi8(2730)
+  49 0018 0E94 0000 		call OneWire_TRX_Byte
+  50 001c 88E8      		ldi r24,lo8(5000)
+  51 001e 93E1      		ldi r25,hi8(5000)
+  52               	.LVL3:
+  53               	.L2:
+  54               	.LBB19:
+  55               	.LBB18:
+  56               	.LBB17:
+  57               	.LBB16:
+  58               	.LM6:
+  59 0020 FE01      		movw r30,r28
+  60               	.LVL4:
+  61               	/* #APP */
+  62               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  63 0022 3197      		1: sbiw r30,1
+  64 0024 01F4      		brne 1b
+  65               	 ;  0 "" 2
+  66               	/* #NOAPP */
+  67               	.LBE16:
+  68               	.LBE17:
+  69               	.LM7:
+  70 0026 0197      		sbiw r24,1
+  71               	.LM8:
+  72 0028 01F4      		brne .L2
+  73 002a 00C0      		rjmp .L3
+  74               	.LBE18:
+  75               	.LBE19:
+  76               	.LFE6:
+ 102               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\WALTON\AppData\Local\Temp/ccl7w7x5.s:2      *ABS*:0000003f __SREG__
+C:\Users\WALTON\AppData\Local\Temp/ccl7w7x5.s:3      *ABS*:0000003e __SP_H__
+C:\Users\WALTON\AppData\Local\Temp/ccl7w7x5.s:4      *ABS*:0000003d __SP_L__
+C:\Users\WALTON\AppData\Local\Temp/ccl7w7x5.s:5      *ABS*:00000034 __CCP__
+C:\Users\WALTON\AppData\Local\Temp/ccl7w7x5.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\WALTON\AppData\Local\Temp/ccl7w7x5.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\WALTON\AppData\Local\Temp/ccl7w7x5.s:18     .text:00000000 main
+
+UNDEFINED SYMBOLS
+OneWire_Init
+OneWire_TRX_Byte
