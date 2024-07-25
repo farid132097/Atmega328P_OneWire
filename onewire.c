@@ -8,8 +8,15 @@
 typedef struct onewire_t{
   volatile uint8_t  BitCounter;
   volatile uint16_t FrameVal;
+  volatile uint16_t FrameCounter;
   volatile uint16_t FrameBuf[ONEWIRE_FRAME_BUF];
   volatile uint8_t  FrameBufIndex;
+  volatile uint8_t  CmdReceived;
+  volatile uint16_t CmdVal;
+  volatile uint16_t CmdValReg;
+  volatile uint16_t FeedbackData;
+  volatile uint8_t  FeedbackDataLoaded;
+  volatile uint8_t  FeedbackCounter;
 }onewire_t;
 
 onewire_t OneWire;
@@ -17,10 +24,17 @@ onewire_t OneWire;
 void OneWire_Struct_Init(void){
   OneWire.BitCounter = 0;
   OneWire.FrameVal = 0;
+  OneWire.FrameCounter = 0;
   for(uint8_t i=0; i<ONEWIRE_FRAME_BUF; i++){
     OneWire.FrameBuf[i] = 0;
   }
   OneWire.FrameBufIndex = 0;
+  OneWire.CmdReceived = 0;
+  OneWire.CmdVal = 0;
+  OneWire.CmdValReg = 0;
+  OneWire.FeedbackData = 0;
+  OneWire.FeedbackDataLoaded = 0;
+  OneWire.FeedbackCounter = 0;
 }
 
 void OneWire_Flush_Frame(void){
@@ -34,6 +48,7 @@ void OneWire_Flush_Frame_Buf(void){
   }
   OneWire.FrameBufIndex = 0;
 }
+
 
 
 
@@ -198,8 +213,10 @@ void OneWire_Delay_Byte_Gap(void){
 }
 
 void OneWire_Delay_Rx_Int(void){
+  OneWire_TRX_Interrupt_Disable();
   OneWire_Delay_Clock_Low_Time();
   OneWire_Delay_Half_Bit_Time();
+  OneWire_TRX_Interrupt_Enable();
 }
 
 
@@ -251,7 +268,7 @@ uint16_t OneWire_TRX_Byte(uint16_t val){
 
 
 
-void OneWire_Bit_Sample(void){
+void OneWire_Bit_Sample_And_Update(void){
   OneWire.FrameVal <<= 1;
   OneWire_Debug_Rx_Pulse();
   OneWire.FrameVal |= OneWire_TRX_Get_Input_State();
@@ -269,11 +286,62 @@ uint8_t OneWire_Bit_Counter_Overflow(void){
   }
 }
 
-void OneWire_Fill_Frame_Buf(void){
+void OneWire_Buf_Sample_And_Update(void){
   OneWire.FrameBuf[OneWire.FrameBufIndex] = OneWire.FrameVal;
-  OneWire.FrameBufIndex++;
   OneWire.FrameVal = 0;
+  OneWire.FrameBufIndex++;
 }
+
+uint8_t OneWire_Buf_Counter_Overflow(void){
+  if(OneWire.FrameBufIndex >= ONEWIRE_FRAME_BUF){
+    OneWire.FrameBufIndex = 0;
+	OneWire.FrameCounter++;
+	return 1;
+  }
+  else{
+    OneWire.FrameCounter++;
+	return 0;
+  }
+}
+
+void OneWire_Fill_Buf(void){
+  OneWire_Buf_Sample_And_Update();
+  OneWire_Buf_Counter_Overflow();
+  
+  if((OneWire.FrameBufIndex > 0) && ((OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_START_CMD) == ONEWIRE_START_CMD) ){
+    OneWire.CmdReceived = 1;
+	OneWire.CmdVal = OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_RW_MASK;
+	OneWire.CmdValReg = (OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_REG_MASK)>>1;
+	OneWire_Debug_Rx_Pulse();
+  }
+  else if( (OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_STOP_CMD) == ONEWIRE_STOP_CMD){
+    OneWire.CmdReceived = 0;
+	OneWire.FrameBufIndex = 0;
+	OneWire.FrameBuf[0] = 0;
+	OneWire.CmdVal = 0;
+	OneWire.CmdValReg = 0;
+	OneWire.FeedbackDataLoaded = 0;
+	OneWire.FeedbackCounter = 0;
+	OneWire_Debug_Rx_Pulse();
+  }
+}
+
+
+void OneWire_Read_Mode_Feedback(void){
+  OneWire_TRX_Interrupt_Disable();
+  if(OneWire.FeedbackData & 0x800){
+	OneWire_TRX_Set_Logic(1);
+  }else{
+	OneWire_TRX_Set_Logic(0);
+  }
+  OneWire.FeedbackData <<= 1;
+  OneWire_Delay_Half_Bit_Time();
+  OneWire_Delay_Half_Bit_Time();
+  OneWire_TRX_Set_Logic(1);
+  OneWire_TRX_Interrupt_Enable();
+}
+
+
 
 
 
@@ -282,13 +350,40 @@ void OneWire_Fill_Frame_Buf(void){
 ISR(ONEWIRE_TRX_PCINT_VECT){
   //TRX Interrupt Fired
   if( OneWire_TRX_Interrupt_Status() == 1){        
-    
 	//Falling Edge Interrupt
     if(OneWire_TRX_Falling_Edge_Interrupt() == 1){
-	  OneWire_Delay_Rx_Int();
-	  OneWire_Bit_Sample();
-	  if(OneWire_Bit_Counter_Overflow() == 1){
-		OneWire_Fill_Frame_Buf();
+	  
+	  if((OneWire.CmdReceived == 1) && (OneWire.CmdVal == ONEWIRE_WRITE_CMD)){
+	    OneWire_Delay_Rx_Int();
+	    OneWire_Bit_Sample_And_Update();
+	    if(OneWire_Bit_Counter_Overflow() == 1){
+		  OneWire_Fill_Buf();
+	    }
+      }
+	  else if((OneWire.CmdReceived == 1) && (OneWire.CmdVal == ONEWIRE_READ_CMD)){
+		if(OneWire.FeedbackDataLoaded == 0){
+		  OneWire.FeedbackData = (OneWire.CmdValReg<<1) | ONEWIRE_STOP_CMD | 1;
+		  OneWire.FeedbackDataLoaded = 1;
+		}
+	    OneWire_Read_Mode_Feedback();
+		OneWire.FeedbackCounter ++;
+		if(OneWire.FeedbackCounter >= ONEWIRE_FRAME_LEN){
+		  OneWire.CmdReceived = 0;
+	      OneWire.FrameBufIndex = 0;
+	      OneWire.FrameBuf[0] = 0;
+	      OneWire.CmdVal = 0;
+	      OneWire.CmdValReg = 0;
+	      OneWire.FeedbackDataLoaded = 0;
+	      OneWire.FeedbackCounter = 0;
+	      OneWire_Debug_Rx_Pulse();
+		}
+	  }
+	  else{
+	    OneWire_Delay_Rx_Int();
+	    OneWire_Bit_Sample_And_Update();
+	    if(OneWire_Bit_Counter_Overflow() == 1){
+		  OneWire_Fill_Buf();
+	    }
 	  }
 	}
   }

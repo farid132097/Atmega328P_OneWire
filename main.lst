@@ -10,77 +10,23 @@
   18               	main:
   19               	.LFB6:
   20               	.LM1:
-  21 0000 CF93      		push r28
-  22 0002 DF93      		push r29
-  23               	/* prologue: function */
-  24               	/* frame size = 0 */
-  25               	.LM2:
-  26 0004 0E94 0000 		call OneWire_Init_Master
-  27               	.LBB12:
-  28               	.LBB13:
-  29               	.LBB14:
-  30               	.LBB15:
-  31               	.LM3:
-  32 0008 CCE2      		ldi r28,lo8(300)
-  33 000a D1E0      		ldi r29,hi8(300)
-  34               	.LVL0:
-  35               	.L3:
-  36               	.LBE15:
-  37               	.LBE14:
-  38               	.LBE13:
-  39               	.LBE12:
-  40               	.LM4:
-  41 000c 8FE7      		ldi r24,lo8(2687)
-  42 000e 9AE0      		ldi r25,hi8(2687)
-  43               	.LVL1:
-  44 0010 0E94 0000 		call OneWire_TRX_Byte
-  45               	.LVL2:
-  46               	.LM5:
-  47 0014 83E0      		ldi r24,lo8(515)
-  48 0016 92E0      		ldi r25,hi8(515)
-  49 0018 0E94 0000 		call OneWire_TRX_Byte
-  50               	.LM6:
-  51 001c 8FEF      		ldi r24,lo8(1023)
-  52 001e 93E0      		ldi r25,hi8(1023)
-  53 0020 0E94 0000 		call OneWire_TRX_Byte
-  54 0024 88E8      		ldi r24,lo8(5000)
-  55 0026 93E1      		ldi r25,hi8(5000)
-  56               	.LVL3:
-  57               	.L2:
-  58               	.LBB19:
-  59               	.LBB18:
-  60               	.LBB17:
-  61               	.LBB16:
-  62               	.LM7:
-  63 0028 FE01      		movw r30,r28
-  64               	.LVL4:
-  65               	/* #APP */
-  66               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
-  67 002a 3197      		1: sbiw r30,1
-  68 002c 01F4      		brne 1b
-  69               	 ;  0 "" 2
-  70               	/* #NOAPP */
-  71               	.LBE16:
-  72               	.LBE17:
-  73               	.LM8:
-  74 002e 0197      		sbiw r24,1
-  75               	.LM9:
-  76 0030 01F4      		brne .L2
-  77 0032 00C0      		rjmp .L3
-  78               	.LBE18:
-  79               	.LBE19:
-  80               	.LFE6:
- 106               	.Letext0:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 0E94 0000 		call OneWire_Init_Slave
+  25               	.L2:
+  26 0004 00C0      		rjmp .L2
+  27               	.LFE6:
+  53               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\farid\AppData\Local\Temp/cc1zW8yf.s:2      *ABS*:0000003f __SREG__
-C:\Users\farid\AppData\Local\Temp/cc1zW8yf.s:3      *ABS*:0000003e __SP_H__
-C:\Users\farid\AppData\Local\Temp/cc1zW8yf.s:4      *ABS*:0000003d __SP_L__
-C:\Users\farid\AppData\Local\Temp/cc1zW8yf.s:5      *ABS*:00000034 __CCP__
-C:\Users\farid\AppData\Local\Temp/cc1zW8yf.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\farid\AppData\Local\Temp/cc1zW8yf.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\farid\AppData\Local\Temp/cc1zW8yf.s:18     .text:00000000 main
+C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:2      *ABS*:0000003f __SREG__
+C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:3      *ABS*:0000003e __SP_H__
+C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:4      *ABS*:0000003d __SP_L__
+C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:5      *ABS*:00000034 __CCP__
+C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:18     .text:00000000 main
 
 UNDEFINED SYMBOLS
-OneWire_Init_Master
-OneWire_TRX_Byte
+OneWire_Init_Slave
