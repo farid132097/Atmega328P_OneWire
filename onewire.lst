@@ -1440,102 +1440,134 @@
  1508 055e 1F90      		pop __zero_reg__
  1509 0560 1895      		reti
  1510               	.LFE36:
- 1512               	.global	OneWire_Init_Master
- 1514               	OneWire_Init_Master:
+ 1512               	.global	OneWire_Get_Data_Buf
+ 1514               	OneWire_Get_Data_Buf:
  1515               	.LFB37:
  1516               	.LM203:
- 1517               	/* prologue: function */
- 1518               	/* frame size = 0 */
- 1519               	.LM204:
- 1520 0562 0E94 0000 		call OneWire_Struct_Init
- 1521               	.LM205:
- 1522 0566 0E94 0000 		call OneWire_TRX_GPIO_Init
- 1523               	.LM206:
- 1524 056a 0E94 0000 		call OneWire_TRX_Interrupt_Init
- 1525               	.LBB414:
- 1526               	.LBB415:
- 1527               	.LM207:
- 1528 056e EBE6      		ldi r30,lo8(107)
- 1529 0570 F0E0      		ldi r31,hi8(107)
- 1530 0572 8081      		ld r24,Z
- 1531 0574 8E7F      		andi r24,lo8(-2)
- 1532 0576 8083      		st Z,r24
- 1533               	/* epilogue start */
- 1534               	.LBE415:
- 1535               	.LBE414:
- 1536               	.LM208:
- 1537 0578 0895      		ret
- 1538               	.LFE37:
- 1540               	.global	OneWire_Init_Slave
- 1542               	OneWire_Init_Slave:
- 1543               	.LFB38:
- 1544               	.LM209:
- 1545               	/* prologue: function */
- 1546               	/* frame size = 0 */
- 1547               	.LM210:
- 1548 057a 0E94 0000 		call OneWire_Struct_Init
- 1549               	.LM211:
- 1550 057e 0E94 0000 		call OneWire_TRX_GPIO_Init
- 1551               	.LM212:
- 1552 0582 0E94 0000 		call OneWire_TRX_Interrupt_Init
- 1553               	.LBB416:
- 1554               	.LBB417:
- 1555               	.LM213:
- 1556 0586 EBE6      		ldi r30,lo8(107)
- 1557 0588 F0E0      		ldi r31,hi8(107)
- 1558 058a 8081      		ld r24,Z
- 1559 058c 8160      		ori r24,lo8(1)
- 1560 058e 8083      		st Z,r24
- 1561               	/* epilogue start */
- 1562               	.LBE417:
- 1563               	.LBE416:
- 1564               	.LM214:
- 1565 0590 0895      		ret
- 1566               	.LFE38:
- 1568               		.comm OneWire,266,1
- 1849               	.Letext0:
+ 1517               	.LVL51:
+ 1518               	/* prologue: function */
+ 1519               	/* frame size = 0 */
+ 1520               	.LM204:
+ 1521 0562 E82F      		mov r30,r24
+ 1522 0564 F0E0      		ldi r31,lo8(0)
+ 1523 0566 E050      		subi r30,lo8(-(OneWire+115))
+ 1524 0568 F040      		sbci r31,hi8(-(OneWire+115))
+ 1525 056a 8081      		ld r24,Z
+ 1526               	.LVL52:
+ 1527               	/* epilogue start */
+ 1528               	.LM205:
+ 1529 056c 0895      		ret
+ 1530               	.LFE37:
+ 1532               	.global	OneWire_Get_Data_Buf_Index
+ 1534               	OneWire_Get_Data_Buf_Index:
+ 1535               	.LFB38:
+ 1536               	.LM206:
+ 1537               	/* prologue: function */
+ 1538               	/* frame size = 0 */
+ 1539               	.LM207:
+ 1540 056e 8091 0000 		lds r24,OneWire+265
+ 1541               	/* epilogue start */
+ 1542               	.LM208:
+ 1543 0572 0895      		ret
+ 1544               	.LFE38:
+ 1546               	.global	OneWire_Init_Master
+ 1548               	OneWire_Init_Master:
+ 1549               	.LFB39:
+ 1550               	.LM209:
+ 1551               	/* prologue: function */
+ 1552               	/* frame size = 0 */
+ 1553               	.LM210:
+ 1554 0574 0E94 0000 		call OneWire_Struct_Init
+ 1555               	.LM211:
+ 1556 0578 0E94 0000 		call OneWire_TRX_GPIO_Init
+ 1557               	.LM212:
+ 1558 057c 0E94 0000 		call OneWire_TRX_Interrupt_Init
+ 1559               	.LBB414:
+ 1560               	.LBB415:
+ 1561               	.LM213:
+ 1562 0580 EBE6      		ldi r30,lo8(107)
+ 1563 0582 F0E0      		ldi r31,hi8(107)
+ 1564 0584 8081      		ld r24,Z
+ 1565 0586 8E7F      		andi r24,lo8(-2)
+ 1566 0588 8083      		st Z,r24
+ 1567               	/* epilogue start */
+ 1568               	.LBE415:
+ 1569               	.LBE414:
+ 1570               	.LM214:
+ 1571 058a 0895      		ret
+ 1572               	.LFE39:
+ 1574               	.global	OneWire_Init_Slave
+ 1576               	OneWire_Init_Slave:
+ 1577               	.LFB40:
+ 1578               	.LM215:
+ 1579               	/* prologue: function */
+ 1580               	/* frame size = 0 */
+ 1581               	.LM216:
+ 1582 058c 0E94 0000 		call OneWire_Struct_Init
+ 1583               	.LM217:
+ 1584 0590 0E94 0000 		call OneWire_TRX_GPIO_Init
+ 1585               	.LM218:
+ 1586 0594 0E94 0000 		call OneWire_TRX_Interrupt_Init
+ 1587               	.LBB416:
+ 1588               	.LBB417:
+ 1589               	.LM219:
+ 1590 0598 EBE6      		ldi r30,lo8(107)
+ 1591 059a F0E0      		ldi r31,hi8(107)
+ 1592 059c 8081      		ld r24,Z
+ 1593 059e 8160      		ori r24,lo8(1)
+ 1594 05a0 8083      		st Z,r24
+ 1595               	/* epilogue start */
+ 1596               	.LBE417:
+ 1597               	.LBE416:
+ 1598               	.LM220:
+ 1599 05a2 0895      		ret
+ 1600               	.LFE40:
+ 1602               		.comm OneWire,266,1
+ 1899               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 onewire.c
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:2      *ABS*:0000003f __SREG__
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:3      *ABS*:0000003e __SP_H__
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:4      *ABS*:0000003d __SP_L__
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:5      *ABS*:00000034 __CCP__
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:18     .text:00000000 OneWire_Struct_Init
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:2      *ABS*:0000003f __SREG__
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:3      *ABS*:0000003e __SP_H__
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:4      *ABS*:0000003d __SP_L__
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:5      *ABS*:00000034 __CCP__
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:18     .text:00000000 OneWire_Struct_Init
                             *COM*:0000010a OneWire
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:90     .text:00000070 OneWire_Flush_Frame
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:107    .text:0000007e OneWire_Flush_Frame_Buf
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:140    .text:0000009e OneWire_Flush_Data_Buf
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:170    .text:000000b8 OneWire_TRX_Set_DDR
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:190    .text:000000c4 OneWire_TRX_Set_Port
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:210    .text:000000d0 OneWire_TRX_Get_Input_State
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:225    .text:000000d6 OneWire_TRX_Set_Logic
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:253    .text:000000e2 OneWire_TRX_GPIO_Init
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:286    .text:000000ea OneWire_TRX_Interrupt_Init
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:318    .text:00000104 OneWire_TRX_Interrupt_Enable
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:336    .text:00000110 OneWire_TRX_Interrupt_Disable
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:354    .text:0000011c OneWire_TRX_Interrupt_Status
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:369    .text:00000124 OneWire_TRX_Falling_Edge_Interrupt
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:389    .text:0000012c OneWire_Debug_Tx_Pulse
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:401    .text:0000012e OneWire_Debug_Rx_Pulse
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:413    .text:00000130 OneWire_Delay_Clock_Low_Time
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:442    .text:00000138 OneWire_Delay_Clock_High_Time
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:471    .text:00000140 OneWire_Delay_Half_Bit_Time
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:500    .text:00000148 OneWire_Delay_Byte_Gap
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:534    .text:00000152 OneWire_Delay_Rx_Int
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:606    .text:00000170 OneWire_TRX_Byte
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:844    .text:000001ce OneWire_Bit_Sample_And_Update
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:886    .text:0000020a OneWire_Bit_Counter_Overflow
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:907    .text:0000021e OneWire_Buf_Sample_And_Update
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:937    .text:0000024c OneWire_Buf_Counter_Overflow
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:970    .text:00000284 OneWire_Fill_Buf
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:1116   .text:00000396 OneWire_Read_Mode_Feedback
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:1231   .text:000003e0 OneWire_Master_Send_Data
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:1325   .text:0000044c OneWire_Master_Receive_Data
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:1372   .text:0000046c __vector_3
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:1514   .text:00000562 OneWire_Init_Master
-C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:1542   .text:0000057a OneWire_Init_Slave
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:90     .text:00000070 OneWire_Flush_Frame
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:107    .text:0000007e OneWire_Flush_Frame_Buf
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:140    .text:0000009e OneWire_Flush_Data_Buf
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:170    .text:000000b8 OneWire_TRX_Set_DDR
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:190    .text:000000c4 OneWire_TRX_Set_Port
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:210    .text:000000d0 OneWire_TRX_Get_Input_State
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:225    .text:000000d6 OneWire_TRX_Set_Logic
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:253    .text:000000e2 OneWire_TRX_GPIO_Init
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:286    .text:000000ea OneWire_TRX_Interrupt_Init
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:318    .text:00000104 OneWire_TRX_Interrupt_Enable
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:336    .text:00000110 OneWire_TRX_Interrupt_Disable
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:354    .text:0000011c OneWire_TRX_Interrupt_Status
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:369    .text:00000124 OneWire_TRX_Falling_Edge_Interrupt
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:389    .text:0000012c OneWire_Debug_Tx_Pulse
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:401    .text:0000012e OneWire_Debug_Rx_Pulse
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:413    .text:00000130 OneWire_Delay_Clock_Low_Time
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:442    .text:00000138 OneWire_Delay_Clock_High_Time
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:471    .text:00000140 OneWire_Delay_Half_Bit_Time
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:500    .text:00000148 OneWire_Delay_Byte_Gap
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:534    .text:00000152 OneWire_Delay_Rx_Int
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:606    .text:00000170 OneWire_TRX_Byte
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:844    .text:000001ce OneWire_Bit_Sample_And_Update
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:886    .text:0000020a OneWire_Bit_Counter_Overflow
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:907    .text:0000021e OneWire_Buf_Sample_And_Update
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:937    .text:0000024c OneWire_Buf_Counter_Overflow
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:970    .text:00000284 OneWire_Fill_Buf
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:1116   .text:00000396 OneWire_Read_Mode_Feedback
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:1231   .text:000003e0 OneWire_Master_Send_Data
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:1325   .text:0000044c OneWire_Master_Receive_Data
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:1372   .text:0000046c __vector_3
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:1514   .text:00000562 OneWire_Get_Data_Buf
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:1534   .text:0000056e OneWire_Get_Data_Buf_Index
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:1548   .text:00000574 OneWire_Init_Master
+C:\Users\farid\AppData\Local\Temp/ccj4boty.s:1576   .text:0000058c OneWire_Init_Slave
 
 UNDEFINED SYMBOLS
 __do_clear_bss

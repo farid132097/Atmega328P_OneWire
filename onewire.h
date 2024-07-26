@@ -86,6 +86,7 @@ void     OneWire_Struct_Init(void);
 
 void     OneWire_Flush_Frame(void);
 void     OneWire_Flush_Frame_Buf(void);
+void     OneWire_Flush_Data_Buf(void);
 
 void     OneWire_TRX_Set_DDR(uint8_t state);
 void     OneWire_TRX_Set_Port(uint8_t state);
@@ -119,6 +120,9 @@ void     OneWire_Read_Mode_Feedback(void);
 
 void     OneWire_Master_Send_Data(uint8_t *data, uint8_t len);
 uint8_t  OneWire_Master_Receive_Data(uint8_t addr);
+
+uint8_t  OneWire_Get_Data_Buf(uint8_t index);
+uint8_t  OneWire_Get_Data_Buf_Index(void);
 
 void     OneWire_Init_Master(void);
 void     OneWire_Init_Slave(void);

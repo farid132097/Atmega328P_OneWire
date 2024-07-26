@@ -437,6 +437,22 @@ ISR(ONEWIRE_TRX_PCINT_VECT){
 
 
 
+
+
+
+uint8_t OneWire_Get_Data_Buf(uint8_t index){
+  return OneWire.DataBuf[index];
+}
+
+uint8_t OneWire_Get_Data_Buf_Index(void){
+  return OneWire.DataBufIndex;
+}
+
+
+
+
+
+
 void OneWire_Init_Master(void){
   OneWire_Struct_Init();
   OneWire_TRX_GPIO_Init();
