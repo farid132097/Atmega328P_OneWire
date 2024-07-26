@@ -10,23 +10,154 @@
   18               	main:
   19               	.LFB6:
   20               	.LM1:
-  21               	/* prologue: function */
-  22               	/* frame size = 0 */
-  23               	.LM2:
-  24 0000 0E94 0000 		call OneWire_Init_Slave
-  25               	.L2:
-  26 0004 00C0      		rjmp .L2
-  27               	.LFE6:
-  53               	.Letext0:
+  21 0000 EF92      		push r14
+  22 0002 FF92      		push r15
+  23 0004 0F93      		push r16
+  24 0006 1F93      		push r17
+  25 0008 DF93      		push r29
+  26 000a CF93      		push r28
+  27 000c CDB7      		in r28,__SP_L__
+  28 000e DEB7      		in r29,__SP_H__
+  29 0010 2E97      		sbiw r28,14
+  30 0012 0FB6      		in __tmp_reg__,__SREG__
+  31 0014 F894      		cli
+  32 0016 DEBF      		out __SP_H__,r29
+  33 0018 0FBE      		out __SREG__,__tmp_reg__
+  34 001a CDBF      		out __SP_L__,r28
+  35               	/* prologue: function */
+  36               	/* frame size = 14 */
+  37               	.LM2:
+  38 001c 0E94 0000 		call OneWire_Init_Master
+  39 0020 20E0      		ldi r18,lo8(0)
+  40               	.LVL0:
+  41               	.LBB13:
+  42               	.LM3:
+  43 0022 8E01      		movw r16,r28
+  44 0024 0F5F      		subi r16,lo8(-(1))
+  45 0026 1F4F      		sbci r17,hi8(-(1))
+  46               	.LBE13:
+  47               	.LBB14:
+  48               	.LBB15:
+  49               	.LBB16:
+  50               	.LBB17:
+  51               	.LM4:
+  52 0028 8CE2      		ldi r24,lo8(300)
+  53 002a E82E      		mov r14,r24
+  54 002c 81E0      		ldi r24,hi8(300)
+  55 002e F82E      		mov r15,r24
+  56               	.LVL1:
+  57               	.L6:
+  58               	.LBE17:
+  59               	.LBE16:
+  60               	.LBE15:
+  61               	.LBE14:
+  62               	.LM5:
+  63 0030 2223      		tst r18
+  64 0032 01F4      		brne .L2
+  65               	.LBB21:
+  66               	.LM6:
+  67 0034 D801      		movw r26,r16
+  68 0036 E0E0      		ldi r30,lo8(C.0.1311)
+  69 0038 F0E0      		ldi r31,hi8(C.0.1311)
+  70               	.LVL2:
+  71 003a 8EE0      		ldi r24,lo8(14)
+  72               	.LVL3:
+  73               	.L3:
+  74 003c 0190      		ld r0,Z+
+  75 003e 0D92      		st X+,r0
+  76 0040 8150      		subi r24,lo8(-(-1))
+  77 0042 01F4      		brne .L3
+  78               	.LM7:
+  79 0044 C801      		movw r24,r16
+  80 0046 6EE0      		ldi r22,lo8(14)
+  81 0048 0E94 0000 		call OneWire_Master_Send_Data
+  82               	.LVL4:
+  83 004c 21E0      		ldi r18,lo8(1)
+  84               	.LVL5:
+  85 004e 00C0      		rjmp .L4
+  86               	.LVL6:
+  87               	.L2:
+  88               	.LBE21:
+  89               	.LM8:
+  90 0050 80E0      		ldi r24,lo8(0)
+  91               	.LVL7:
+  92 0052 0E94 0000 		call OneWire_Master_Receive_Data
+  93               	.LVL8:
+  94               	.LM9:
+  95 0056 81E0      		ldi r24,lo8(1)
+  96 0058 0E94 0000 		call OneWire_Master_Receive_Data
+  97               	.LM10:
+  98 005c 82E0      		ldi r24,lo8(2)
+  99 005e 0E94 0000 		call OneWire_Master_Receive_Data
+ 100               	.LM11:
+ 101 0062 83E0      		ldi r24,lo8(3)
+ 102 0064 0E94 0000 		call OneWire_Master_Receive_Data
+ 103               	.LM12:
+ 104 0068 84E0      		ldi r24,lo8(4)
+ 105 006a 0E94 0000 		call OneWire_Master_Receive_Data
+ 106               	.LM13:
+ 107 006e 85E0      		ldi r24,lo8(5)
+ 108 0070 0E94 0000 		call OneWire_Master_Receive_Data
+ 109 0074 20E0      		ldi r18,lo8(0)
+ 110               	.LVL9:
+ 111               	.L4:
+ 112 0076 88E8      		ldi r24,lo8(5000)
+ 113 0078 93E1      		ldi r25,hi8(5000)
+ 114               	.LVL10:
+ 115               	.L5:
+ 116               	.LBB22:
+ 117               	.LBB20:
+ 118               	.LBB19:
+ 119               	.LBB18:
+ 120               	.LM14:
+ 121 007a F701      		movw r30,r14
+ 122               	.LVL11:
+ 123               	/* #APP */
+ 124               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 125 007c 3197      		1: sbiw r30,1
+ 126 007e 01F4      		brne 1b
+ 127               	 ;  0 "" 2
+ 128               	/* #NOAPP */
+ 129               	.LBE18:
+ 130               	.LBE19:
+ 131               	.LM15:
+ 132 0080 0197      		sbiw r24,1
+ 133               	.LM16:
+ 134 0082 01F4      		brne .L5
+ 135 0084 00C0      		rjmp .L6
+ 136               	.LBE20:
+ 137               	.LBE22:
+ 138               	.LFE6:
+ 140               		.data
+ 143               	C.0.1311:
+ 144 0000 00        		.byte	0
+ 145 0001 01        		.byte	1
+ 146 0002 02        		.byte	2
+ 147 0003 03        		.byte	3
+ 148 0004 04        		.byte	4
+ 149 0005 05        		.byte	5
+ 150 0006 06        		.byte	6
+ 151 0007 07        		.byte	7
+ 152 0008 08        		.byte	8
+ 153 0009 09        		.byte	9
+ 154 000a 0A        		.byte	10
+ 155 000b 0B        		.byte	11
+ 156 000c 0C        		.byte	12
+ 157 000d 0D        		.byte	13
+ 182               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:2      *ABS*:0000003f __SREG__
-C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:3      *ABS*:0000003e __SP_H__
-C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:4      *ABS*:0000003d __SP_L__
-C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:5      *ABS*:00000034 __CCP__
-C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\farid\AppData\Local\Temp/cc7tMEiJ.s:18     .text:00000000 main
+C:\Users\farid\AppData\Local\Temp/ccyeLZlc.s:2      *ABS*:0000003f __SREG__
+C:\Users\farid\AppData\Local\Temp/ccyeLZlc.s:3      *ABS*:0000003e __SP_H__
+C:\Users\farid\AppData\Local\Temp/ccyeLZlc.s:4      *ABS*:0000003d __SP_L__
+C:\Users\farid\AppData\Local\Temp/ccyeLZlc.s:5      *ABS*:00000034 __CCP__
+C:\Users\farid\AppData\Local\Temp/ccyeLZlc.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\farid\AppData\Local\Temp/ccyeLZlc.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\farid\AppData\Local\Temp/ccyeLZlc.s:18     .text:00000000 main
+C:\Users\farid\AppData\Local\Temp/ccyeLZlc.s:143    .data:00000000 C.0.1311
 
 UNDEFINED SYMBOLS
-OneWire_Init_Slave
+OneWire_Init_Master
+OneWire_Master_Send_Data
+OneWire_Master_Receive_Data
+__do_copy_data

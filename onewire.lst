@@ -23,7 +23,7 @@
   31 0014 80E0      		ldi r24,lo8(0)
   32 0016 90E0      		ldi r25,hi8(0)
   33               	.L2:
-  34               	.LBB289:
+  34               	.LBB254:
   35               	.LM5:
   36 0018 FC01      		movw r30,r24
   37 001a EE0F      		lsl r30
@@ -34,1446 +34,1508 @@
   42 0024 1582      		std Z+5,__zero_reg__
   43 0026 0196      		adiw r24,1
   44               	.LM6:
-  45 0028 8837      		cpi r24,120
+  45 0028 8233      		cpi r24,50
   46 002a 9105      		cpc r25,__zero_reg__
   47 002c 01F4      		brne .L2
-  48               	.LBE289:
+  48               	.LBE254:
   49               	.LM7:
-  50 002e 1092 0000 		sts OneWire+245,__zero_reg__
+  50 002e 1092 0000 		sts OneWire+105,__zero_reg__
   51               	.LM8:
-  52 0032 1092 0000 		sts OneWire+246,__zero_reg__
+  52 0032 1092 0000 		sts OneWire+106,__zero_reg__
   53               	.LM9:
-  54 0036 1092 0000 		sts (OneWire+247)+1,__zero_reg__
-  55 003a 1092 0000 		sts OneWire+247,__zero_reg__
+  54 0036 1092 0000 		sts (OneWire+107)+1,__zero_reg__
+  55 003a 1092 0000 		sts OneWire+107,__zero_reg__
   56               	.LM10:
-  57 003e 1092 0000 		sts (OneWire+249)+1,__zero_reg__
-  58 0042 1092 0000 		sts OneWire+249,__zero_reg__
+  57 003e 1092 0000 		sts (OneWire+109)+1,__zero_reg__
+  58 0042 1092 0000 		sts OneWire+109,__zero_reg__
   59               	.LM11:
-  60 0046 1092 0000 		sts (OneWire+251)+1,__zero_reg__
-  61 004a 1092 0000 		sts OneWire+251,__zero_reg__
+  60 0046 1092 0000 		sts (OneWire+111)+1,__zero_reg__
+  61 004a 1092 0000 		sts OneWire+111,__zero_reg__
   62               	.LM12:
-  63 004e 1092 0000 		sts OneWire+253,__zero_reg__
+  63 004e 1092 0000 		sts OneWire+113,__zero_reg__
   64               	.LM13:
-  65 0052 1092 0000 		sts OneWire+254,__zero_reg__
-  66               	/* epilogue start */
-  67               	.LM14:
-  68 0056 0895      		ret
-  69               	.LFE6:
-  71               	.global	OneWire_Flush_Frame
-  73               	OneWire_Flush_Frame:
-  74               	.LFB7:
-  75               	.LM15:
-  76               	/* prologue: function */
-  77               	/* frame size = 0 */
-  78               	.LM16:
-  79 0058 1092 0000 		sts OneWire,__zero_reg__
-  80               	.LM17:
-  81 005c 1092 0000 		sts (OneWire+1)+1,__zero_reg__
-  82 0060 1092 0000 		sts OneWire+1,__zero_reg__
+  65 0052 1092 0000 		sts OneWire+114,__zero_reg__
+  66 0056 80E0      		ldi r24,lo8(0)
+  67 0058 90E0      		ldi r25,hi8(0)
+  68               	.L3:
+  69               	.LBB255:
+  70               	.LM14:
+  71 005a FC01      		movw r30,r24
+  72 005c E050      		subi r30,lo8(-(OneWire+115))
+  73 005e F040      		sbci r31,hi8(-(OneWire+115))
+  74 0060 1082      		st Z,__zero_reg__
+  75 0062 0196      		adiw r24,1
+  76               	.LM15:
+  77 0064 8639      		cpi r24,150
+  78 0066 9105      		cpc r25,__zero_reg__
+  79 0068 01F4      		brne .L3
+  80               	.LBE255:
+  81               	.LM16:
+  82 006a 1092 0000 		sts OneWire+265,__zero_reg__
   83               	/* epilogue start */
-  84               	.LM18:
-  85 0064 0895      		ret
-  86               	.LFE7:
-  88               	.global	OneWire_Flush_Frame_Buf
-  90               	OneWire_Flush_Frame_Buf:
-  91               	.LFB8:
-  92               	.LM19:
+  84               	.LM17:
+  85 006e 0895      		ret
+  86               	.LFE6:
+  88               	.global	OneWire_Flush_Frame
+  90               	OneWire_Flush_Frame:
+  91               	.LFB7:
+  92               	.LM18:
   93               	/* prologue: function */
   94               	/* frame size = 0 */
-  95               	.LM20:
-  96 0066 80E0      		ldi r24,lo8(0)
-  97 0068 90E0      		ldi r25,hi8(0)
-  98               	.L8:
-  99               	.LBB290:
- 100               	.LM21:
- 101 006a FC01      		movw r30,r24
- 102 006c EE0F      		lsl r30
- 103 006e FF1F      		rol r31
- 104 0070 E050      		subi r30,lo8(-(OneWire))
- 105 0072 F040      		sbci r31,hi8(-(OneWire))
- 106 0074 1682      		std Z+6,__zero_reg__
- 107 0076 1582      		std Z+5,__zero_reg__
- 108 0078 0196      		adiw r24,1
+  95               	.LM19:
+  96 0070 1092 0000 		sts OneWire,__zero_reg__
+  97               	.LM20:
+  98 0074 1092 0000 		sts (OneWire+1)+1,__zero_reg__
+  99 0078 1092 0000 		sts OneWire+1,__zero_reg__
+ 100               	/* epilogue start */
+ 101               	.LM21:
+ 102 007c 0895      		ret
+ 103               	.LFE7:
+ 105               	.global	OneWire_Flush_Frame_Buf
+ 107               	OneWire_Flush_Frame_Buf:
+ 108               	.LFB8:
  109               	.LM22:
- 110 007a 8837      		cpi r24,120
- 111 007c 9105      		cpc r25,__zero_reg__
- 112 007e 01F4      		brne .L8
- 113               	.LBE290:
- 114               	.LM23:
- 115 0080 1092 0000 		sts OneWire+245,__zero_reg__
- 116               	/* epilogue start */
+ 110               	/* prologue: function */
+ 111               	/* frame size = 0 */
+ 112               	.LM23:
+ 113 007e 80E0      		ldi r24,lo8(0)
+ 114 0080 90E0      		ldi r25,hi8(0)
+ 115               	.L10:
+ 116               	.LBB256:
  117               	.LM24:
- 118 0084 0895      		ret
- 119               	.LFE8:
- 121               	.global	OneWire_TRX_Set_DDR
- 123               	OneWire_TRX_Set_DDR:
- 124               	.LFB9:
- 125               	.LM25:
- 126               	.LVL0:
- 127               	/* prologue: function */
- 128               	/* frame size = 0 */
- 129               	.LM26:
- 130 0086 8823      		tst r24
- 131 0088 01F4      		brne .L12
- 132               	.LM27:
- 133 008a 3D98      		cbi 39-32,5
- 134 008c 0895      		ret
- 135               	.L12:
- 136               	.LM28:
- 137 008e 3D9A      		sbi 39-32,5
- 138 0090 0895      		ret
- 139               	.LFE9:
- 141               	.global	OneWire_TRX_Set_Port
- 143               	OneWire_TRX_Set_Port:
- 144               	.LFB10:
+ 118 0082 FC01      		movw r30,r24
+ 119 0084 EE0F      		lsl r30
+ 120 0086 FF1F      		rol r31
+ 121 0088 E050      		subi r30,lo8(-(OneWire))
+ 122 008a F040      		sbci r31,hi8(-(OneWire))
+ 123 008c 1682      		std Z+6,__zero_reg__
+ 124 008e 1582      		std Z+5,__zero_reg__
+ 125 0090 0196      		adiw r24,1
+ 126               	.LM25:
+ 127 0092 8233      		cpi r24,50
+ 128 0094 9105      		cpc r25,__zero_reg__
+ 129 0096 01F4      		brne .L10
+ 130               	.LBE256:
+ 131               	.LM26:
+ 132 0098 1092 0000 		sts OneWire+105,__zero_reg__
+ 133               	/* epilogue start */
+ 134               	.LM27:
+ 135 009c 0895      		ret
+ 136               	.LFE8:
+ 138               	.global	OneWire_Flush_Data_Buf
+ 140               	OneWire_Flush_Data_Buf:
+ 141               	.LFB9:
+ 142               	.LM28:
+ 143               	/* prologue: function */
+ 144               	/* frame size = 0 */
  145               	.LM29:
- 146               	.LVL1:
- 147               	/* prologue: function */
- 148               	/* frame size = 0 */
- 149               	.LM30:
- 150 0092 8823      		tst r24
- 151 0094 01F4      		brne .L16
- 152               	.LM31:
- 153 0096 4598      		cbi 40-32,5
- 154 0098 0895      		ret
- 155               	.L16:
- 156               	.LM32:
- 157 009a 459A      		sbi 40-32,5
- 158 009c 0895      		ret
- 159               	.LFE10:
- 161               	.global	OneWire_TRX_Get_Input_State
- 163               	OneWire_TRX_Get_Input_State:
- 164               	.LFB11:
- 165               	.LM33:
- 166               	/* prologue: function */
- 167               	/* frame size = 0 */
- 168               	.LM34:
- 169 009e 86B1      		in r24,38-32
- 170 00a0 90E0      		ldi r25,lo8(0)
- 171 00a2 45E0      		ldi r20,5
- 172 00a4 9695      	1:	lsr r25
- 173 00a6 8795      		ror r24
- 174 00a8 4A95      		dec r20
- 175 00aa 01F4      		brne 1b
+ 146 009e 80E0      		ldi r24,lo8(0)
+ 147 00a0 90E0      		ldi r25,hi8(0)
+ 148               	.L14:
+ 149               	.LBB257:
+ 150               	.LM30:
+ 151 00a2 FC01      		movw r30,r24
+ 152 00a4 E050      		subi r30,lo8(-(OneWire+115))
+ 153 00a6 F040      		sbci r31,hi8(-(OneWire+115))
+ 154 00a8 1082      		st Z,__zero_reg__
+ 155 00aa 0196      		adiw r24,1
+ 156               	.LM31:
+ 157 00ac 8639      		cpi r24,150
+ 158 00ae 9105      		cpc r25,__zero_reg__
+ 159 00b0 01F4      		brne .L14
+ 160               	.LBE257:
+ 161               	.LM32:
+ 162 00b2 1092 0000 		sts OneWire+265,__zero_reg__
+ 163               	/* epilogue start */
+ 164               	.LM33:
+ 165 00b6 0895      		ret
+ 166               	.LFE9:
+ 168               	.global	OneWire_TRX_Set_DDR
+ 170               	OneWire_TRX_Set_DDR:
+ 171               	.LFB10:
+ 172               	.LM34:
+ 173               	.LVL0:
+ 174               	/* prologue: function */
+ 175               	/* frame size = 0 */
  176               	.LM35:
- 177 00ac 8170      		andi r24,lo8(1)
- 178               	/* epilogue start */
- 179 00ae 0895      		ret
- 180               	.LFE11:
- 182               	.global	OneWire_TRX_Set_Logic
- 184               	OneWire_TRX_Set_Logic:
- 185               	.LFB12:
- 186               	.LM36:
- 187               	.LVL2:
- 188               	/* prologue: function */
- 189               	/* frame size = 0 */
- 190               	.LM37:
- 191 00b0 8823      		tst r24
- 192 00b2 01F4      		brne .L22
- 193               	.LBB291:
- 194               	.LBB292:
- 195               	.LM38:
- 196 00b4 3D9A      		sbi 39-32,5
- 197 00b6 0895      		ret
- 198               	.L22:
- 199               	.LBE292:
- 200               	.LBE291:
- 201               	.LBB293:
- 202               	.LBB294:
- 203               	.LM39:
- 204 00b8 3D98      		cbi 39-32,5
- 205 00ba 0895      		ret
- 206               	.LBE294:
- 207               	.LBE293:
- 208               	.LFE12:
- 210               	.global	OneWire_TRX_GPIO_Init
- 212               	OneWire_TRX_GPIO_Init:
- 213               	.LFB13:
- 214               	.LM40:
- 215               	/* prologue: function */
- 216               	/* frame size = 0 */
- 217               	.LBB295:
- 218               	.LBB296:
- 219               	.LM41:
- 220 00bc 4598      		cbi 40-32,5
- 221               	.LBE296:
- 222               	.LBE295:
- 223               	.LBB297:
- 224               	.LBB298:
- 225               	.LM42:
- 226 00be 3D98      		cbi 39-32,5
- 227               	.LBE298:
- 228               	.LBE297:
- 229               	.LBB299:
- 230               	.LBB300:
- 231               	.LBB301:
- 232               	.LBB302:
- 233 00c0 3D98      		cbi 39-32,5
- 234               	.LBE302:
- 235               	.LBE301:
- 236               	.LBE300:
- 237               	.LBE299:
- 238               	.LM43:
- 239 00c2 3C9A      		sbi 39-32,4
- 240               	.LM44:
- 241 00c4 4498      		cbi 40-32,4
- 242               	/* epilogue start */
- 243               	.LM45:
- 244 00c6 0895      		ret
- 245               	.LFE13:
- 247               	.global	OneWire_TRX_Interrupt_Init
- 249               	OneWire_TRX_Interrupt_Init:
- 250               	.LFB14:
- 251               	.LM46:
- 252               	/* prologue: function */
- 253               	/* frame size = 0 */
- 254               	.LM47:
- 255 00c8 E8E6      		ldi r30,lo8(104)
- 256 00ca F0E0      		ldi r31,hi8(104)
- 257 00cc 8081      		ld r24,Z
- 258 00ce 8260      		ori r24,lo8(2)
- 259 00d0 8083      		st Z,r24
- 260               	.LM48:
- 261 00d2 D99A      		sbi 59-32,1
- 262               	.LM49:
- 263 00d4 ECE6      		ldi r30,lo8(108)
- 264 00d6 F0E0      		ldi r31,hi8(108)
- 265 00d8 8081      		ld r24,Z
- 266 00da 8F7D      		andi r24,lo8(-33)
- 267 00dc 8083      		st Z,r24
- 268               	.LM50:
- 269               	/* #APP */
- 270               	 ;  144 "onewire.c" 1
- 271 00de 7894      		sei
- 272               	 ;  0 "" 2
- 273               	/* epilogue start */
- 274               	.LM51:
- 275               	/* #NOAPP */
- 276 00e0 0895      		ret
- 277               	.LFE14:
- 279               	.global	OneWire_TRX_Interrupt_Enable
- 281               	OneWire_TRX_Interrupt_Enable:
- 282               	.LFB15:
- 283               	.LM52:
- 284               	/* prologue: function */
- 285               	/* frame size = 0 */
- 286               	.LM53:
- 287 00e2 ECE6      		ldi r30,lo8(108)
- 288 00e4 F0E0      		ldi r31,hi8(108)
- 289 00e6 8081      		ld r24,Z
- 290 00e8 8062      		ori r24,lo8(32)
- 291 00ea 8083      		st Z,r24
- 292               	/* epilogue start */
- 293               	.LM54:
- 294 00ec 0895      		ret
- 295               	.LFE15:
- 297               	.global	OneWire_TRX_Interrupt_Disable
- 299               	OneWire_TRX_Interrupt_Disable:
- 300               	.LFB16:
- 301               	.LM55:
- 302               	/* prologue: function */
- 303               	/* frame size = 0 */
- 304               	.LM56:
- 305 00ee ECE6      		ldi r30,lo8(108)
- 306 00f0 F0E0      		ldi r31,hi8(108)
- 307 00f2 8081      		ld r24,Z
- 308 00f4 8F7D      		andi r24,lo8(-33)
- 309 00f6 8083      		st Z,r24
+ 177 00b8 8823      		tst r24
+ 178 00ba 01F4      		brne .L18
+ 179               	.LM36:
+ 180 00bc 2098      		cbi 36-32,0
+ 181 00be 0895      		ret
+ 182               	.L18:
+ 183               	.LM37:
+ 184 00c0 209A      		sbi 36-32,0
+ 185 00c2 0895      		ret
+ 186               	.LFE10:
+ 188               	.global	OneWire_TRX_Set_Port
+ 190               	OneWire_TRX_Set_Port:
+ 191               	.LFB11:
+ 192               	.LM38:
+ 193               	.LVL1:
+ 194               	/* prologue: function */
+ 195               	/* frame size = 0 */
+ 196               	.LM39:
+ 197 00c4 8823      		tst r24
+ 198 00c6 01F4      		brne .L22
+ 199               	.LM40:
+ 200 00c8 2898      		cbi 37-32,0
+ 201 00ca 0895      		ret
+ 202               	.L22:
+ 203               	.LM41:
+ 204 00cc 289A      		sbi 37-32,0
+ 205 00ce 0895      		ret
+ 206               	.LFE11:
+ 208               	.global	OneWire_TRX_Get_Input_State
+ 210               	OneWire_TRX_Get_Input_State:
+ 211               	.LFB12:
+ 212               	.LM42:
+ 213               	/* prologue: function */
+ 214               	/* frame size = 0 */
+ 215               	.LM43:
+ 216 00d0 83B1      		in r24,35-32
+ 217               	.LM44:
+ 218 00d2 8170      		andi r24,lo8(1)
+ 219               	/* epilogue start */
+ 220 00d4 0895      		ret
+ 221               	.LFE12:
+ 223               	.global	OneWire_TRX_Set_Logic
+ 225               	OneWire_TRX_Set_Logic:
+ 226               	.LFB13:
+ 227               	.LM45:
+ 228               	.LVL2:
+ 229               	/* prologue: function */
+ 230               	/* frame size = 0 */
+ 231               	.LM46:
+ 232 00d6 8823      		tst r24
+ 233 00d8 01F4      		brne .L28
+ 234               	.LBB258:
+ 235               	.LBB259:
+ 236               	.LM47:
+ 237 00da 209A      		sbi 36-32,0
+ 238 00dc 0895      		ret
+ 239               	.L28:
+ 240               	.LBE259:
+ 241               	.LBE258:
+ 242               	.LBB260:
+ 243               	.LBB261:
+ 244               	.LM48:
+ 245 00de 2098      		cbi 36-32,0
+ 246 00e0 0895      		ret
+ 247               	.LBE261:
+ 248               	.LBE260:
+ 249               	.LFE13:
+ 251               	.global	OneWire_TRX_GPIO_Init
+ 253               	OneWire_TRX_GPIO_Init:
+ 254               	.LFB14:
+ 255               	.LM49:
+ 256               	/* prologue: function */
+ 257               	/* frame size = 0 */
+ 258               	.LBB262:
+ 259               	.LBB263:
+ 260               	.LM50:
+ 261 00e2 2898      		cbi 37-32,0
+ 262               	.LBE263:
+ 263               	.LBE262:
+ 264               	.LBB264:
+ 265               	.LBB265:
+ 266               	.LM51:
+ 267 00e4 2098      		cbi 36-32,0
+ 268               	.LBE265:
+ 269               	.LBE264:
+ 270               	.LBB266:
+ 271               	.LBB267:
+ 272               	.LBB268:
+ 273               	.LBB269:
+ 274 00e6 2098      		cbi 36-32,0
+ 275               	/* epilogue start */
+ 276               	.LBE269:
+ 277               	.LBE268:
+ 278               	.LBE267:
+ 279               	.LBE266:
+ 280               	.LM52:
+ 281 00e8 0895      		ret
+ 282               	.LFE14:
+ 284               	.global	OneWire_TRX_Interrupt_Init
+ 286               	OneWire_TRX_Interrupt_Init:
+ 287               	.LFB15:
+ 288               	.LM53:
+ 289               	/* prologue: function */
+ 290               	/* frame size = 0 */
+ 291               	.LM54:
+ 292 00ea E8E6      		ldi r30,lo8(104)
+ 293 00ec F0E0      		ldi r31,hi8(104)
+ 294 00ee 8081      		ld r24,Z
+ 295 00f0 8160      		ori r24,lo8(1)
+ 296 00f2 8083      		st Z,r24
+ 297               	.LM55:
+ 298 00f4 D89A      		sbi 59-32,0
+ 299               	.LM56:
+ 300 00f6 EBE6      		ldi r30,lo8(107)
+ 301 00f8 F0E0      		ldi r31,hi8(107)
+ 302 00fa 8081      		ld r24,Z
+ 303 00fc 8E7F      		andi r24,lo8(-2)
+ 304 00fe 8083      		st Z,r24
+ 305               	.LM57:
+ 306               	/* #APP */
+ 307               	 ;  157 "onewire.c" 1
+ 308 0100 7894      		sei
+ 309               	 ;  0 "" 2
  310               	/* epilogue start */
- 311               	.LM57:
- 312 00f8 0895      		ret
- 313               	.LFE16:
- 315               	.global	OneWire_TRX_Interrupt_Status
- 317               	OneWire_TRX_Interrupt_Status:
- 318               	.LFB17:
- 319               	.LM58:
- 320               	/* prologue: function */
- 321               	/* frame size = 0 */
- 322               	.LM59:
- 323 00fa 8091 6C00 		lds r24,108
- 324 00fe 90E0      		ldi r25,lo8(0)
- 325 0100 55E0      		ldi r21,5
- 326 0102 9695      	1:	lsr r25
- 327 0104 8795      		ror r24
- 328 0106 5A95      		dec r21
- 329 0108 01F4      		brne 1b
- 330               	.LM60:
- 331 010a 8170      		andi r24,lo8(1)
- 332               	/* epilogue start */
- 333 010c 0895      		ret
- 334               	.LFE17:
- 336               	.global	OneWire_TRX_Falling_Edge_Interrupt
- 338               	OneWire_TRX_Falling_Edge_Interrupt:
- 339               	.LFB18:
- 340               	.LM61:
- 341               	/* prologue: function */
- 342               	/* frame size = 0 */
- 343               	.LBB303:
- 344               	.LBB304:
- 345               	.LM62:
- 346 010e 86B1      		in r24,38-32
- 347 0110 8295      		swap r24
- 348 0112 8695      		lsr r24
- 349 0114 8770      		andi r24,lo8(7)
- 350 0116 8095      		com r24
- 351               	.LBE304:
- 352               	.LBE303:
- 353               	.LM63:
- 354 0118 8170      		andi r24,lo8(1)
- 355               	/* epilogue start */
- 356 011a 0895      		ret
- 357               	.LFE18:
- 359               	.global	OneWire_Debug_Tx_Pulse
- 361               	OneWire_Debug_Tx_Pulse:
- 362               	.LFB19:
- 363               	.LM64:
- 364               	/* prologue: function */
- 365               	/* frame size = 0 */
- 366               	/* epilogue start */
- 367               	.LM65:
- 368 011c 0895      		ret
- 369               	.LFE19:
- 371               	.global	OneWire_Debug_Rx_Pulse
- 373               	OneWire_Debug_Rx_Pulse:
- 374               	.LFB20:
- 375               	.LM66:
- 376               	/* prologue: function */
- 377               	/* frame size = 0 */
- 378               	.LM67:
- 379 011e 449A      		sbi 40-32,4
- 380               	.LBB305:
- 381               	.LBB306:
- 382               	.LBB307:
- 383               	.LBB308:
- 384               	.LM68:
- 385 0120 82E0      		ldi r24,lo8(2)
- 386               	.LVL3:
- 387               	/* #APP */
- 388               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 389 0122 8A95      		1: dec r24
- 390 0124 01F4      		brne 1b
- 391               	 ;  0 "" 2
- 392               	/* #NOAPP */
- 393               	.LBE308:
- 394               	.LBE307:
- 395               	.LBE306:
- 396               	.LBE305:
- 397               	.LM69:
- 398 0126 4498      		cbi 40-32,4
- 399               	/* epilogue start */
- 400               	.LM70:
- 401 0128 0895      		ret
- 402               	.LFE20:
- 404               	.global	OneWire_Delay_Clock_Low_Time
- 406               	OneWire_Delay_Clock_Low_Time:
- 407               	.LFB21:
- 408               	.LM71:
- 409               	/* prologue: function */
- 410               	/* frame size = 0 */
- 411               	.LBB309:
- 412               	.LBB310:
- 413               	.LBB311:
- 414               	.LBB312:
- 415               	.LM72:
- 416 012a 85E3      		ldi r24,lo8(53)
- 417               	.LVL4:
- 418               	/* #APP */
- 419               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 420 012c 8A95      		1: dec r24
- 421 012e 01F4      		brne 1b
- 422               	 ;  0 "" 2
- 423               	/* epilogue start */
- 424               	/* #NOAPP */
- 425               	.LBE312:
- 426               	.LBE311:
- 427               	.LBE310:
- 428               	.LBE309:
- 429               	.LM73:
- 430 0130 0895      		ret
- 431               	.LFE21:
- 433               	.global	OneWire_Delay_Clock_High_Time
- 435               	OneWire_Delay_Clock_High_Time:
- 436               	.LFB22:
- 437               	.LM74:
- 438               	/* prologue: function */
- 439               	/* frame size = 0 */
- 440               	.LBB313:
- 441               	.LBB314:
- 442               	.LBB315:
- 443               	.LBB316:
- 444               	.LM75:
- 445 0132 85E3      		ldi r24,lo8(53)
- 446               	.LVL5:
- 447               	/* #APP */
- 448               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 449 0134 8A95      		1: dec r24
- 450 0136 01F4      		brne 1b
- 451               	 ;  0 "" 2
- 452               	/* epilogue start */
- 453               	/* #NOAPP */
- 454               	.LBE316:
- 455               	.LBE315:
- 456               	.LBE314:
- 457               	.LBE313:
- 458               	.LM76:
- 459 0138 0895      		ret
- 460               	.LFE22:
- 462               	.global	OneWire_Delay_Half_Bit_Time
- 464               	OneWire_Delay_Half_Bit_Time:
- 465               	.LFB23:
- 466               	.LM77:
- 467               	/* prologue: function */
- 468               	/* frame size = 0 */
- 469               	.LBB317:
- 470               	.LBB318:
- 471               	.LBB319:
- 472               	.LBB320:
- 473               	.LM78:
- 474 013a 8AE6      		ldi r24,lo8(106)
- 475               	.LVL6:
- 476               	/* #APP */
- 477               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 478 013c 8A95      		1: dec r24
- 479 013e 01F4      		brne 1b
- 480               	 ;  0 "" 2
- 481               	/* epilogue start */
- 482               	/* #NOAPP */
- 483               	.LBE320:
- 484               	.LBE319:
- 485               	.LBE318:
- 486               	.LBE317:
- 487               	.LM79:
- 488 0140 0895      		ret
- 489               	.LFE23:
- 491               	.global	OneWire_Delay_Byte_Gap
- 493               	OneWire_Delay_Byte_Gap:
- 494               	.LFB24:
- 495               	.LM80:
- 496               	/* prologue: function */
- 497               	/* frame size = 0 */
- 498               	.LBB321:
- 499               	.LBB322:
- 500               	.LBB323:
- 501               	.LBB324:
- 502               	.LBB325:
- 503               	.LBB326:
- 504               	.LM81:
- 505 0142 88EC      		ldi r24,lo8(200)
- 506 0144 90E0      		ldi r25,hi8(200)
- 507               	.LVL7:
- 508               	/* #APP */
- 509               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 510 0146 0197      		1: sbiw r24,1
- 511 0148 01F4      		brne 1b
- 512               	 ;  0 "" 2
- 513               	/* epilogue start */
- 514               	/* #NOAPP */
- 515               	.LBE326:
- 516               	.LBE325:
- 517               	.LBE324:
- 518               	.LBE323:
- 519               	.LBE322:
- 520               	.LBE321:
- 521               	.LM82:
- 522 014a 0895      		ret
- 523               	.LFE24:
- 525               	.global	OneWire_Delay_Rx_Int
- 527               	OneWire_Delay_Rx_Int:
- 528               	.LFB25:
- 529               	.LM83:
- 530               	/* prologue: function */
- 531               	/* frame size = 0 */
- 532               	.LBB327:
- 533               	.LBB328:
- 534               	.LM84:
- 535 014c ECE6      		ldi r30,lo8(108)
- 536 014e F0E0      		ldi r31,hi8(108)
- 537 0150 8081      		ld r24,Z
- 538 0152 8F7D      		andi r24,lo8(-33)
- 539 0154 8083      		st Z,r24
- 540               	.LBE328:
- 541               	.LBE327:
- 542               	.LBB329:
- 543               	.LBB330:
- 544               	.LBB331:
- 545               	.LBB332:
- 546               	.LBB333:
- 547               	.LBB334:
- 548               	.LM85:
- 549 0156 85E3      		ldi r24,lo8(53)
- 550               	.LVL8:
- 551               	/* #APP */
- 552               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 553 0158 8A95      		1: dec r24
- 554 015a 01F4      		brne 1b
- 555               	 ;  0 "" 2
- 556               	/* #NOAPP */
- 557               	.LBE334:
- 558               	.LBE333:
- 559               	.LBE332:
- 560               	.LBE331:
- 561               	.LBE330:
- 562               	.LBE329:
- 563               	.LBB335:
- 564               	.LBB336:
- 565               	.LBB337:
- 566               	.LBB338:
- 567               	.LBB339:
- 568               	.LBB340:
- 569 015c 8AE6      		ldi r24,lo8(106)
- 570               	.LVL9:
- 571               	/* #APP */
- 572               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 573 015e 8A95      		1: dec r24
- 574 0160 01F4      		brne 1b
- 575               	 ;  0 "" 2
- 576               	/* #NOAPP */
- 577               	.LBE340:
- 578               	.LBE339:
- 579               	.LBE338:
- 580               	.LBE337:
- 581               	.LBE336:
- 582               	.LBE335:
- 583               	.LBB341:
- 584               	.LBB342:
- 585               	.LM86:
- 586 0162 8081      		ld r24,Z
- 587               	.LVL10:
- 588 0164 8062      		ori r24,lo8(32)
- 589 0166 8083      		st Z,r24
- 590               	/* epilogue start */
- 591               	.LBE342:
- 592               	.LBE341:
- 593               	.LM87:
- 594 0168 0895      		ret
- 595               	.LFE25:
- 597               	.global	OneWire_TRX_Byte
- 599               	OneWire_TRX_Byte:
- 600               	.LFB26:
- 601               	.LM88:
- 602               	.LVL11:
- 603               	/* prologue: function */
- 604               	/* frame size = 0 */
- 605 016a AC01      		movw r20,r24
- 606               	.LM89:
- 607 016c 20E0      		ldi r18,lo8(0)
- 608 016e 30E0      		ldi r19,hi8(0)
- 609               	.LVL12:
- 610 0170 60E0      		ldi r22,lo8(0)
- 611               	.LVL13:
- 612               	.LBB343:
- 613               	.LBB344:
- 614               	.LBB345:
- 615               	.LBB346:
- 616               	.LBB347:
- 617               	.LBB348:
- 618               	.LBB349:
- 619               	.LM90:
- 620 0172 E5E3      		ldi r30,lo8(53)
- 621               	.LBE349:
- 622               	.LBE348:
- 623               	.LBE347:
- 624               	.LBE346:
- 625               	.LBE345:
- 626               	.LBE344:
- 627               	.LBB355:
- 628               	.LBB356:
- 629               	.LBB357:
- 630               	.LBB358:
- 631               	.LBB359:
- 632               	.LBB360:
- 633 0174 7AE6      		ldi r23,lo8(106)
- 634               	.LVL14:
- 635               	.L56:
- 636               	.LBE360:
- 637               	.LBE359:
- 638               	.LBE358:
- 639               	.LBE357:
- 640               	.LBE356:
- 641               	.LBE355:
- 642               	.LBB366:
- 643               	.LBB367:
- 644               	.LBB368:
- 645               	.LBB369:
- 646               	.LM91:
- 647 0176 3D9A      		sbi 39-32,5
- 648               	.LBE369:
- 649               	.LBE368:
- 650               	.LBE367:
- 651               	.LBE366:
- 652               	.LBB370:
- 653               	.LBB354:
- 654               	.LBB353:
- 655               	.LBB352:
- 656               	.LBB351:
- 657               	.LBB350:
- 658               	.LM92:
- 659 0178 8E2F      		mov r24,r30
- 660               	.LVL15:
- 661               	/* #APP */
- 662               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 663 017a 8A95      		1: dec r24
- 664 017c 01F4      		brne 1b
- 665               	 ;  0 "" 2
- 666               	/* #NOAPP */
- 667               	.LBE350:
- 668               	.LBE351:
- 669               	.LBE352:
- 670               	.LBE353:
- 671               	.LBE354:
- 672               	.LBE370:
- 673               	.LM93:
- 674 017e 6B30      		cpi r22,lo8(11)
- 675 0180 01F0      		breq .L52
- 676               	.LM94:
- 677 0182 53FD      		sbrc r21,3
- 678 0184 00C0      		rjmp .L52
- 679               	.L53:
- 680               	.LBB371:
- 681               	.LBB372:
- 682               	.LBB373:
- 683               	.LBB374:
- 684               	.LM95:
- 685 0186 3D9A      		sbi 39-32,5
- 686 0188 00C0      		rjmp .L54
- 687               	.L52:
- 688               	.LBE374:
- 689               	.LBE373:
- 690               	.LBE372:
- 691               	.LBE371:
- 692               	.LBB375:
- 693               	.LBB376:
- 694               	.LBB377:
- 695               	.LBB378:
- 696               	.LM96:
- 697 018a 3D98      		cbi 39-32,5
- 698               	.L54:
- 699               	.LBE378:
- 700               	.LBE377:
- 701               	.LBE376:
- 702               	.LBE375:
- 703               	.LBB379:
- 704               	.LBB365:
- 705               	.LBB364:
- 706               	.LBB363:
- 707               	.LBB362:
- 708               	.LBB361:
- 709               	.LM97:
- 710 018c 872F      		mov r24,r23
- 711               	.LVL16:
- 712               	/* #APP */
- 713               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 714 018e 8A95      		1: dec r24
- 715 0190 01F4      		brne 1b
- 716               	 ;  0 "" 2
- 717               	/* #NOAPP */
- 718               	.LBE361:
- 719               	.LBE362:
- 720               	.LBE363:
- 721               	.LBE364:
- 722               	.LBE365:
- 723               	.LBE379:
- 724               	.LM98:
- 725 0192 220F      		lsl r18
- 726 0194 331F      		rol r19
- 727               	.LBB380:
- 728               	.LBB381:
- 729               	.LM99:
- 730 0196 86B1      		in r24,38-32
- 731               	.LVL17:
- 732               	.LBE381:
- 733               	.LBE380:
- 734               	.LM100:
- 735 0198 90E0      		ldi r25,lo8(0)
- 736 019a A5E0      		ldi r26,5
- 737 019c 9695      	1:	lsr r25
- 738 019e 8795      		ror r24
- 739 01a0 AA95      		dec r26
- 740 01a2 01F4      		brne 1b
- 741 01a4 8170      		andi r24,lo8(1)
- 742 01a6 9070      		andi r25,hi8(1)
- 743 01a8 282B      		or r18,r24
- 744 01aa 392B      		or r19,r25
- 745               	.LBB382:
- 746               	.LBB383:
- 747               	.LBB384:
- 748               	.LBB385:
- 749               	.LBB386:
- 750               	.LBB387:
- 751               	.LM101:
- 752 01ac 872F      		mov r24,r23
- 753               	.LVL18:
- 754               	/* #APP */
- 755               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 756 01ae 8A95      		1: dec r24
- 757 01b0 01F4      		brne 1b
- 758               	 ;  0 "" 2
- 759               	/* #NOAPP */
- 760               	.LBE387:
- 761               	.LBE386:
- 762               	.LBE385:
- 763               	.LBE384:
- 764               	.LBE383:
- 765               	.LBE382:
- 766               	.LBB388:
- 767               	.LBB389:
- 768               	.LBB390:
- 769               	.LBB391:
- 770               	.LM102:
- 771 01b2 3D98      		cbi 39-32,5
- 772               	.LBE391:
- 773               	.LBE390:
- 774               	.LBE389:
- 775               	.LBE388:
- 776               	.LBB392:
- 777               	.LBB393:
- 778               	.LBB394:
- 779               	.LBB395:
- 780               	.LBB396:
- 781               	.LBB397:
- 782               	.LM103:
- 783 01b4 8E2F      		mov r24,r30
- 784               	.LVL19:
- 785               	/* #APP */
- 786               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 787 01b6 8A95      		1: dec r24
- 788 01b8 01F4      		brne 1b
- 789               	 ;  0 "" 2
- 790               	/* #NOAPP */
- 791               	.LBE397:
- 792               	.LBE396:
- 793               	.LBE395:
- 794               	.LBE394:
- 795               	.LBE393:
- 796               	.LBE392:
- 797               	.LM104:
- 798 01ba 6F5F      		subi r22,lo8(-(1))
- 799 01bc 6C30      		cpi r22,lo8(12)
- 800 01be 01F0      		breq .L55
- 801               	.LM105:
- 802 01c0 440F      		lsl r20
- 803 01c2 551F      		rol r21
- 804 01c4 00C0      		rjmp .L56
- 805               	.L55:
- 806               	.LBE343:
- 807               	.LBB398:
- 808               	.LBB399:
- 809               	.LBB400:
- 810               	.LBB401:
- 811               	.LBB402:
- 812               	.LBB403:
- 813               	.LBB404:
- 814               	.LBB405:
- 815               	.LM106:
- 816 01c6 88EC      		ldi r24,lo8(200)
- 817 01c8 90E0      		ldi r25,hi8(200)
- 818               	.LVL20:
- 819               	/* #APP */
- 820               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 821 01ca 0197      		1: sbiw r24,1
- 822 01cc 01F4      		brne 1b
- 823               	 ;  0 "" 2
- 824               	/* #NOAPP */
- 825               	.LBE405:
- 826               	.LBE404:
- 827               	.LBE403:
- 828               	.LBE402:
- 829               	.LBE401:
- 830               	.LBE400:
- 831               	.LBE399:
- 832               	.LBE398:
- 833               	.LM107:
- 834 01ce C901      		movw r24,r18
- 835               	.LVL21:
- 836               	/* epilogue start */
- 837 01d0 0895      		ret
- 838               	.LFE26:
- 840               	.global	OneWire_Bit_Sample_And_Update
- 842               	OneWire_Bit_Sample_And_Update:
- 843               	.LFB27:
- 844               	.LM108:
- 845               	/* prologue: function */
- 846               	/* frame size = 0 */
- 847               	.LM109:
- 848 01d2 8091 0000 		lds r24,OneWire+1
- 849 01d6 9091 0000 		lds r25,(OneWire+1)+1
- 850 01da 880F      		lsl r24
- 851 01dc 991F      		rol r25
- 852 01de 9093 0000 		sts (OneWire+1)+1,r25
- 853 01e2 8093 0000 		sts OneWire+1,r24
- 854               	.LBB406:
- 855               	.LBB407:
- 856               	.LM110:
- 857 01e6 449A      		sbi 40-32,4
- 858               	.LBB408:
- 859               	.LBB409:
- 860               	.LBB410:
- 861               	.LBB411:
- 862               	.LM111:
- 863 01e8 82E0      		ldi r24,lo8(2)
- 864               	.LVL22:
- 865               	/* #APP */
- 866               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 867 01ea 8A95      		1: dec r24
- 868 01ec 01F4      		brne 1b
- 869               	 ;  0 "" 2
- 870               	/* #NOAPP */
- 871               	.LBE411:
- 872               	.LBE410:
- 873               	.LBE409:
- 874               	.LBE408:
- 875               	.LM112:
- 876 01ee 4498      		cbi 40-32,4
- 877               	.LBE407:
- 878               	.LBE406:
- 879               	.LM113:
- 880 01f0 2091 0000 		lds r18,OneWire+1
- 881 01f4 3091 0000 		lds r19,(OneWire+1)+1
- 882               	.LBB412:
- 883               	.LBB413:
- 884               	.LM114:
- 885 01f8 86B1      		in r24,38-32
- 886               	.LVL23:
- 887               	.LBE413:
- 888               	.LBE412:
- 889               	.LM115:
- 890 01fa 90E0      		ldi r25,lo8(0)
- 891 01fc 45E0      		ldi r20,5
- 892 01fe 9695      	1:	lsr r25
- 893 0200 8795      		ror r24
- 894 0202 4A95      		dec r20
- 895 0204 01F4      		brne 1b
- 896 0206 8170      		andi r24,lo8(1)
- 897 0208 9070      		andi r25,hi8(1)
- 898 020a 822B      		or r24,r18
- 899 020c 932B      		or r25,r19
- 900 020e 9093 0000 		sts (OneWire+1)+1,r25
- 901 0212 8093 0000 		sts OneWire+1,r24
- 902               	.LM116:
- 903 0216 E0E0      		ldi r30,lo8(OneWire+1)
- 904 0218 F0E0      		ldi r31,hi8(OneWire+1)
- 905 021a 8291      		ld r24,-Z
- 906 021c 8F5F      		subi r24,lo8(-(1))
- 907 021e 8083      		st Z,r24
- 908               	/* epilogue start */
- 909               	.LM117:
- 910 0220 0895      		ret
- 911               	.LFE27:
- 913               	.global	OneWire_Bit_Counter_Overflow
- 915               	OneWire_Bit_Counter_Overflow:
- 916               	.LFB28:
- 917               	.LM118:
- 918               	/* prologue: function */
- 919               	/* frame size = 0 */
- 920               	.LM119:
- 921 0222 8091 0000 		lds r24,OneWire
- 922 0226 8C30      		cpi r24,lo8(12)
- 923 0228 00F4      		brsh .L61
- 924 022a 80E0      		ldi r24,lo8(0)
- 925 022c 0895      		ret
- 926               	.L61:
- 927               	.LM120:
- 928 022e 1092 0000 		sts OneWire,__zero_reg__
- 929 0232 81E0      		ldi r24,lo8(1)
- 930               	.LM121:
- 931 0234 0895      		ret
- 932               	.LFE28:
- 934               	.global	OneWire_Buf_Sample_And_Update
- 936               	OneWire_Buf_Sample_And_Update:
- 937               	.LFB29:
- 938               	.LM122:
- 939               	/* prologue: function */
- 940               	/* frame size = 0 */
- 941               	.LM123:
- 942 0236 E091 0000 		lds r30,OneWire+245
- 943 023a F0E0      		ldi r31,lo8(0)
- 944 023c 8091 0000 		lds r24,OneWire+1
- 945 0240 9091 0000 		lds r25,(OneWire+1)+1
- 946 0244 EE0F      		lsl r30
- 947 0246 FF1F      		rol r31
- 948 0248 E050      		subi r30,lo8(-(OneWire))
- 949 024a F040      		sbci r31,hi8(-(OneWire))
- 950 024c 9683      		std Z+6,r25
- 951 024e 8583      		std Z+5,r24
- 952               	.LM124:
- 953 0250 1092 0000 		sts (OneWire+1)+1,__zero_reg__
- 954 0254 1092 0000 		sts OneWire+1,__zero_reg__
- 955               	.LM125:
- 956 0258 8091 0000 		lds r24,OneWire+245
- 957 025c 8F5F      		subi r24,lo8(-(1))
- 958 025e 8093 0000 		sts OneWire+245,r24
- 959               	/* epilogue start */
- 960               	.LM126:
- 961 0262 0895      		ret
- 962               	.LFE29:
- 964               	.global	OneWire_Buf_Counter_Overflow
- 966               	OneWire_Buf_Counter_Overflow:
- 967               	.LFB30:
- 968               	.LM127:
- 969               	/* prologue: function */
- 970               	/* frame size = 0 */
- 971               	.LM128:
- 972 0264 8091 0000 		lds r24,OneWire+245
- 973 0268 8837      		cpi r24,lo8(120)
- 974 026a 00F0      		brlo .L67
- 975               	.LM129:
- 976 026c 1092 0000 		sts OneWire+245,__zero_reg__
- 977               	.LM130:
- 978 0270 8091 0000 		lds r24,OneWire+3
- 979 0274 9091 0000 		lds r25,(OneWire+3)+1
- 980 0278 0196      		adiw r24,1
- 981 027a 9093 0000 		sts (OneWire+3)+1,r25
- 982 027e 8093 0000 		sts OneWire+3,r24
- 983 0282 81E0      		ldi r24,lo8(1)
- 984 0284 0895      		ret
- 985               	.L67:
- 986               	.LM131:
- 987 0286 8091 0000 		lds r24,OneWire+3
- 988 028a 9091 0000 		lds r25,(OneWire+3)+1
- 989 028e 0196      		adiw r24,1
- 990 0290 9093 0000 		sts (OneWire+3)+1,r25
- 991 0294 8093 0000 		sts OneWire+3,r24
- 992 0298 80E0      		ldi r24,lo8(0)
- 993               	.LM132:
- 994 029a 0895      		ret
- 995               	.LFE30:
- 997               	.global	OneWire_Fill_Buf
- 999               	OneWire_Fill_Buf:
- 1000               	.LFB31:
- 1001               	.LM133:
- 1002               	/* prologue: function */
- 1003               	/* frame size = 0 */
- 1004               	.LBB414:
- 1005               	.LBB415:
- 1006               	.LM134:
- 1007 029c E091 0000 		lds r30,OneWire+245
- 1008 02a0 F0E0      		ldi r31,lo8(0)
- 1009 02a2 8091 0000 		lds r24,OneWire+1
- 1010 02a6 9091 0000 		lds r25,(OneWire+1)+1
- 1011 02aa EE0F      		lsl r30
- 1012 02ac FF1F      		rol r31
- 1013 02ae E050      		subi r30,lo8(-(OneWire))
- 1014 02b0 F040      		sbci r31,hi8(-(OneWire))
- 1015 02b2 9683      		std Z+6,r25
- 1016 02b4 8583      		std Z+5,r24
- 1017               	.LM135:
- 1018 02b6 1092 0000 		sts (OneWire+1)+1,__zero_reg__
- 1019 02ba 1092 0000 		sts OneWire+1,__zero_reg__
- 1020               	.LM136:
- 1021 02be 8091 0000 		lds r24,OneWire+245
- 1022 02c2 8F5F      		subi r24,lo8(-(1))
- 1023 02c4 8093 0000 		sts OneWire+245,r24
- 1024               	.LBE415:
- 1025               	.LBE414:
- 1026               	.LM137:
- 1027 02c8 0E94 0000 		call OneWire_Buf_Counter_Overflow
- 1028               	.LM138:
- 1029 02cc 8091 0000 		lds r24,OneWire+245
- 1030 02d0 8823      		tst r24
- 1031 02d2 01F0      		breq .L71
- 1032 02d4 E091 0000 		lds r30,OneWire+245
- 1033 02d8 F0E0      		ldi r31,lo8(0)
- 1034 02da EE0F      		lsl r30
- 1035 02dc FF1F      		rol r31
- 1036 02de E050      		subi r30,lo8(-(OneWire-2))
- 1037 02e0 F040      		sbci r31,hi8(-(OneWire-2))
- 1038 02e2 8581      		ldd r24,Z+5
- 1039 02e4 9681      		ldd r25,Z+6
- 1040 02e6 93FF      		sbrs r25,3
- 1041 02e8 00C0      		rjmp .L71
- 1042               	.LM139:
- 1043 02ea 81E0      		ldi r24,lo8(1)
- 1044 02ec 8093 0000 		sts OneWire+246,r24
- 1045               	.LM140:
- 1046 02f0 E091 0000 		lds r30,OneWire+245
- 1047 02f4 F0E0      		ldi r31,lo8(0)
- 1048 02f6 EE0F      		lsl r30
- 1049 02f8 FF1F      		rol r31
- 1050 02fa E050      		subi r30,lo8(-(OneWire-2))
- 1051 02fc F040      		sbci r31,hi8(-(OneWire-2))
- 1052 02fe 8581      		ldd r24,Z+5
- 1053 0300 9681      		ldd r25,Z+6
- 1054 0302 8070      		andi r24,lo8(512)
- 1055 0304 9270      		andi r25,hi8(512)
- 1056 0306 9093 0000 		sts (OneWire+247)+1,r25
- 1057 030a 8093 0000 		sts OneWire+247,r24
- 1058               	.LM141:
- 1059 030e E091 0000 		lds r30,OneWire+245
- 1060 0312 F0E0      		ldi r31,lo8(0)
- 1061 0314 EE0F      		lsl r30
- 1062 0316 FF1F      		rol r31
- 1063 0318 E050      		subi r30,lo8(-(OneWire-2))
- 1064 031a F040      		sbci r31,hi8(-(OneWire-2))
- 1065 031c 8581      		ldd r24,Z+5
- 1066 031e 9681      		ldd r25,Z+6
- 1067 0320 8E7F      		andi r24,lo8(510)
- 1068 0322 9170      		andi r25,hi8(510)
- 1069 0324 9695      		lsr r25
- 1070 0326 8795      		ror r24
- 1071 0328 9093 0000 		sts (OneWire+249)+1,r25
- 1072 032c 8093 0000 		sts OneWire+249,r24
- 1073               	.LBB416:
- 1074               	.LBB417:
- 1075               	.LM142:
- 1076 0330 449A      		sbi 40-32,4
- 1077               	.LBB418:
- 1078               	.LBB419:
- 1079               	.LBB420:
- 1080               	.LBB421:
- 1081               	.LM143:
- 1082 0332 82E0      		ldi r24,lo8(2)
- 1083               	.LVL24:
- 1084               	/* #APP */
- 1085               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 1086 0334 8A95      		1: dec r24
- 1087 0336 01F4      		brne 1b
- 1088               	 ;  0 "" 2
- 1089               	/* #NOAPP */
- 1090               	.LBE421:
- 1091               	.LBE420:
- 1092               	.LBE419:
- 1093               	.LBE418:
- 1094               	.LM144:
- 1095 0338 4498      		cbi 40-32,4
- 1096 033a 0895      		ret
- 1097               	.LVL25:
- 1098               	.L71:
- 1099               	.LBE417:
- 1100               	.LBE416:
- 1101               	.LM145:
- 1102 033c E091 0000 		lds r30,OneWire+245
- 1103 0340 F0E0      		ldi r31,lo8(0)
- 1104 0342 EE0F      		lsl r30
- 1105 0344 FF1F      		rol r31
- 1106 0346 E050      		subi r30,lo8(-(OneWire-2))
- 1107 0348 F040      		sbci r31,hi8(-(OneWire-2))
- 1108 034a 8581      		ldd r24,Z+5
- 1109 034c 9681      		ldd r25,Z+6
- 1110 034e 92FF      		sbrs r25,2
- 1111 0350 00C0      		rjmp .L73
- 1112               	.LM146:
- 1113 0352 1092 0000 		sts OneWire+246,__zero_reg__
- 1114               	.LM147:
- 1115 0356 1092 0000 		sts OneWire+245,__zero_reg__
- 1116               	.LM148:
- 1117 035a 1092 0000 		sts (OneWire+5)+1,__zero_reg__
- 1118 035e 1092 0000 		sts OneWire+5,__zero_reg__
- 1119               	.LM149:
- 1120 0362 1092 0000 		sts (OneWire+247)+1,__zero_reg__
- 1121 0366 1092 0000 		sts OneWire+247,__zero_reg__
- 1122               	.LM150:
- 1123 036a 1092 0000 		sts (OneWire+249)+1,__zero_reg__
- 1124 036e 1092 0000 		sts OneWire+249,__zero_reg__
- 1125               	.LM151:
- 1126 0372 1092 0000 		sts OneWire+253,__zero_reg__
- 1127               	.LM152:
- 1128 0376 1092 0000 		sts OneWire+254,__zero_reg__
- 1129               	.LBB422:
- 1130               	.LBB423:
- 1131               	.LM153:
- 1132 037a 449A      		sbi 40-32,4
- 1133               	.LBB424:
- 1134               	.LBB425:
- 1135               	.LBB426:
- 1136               	.LBB427:
- 1137               	.LM154:
- 1138 037c 82E0      		ldi r24,lo8(2)
- 1139               	.LVL26:
- 1140               	/* #APP */
- 1141               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 1142 037e 8A95      		1: dec r24
- 1143 0380 01F4      		brne 1b
- 1144               	 ;  0 "" 2
- 1145               	/* #NOAPP */
- 1146               	.LBE427:
- 1147               	.LBE426:
- 1148               	.LBE425:
- 1149               	.LBE424:
- 1150               	.LM155:
- 1151 0382 4498      		cbi 40-32,4
- 1152               	.L73:
- 1153 0384 0895      		ret
- 1154               	.LBE423:
- 1155               	.LBE422:
- 1156               	.LFE31:
- 1158               	.global	OneWire_Read_Mode_Feedback
- 1160               	OneWire_Read_Mode_Feedback:
- 1161               	.LFB32:
- 1162               	.LM156:
- 1163               	/* prologue: function */
- 1164               	/* frame size = 0 */
- 1165               	.LBB428:
- 1166               	.LBB429:
- 1167               	.LM157:
- 1168 0386 8091 6C00 		lds r24,108
- 1169 038a 8F7D      		andi r24,lo8(-33)
- 1170 038c 8093 6C00 		sts 108,r24
- 1171               	.LBE429:
- 1172               	.LBE428:
- 1173               	.LM158:
- 1174 0390 8091 0000 		lds r24,OneWire+251
- 1175 0394 9091 0000 		lds r25,(OneWire+251)+1
- 1176 0398 93FF      		sbrs r25,3
- 1177 039a 00C0      		rjmp .L75
- 1178               	.LBB430:
- 1179               	.LBB431:
- 1180               	.LBB432:
- 1181               	.LBB433:
- 1182               	.LM159:
- 1183 039c 3D98      		cbi 39-32,5
- 1184 039e 00C0      		rjmp .L76
- 1185               	.L75:
- 1186               	.LBE433:
- 1187               	.LBE432:
- 1188               	.LBE431:
- 1189               	.LBE430:
- 1190               	.LBB434:
- 1191               	.LBB435:
- 1192               	.LBB436:
- 1193               	.LBB437:
- 1194               	.LM160:
- 1195 03a0 3D9A      		sbi 39-32,5
- 1196               	.L76:
- 1197               	.LBE437:
- 1198               	.LBE436:
- 1199               	.LBE435:
- 1200               	.LBE434:
- 1201               	.LM161:
- 1202 03a2 8091 0000 		lds r24,OneWire+251
- 1203 03a6 9091 0000 		lds r25,(OneWire+251)+1
- 1204 03aa 880F      		lsl r24
- 1205 03ac 991F      		rol r25
- 1206 03ae 9093 0000 		sts (OneWire+251)+1,r25
- 1207 03b2 8093 0000 		sts OneWire+251,r24
- 1208               	.LBB438:
- 1209               	.LBB439:
- 1210               	.LBB440:
- 1211               	.LBB441:
- 1212               	.LBB442:
- 1213               	.LBB443:
- 1214               	.LM162:
- 1215 03b6 8AE6      		ldi r24,lo8(106)
- 1216 03b8 982F      		mov r25,r24
- 1217               	.LVL27:
- 1218               	/* #APP */
- 1219               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 1220 03ba 9A95      		1: dec r25
- 1221 03bc 01F4      		brne 1b
- 1222               	 ;  0 "" 2
- 1223               	/* #NOAPP */
- 1224               	.LBE443:
- 1225               	.LBE442:
- 1226               	.LBE441:
- 1227               	.LBE440:
- 1228               	.LBE439:
- 1229               	.LBE438:
- 1230               	.LBB444:
- 1231               	.LBB445:
- 1232               	.LBB446:
- 1233               	.LBB447:
- 1234               	.LBB448:
- 1235               	.LBB449:
- 1236               	/* #APP */
- 1237               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 1238 03be 8A95      		1: dec r24
- 1239 03c0 01F4      		brne 1b
- 1240               	 ;  0 "" 2
- 1241               	.LVL28:
- 1242               	/* #NOAPP */
- 1243               	.LBE449:
- 1244               	.LBE448:
- 1245               	.LBE447:
- 1246               	.LBE446:
- 1247               	.LBE445:
- 1248               	.LBE444:
- 1249               	.LBB450:
- 1250               	.LBB451:
- 1251               	.LBB452:
- 1252               	.LBB453:
- 1253               	.LM163:
- 1254 03c2 3D98      		cbi 39-32,5
- 1255               	.LBE453:
- 1256               	.LBE452:
- 1257               	.LBE451:
- 1258               	.LBE450:
- 1259               	.LBB454:
- 1260               	.LBB455:
- 1261               	.LM164:
- 1262 03c4 8091 6C00 		lds r24,108
- 1263               	.LVL29:
- 1264 03c8 8062      		ori r24,lo8(32)
- 1265 03ca 8093 6C00 		sts 108,r24
- 1266               	/* epilogue start */
- 1267               	.LBE455:
- 1268               	.LBE454:
- 1269               	.LM165:
- 1270 03ce 0895      		ret
- 1271               	.LFE32:
- 1273               	.global	__vector_4
- 1275               	__vector_4:
- 1276               	.LFB33:
- 1277               	.LM166:
- 1278 03d0 1F92      		push __zero_reg__
- 1279 03d2 0F92      		push r0
- 1280 03d4 0FB6      		in r0,__SREG__
- 1281 03d6 0F92      		push r0
- 1282 03d8 1124      		clr __zero_reg__
- 1283 03da 2F93      		push r18
- 1284 03dc 3F93      		push r19
- 1285 03de 4F93      		push r20
- 1286 03e0 5F93      		push r21
- 1287 03e2 6F93      		push r22
- 1288 03e4 7F93      		push r23
- 1289 03e6 8F93      		push r24
- 1290 03e8 9F93      		push r25
- 1291 03ea AF93      		push r26
- 1292 03ec BF93      		push r27
- 1293 03ee EF93      		push r30
- 1294 03f0 FF93      		push r31
- 1295               	/* prologue: Signal */
- 1296               	/* frame size = 0 */
- 1297               	.LBB456:
- 1298               	.LBB457:
- 1299               	.LM167:
- 1300 03f2 8091 6C00 		lds r24,108
- 1301 03f6 85FF      		sbrs r24,5
- 1302 03f8 00C0      		rjmp .L83
- 1303               	.LBE457:
- 1304               	.LBE456:
- 1305               	.LBB458:
- 1306               	.LBB459:
- 1307               	.LBB460:
- 1308               	.LBB461:
- 1309               	.LM168:
- 1310 03fa 3599      		sbic 38-32,5
- 1311 03fc 00C0      		rjmp .L83
- 1312               	.LBE461:
- 1313               	.LBE460:
- 1314               	.LBE459:
- 1315               	.LBE458:
- 1316               	.LM169:
- 1317 03fe 8091 0000 		lds r24,OneWire+246
- 1318 0402 8130      		cpi r24,lo8(1)
- 1319 0404 01F4      		brne .L80
- 1320 0406 8091 0000 		lds r24,OneWire+247
- 1321 040a 9091 0000 		lds r25,(OneWire+247)+1
- 1322 040e 892B      		or r24,r25
- 1323 0410 01F4      		brne .+2
- 1324 0412 00C0      		rjmp .L81
- 1325               	.L80:
- 1326               	.LM170:
- 1327 0414 2091 0000 		lds r18,OneWire+246
- 1328 0418 2130      		cpi r18,lo8(1)
- 1329 041a 01F0      		breq .+2
- 1330 041c 00C0      		rjmp .L81
- 1331 041e 8091 0000 		lds r24,OneWire+247
- 1332 0422 9091 0000 		lds r25,(OneWire+247)+1
- 1333 0426 8050      		subi r24,lo8(512)
- 1334 0428 9240      		sbci r25,hi8(512)
- 1335 042a 01F4      		brne .L81
- 1336               	.LM171:
- 1337 042c 8091 0000 		lds r24,OneWire+253
- 1338 0430 8823      		tst r24
- 1339 0432 01F4      		brne .L82
- 1340               	.LM172:
- 1341 0434 8091 0000 		lds r24,OneWire+249
- 1342 0438 9091 0000 		lds r25,(OneWire+249)+1
- 1343 043c 880F      		lsl r24
- 1344 043e 991F      		rol r25
- 1345 0440 8160      		ori r24,lo8(1025)
- 1346 0442 9460      		ori r25,hi8(1025)
- 1347 0444 9093 0000 		sts (OneWire+251)+1,r25
- 1348 0448 8093 0000 		sts OneWire+251,r24
- 1349               	.LM173:
- 1350 044c 2093 0000 		sts OneWire+253,r18
- 1351               	.L82:
- 1352               	.LM174:
- 1353 0450 0E94 0000 		call OneWire_Read_Mode_Feedback
- 1354               	.LM175:
- 1355 0454 8091 0000 		lds r24,OneWire+254
- 1356 0458 8F5F      		subi r24,lo8(-(1))
- 1357 045a 8093 0000 		sts OneWire+254,r24
- 1358               	.LM176:
- 1359 045e 8091 0000 		lds r24,OneWire+254
- 1360 0462 8C30      		cpi r24,lo8(12)
- 1361 0464 00F0      		brlo .L83
- 1362               	.LM177:
- 1363 0466 1092 0000 		sts OneWire+246,__zero_reg__
- 1364               	.LM178:
- 1365 046a 1092 0000 		sts OneWire+245,__zero_reg__
- 1366               	.LM179:
- 1367 046e 1092 0000 		sts (OneWire+5)+1,__zero_reg__
- 1368 0472 1092 0000 		sts OneWire+5,__zero_reg__
- 1369               	.LM180:
- 1370 0476 1092 0000 		sts (OneWire+247)+1,__zero_reg__
- 1371 047a 1092 0000 		sts OneWire+247,__zero_reg__
- 1372               	.LM181:
- 1373 047e 1092 0000 		sts (OneWire+249)+1,__zero_reg__
- 1374 0482 1092 0000 		sts OneWire+249,__zero_reg__
- 1375               	.LM182:
- 1376 0486 1092 0000 		sts OneWire+253,__zero_reg__
- 1377               	.LM183:
- 1378 048a 1092 0000 		sts OneWire+254,__zero_reg__
- 1379               	.LBB462:
- 1380               	.LBB463:
- 1381               	.LM184:
- 1382 048e 449A      		sbi 40-32,4
- 1383               	.LBB464:
- 1384               	.LBB465:
- 1385               	.LBB466:
- 1386               	.LBB467:
- 1387               	.LM185:
- 1388 0490 82E0      		ldi r24,lo8(2)
- 1389               	.LVL30:
- 1390               	/* #APP */
- 1391               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 1392 0492 8A95      		1: dec r24
- 1393 0494 01F4      		brne 1b
- 1394               	 ;  0 "" 2
- 1395               	/* #NOAPP */
- 1396               	.LBE467:
- 1397               	.LBE466:
- 1398               	.LBE465:
- 1399               	.LBE464:
- 1400               	.LM186:
- 1401 0496 4498      		cbi 40-32,4
- 1402 0498 00C0      		rjmp .L83
- 1403               	.LVL31:
- 1404               	.L81:
- 1405               	.LBE463:
- 1406               	.LBE462:
- 1407               	.LM187:
- 1408 049a 0E94 0000 		call OneWire_Delay_Rx_Int
- 1409               	.LM188:
- 1410 049e 0E94 0000 		call OneWire_Bit_Sample_And_Update
- 1411               	.LBB468:
- 1412               	.LBB469:
- 1413               	.LM189:
- 1414 04a2 8091 0000 		lds r24,OneWire
- 1415 04a6 8C30      		cpi r24,lo8(12)
- 1416 04a8 00F0      		brlo .L83
- 1417               	.LM190:
- 1418 04aa 1092 0000 		sts OneWire,__zero_reg__
- 1419               	.LBE469:
- 1420               	.LBE468:
- 1421               	.LM191:
- 1422 04ae 0E94 0000 		call OneWire_Fill_Buf
- 1423               	.LVL32:
- 1424               	.L83:
- 1425               	/* epilogue start */
- 1426               	.LM192:
- 1427 04b2 FF91      		pop r31
- 1428 04b4 EF91      		pop r30
- 1429 04b6 BF91      		pop r27
- 1430 04b8 AF91      		pop r26
- 1431 04ba 9F91      		pop r25
- 1432 04bc 8F91      		pop r24
- 1433               	.LVL33:
- 1434 04be 7F91      		pop r23
- 1435 04c0 6F91      		pop r22
- 1436 04c2 5F91      		pop r21
- 1437 04c4 4F91      		pop r20
- 1438 04c6 3F91      		pop r19
- 1439 04c8 2F91      		pop r18
- 1440 04ca 0F90      		pop r0
- 1441 04cc 0FBE      		out __SREG__,r0
- 1442 04ce 0F90      		pop r0
- 1443 04d0 1F90      		pop __zero_reg__
- 1444 04d2 1895      		reti
- 1445               	.LFE33:
- 1447               	.global	OneWire_Init_Master
- 1449               	OneWire_Init_Master:
- 1450               	.LFB34:
- 1451               	.LM193:
- 1452               	/* prologue: function */
- 1453               	/* frame size = 0 */
- 1454               	.LM194:
- 1455 04d4 0E94 0000 		call OneWire_Struct_Init
- 1456               	.LM195:
- 1457 04d8 0E94 0000 		call OneWire_TRX_GPIO_Init
- 1458               	.LM196:
- 1459 04dc 0E94 0000 		call OneWire_TRX_Interrupt_Init
- 1460               	.LBB470:
- 1461               	.LBB471:
- 1462               	.LM197:
- 1463 04e0 ECE6      		ldi r30,lo8(108)
- 1464 04e2 F0E0      		ldi r31,hi8(108)
- 1465 04e4 8081      		ld r24,Z
- 1466 04e6 8F7D      		andi r24,lo8(-33)
- 1467 04e8 8083      		st Z,r24
- 1468               	/* epilogue start */
- 1469               	.LBE471:
- 1470               	.LBE470:
- 1471               	.LM198:
- 1472 04ea 0895      		ret
- 1473               	.LFE34:
- 1475               	.global	OneWire_Init_Slave
- 1477               	OneWire_Init_Slave:
- 1478               	.LFB35:
- 1479               	.LM199:
- 1480               	/* prologue: function */
- 1481               	/* frame size = 0 */
- 1482               	.LM200:
- 1483 04ec 0E94 0000 		call OneWire_Struct_Init
- 1484               	.LM201:
- 1485 04f0 0E94 0000 		call OneWire_TRX_GPIO_Init
- 1486               	.LM202:
- 1487 04f4 0E94 0000 		call OneWire_TRX_Interrupt_Init
- 1488               	.LBB472:
- 1489               	.LBB473:
- 1490               	.LM203:
- 1491 04f8 ECE6      		ldi r30,lo8(108)
- 1492 04fa F0E0      		ldi r31,hi8(108)
- 1493 04fc 8081      		ld r24,Z
- 1494 04fe 8062      		ori r24,lo8(32)
- 1495 0500 8083      		st Z,r24
- 1496               	/* epilogue start */
- 1497               	.LBE473:
- 1498               	.LBE472:
- 1499               	.LM204:
- 1500 0502 0895      		ret
- 1501               	.LFE35:
- 1503               		.comm OneWire,255,1
- 1760               	.Letext0:
+ 311               	.LM58:
+ 312               	/* #NOAPP */
+ 313 0102 0895      		ret
+ 314               	.LFE15:
+ 316               	.global	OneWire_TRX_Interrupt_Enable
+ 318               	OneWire_TRX_Interrupt_Enable:
+ 319               	.LFB16:
+ 320               	.LM59:
+ 321               	/* prologue: function */
+ 322               	/* frame size = 0 */
+ 323               	.LM60:
+ 324 0104 EBE6      		ldi r30,lo8(107)
+ 325 0106 F0E0      		ldi r31,hi8(107)
+ 326 0108 8081      		ld r24,Z
+ 327 010a 8160      		ori r24,lo8(1)
+ 328 010c 8083      		st Z,r24
+ 329               	/* epilogue start */
+ 330               	.LM61:
+ 331 010e 0895      		ret
+ 332               	.LFE16:
+ 334               	.global	OneWire_TRX_Interrupt_Disable
+ 336               	OneWire_TRX_Interrupt_Disable:
+ 337               	.LFB17:
+ 338               	.LM62:
+ 339               	/* prologue: function */
+ 340               	/* frame size = 0 */
+ 341               	.LM63:
+ 342 0110 EBE6      		ldi r30,lo8(107)
+ 343 0112 F0E0      		ldi r31,hi8(107)
+ 344 0114 8081      		ld r24,Z
+ 345 0116 8E7F      		andi r24,lo8(-2)
+ 346 0118 8083      		st Z,r24
+ 347               	/* epilogue start */
+ 348               	.LM64:
+ 349 011a 0895      		ret
+ 350               	.LFE17:
+ 352               	.global	OneWire_TRX_Interrupt_Status
+ 354               	OneWire_TRX_Interrupt_Status:
+ 355               	.LFB18:
+ 356               	.LM65:
+ 357               	/* prologue: function */
+ 358               	/* frame size = 0 */
+ 359               	.LM66:
+ 360 011c 8091 6B00 		lds r24,107
+ 361               	.LM67:
+ 362 0120 8170      		andi r24,lo8(1)
+ 363               	/* epilogue start */
+ 364 0122 0895      		ret
+ 365               	.LFE18:
+ 367               	.global	OneWire_TRX_Falling_Edge_Interrupt
+ 369               	OneWire_TRX_Falling_Edge_Interrupt:
+ 370               	.LFB19:
+ 371               	.LM68:
+ 372               	/* prologue: function */
+ 373               	/* frame size = 0 */
+ 374               	.LBB270:
+ 375               	.LBB271:
+ 376               	.LM69:
+ 377 0124 83B1      		in r24,35-32
+ 378 0126 8095      		com r24
+ 379               	.LBE271:
+ 380               	.LBE270:
+ 381               	.LM70:
+ 382 0128 8170      		andi r24,lo8(1)
+ 383               	/* epilogue start */
+ 384 012a 0895      		ret
+ 385               	.LFE19:
+ 387               	.global	OneWire_Debug_Tx_Pulse
+ 389               	OneWire_Debug_Tx_Pulse:
+ 390               	.LFB20:
+ 391               	.LM71:
+ 392               	/* prologue: function */
+ 393               	/* frame size = 0 */
+ 394               	/* epilogue start */
+ 395               	.LM72:
+ 396 012c 0895      		ret
+ 397               	.LFE20:
+ 399               	.global	OneWire_Debug_Rx_Pulse
+ 401               	OneWire_Debug_Rx_Pulse:
+ 402               	.LFB21:
+ 403               	.LM73:
+ 404               	/* prologue: function */
+ 405               	/* frame size = 0 */
+ 406               	/* epilogue start */
+ 407               	.LM74:
+ 408 012e 0895      		ret
+ 409               	.LFE21:
+ 411               	.global	OneWire_Delay_Clock_Low_Time
+ 413               	OneWire_Delay_Clock_Low_Time:
+ 414               	.LFB22:
+ 415               	.LM75:
+ 416               	/* prologue: function */
+ 417               	/* frame size = 0 */
+ 418               	.LBB272:
+ 419               	.LBB273:
+ 420               	.LBB274:
+ 421               	.LBB275:
+ 422               	.LM76:
+ 423 0130 80E5      		ldi r24,lo8(80)
+ 424               	.LVL3:
+ 425               	/* #APP */
+ 426               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 427 0132 8A95      		1: dec r24
+ 428 0134 01F4      		brne 1b
+ 429               	 ;  0 "" 2
+ 430               	/* epilogue start */
+ 431               	/* #NOAPP */
+ 432               	.LBE275:
+ 433               	.LBE274:
+ 434               	.LBE273:
+ 435               	.LBE272:
+ 436               	.LM77:
+ 437 0136 0895      		ret
+ 438               	.LFE22:
+ 440               	.global	OneWire_Delay_Clock_High_Time
+ 442               	OneWire_Delay_Clock_High_Time:
+ 443               	.LFB23:
+ 444               	.LM78:
+ 445               	/* prologue: function */
+ 446               	/* frame size = 0 */
+ 447               	.LBB276:
+ 448               	.LBB277:
+ 449               	.LBB278:
+ 450               	.LBB279:
+ 451               	.LM79:
+ 452 0138 80E5      		ldi r24,lo8(80)
+ 453               	.LVL4:
+ 454               	/* #APP */
+ 455               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 456 013a 8A95      		1: dec r24
+ 457 013c 01F4      		brne 1b
+ 458               	 ;  0 "" 2
+ 459               	/* epilogue start */
+ 460               	/* #NOAPP */
+ 461               	.LBE279:
+ 462               	.LBE278:
+ 463               	.LBE277:
+ 464               	.LBE276:
+ 465               	.LM80:
+ 466 013e 0895      		ret
+ 467               	.LFE23:
+ 469               	.global	OneWire_Delay_Half_Bit_Time
+ 471               	OneWire_Delay_Half_Bit_Time:
+ 472               	.LFB24:
+ 473               	.LM81:
+ 474               	/* prologue: function */
+ 475               	/* frame size = 0 */
+ 476               	.LBB280:
+ 477               	.LBB281:
+ 478               	.LBB282:
+ 479               	.LBB283:
+ 480               	.LM82:
+ 481 0140 80EA      		ldi r24,lo8(-96)
+ 482               	.LVL5:
+ 483               	/* #APP */
+ 484               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 485 0142 8A95      		1: dec r24
+ 486 0144 01F4      		brne 1b
+ 487               	 ;  0 "" 2
+ 488               	/* epilogue start */
+ 489               	/* #NOAPP */
+ 490               	.LBE283:
+ 491               	.LBE282:
+ 492               	.LBE281:
+ 493               	.LBE280:
+ 494               	.LM83:
+ 495 0146 0895      		ret
+ 496               	.LFE24:
+ 498               	.global	OneWire_Delay_Byte_Gap
+ 500               	OneWire_Delay_Byte_Gap:
+ 501               	.LFB25:
+ 502               	.LM84:
+ 503               	/* prologue: function */
+ 504               	/* frame size = 0 */
+ 505               	.LBB284:
+ 506               	.LBB285:
+ 507               	.LBB286:
+ 508               	.LBB287:
+ 509               	.LBB288:
+ 510               	.LBB289:
+ 511               	.LM85:
+ 512 0148 8CE2      		ldi r24,lo8(300)
+ 513 014a 91E0      		ldi r25,hi8(300)
+ 514               	.LVL6:
+ 515               	/* #APP */
+ 516               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 517 014c 0197      		1: sbiw r24,1
+ 518 014e 01F4      		brne 1b
+ 519               	 ;  0 "" 2
+ 520               	/* epilogue start */
+ 521               	/* #NOAPP */
+ 522               	.LBE289:
+ 523               	.LBE288:
+ 524               	.LBE287:
+ 525               	.LBE286:
+ 526               	.LBE285:
+ 527               	.LBE284:
+ 528               	.LM86:
+ 529 0150 0895      		ret
+ 530               	.LFE25:
+ 532               	.global	OneWire_Delay_Rx_Int
+ 534               	OneWire_Delay_Rx_Int:
+ 535               	.LFB26:
+ 536               	.LM87:
+ 537               	/* prologue: function */
+ 538               	/* frame size = 0 */
+ 539               	.LBB290:
+ 540               	.LBB291:
+ 541               	.LM88:
+ 542 0152 EBE6      		ldi r30,lo8(107)
+ 543 0154 F0E0      		ldi r31,hi8(107)
+ 544 0156 8081      		ld r24,Z
+ 545 0158 8E7F      		andi r24,lo8(-2)
+ 546 015a 8083      		st Z,r24
+ 547               	.LBE291:
+ 548               	.LBE290:
+ 549               	.LBB292:
+ 550               	.LBB293:
+ 551               	.LBB294:
+ 552               	.LBB295:
+ 553               	.LBB296:
+ 554               	.LBB297:
+ 555               	.LM89:
+ 556 015c 80E5      		ldi r24,lo8(80)
+ 557               	.LVL7:
+ 558               	/* #APP */
+ 559               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 560 015e 8A95      		1: dec r24
+ 561 0160 01F4      		brne 1b
+ 562               	 ;  0 "" 2
+ 563               	/* #NOAPP */
+ 564               	.LBE297:
+ 565               	.LBE296:
+ 566               	.LBE295:
+ 567               	.LBE294:
+ 568               	.LBE293:
+ 569               	.LBE292:
+ 570               	.LBB298:
+ 571               	.LBB299:
+ 572               	.LBB300:
+ 573               	.LBB301:
+ 574               	.LBB302:
+ 575               	.LBB303:
+ 576 0162 80EA      		ldi r24,lo8(-96)
+ 577               	.LVL8:
+ 578               	/* #APP */
+ 579               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 580 0164 8A95      		1: dec r24
+ 581 0166 01F4      		brne 1b
+ 582               	 ;  0 "" 2
+ 583               	/* #NOAPP */
+ 584               	.LBE303:
+ 585               	.LBE302:
+ 586               	.LBE301:
+ 587               	.LBE300:
+ 588               	.LBE299:
+ 589               	.LBE298:
+ 590               	.LBB304:
+ 591               	.LBB305:
+ 592               	.LM90:
+ 593 0168 8081      		ld r24,Z
+ 594               	.LVL9:
+ 595 016a 8160      		ori r24,lo8(1)
+ 596 016c 8083      		st Z,r24
+ 597               	/* epilogue start */
+ 598               	.LBE305:
+ 599               	.LBE304:
+ 600               	.LM91:
+ 601 016e 0895      		ret
+ 602               	.LFE26:
+ 604               	.global	OneWire_TRX_Byte
+ 606               	OneWire_TRX_Byte:
+ 607               	.LFB27:
+ 608               	.LM92:
+ 609               	.LVL10:
+ 610               	/* prologue: function */
+ 611               	/* frame size = 0 */
+ 612 0170 AC01      		movw r20,r24
+ 613               	.LM93:
+ 614 0172 20E0      		ldi r18,lo8(0)
+ 615 0174 30E0      		ldi r19,hi8(0)
+ 616               	.LVL11:
+ 617 0176 60E0      		ldi r22,lo8(0)
+ 618               	.LVL12:
+ 619               	.LBB306:
+ 620               	.LBB307:
+ 621               	.LBB308:
+ 622               	.LBB309:
+ 623               	.LBB310:
+ 624               	.LBB311:
+ 625               	.LBB312:
+ 626               	.LM94:
+ 627 0178 E0E5      		ldi r30,lo8(80)
+ 628               	.LBE312:
+ 629               	.LBE311:
+ 630               	.LBE310:
+ 631               	.LBE309:
+ 632               	.LBE308:
+ 633               	.LBE307:
+ 634               	.LBB318:
+ 635               	.LBB319:
+ 636               	.LBB320:
+ 637               	.LBB321:
+ 638               	.LBB322:
+ 639               	.LBB323:
+ 640 017a 70EA      		ldi r23,lo8(-96)
+ 641               	.LVL13:
+ 642               	.L62:
+ 643               	.LBE323:
+ 644               	.LBE322:
+ 645               	.LBE321:
+ 646               	.LBE320:
+ 647               	.LBE319:
+ 648               	.LBE318:
+ 649               	.LBB329:
+ 650               	.LBB330:
+ 651               	.LBB331:
+ 652               	.LBB332:
+ 653               	.LM95:
+ 654 017c 209A      		sbi 36-32,0
+ 655               	.LBE332:
+ 656               	.LBE331:
+ 657               	.LBE330:
+ 658               	.LBE329:
+ 659               	.LBB333:
+ 660               	.LBB317:
+ 661               	.LBB316:
+ 662               	.LBB315:
+ 663               	.LBB314:
+ 664               	.LBB313:
+ 665               	.LM96:
+ 666 017e 8E2F      		mov r24,r30
+ 667               	.LVL14:
+ 668               	/* #APP */
+ 669               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 670 0180 8A95      		1: dec r24
+ 671 0182 01F4      		brne 1b
+ 672               	 ;  0 "" 2
+ 673               	/* #NOAPP */
+ 674               	.LBE313:
+ 675               	.LBE314:
+ 676               	.LBE315:
+ 677               	.LBE316:
+ 678               	.LBE317:
+ 679               	.LBE333:
+ 680               	.LM97:
+ 681 0184 6B30      		cpi r22,lo8(11)
+ 682 0186 01F0      		breq .L58
+ 683               	.LM98:
+ 684 0188 53FD      		sbrc r21,3
+ 685 018a 00C0      		rjmp .L58
+ 686               	.L59:
+ 687               	.LBB334:
+ 688               	.LBB335:
+ 689               	.LBB336:
+ 690               	.LBB337:
+ 691               	.LM99:
+ 692 018c 209A      		sbi 36-32,0
+ 693 018e 00C0      		rjmp .L60
+ 694               	.L58:
+ 695               	.LBE337:
+ 696               	.LBE336:
+ 697               	.LBE335:
+ 698               	.LBE334:
+ 699               	.LBB338:
+ 700               	.LBB339:
+ 701               	.LBB340:
+ 702               	.LBB341:
+ 703               	.LM100:
+ 704 0190 2098      		cbi 36-32,0
+ 705               	.L60:
+ 706               	.LBE341:
+ 707               	.LBE340:
+ 708               	.LBE339:
+ 709               	.LBE338:
+ 710               	.LBB342:
+ 711               	.LBB328:
+ 712               	.LBB327:
+ 713               	.LBB326:
+ 714               	.LBB325:
+ 715               	.LBB324:
+ 716               	.LM101:
+ 717 0192 872F      		mov r24,r23
+ 718               	.LVL15:
+ 719               	/* #APP */
+ 720               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 721 0194 8A95      		1: dec r24
+ 722 0196 01F4      		brne 1b
+ 723               	 ;  0 "" 2
+ 724               	/* #NOAPP */
+ 725               	.LBE324:
+ 726               	.LBE325:
+ 727               	.LBE326:
+ 728               	.LBE327:
+ 729               	.LBE328:
+ 730               	.LBE342:
+ 731               	.LM102:
+ 732 0198 220F      		lsl r18
+ 733 019a 331F      		rol r19
+ 734               	.LBB343:
+ 735               	.LBB344:
+ 736               	.LM103:
+ 737 019c 83B1      		in r24,35-32
+ 738               	.LVL16:
+ 739               	.LBE344:
+ 740               	.LBE343:
+ 741               	.LM104:
+ 742 019e 90E0      		ldi r25,lo8(0)
+ 743 01a0 8170      		andi r24,lo8(1)
+ 744 01a2 9070      		andi r25,hi8(1)
+ 745 01a4 282B      		or r18,r24
+ 746 01a6 392B      		or r19,r25
+ 747               	.LBB345:
+ 748               	.LBB346:
+ 749               	.LBB347:
+ 750               	.LBB348:
+ 751               	.LBB349:
+ 752               	.LBB350:
+ 753               	.LM105:
+ 754 01a8 872F      		mov r24,r23
+ 755               	.LVL17:
+ 756               	/* #APP */
+ 757               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 758 01aa 8A95      		1: dec r24
+ 759 01ac 01F4      		brne 1b
+ 760               	 ;  0 "" 2
+ 761               	/* #NOAPP */
+ 762               	.LBE350:
+ 763               	.LBE349:
+ 764               	.LBE348:
+ 765               	.LBE347:
+ 766               	.LBE346:
+ 767               	.LBE345:
+ 768               	.LBB351:
+ 769               	.LBB352:
+ 770               	.LBB353:
+ 771               	.LBB354:
+ 772               	.LM106:
+ 773 01ae 2098      		cbi 36-32,0
+ 774               	.LBE354:
+ 775               	.LBE353:
+ 776               	.LBE352:
+ 777               	.LBE351:
+ 778               	.LBB355:
+ 779               	.LBB356:
+ 780               	.LBB357:
+ 781               	.LBB358:
+ 782               	.LBB359:
+ 783               	.LBB360:
+ 784               	.LM107:
+ 785 01b0 8E2F      		mov r24,r30
+ 786               	.LVL18:
+ 787               	/* #APP */
+ 788               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 789 01b2 8A95      		1: dec r24
+ 790 01b4 01F4      		brne 1b
+ 791               	 ;  0 "" 2
+ 792               	/* #NOAPP */
+ 793               	.LBE360:
+ 794               	.LBE359:
+ 795               	.LBE358:
+ 796               	.LBE357:
+ 797               	.LBE356:
+ 798               	.LBE355:
+ 799               	.LM108:
+ 800 01b6 6F5F      		subi r22,lo8(-(1))
+ 801 01b8 6C30      		cpi r22,lo8(12)
+ 802 01ba 01F0      		breq .L61
+ 803               	.LM109:
+ 804 01bc 440F      		lsl r20
+ 805 01be 551F      		rol r21
+ 806 01c0 00C0      		rjmp .L62
+ 807               	.L61:
+ 808               	.LBE306:
+ 809               	.LBB361:
+ 810               	.LBB362:
+ 811               	.LBB363:
+ 812               	.LBB364:
+ 813               	.LBB365:
+ 814               	.LBB366:
+ 815               	.LBB367:
+ 816               	.LBB368:
+ 817               	.LM110:
+ 818 01c2 8CE2      		ldi r24,lo8(300)
+ 819 01c4 91E0      		ldi r25,hi8(300)
+ 820               	.LVL19:
+ 821               	/* #APP */
+ 822               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 823 01c6 0197      		1: sbiw r24,1
+ 824 01c8 01F4      		brne 1b
+ 825               	 ;  0 "" 2
+ 826               	/* #NOAPP */
+ 827               	.LBE368:
+ 828               	.LBE367:
+ 829               	.LBE366:
+ 830               	.LBE365:
+ 831               	.LBE364:
+ 832               	.LBE363:
+ 833               	.LBE362:
+ 834               	.LBE361:
+ 835               	.LM111:
+ 836 01ca C901      		movw r24,r18
+ 837               	.LVL20:
+ 838               	/* epilogue start */
+ 839 01cc 0895      		ret
+ 840               	.LFE27:
+ 842               	.global	OneWire_Bit_Sample_And_Update
+ 844               	OneWire_Bit_Sample_And_Update:
+ 845               	.LFB28:
+ 846               	.LM112:
+ 847               	/* prologue: function */
+ 848               	/* frame size = 0 */
+ 849               	.LM113:
+ 850 01ce 8091 0000 		lds r24,OneWire+1
+ 851 01d2 9091 0000 		lds r25,(OneWire+1)+1
+ 852 01d6 880F      		lsl r24
+ 853 01d8 991F      		rol r25
+ 854 01da 9093 0000 		sts (OneWire+1)+1,r25
+ 855 01de 8093 0000 		sts OneWire+1,r24
+ 856               	.LM114:
+ 857 01e2 2091 0000 		lds r18,OneWire+1
+ 858 01e6 3091 0000 		lds r19,(OneWire+1)+1
+ 859               	.LBB369:
+ 860               	.LBB370:
+ 861               	.LM115:
+ 862 01ea 83B1      		in r24,35-32
+ 863               	.LBE370:
+ 864               	.LBE369:
+ 865               	.LM116:
+ 866 01ec 90E0      		ldi r25,lo8(0)
+ 867 01ee 8170      		andi r24,lo8(1)
+ 868 01f0 9070      		andi r25,hi8(1)
+ 869 01f2 822B      		or r24,r18
+ 870 01f4 932B      		or r25,r19
+ 871 01f6 9093 0000 		sts (OneWire+1)+1,r25
+ 872 01fa 8093 0000 		sts OneWire+1,r24
+ 873               	.LM117:
+ 874 01fe E0E0      		ldi r30,lo8(OneWire+1)
+ 875 0200 F0E0      		ldi r31,hi8(OneWire+1)
+ 876 0202 8291      		ld r24,-Z
+ 877 0204 8F5F      		subi r24,lo8(-(1))
+ 878 0206 8083      		st Z,r24
+ 879               	/* epilogue start */
+ 880               	.LM118:
+ 881 0208 0895      		ret
+ 882               	.LFE28:
+ 884               	.global	OneWire_Bit_Counter_Overflow
+ 886               	OneWire_Bit_Counter_Overflow:
+ 887               	.LFB29:
+ 888               	.LM119:
+ 889               	/* prologue: function */
+ 890               	/* frame size = 0 */
+ 891               	.LM120:
+ 892 020a 8091 0000 		lds r24,OneWire
+ 893 020e 8C30      		cpi r24,lo8(12)
+ 894 0210 00F4      		brsh .L67
+ 895 0212 80E0      		ldi r24,lo8(0)
+ 896 0214 0895      		ret
+ 897               	.L67:
+ 898               	.LM121:
+ 899 0216 1092 0000 		sts OneWire,__zero_reg__
+ 900 021a 81E0      		ldi r24,lo8(1)
+ 901               	.LM122:
+ 902 021c 0895      		ret
+ 903               	.LFE29:
+ 905               	.global	OneWire_Buf_Sample_And_Update
+ 907               	OneWire_Buf_Sample_And_Update:
+ 908               	.LFB30:
+ 909               	.LM123:
+ 910               	/* prologue: function */
+ 911               	/* frame size = 0 */
+ 912               	.LM124:
+ 913 021e E091 0000 		lds r30,OneWire+105
+ 914 0222 F0E0      		ldi r31,lo8(0)
+ 915 0224 8091 0000 		lds r24,OneWire+1
+ 916 0228 9091 0000 		lds r25,(OneWire+1)+1
+ 917 022c EE0F      		lsl r30
+ 918 022e FF1F      		rol r31
+ 919 0230 E050      		subi r30,lo8(-(OneWire))
+ 920 0232 F040      		sbci r31,hi8(-(OneWire))
+ 921 0234 9683      		std Z+6,r25
+ 922 0236 8583      		std Z+5,r24
+ 923               	.LM125:
+ 924 0238 1092 0000 		sts (OneWire+1)+1,__zero_reg__
+ 925 023c 1092 0000 		sts OneWire+1,__zero_reg__
+ 926               	.LM126:
+ 927 0240 8091 0000 		lds r24,OneWire+105
+ 928 0244 8F5F      		subi r24,lo8(-(1))
+ 929 0246 8093 0000 		sts OneWire+105,r24
+ 930               	/* epilogue start */
+ 931               	.LM127:
+ 932 024a 0895      		ret
+ 933               	.LFE30:
+ 935               	.global	OneWire_Buf_Counter_Overflow
+ 937               	OneWire_Buf_Counter_Overflow:
+ 938               	.LFB31:
+ 939               	.LM128:
+ 940               	/* prologue: function */
+ 941               	/* frame size = 0 */
+ 942               	.LM129:
+ 943 024c 8091 0000 		lds r24,OneWire+105
+ 944 0250 8233      		cpi r24,lo8(50)
+ 945 0252 00F0      		brlo .L73
+ 946               	.LM130:
+ 947 0254 1092 0000 		sts OneWire+105,__zero_reg__
+ 948               	.LM131:
+ 949 0258 8091 0000 		lds r24,OneWire+3
+ 950 025c 9091 0000 		lds r25,(OneWire+3)+1
+ 951 0260 0196      		adiw r24,1
+ 952 0262 9093 0000 		sts (OneWire+3)+1,r25
+ 953 0266 8093 0000 		sts OneWire+3,r24
+ 954 026a 81E0      		ldi r24,lo8(1)
+ 955 026c 0895      		ret
+ 956               	.L73:
+ 957               	.LM132:
+ 958 026e 8091 0000 		lds r24,OneWire+3
+ 959 0272 9091 0000 		lds r25,(OneWire+3)+1
+ 960 0276 0196      		adiw r24,1
+ 961 0278 9093 0000 		sts (OneWire+3)+1,r25
+ 962 027c 8093 0000 		sts OneWire+3,r24
+ 963 0280 80E0      		ldi r24,lo8(0)
+ 964               	.LM133:
+ 965 0282 0895      		ret
+ 966               	.LFE31:
+ 968               	.global	OneWire_Fill_Buf
+ 970               	OneWire_Fill_Buf:
+ 971               	.LFB32:
+ 972               	.LM134:
+ 973               	/* prologue: function */
+ 974               	/* frame size = 0 */
+ 975               	.LBB371:
+ 976               	.LBB372:
+ 977               	.LM135:
+ 978 0284 E091 0000 		lds r30,OneWire+105
+ 979 0288 F0E0      		ldi r31,lo8(0)
+ 980 028a 8091 0000 		lds r24,OneWire+1
+ 981 028e 9091 0000 		lds r25,(OneWire+1)+1
+ 982 0292 EE0F      		lsl r30
+ 983 0294 FF1F      		rol r31
+ 984 0296 E050      		subi r30,lo8(-(OneWire))
+ 985 0298 F040      		sbci r31,hi8(-(OneWire))
+ 986 029a 9683      		std Z+6,r25
+ 987 029c 8583      		std Z+5,r24
+ 988               	.LM136:
+ 989 029e 1092 0000 		sts (OneWire+1)+1,__zero_reg__
+ 990 02a2 1092 0000 		sts OneWire+1,__zero_reg__
+ 991               	.LM137:
+ 992 02a6 8091 0000 		lds r24,OneWire+105
+ 993 02aa 8F5F      		subi r24,lo8(-(1))
+ 994 02ac 8093 0000 		sts OneWire+105,r24
+ 995               	.LBE372:
+ 996               	.LBE371:
+ 997               	.LM138:
+ 998 02b0 0E94 0000 		call OneWire_Buf_Counter_Overflow
+ 999               	.LM139:
+ 1000 02b4 8091 0000 		lds r24,OneWire+105
+ 1001 02b8 8823      		tst r24
+ 1002 02ba 01F0      		breq .L77
+ 1003 02bc E091 0000 		lds r30,OneWire+105
+ 1004 02c0 F0E0      		ldi r31,lo8(0)
+ 1005 02c2 EE0F      		lsl r30
+ 1006 02c4 FF1F      		rol r31
+ 1007 02c6 E050      		subi r30,lo8(-(OneWire-2))
+ 1008 02c8 F040      		sbci r31,hi8(-(OneWire-2))
+ 1009 02ca 8581      		ldd r24,Z+5
+ 1010 02cc 9681      		ldd r25,Z+6
+ 1011 02ce 93FF      		sbrs r25,3
+ 1012 02d0 00C0      		rjmp .L77
+ 1013               	.LM140:
+ 1014 02d2 81E0      		ldi r24,lo8(1)
+ 1015 02d4 8093 0000 		sts OneWire+106,r24
+ 1016               	.LM141:
+ 1017 02d8 E091 0000 		lds r30,OneWire+105
+ 1018 02dc F0E0      		ldi r31,lo8(0)
+ 1019 02de EE0F      		lsl r30
+ 1020 02e0 FF1F      		rol r31
+ 1021 02e2 E050      		subi r30,lo8(-(OneWire-2))
+ 1022 02e4 F040      		sbci r31,hi8(-(OneWire-2))
+ 1023 02e6 8581      		ldd r24,Z+5
+ 1024 02e8 9681      		ldd r25,Z+6
+ 1025 02ea 8070      		andi r24,lo8(512)
+ 1026 02ec 9270      		andi r25,hi8(512)
+ 1027 02ee 9093 0000 		sts (OneWire+107)+1,r25
+ 1028 02f2 8093 0000 		sts OneWire+107,r24
+ 1029               	.LM142:
+ 1030 02f6 E091 0000 		lds r30,OneWire+105
+ 1031 02fa F0E0      		ldi r31,lo8(0)
+ 1032 02fc EE0F      		lsl r30
+ 1033 02fe FF1F      		rol r31
+ 1034 0300 E050      		subi r30,lo8(-(OneWire-2))
+ 1035 0302 F040      		sbci r31,hi8(-(OneWire-2))
+ 1036 0304 8581      		ldd r24,Z+5
+ 1037 0306 9681      		ldd r25,Z+6
+ 1038 0308 8E7F      		andi r24,lo8(510)
+ 1039 030a 9170      		andi r25,hi8(510)
+ 1040 030c 9695      		lsr r25
+ 1041 030e 8795      		ror r24
+ 1042 0310 9093 0000 		sts (OneWire+109)+1,r25
+ 1043 0314 8093 0000 		sts OneWire+109,r24
+ 1044 0318 0895      		ret
+ 1045               	.L77:
+ 1046               	.LM143:
+ 1047 031a E091 0000 		lds r30,OneWire+105
+ 1048 031e F0E0      		ldi r31,lo8(0)
+ 1049 0320 EE0F      		lsl r30
+ 1050 0322 FF1F      		rol r31
+ 1051 0324 E050      		subi r30,lo8(-(OneWire-2))
+ 1052 0326 F040      		sbci r31,hi8(-(OneWire-2))
+ 1053 0328 8581      		ldd r24,Z+5
+ 1054 032a 9681      		ldd r25,Z+6
+ 1055 032c 92FF      		sbrs r25,2
+ 1056 032e 00C0      		rjmp .L82
+ 1057 0330 20E0      		ldi r18,lo8(0)
+ 1058               	.LVL21:
+ 1059 0332 00C0      		rjmp .L79
+ 1060               	.L81:
+ 1061               	.LBB373:
+ 1062               	.LM144:
+ 1063 0334 A22F      		mov r26,r18
+ 1064 0336 B0E0      		ldi r27,lo8(0)
+ 1065 0338 FD01      		movw r30,r26
+ 1066 033a EE0F      		lsl r30
+ 1067 033c FF1F      		rol r31
+ 1068 033e E050      		subi r30,lo8(-(OneWire))
+ 1069 0340 F040      		sbci r31,hi8(-(OneWire))
+ 1070 0342 8581      		ldd r24,Z+5
+ 1071 0344 9681      		ldd r25,Z+6
+ 1072 0346 A050      		subi r26,lo8(-(OneWire+115))
+ 1073 0348 B040      		sbci r27,hi8(-(OneWire+115))
+ 1074 034a 8C93      		st X,r24
+ 1075               	.LM145:
+ 1076 034c 8091 0000 		lds r24,OneWire+265
+ 1077 0350 8F5F      		subi r24,lo8(-(1))
+ 1078 0352 8093 0000 		sts OneWire+265,r24
+ 1079               	.LM146:
+ 1080 0356 8091 0000 		lds r24,OneWire+265
+ 1081 035a 8639      		cpi r24,lo8(-106)
+ 1082 035c 00F0      		brlo .L80
+ 1083               	.LM147:
+ 1084 035e 1092 0000 		sts OneWire+265,__zero_reg__
+ 1085               	.L80:
+ 1086               	.LM148:
+ 1087 0362 2F5F      		subi r18,lo8(-(1))
+ 1088               	.L79:
+ 1089 0364 8091 0000 		lds r24,OneWire+105
+ 1090 0368 2817      		cp r18,r24
+ 1091 036a 00F0      		brlo .L81
+ 1092               	.LBE373:
+ 1093               	.LM149:
+ 1094 036c 1092 0000 		sts OneWire+106,__zero_reg__
+ 1095               	.LM150:
+ 1096 0370 1092 0000 		sts OneWire+105,__zero_reg__
+ 1097               	.LM151:
+ 1098 0374 1092 0000 		sts (OneWire+5)+1,__zero_reg__
+ 1099 0378 1092 0000 		sts OneWire+5,__zero_reg__
+ 1100               	.LM152:
+ 1101 037c 1092 0000 		sts (OneWire+107)+1,__zero_reg__
+ 1102 0380 1092 0000 		sts OneWire+107,__zero_reg__
+ 1103               	.LM153:
+ 1104 0384 1092 0000 		sts (OneWire+109)+1,__zero_reg__
+ 1105 0388 1092 0000 		sts OneWire+109,__zero_reg__
+ 1106               	.LM154:
+ 1107 038c 1092 0000 		sts OneWire+113,__zero_reg__
+ 1108               	.LM155:
+ 1109 0390 1092 0000 		sts OneWire+114,__zero_reg__
+ 1110               	.L82:
+ 1111 0394 0895      		ret
+ 1112               	.LFE32:
+ 1114               	.global	OneWire_Read_Mode_Feedback
+ 1116               	OneWire_Read_Mode_Feedback:
+ 1117               	.LFB33:
+ 1118               	.LM156:
+ 1119               	/* prologue: function */
+ 1120               	/* frame size = 0 */
+ 1121               	.LBB374:
+ 1122               	.LBB375:
+ 1123               	.LM157:
+ 1124 0396 8091 6B00 		lds r24,107
+ 1125 039a 8E7F      		andi r24,lo8(-2)
+ 1126 039c 8093 6B00 		sts 107,r24
+ 1127               	.LBE375:
+ 1128               	.LBE374:
+ 1129               	.LM158:
+ 1130 03a0 8091 0000 		lds r24,OneWire+111
+ 1131 03a4 9091 0000 		lds r25,(OneWire+111)+1
+ 1132 03a8 93FF      		sbrs r25,3
+ 1133 03aa 00C0      		rjmp .L84
+ 1134               	.LBB376:
+ 1135               	.LBB377:
+ 1136               	.LBB378:
+ 1137               	.LBB379:
+ 1138               	.LM159:
+ 1139 03ac 2098      		cbi 36-32,0
+ 1140 03ae 00C0      		rjmp .L85
+ 1141               	.L84:
+ 1142               	.LBE379:
+ 1143               	.LBE378:
+ 1144               	.LBE377:
+ 1145               	.LBE376:
+ 1146               	.LBB380:
+ 1147               	.LBB381:
+ 1148               	.LBB382:
+ 1149               	.LBB383:
+ 1150               	.LM160:
+ 1151 03b0 209A      		sbi 36-32,0
+ 1152               	.L85:
+ 1153               	.LBE383:
+ 1154               	.LBE382:
+ 1155               	.LBE381:
+ 1156               	.LBE380:
+ 1157               	.LM161:
+ 1158 03b2 8091 0000 		lds r24,OneWire+111
+ 1159 03b6 9091 0000 		lds r25,(OneWire+111)+1
+ 1160 03ba 880F      		lsl r24
+ 1161 03bc 991F      		rol r25
+ 1162 03be 9093 0000 		sts (OneWire+111)+1,r25
+ 1163 03c2 8093 0000 		sts OneWire+111,r24
+ 1164               	.LBB384:
+ 1165               	.LBB385:
+ 1166               	.LBB386:
+ 1167               	.LBB387:
+ 1168               	.LBB388:
+ 1169               	.LBB389:
+ 1170               	.LM162:
+ 1171 03c6 80EA      		ldi r24,lo8(-96)
+ 1172 03c8 982F      		mov r25,r24
+ 1173               	.LVL22:
+ 1174               	/* #APP */
+ 1175               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 1176 03ca 9A95      		1: dec r25
+ 1177 03cc 01F4      		brne 1b
+ 1178               	 ;  0 "" 2
+ 1179               	/* #NOAPP */
+ 1180               	.LBE389:
+ 1181               	.LBE388:
+ 1182               	.LBE387:
+ 1183               	.LBE386:
+ 1184               	.LBE385:
+ 1185               	.LBE384:
+ 1186               	.LBB390:
+ 1187               	.LBB391:
+ 1188               	.LBB392:
+ 1189               	.LBB393:
+ 1190               	.LBB394:
+ 1191               	.LBB395:
+ 1192               	/* #APP */
+ 1193               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 1194 03ce 8A95      		1: dec r24
+ 1195 03d0 01F4      		brne 1b
+ 1196               	 ;  0 "" 2
+ 1197               	.LVL23:
+ 1198               	/* #NOAPP */
+ 1199               	.LBE395:
+ 1200               	.LBE394:
+ 1201               	.LBE393:
+ 1202               	.LBE392:
+ 1203               	.LBE391:
+ 1204               	.LBE390:
+ 1205               	.LBB396:
+ 1206               	.LBB397:
+ 1207               	.LBB398:
+ 1208               	.LBB399:
+ 1209               	.LM163:
+ 1210 03d2 2098      		cbi 36-32,0
+ 1211               	.LBE399:
+ 1212               	.LBE398:
+ 1213               	.LBE397:
+ 1214               	.LBE396:
+ 1215               	.LBB400:
+ 1216               	.LBB401:
+ 1217               	.LM164:
+ 1218 03d4 8091 6B00 		lds r24,107
+ 1219               	.LVL24:
+ 1220 03d8 8160      		ori r24,lo8(1)
+ 1221 03da 8093 6B00 		sts 107,r24
+ 1222               	/* epilogue start */
+ 1223               	.LBE401:
+ 1224               	.LBE400:
+ 1225               	.LM165:
+ 1226 03de 0895      		ret
+ 1227               	.LFE33:
+ 1229               	.global	OneWire_Master_Send_Data
+ 1231               	OneWire_Master_Send_Data:
+ 1232               	.LFB34:
+ 1233               	.LM166:
+ 1234               	.LVL25:
+ 1235 03e0 EF92      		push r14
+ 1236 03e2 FF92      		push r15
+ 1237 03e4 0F93      		push r16
+ 1238 03e6 1F93      		push r17
+ 1239 03e8 CF93      		push r28
+ 1240 03ea DF93      		push r29
+ 1241               	/* prologue: function */
+ 1242               	/* frame size = 0 */
+ 1243 03ec 182F      		mov r17,r24
+ 1244 03ee 092F      		mov r16,r25
+ 1245               	.LVL26:
+ 1246 03f0 E62E      		mov r14,r22
+ 1247               	.LM167:
+ 1248 03f2 81E0      		ldi r24,lo8(2049)
+ 1249 03f4 98E0      		ldi r25,hi8(2049)
+ 1250               	.LVL27:
+ 1251 03f6 0E94 0000 		call OneWire_TRX_Byte
+ 1252               	.LVL28:
+ 1253 03fa 212F      		mov r18,r17
+ 1254 03fc 302F      		mov r19,r16
+ 1255 03fe C901      		movw r24,r18
+ 1256 0400 EC01      		movw r28,r24
+ 1257 0402 FF24      		clr r15
+ 1258               	.LVL29:
+ 1259               	.LBB402:
+ 1260               	.LM168:
+ 1261 0404 0E2D      		mov r16,r14
+ 1262               	.LVL30:
+ 1263 0406 10E0      		ldi r17,lo8(0)
+ 1264               	.LVL31:
+ 1265 0408 0150      		subi r16,lo8(-(-1))
+ 1266 040a 1040      		sbci r17,hi8(-(-1))
+ 1267 040c 00C0      		rjmp .L88
+ 1268               	.L91:
+ 1269 040e 8F2D      		mov r24,r15
+ 1270 0410 90E0      		ldi r25,lo8(0)
+ 1271               	.LVL32:
+ 1272 0412 2881      		ld r18,Y
+ 1273 0414 8017      		cp r24,r16
+ 1274 0416 9107      		cpc r25,r17
+ 1275 0418 01F4      		brne .L89
+ 1276               	.LVL33:
+ 1277               	.LM169:
+ 1278 041a 822F      		mov r24,r18
+ 1279               	.LVL34:
+ 1280 041c 90E0      		ldi r25,lo8(0)
+ 1281               	.LVL35:
+ 1282 041e 880F      		lsl r24
+ 1283 0420 991F      		rol r25
+ 1284               	.LVL36:
+ 1285 0422 8160      		ori r24,lo8(1025)
+ 1286 0424 9460      		ori r25,hi8(1025)
+ 1287 0426 00C0      		rjmp .L90
+ 1288               	.LVL37:
+ 1289               	.L89:
+ 1290               	.LM170:
+ 1291 0428 822F      		mov r24,r18
+ 1292               	.LVL38:
+ 1293 042a 90E0      		ldi r25,lo8(0)
+ 1294               	.LVL39:
+ 1295 042c 880F      		lsl r24
+ 1296 042e 991F      		rol r25
+ 1297               	.LVL40:
+ 1298 0430 8160      		ori r24,lo8(1)
+ 1299               	.L90:
+ 1300               	.LM171:
+ 1301 0432 0E94 0000 		call OneWire_TRX_Byte
+ 1302               	.LVL41:
+ 1303               	.LM172:
+ 1304 0436 F394      		inc r15
+ 1305 0438 2196      		adiw r28,1
+ 1306               	.L88:
+ 1307 043a FE14      		cp r15,r14
+ 1308 043c 00F0      		brlo .L91
+ 1309               	/* epilogue start */
+ 1310               	.LBE402:
+ 1311               	.LM173:
+ 1312 043e DF91      		pop r29
+ 1313 0440 CF91      		pop r28
+ 1314 0442 1F91      		pop r17
+ 1315 0444 0F91      		pop r16
+ 1316 0446 FF90      		pop r15
+ 1317               	.LVL42:
+ 1318 0448 EF90      		pop r14
+ 1319               	.LVL43:
+ 1320 044a 0895      		ret
+ 1321               	.LFE34:
+ 1323               	.global	OneWire_Master_Receive_Data
+ 1325               	OneWire_Master_Receive_Data:
+ 1326               	.LFB35:
+ 1327               	.LM174:
+ 1328               	.LVL44:
+ 1329               	/* prologue: function */
+ 1330               	/* frame size = 0 */
+ 1331               	.LM175:
+ 1332 044c 90E0      		ldi r25,lo8(0)
+ 1333               	.LVL45:
+ 1334 044e 880F      		lsl r24
+ 1335 0450 991F      		rol r25
+ 1336               	.LVL46:
+ 1337 0452 8160      		ori r24,lo8(2561)
+ 1338 0454 9A60      		ori r25,hi8(2561)
+ 1339               	.LVL47:
+ 1340 0456 0E94 0000 		call OneWire_TRX_Byte
+ 1341               	.LVL48:
+ 1342               	.LBB403:
+ 1343               	.LBB404:
+ 1344               	.LBB405:
+ 1345               	.LBB406:
+ 1346               	.LM176:
+ 1347 045a 88EB      		ldi r24,lo8(3000)
+ 1348 045c 9BE0      		ldi r25,hi8(3000)
+ 1349               	.LVL49:
+ 1350               	/* #APP */
+ 1351               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 1352 045e 0197      		1: sbiw r24,1
+ 1353 0460 01F4      		brne 1b
+ 1354               	 ;  0 "" 2
+ 1355               	/* #NOAPP */
+ 1356               	.LBE406:
+ 1357               	.LBE405:
+ 1358               	.LBE404:
+ 1359               	.LBE403:
+ 1360               	.LM177:
+ 1361 0462 8FEF      		ldi r24,lo8(2047)
+ 1362 0464 97E0      		ldi r25,hi8(2047)
+ 1363               	.LVL50:
+ 1364 0466 0E94 0000 		call OneWire_TRX_Byte
+ 1365               	/* epilogue start */
+ 1366               	.LM178:
+ 1367 046a 0895      		ret
+ 1368               	.LFE35:
+ 1370               	.global	__vector_3
+ 1372               	__vector_3:
+ 1373               	.LFB36:
+ 1374               	.LM179:
+ 1375 046c 1F92      		push __zero_reg__
+ 1376 046e 0F92      		push r0
+ 1377 0470 0FB6      		in r0,__SREG__
+ 1378 0472 0F92      		push r0
+ 1379 0474 1124      		clr __zero_reg__
+ 1380 0476 2F93      		push r18
+ 1381 0478 3F93      		push r19
+ 1382 047a 4F93      		push r20
+ 1383 047c 5F93      		push r21
+ 1384 047e 6F93      		push r22
+ 1385 0480 7F93      		push r23
+ 1386 0482 8F93      		push r24
+ 1387 0484 9F93      		push r25
+ 1388 0486 AF93      		push r26
+ 1389 0488 BF93      		push r27
+ 1390 048a EF93      		push r30
+ 1391 048c FF93      		push r31
+ 1392               	/* prologue: Signal */
+ 1393               	/* frame size = 0 */
+ 1394               	.LBB407:
+ 1395               	.LBB408:
+ 1396               	.LM180:
+ 1397 048e 8091 6B00 		lds r24,107
+ 1398               	.LBE408:
+ 1399 0492 80FF      		sbrs r24,0
+ 1400 0494 00C0      		rjmp .L100
+ 1401               	.LBE407:
+ 1402               	.LBB409:
+ 1403               	.LBB410:
+ 1404               	.LBB411:
+ 1405               	.LM181:
+ 1406 0496 1899      		sbic 35-32,0
+ 1407 0498 00C0      		rjmp .L100
+ 1408               	.LBE411:
+ 1409               	.LBE410:
+ 1410               	.LBE409:
+ 1411               	.LM182:
+ 1412 049a 8091 0000 		lds r24,OneWire+106
+ 1413 049e 8130      		cpi r24,lo8(1)
+ 1414 04a0 01F4      		brne .L97
+ 1415 04a2 8091 0000 		lds r24,OneWire+107
+ 1416 04a6 9091 0000 		lds r25,(OneWire+107)+1
+ 1417 04aa 892B      		or r24,r25
+ 1418 04ac 01F0      		breq .L98
+ 1419               	.L97:
+ 1420               	.LM183:
+ 1421 04ae 2091 0000 		lds r18,OneWire+106
+ 1422 04b2 2130      		cpi r18,lo8(1)
+ 1423 04b4 01F4      		brne .L98
+ 1424 04b6 8091 0000 		lds r24,OneWire+107
+ 1425 04ba 9091 0000 		lds r25,(OneWire+107)+1
+ 1426 04be 8050      		subi r24,lo8(512)
+ 1427 04c0 9240      		sbci r25,hi8(512)
+ 1428 04c2 01F4      		brne .L98
+ 1429               	.LM184:
+ 1430 04c4 8091 0000 		lds r24,OneWire+113
+ 1431 04c8 8823      		tst r24
+ 1432 04ca 01F4      		brne .L99
+ 1433               	.LM185:
+ 1434 04cc 8091 0000 		lds r24,OneWire+109
+ 1435 04d0 9091 0000 		lds r25,(OneWire+109)+1
+ 1436 04d4 880F      		lsl r24
+ 1437 04d6 991F      		rol r25
+ 1438 04d8 8160      		ori r24,lo8(1025)
+ 1439 04da 9460      		ori r25,hi8(1025)
+ 1440 04dc 9093 0000 		sts (OneWire+111)+1,r25
+ 1441 04e0 8093 0000 		sts OneWire+111,r24
+ 1442               	.LM186:
+ 1443 04e4 2093 0000 		sts OneWire+113,r18
+ 1444               	.L99:
+ 1445               	.LM187:
+ 1446 04e8 0E94 0000 		call OneWire_Read_Mode_Feedback
+ 1447               	.LM188:
+ 1448 04ec 8091 0000 		lds r24,OneWire+114
+ 1449 04f0 8F5F      		subi r24,lo8(-(1))
+ 1450 04f2 8093 0000 		sts OneWire+114,r24
+ 1451               	.LM189:
+ 1452 04f6 8091 0000 		lds r24,OneWire+114
+ 1453 04fa 8C30      		cpi r24,lo8(12)
+ 1454 04fc 00F0      		brlo .L100
+ 1455               	.LM190:
+ 1456 04fe 1092 0000 		sts OneWire+106,__zero_reg__
+ 1457               	.LM191:
+ 1458 0502 1092 0000 		sts OneWire+105,__zero_reg__
+ 1459               	.LM192:
+ 1460 0506 1092 0000 		sts (OneWire+5)+1,__zero_reg__
+ 1461 050a 1092 0000 		sts OneWire+5,__zero_reg__
+ 1462               	.LM193:
+ 1463 050e 1092 0000 		sts (OneWire+107)+1,__zero_reg__
+ 1464 0512 1092 0000 		sts OneWire+107,__zero_reg__
+ 1465               	.LM194:
+ 1466 0516 1092 0000 		sts (OneWire+109)+1,__zero_reg__
+ 1467 051a 1092 0000 		sts OneWire+109,__zero_reg__
+ 1468               	.LM195:
+ 1469 051e 1092 0000 		sts OneWire+113,__zero_reg__
+ 1470               	.LM196:
+ 1471 0522 1092 0000 		sts OneWire+114,__zero_reg__
+ 1472 0526 00C0      		rjmp .L100
+ 1473               	.L98:
+ 1474               	.LM197:
+ 1475 0528 0E94 0000 		call OneWire_Delay_Rx_Int
+ 1476               	.LM198:
+ 1477 052c 0E94 0000 		call OneWire_Bit_Sample_And_Update
+ 1478               	.LBB412:
+ 1479               	.LBB413:
+ 1480               	.LM199:
+ 1481 0530 8091 0000 		lds r24,OneWire
+ 1482 0534 8C30      		cpi r24,lo8(12)
+ 1483 0536 00F0      		brlo .L100
+ 1484               	.LM200:
+ 1485 0538 1092 0000 		sts OneWire,__zero_reg__
+ 1486               	.LBE413:
+ 1487               	.LBE412:
+ 1488               	.LM201:
+ 1489 053c 0E94 0000 		call OneWire_Fill_Buf
+ 1490               	.L100:
+ 1491               	/* epilogue start */
+ 1492               	.LM202:
+ 1493 0540 FF91      		pop r31
+ 1494 0542 EF91      		pop r30
+ 1495 0544 BF91      		pop r27
+ 1496 0546 AF91      		pop r26
+ 1497 0548 9F91      		pop r25
+ 1498 054a 8F91      		pop r24
+ 1499 054c 7F91      		pop r23
+ 1500 054e 6F91      		pop r22
+ 1501 0550 5F91      		pop r21
+ 1502 0552 4F91      		pop r20
+ 1503 0554 3F91      		pop r19
+ 1504 0556 2F91      		pop r18
+ 1505 0558 0F90      		pop r0
+ 1506 055a 0FBE      		out __SREG__,r0
+ 1507 055c 0F90      		pop r0
+ 1508 055e 1F90      		pop __zero_reg__
+ 1509 0560 1895      		reti
+ 1510               	.LFE36:
+ 1512               	.global	OneWire_Init_Master
+ 1514               	OneWire_Init_Master:
+ 1515               	.LFB37:
+ 1516               	.LM203:
+ 1517               	/* prologue: function */
+ 1518               	/* frame size = 0 */
+ 1519               	.LM204:
+ 1520 0562 0E94 0000 		call OneWire_Struct_Init
+ 1521               	.LM205:
+ 1522 0566 0E94 0000 		call OneWire_TRX_GPIO_Init
+ 1523               	.LM206:
+ 1524 056a 0E94 0000 		call OneWire_TRX_Interrupt_Init
+ 1525               	.LBB414:
+ 1526               	.LBB415:
+ 1527               	.LM207:
+ 1528 056e EBE6      		ldi r30,lo8(107)
+ 1529 0570 F0E0      		ldi r31,hi8(107)
+ 1530 0572 8081      		ld r24,Z
+ 1531 0574 8E7F      		andi r24,lo8(-2)
+ 1532 0576 8083      		st Z,r24
+ 1533               	/* epilogue start */
+ 1534               	.LBE415:
+ 1535               	.LBE414:
+ 1536               	.LM208:
+ 1537 0578 0895      		ret
+ 1538               	.LFE37:
+ 1540               	.global	OneWire_Init_Slave
+ 1542               	OneWire_Init_Slave:
+ 1543               	.LFB38:
+ 1544               	.LM209:
+ 1545               	/* prologue: function */
+ 1546               	/* frame size = 0 */
+ 1547               	.LM210:
+ 1548 057a 0E94 0000 		call OneWire_Struct_Init
+ 1549               	.LM211:
+ 1550 057e 0E94 0000 		call OneWire_TRX_GPIO_Init
+ 1551               	.LM212:
+ 1552 0582 0E94 0000 		call OneWire_TRX_Interrupt_Init
+ 1553               	.LBB416:
+ 1554               	.LBB417:
+ 1555               	.LM213:
+ 1556 0586 EBE6      		ldi r30,lo8(107)
+ 1557 0588 F0E0      		ldi r31,hi8(107)
+ 1558 058a 8081      		ld r24,Z
+ 1559 058c 8160      		ori r24,lo8(1)
+ 1560 058e 8083      		st Z,r24
+ 1561               	/* epilogue start */
+ 1562               	.LBE417:
+ 1563               	.LBE416:
+ 1564               	.LM214:
+ 1565 0590 0895      		ret
+ 1566               	.LFE38:
+ 1568               		.comm OneWire,266,1
+ 1849               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 onewire.c
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:2      *ABS*:0000003f __SREG__
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:3      *ABS*:0000003e __SP_H__
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:4      *ABS*:0000003d __SP_L__
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:5      *ABS*:00000034 __CCP__
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:18     .text:00000000 OneWire_Struct_Init
-                            *COM*:000000ff OneWire
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:73     .text:00000058 OneWire_Flush_Frame
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:90     .text:00000066 OneWire_Flush_Frame_Buf
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:123    .text:00000086 OneWire_TRX_Set_DDR
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:143    .text:00000092 OneWire_TRX_Set_Port
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:163    .text:0000009e OneWire_TRX_Get_Input_State
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:184    .text:000000b0 OneWire_TRX_Set_Logic
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:212    .text:000000bc OneWire_TRX_GPIO_Init
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:249    .text:000000c8 OneWire_TRX_Interrupt_Init
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:281    .text:000000e2 OneWire_TRX_Interrupt_Enable
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:299    .text:000000ee OneWire_TRX_Interrupt_Disable
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:317    .text:000000fa OneWire_TRX_Interrupt_Status
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:338    .text:0000010e OneWire_TRX_Falling_Edge_Interrupt
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:361    .text:0000011c OneWire_Debug_Tx_Pulse
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:373    .text:0000011e OneWire_Debug_Rx_Pulse
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:406    .text:0000012a OneWire_Delay_Clock_Low_Time
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:435    .text:00000132 OneWire_Delay_Clock_High_Time
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:464    .text:0000013a OneWire_Delay_Half_Bit_Time
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:493    .text:00000142 OneWire_Delay_Byte_Gap
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:527    .text:0000014c OneWire_Delay_Rx_Int
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:599    .text:0000016a OneWire_TRX_Byte
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:842    .text:000001d2 OneWire_Bit_Sample_And_Update
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:915    .text:00000222 OneWire_Bit_Counter_Overflow
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:936    .text:00000236 OneWire_Buf_Sample_And_Update
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:966    .text:00000264 OneWire_Buf_Counter_Overflow
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:999    .text:0000029c OneWire_Fill_Buf
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:1160   .text:00000386 OneWire_Read_Mode_Feedback
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:1275   .text:000003d0 __vector_4
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:1449   .text:000004d4 OneWire_Init_Master
-C:\Users\farid\AppData\Local\Temp/ccHqFO5J.s:1477   .text:000004ec OneWire_Init_Slave
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:2      *ABS*:0000003f __SREG__
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:3      *ABS*:0000003e __SP_H__
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:4      *ABS*:0000003d __SP_L__
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:5      *ABS*:00000034 __CCP__
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:18     .text:00000000 OneWire_Struct_Init
+                            *COM*:0000010a OneWire
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:90     .text:00000070 OneWire_Flush_Frame
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:107    .text:0000007e OneWire_Flush_Frame_Buf
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:140    .text:0000009e OneWire_Flush_Data_Buf
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:170    .text:000000b8 OneWire_TRX_Set_DDR
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:190    .text:000000c4 OneWire_TRX_Set_Port
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:210    .text:000000d0 OneWire_TRX_Get_Input_State
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:225    .text:000000d6 OneWire_TRX_Set_Logic
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:253    .text:000000e2 OneWire_TRX_GPIO_Init
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:286    .text:000000ea OneWire_TRX_Interrupt_Init
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:318    .text:00000104 OneWire_TRX_Interrupt_Enable
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:336    .text:00000110 OneWire_TRX_Interrupt_Disable
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:354    .text:0000011c OneWire_TRX_Interrupt_Status
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:369    .text:00000124 OneWire_TRX_Falling_Edge_Interrupt
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:389    .text:0000012c OneWire_Debug_Tx_Pulse
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:401    .text:0000012e OneWire_Debug_Rx_Pulse
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:413    .text:00000130 OneWire_Delay_Clock_Low_Time
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:442    .text:00000138 OneWire_Delay_Clock_High_Time
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:471    .text:00000140 OneWire_Delay_Half_Bit_Time
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:500    .text:00000148 OneWire_Delay_Byte_Gap
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:534    .text:00000152 OneWire_Delay_Rx_Int
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:606    .text:00000170 OneWire_TRX_Byte
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:844    .text:000001ce OneWire_Bit_Sample_And_Update
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:886    .text:0000020a OneWire_Bit_Counter_Overflow
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:907    .text:0000021e OneWire_Buf_Sample_And_Update
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:937    .text:0000024c OneWire_Buf_Counter_Overflow
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:970    .text:00000284 OneWire_Fill_Buf
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:1116   .text:00000396 OneWire_Read_Mode_Feedback
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:1231   .text:000003e0 OneWire_Master_Send_Data
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:1325   .text:0000044c OneWire_Master_Receive_Data
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:1372   .text:0000046c __vector_3
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:1514   .text:00000562 OneWire_Init_Master
+C:\Users\farid\AppData\Local\Temp/ccTyhSov.s:1542   .text:0000057a OneWire_Init_Slave
 
 UNDEFINED SYMBOLS
 __do_clear_bss

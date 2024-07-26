@@ -17,6 +17,8 @@ typedef struct onewire_t{
   volatile uint16_t FeedbackData;
   volatile uint8_t  FeedbackDataLoaded;
   volatile uint8_t  FeedbackCounter;
+  volatile uint8_t  DataBuf[ONEWIRE_DATA_BUF];
+  volatile uint8_t  DataBufIndex;
 }onewire_t;
 
 onewire_t OneWire;
@@ -35,6 +37,10 @@ void OneWire_Struct_Init(void){
   OneWire.FeedbackData = 0;
   OneWire.FeedbackDataLoaded = 0;
   OneWire.FeedbackCounter = 0;
+  for(uint8_t i=0; i<ONEWIRE_DATA_BUF; i++){
+    OneWire.DataBuf[i] = 0;
+  }
+  OneWire.DataBufIndex = 0;
 }
 
 void OneWire_Flush_Frame(void){
@@ -47,6 +53,13 @@ void OneWire_Flush_Frame_Buf(void){
     OneWire.FrameBuf[i] = 0;
   }
   OneWire.FrameBufIndex = 0;
+}
+
+void OneWire_Flush_Data_Buf(void){
+  for(uint8_t i=0; i<ONEWIRE_DATA_BUF; i++){
+    OneWire.DataBuf[i] = 0;
+  }
+  OneWire.DataBufIndex = 0;
 }
 
 
@@ -315,6 +328,13 @@ void OneWire_Fill_Buf(void){
 	OneWire_Debug_Rx_Pulse();
   }
   else if( (OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_STOP_CMD) == ONEWIRE_STOP_CMD){
+    for(uint8_t i=0;i<OneWire.FrameBufIndex;i++){
+	  OneWire.DataBuf[i] = OneWire.FrameBuf[i];
+	  OneWire.DataBufIndex++;
+	  if(OneWire.DataBufIndex >= ONEWIRE_DATA_BUF){
+	    OneWire.DataBufIndex = 0;
+	  }
+	}
     OneWire.CmdReceived = 0;
 	OneWire.FrameBufIndex = 0;
 	OneWire.FrameBuf[0] = 0;
@@ -342,6 +362,32 @@ void OneWire_Read_Mode_Feedback(void){
 }
 
 
+void OneWire_Master_Send_Data(uint8_t *data, uint8_t len){
+  uint16_t StartByte = ONEWIRE_START_CMD | ONEWIRE_WRITE_CMD | 1;
+  uint16_t DataByte  = ONEWIRE_CONT_CMD  | ONEWIRE_WRITE_CMD | 1;
+  uint16_t EndByte   = ONEWIRE_STOP_CMD  | ONEWIRE_WRITE_CMD | 1;
+  uint16_t temp      = 0;
+  OneWire_TRX_Byte(StartByte);
+  for(uint8_t i=0;i<len;i++){
+    if(i == (len-1)){
+	  temp = EndByte  | (data[i]<<1);
+	}
+	else{
+	  temp = DataByte | (data[i]<<1);
+	}
+	OneWire_TRX_Byte(temp);
+  }
+}
+
+uint8_t OneWire_Master_Receive_Data(uint8_t addr){
+  uint16_t StartByte = ONEWIRE_START_CMD | ONEWIRE_READ_CMD | 1;
+  uint16_t EndByte   = ONEWIRE_STOP_CMD  | ONEWIRE_READ_CMD | 1;
+  uint16_t temp      = 0;
+  OneWire_TRX_Byte(StartByte | (addr<<1));
+  _delay_ms(1);
+  temp = OneWire_TRX_Byte(EndByte | (0xFF<<1));
+  return (uint8_t)temp;
+}
 
 
 

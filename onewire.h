@@ -1,6 +1,6 @@
 
-//#define  MASTER_TX_MODE
-#define  SLAVE_RX_MODE
+#define  MASTER_TX_MODE
+//#define  SLAVE_RX_MODE
 
 
 
@@ -68,9 +68,9 @@
 //Frame Len in bits
 #define  ONEWIRE_FRAME_LEN   12
 //Frame Buf Len
-#define  ONEWIRE_FRAME_BUF   120
+#define  ONEWIRE_FRAME_BUF   50
 //Data Buf Len
-//#define  ONEWIRE_DATA_BUF    40
+#define  ONEWIRE_DATA_BUF    150
 
 #define  ONEWIRE_START_CMD   0x800
 #define  ONEWIRE_CONT_CMD    0x000
@@ -116,6 +116,9 @@ void     OneWire_Buf_Sample_And_Update(void);
 uint8_t  OneWire_Buf_Counter_Overflow(void);
 void     OneWire_Fill_Buf(void);
 void     OneWire_Read_Mode_Feedback(void);
+
+void     OneWire_Master_Send_Data(uint8_t *data, uint8_t len);
+uint8_t  OneWire_Master_Receive_Data(uint8_t addr);
 
 void     OneWire_Init_Master(void);
 void     OneWire_Init_Slave(void);
