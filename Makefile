@@ -80,7 +80,7 @@ OBJDIR = .
 
 
 # List C source files here. (C dependencies are automatically generated.)
-SRC = $(TARGET).c onewire.c
+SRC = $(TARGET).c onewire.c uart.c
 
 # List C++ source files here. (C dependencies are automatically generated.)
 CPPSRC = 

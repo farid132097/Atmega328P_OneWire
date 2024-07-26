@@ -116,6 +116,7 @@ uint8_t  OneWire_Bit_Counter_Overflow(void);
 void     OneWire_Buf_Sample_And_Update(void);
 uint8_t  OneWire_Buf_Counter_Overflow(void);
 void     OneWire_Fill_Buf(void);
+void     OneWire_Fill_Buf_Copy_Data(void);
 void     OneWire_Read_Mode_Feedback(void);
 
 void     OneWire_Master_Send_Data(uint8_t *data, uint8_t len);

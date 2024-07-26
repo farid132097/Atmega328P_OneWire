@@ -325,19 +325,26 @@ void OneWire_Fill_Buf(void){
     OneWire.CmdReceived = 1;
 	OneWire.CmdVal = OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_RW_MASK;
 	OneWire.CmdValReg = (OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_REG_MASK)>>1;
+	OneWire_Flush_Frame_Buf();
 	OneWire_Debug_Rx_Pulse();
   }
-  else if( (OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_STOP_CMD) == ONEWIRE_STOP_CMD){
+}
+
+void OneWire_Fill_Buf_Copy_Data(void){
+  OneWire_Buf_Sample_And_Update();
+  OneWire_Buf_Counter_Overflow();
+  
+  if( (OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_STOP_CMD) == ONEWIRE_STOP_CMD){
+    //Copy data to DataBuf
     for(uint8_t i=0;i<OneWire.FrameBufIndex;i++){
-	  OneWire.DataBuf[i] = OneWire.FrameBuf[i];
+	  OneWire.DataBuf[OneWire.DataBufIndex] = (OneWire.FrameBuf[i]>>1) & 0xFF;
 	  OneWire.DataBufIndex++;
 	  if(OneWire.DataBufIndex >= ONEWIRE_DATA_BUF){
 	    OneWire.DataBufIndex = 0;
 	  }
 	}
     OneWire.CmdReceived = 0;
-	OneWire.FrameBufIndex = 0;
-	OneWire.FrameBuf[0] = 0;
+	OneWire_Flush_Frame_Buf();
 	OneWire.CmdVal = 0;
 	OneWire.CmdValReg = 0;
 	OneWire.FeedbackDataLoaded = 0;
@@ -368,6 +375,7 @@ void OneWire_Master_Send_Data(uint8_t *data, uint8_t len){
   uint16_t EndByte   = ONEWIRE_STOP_CMD  | ONEWIRE_WRITE_CMD | 1;
   uint16_t temp      = 0;
   OneWire_TRX_Byte(StartByte);
+  _delay_us(100);
   for(uint8_t i=0;i<len;i++){
     if(i == (len-1)){
 	  temp = EndByte  | (data[i]<<1);
@@ -377,6 +385,7 @@ void OneWire_Master_Send_Data(uint8_t *data, uint8_t len){
 	}
 	OneWire_TRX_Byte(temp);
   }
+  _delay_us(200);
 }
 
 uint8_t OneWire_Master_Receive_Data(uint8_t addr){
@@ -386,6 +395,8 @@ uint8_t OneWire_Master_Receive_Data(uint8_t addr){
   OneWire_TRX_Byte(StartByte | (addr<<1));
   _delay_ms(1);
   temp = OneWire_TRX_Byte(EndByte | (0xFF<<1));
+  temp >>= 1;
+  temp &= 0xFF;
   return (uint8_t)temp;
 }
 
@@ -403,12 +414,15 @@ ISR(ONEWIRE_TRX_PCINT_VECT){
 	    OneWire_Delay_Rx_Int();
 	    OneWire_Bit_Sample_And_Update();
 	    if(OneWire_Bit_Counter_Overflow() == 1){
-		  OneWire_Fill_Buf();
+		  OneWire_Fill_Buf_Copy_Data();
 	    }
       }
 	  else if((OneWire.CmdReceived == 1) && (OneWire.CmdVal == ONEWIRE_READ_CMD)){
 		if(OneWire.FeedbackDataLoaded == 0){
-		  OneWire.FeedbackData = (OneWire.CmdValReg<<1) | ONEWIRE_STOP_CMD | 1;
+		  //Pass your data to temp variable
+		  uint16_t temp = 0x55;
+		  temp <<= 1;
+		  OneWire.FeedbackData = temp | ONEWIRE_STOP_CMD | ONEWIRE_READ_CMD | 1;
 		  OneWire.FeedbackDataLoaded = 1;
 		}
 	    OneWire_Read_Mode_Feedback();

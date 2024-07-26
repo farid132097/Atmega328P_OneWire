@@ -1,5 +1,7 @@
 Archive member included because of file (symbol)
 
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                              uart.o (__udivmodsi4)
 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
                               c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o (exit)
 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
@@ -29,6 +31,7 @@ Address of section .data set to 0x800100
 LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 LOAD main.o
 LOAD onewire.o
+LOAD uart.o
 LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a
 LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a
@@ -124,7 +127,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x6d4
+.text           0x00000000      0xcb6
  *(.vectors)
  .vectors       0x00000000       0x68 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
                 0x00000000                __vectors
@@ -203,59 +206,88 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
                 0x000000a2                __vector_14
                 0x000000a2                __vector_10
                 0x000000a2                __vector_16
-                0x000000a2                __vector_18
                 0x000000a2                __vector_20
- .text          0x000000a6       0x86 main.o
+ .text          0x000000a6       0xca main.o
                 0x000000a6                main
- .text          0x0000012c      0x5a4 onewire.o
-                0x0000034a                OneWire_Buf_Sample_And_Update
-                0x0000026c                OneWire_Delay_Half_Bit_Time
-                0x00000336                OneWire_Bit_Counter_Overflow
-                0x0000019c                OneWire_Flush_Frame
-                0x000001e4                OneWire_TRX_Set_DDR
-                0x00000202                OneWire_TRX_Set_Logic
-                0x00000598                __vector_3
-                0x0000025c                OneWire_Delay_Clock_Low_Time
-                0x0000023c                OneWire_TRX_Interrupt_Disable
-                0x000001ca                OneWire_Flush_Data_Buf
-                0x000004c2                OneWire_Read_Mode_Feedback
-                0x00000250                OneWire_TRX_Falling_Edge_Interrupt
-                0x0000012c                OneWire_Struct_Init
-                0x0000025a                OneWire_Debug_Rx_Pulse
-                0x000001f0                OneWire_TRX_Set_Port
-                0x000006a0                OneWire_Init_Master
-                0x0000050c                OneWire_Master_Send_Data
-                0x000001fc                OneWire_TRX_Get_Input_State
-                0x0000020e                OneWire_TRX_GPIO_Init
-                0x00000578                OneWire_Master_Receive_Data
-                0x00000230                OneWire_TRX_Interrupt_Enable
-                0x0000029c                OneWire_TRX_Byte
-                0x000003b0                OneWire_Fill_Buf
-                0x00000216                OneWire_TRX_Interrupt_Init
-                0x0000068e                OneWire_Get_Data_Buf
-                0x000001aa                OneWire_Flush_Frame_Buf
-                0x0000027e                OneWire_Delay_Rx_Int
-                0x00000258                OneWire_Debug_Tx_Pulse
-                0x00000378                OneWire_Buf_Counter_Overflow
-                0x00000248                OneWire_TRX_Interrupt_Status
-                0x000002fa                OneWire_Bit_Sample_And_Update
-                0x0000069a                OneWire_Get_Data_Buf_Index
-                0x00000274                OneWire_Delay_Byte_Gap
-                0x00000264                OneWire_Delay_Clock_High_Time
-                0x000006b8                OneWire_Init_Slave
- .text          0x000006d0        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text          0x000006d0        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text          0x000006d0        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
-                0x000006d0                . = ALIGN (0x2)
+ .text          0x00000170      0x630 onewire.o
+                0x000004a8                OneWire_Fill_Buf_Copy_Data
+                0x0000038e                OneWire_Buf_Sample_And_Update
+                0x000002b0                OneWire_Delay_Half_Bit_Time
+                0x0000037a                OneWire_Bit_Counter_Overflow
+                0x000001e0                OneWire_Flush_Frame
+                0x00000228                OneWire_TRX_Set_DDR
+                0x00000246                OneWire_TRX_Set_Logic
+                0x00000658                __vector_3
+                0x000002a0                OneWire_Delay_Clock_Low_Time
+                0x00000280                OneWire_TRX_Interrupt_Disable
+                0x0000020e                OneWire_Flush_Data_Buf
+                0x0000056e                OneWire_Read_Mode_Feedback
+                0x00000294                OneWire_TRX_Falling_Edge_Interrupt
+                0x00000170                OneWire_Struct_Init
+                0x0000029e                OneWire_Debug_Rx_Pulse
+                0x00000234                OneWire_TRX_Set_Port
+                0x00000770                OneWire_Init_Master
+                0x000005b8                OneWire_Master_Send_Data
+                0x00000240                OneWire_TRX_Get_Input_State
+                0x00000252                OneWire_TRX_GPIO_Init
+                0x00000634                OneWire_Master_Receive_Data
+                0x00000274                OneWire_TRX_Interrupt_Enable
+                0x000002e0                OneWire_TRX_Byte
+                0x000003f4                OneWire_Fill_Buf
+                0x0000025a                OneWire_TRX_Interrupt_Init
+                0x0000075e                OneWire_Get_Data_Buf
+                0x000001ee                OneWire_Flush_Frame_Buf
+                0x000002c2                OneWire_Delay_Rx_Int
+                0x0000029c                OneWire_Debug_Tx_Pulse
+                0x000003bc                OneWire_Buf_Counter_Overflow
+                0x0000028c                OneWire_TRX_Interrupt_Status
+                0x0000033e                OneWire_Bit_Sample_And_Update
+                0x0000076a                OneWire_Get_Data_Buf_Index
+                0x000002b8                OneWire_Delay_Byte_Gap
+                0x000002a8                OneWire_Delay_Clock_High_Time
+                0x00000788                OneWire_Init_Slave
+ .text          0x000007a0      0x4ce uart.o
+                0x000008aa                UART_Reset_Last_Received_Byte
+                0x00000b32                UART_Read_From_Buffer
+                0x00000a44                UART_Transmit_New_Line
+                0x00000b00                UART_Transmit_Number
+                0x000008a4                UART_Last_Received_Byte
+                0x00000c26                UART_Init
+                0x00000b48                UART_Flush_Buffer
+                0x0000085c                UART_Receive_Byte
+                0x0000084c                UART_Transmit_Byte
+                0x000007e4                UART_Config_Clock
+                0x000007e2                UART_Config_GPIO
+                0x0000083e                UART_Config_Receiver_Interrupt
+                0x00000962                UART_Transmit_Byte_Bin
+                0x00000a4e                UART_Transmit_Space
+                0x0000081a                UART_Config_Transmitter
+                0x000007a0                UART_Struct_Init
+                0x00000b76                UART_Interrupt_Service_Routine
+                0x0000082c                UART_Config_Receiver
+                0x00000a22                UART_Transmit_Text
+                0x000007e6                UART_Config_BAUD_Rate
+                0x00000b3c                UART_Current_Buffer_Index
+                0x00000a58                UART_Determine_Digit_Numbers
+                0x00000ad6                UART_Transmit_Number_Digits
+                0x00000bde                __vector_18
+                0x000008b0                UART_Transmit_Byte_Hex
+ .text          0x00000c6e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ .text          0x00000c6e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text          0x00000c6e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text          0x00000c6e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000c6e                . = ALIGN (0x2)
  *(.text.*)
- .text.libgcc   0x000006d0        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .text.libgcc   0x000006d0        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .text.libgcc   0x000006d0        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
-                0x000006d0                . = ALIGN (0x2)
+ .text.libgcc   0x00000c6e       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x00000c6e                __udivmodsi4
+ .text.libgcc   0x00000cb2        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x00000cb2        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x00000cb2        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x00000cb2                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x000006d0        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
-                0x000006d0                exit
-                0x000006d0                _exit
+ .fini9         0x00000cb2        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x00000cb2                exit
+                0x00000cb2                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -274,50 +306,55 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x000006d0        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000cb2        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x000006d4                _etext = .
+                0x00000cb6                _etext = .
 
-.data           0x00800100        0xe load address 0x000006d4
+.data           0x00800100       0x28 load address 0x00000cb6
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
- .data          0x00800100        0xe main.o
- .data          0x0080010e        0x0 onewire.o
- .data          0x0080010e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .data          0x0080010e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .data          0x0080010e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .data          0x00800100       0x22 main.o
+ .data          0x00800122        0x0 onewire.o
+ .data          0x00800122        0x5 uart.o
+ .data          0x00800127        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ .data          0x00800127        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .data          0x00800127        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .data          0x00800127        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
  *(.data*)
  *(.rodata)
  *(.rodata*)
  *(.gnu.linkonce.d*)
-                0x0080010e                . = ALIGN (0x2)
-                0x0080010e                _edata = .
-                0x0080010e                PROVIDE (__data_end, .)
+                0x00800128                . = ALIGN (0x2)
+ *fill*         0x00800127        0x1 00
+                0x00800128                _edata = .
+                0x00800128                PROVIDE (__data_end, .)
 
-.bss            0x0080010e      0x10a
-                0x0080010e                PROVIDE (__bss_start, .)
+.bss            0x00800128      0x139
+                0x00800128                PROVIDE (__bss_start, .)
  *(.bss)
- .bss           0x0080010e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
- .bss           0x0080010e        0x0 main.o
- .bss           0x0080010e        0x0 onewire.o
- .bss           0x0080010e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
- .bss           0x0080010e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
- .bss           0x0080010e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ .bss           0x00800128        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
+ .bss           0x00800128        0x0 main.o
+ .bss           0x00800128        0x0 onewire.o
+ .bss           0x00800128       0x2f uart.o
+ .bss           0x00800157        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ .bss           0x00800157        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .bss           0x00800157        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .bss           0x00800157        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
  *(.bss*)
  *(COMMON)
- COMMON         0x0080010e      0x10a onewire.o
-                0x0080010e                OneWire
-                0x00800218                PROVIDE (__bss_end, .)
-                0x000006d4                __data_load_start = LOADADDR (.data)
-                0x000006e2                __data_load_end = (__data_load_start + SIZEOF (.data))
+ COMMON         0x00800157      0x10a onewire.o
+                0x00800157                OneWire
+                0x00800261                PROVIDE (__bss_end, .)
+                0x00000cb6                __data_load_start = LOADADDR (.data)
+                0x00000cde                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x00800218        0x0
-                0x00800218                PROVIDE (__noinit_start, .)
+.noinit         0x00800261        0x0
+                0x00800261                PROVIDE (__noinit_start, .)
  *(.noinit*)
-                0x00800218                PROVIDE (__noinit_end, .)
-                0x00800218                _end = .
-                0x00800218                PROVIDE (__heap_start, .)
+                0x00800261                PROVIDE (__noinit_end, .)
+                0x00800261                _end = .
+                0x00800261                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
  *(.eeprom*)
@@ -368,62 +405,74 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000       0x40
+.debug_aranges  0x00000000       0x60
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x20 main.o
  .debug_aranges
                 0x00000020       0x20 onewire.o
+ .debug_aranges
+                0x00000040       0x20 uart.o
 
 .debug_pubnames
-                0x00000000      0x41e
+                0x00000000      0x6d5
  *(.debug_pubnames)
  .debug_pubnames
                 0x00000000       0x1b main.o
  .debug_pubnames
-                0x0000001b      0x403 onewire.o
+                0x0000001b      0x422 onewire.o
+ .debug_pubnames
+                0x0000043d      0x298 uart.o
 
-.debug_info     0x00000000      0xf6c
+.debug_info     0x00000000     0x17d3
  *(.debug_info)
- .debug_info    0x00000000      0x156 main.o
- .debug_info    0x00000156      0xe16 onewire.o
+ .debug_info    0x00000000      0x1dc main.o
+ .debug_info    0x000001dc      0xf6b onewire.o
+ .debug_info    0x00001147      0x68c uart.o
  *(.gnu.linkonce.wi.*)
 
-.debug_abbrev   0x00000000      0x431
+.debug_abbrev   0x00000000      0x6a3
  *(.debug_abbrev)
- .debug_abbrev  0x00000000       0xf6 main.o
- .debug_abbrev  0x000000f6      0x33b onewire.o
+ .debug_abbrev  0x00000000      0x11f main.o
+ .debug_abbrev  0x0000011f      0x33b onewire.o
+ .debug_abbrev  0x0000045a      0x249 uart.o
 
-.debug_line     0x00000000      0x9ae
+.debug_line     0x00000000     0x105a
  *(.debug_line)
- .debug_line    0x00000000      0x164 main.o
- .debug_line    0x00000164      0x84a onewire.o
+ .debug_line    0x00000000      0x1a8 main.o
+ .debug_line    0x000001a8      0x8f7 onewire.o
+ .debug_line    0x00000a9f      0x5bb uart.o
 
-.debug_frame    0x00000000      0x260
+.debug_frame    0x00000000      0x410
  *(.debug_frame)
  .debug_frame   0x00000000       0x20 main.o
- .debug_frame   0x00000020      0x240 onewire.o
+ .debug_frame   0x00000020      0x250 onewire.o
+ .debug_frame   0x00000270      0x1a0 uart.o
 
-.debug_str      0x00000000      0x53a
+.debug_str      0x00000000      0x810
  *(.debug_str)
  .debug_str     0x00000000       0xd9 main.o
                                 0x10d (size before relaxing)
- .debug_str     0x000000d9      0x461 onewire.o
-                                0x565 (size before relaxing)
+ .debug_str     0x000000d9      0x47c onewire.o
+                                0x580 (size before relaxing)
+ .debug_str     0x00000555      0x2bb uart.o
+                                0x3a3 (size before relaxing)
 
-.debug_loc      0x00000000      0x2b6
+.debug_loc      0x00000000      0x74a
  *(.debug_loc)
- .debug_loc     0x00000000       0x99 main.o
- .debug_loc     0x00000099      0x21d onewire.o
+ .debug_loc     0x00000000       0xf1 main.o
+ .debug_loc     0x000000f1      0x24d onewire.o
+ .debug_loc     0x0000033e      0x40c uart.o
 
 .debug_macinfo
  *(.debug_macinfo)
 OUTPUT(main.elf elf32-avr)
 LOAD linker stubs
 
-.debug_ranges   0x00000000      0x120
- .debug_ranges  0x00000000       0x60 main.o
- .debug_ranges  0x00000060       0xc0 onewire.o
+.debug_ranges   0x00000000      0x1c8
+ .debug_ranges  0x00000000       0xc0 main.o
+ .debug_ranges  0x000000c0       0xc0 onewire.o
+ .debug_ranges  0x00000180       0x48 uart.o
 
 Cross Reference Table
 
@@ -441,6 +490,7 @@ OneWire_Delay_Clock_Low_Time                      onewire.o
 OneWire_Delay_Half_Bit_Time                       onewire.o
 OneWire_Delay_Rx_Int                              onewire.o
 OneWire_Fill_Buf                                  onewire.o
+OneWire_Fill_Buf_Copy_Data                        onewire.o
 OneWire_Flush_Data_Buf                            onewire.o
 OneWire_Flush_Frame                               onewire.o
 OneWire_Flush_Frame_Buf                           onewire.o
@@ -466,6 +516,35 @@ OneWire_TRX_Interrupt_Status                      onewire.o
 OneWire_TRX_Set_DDR                               onewire.o
 OneWire_TRX_Set_Logic                             onewire.o
 OneWire_TRX_Set_Port                              onewire.o
+UART_Config_BAUD_Rate                             uart.o
+UART_Config_Clock                                 uart.o
+UART_Config_GPIO                                  uart.o
+UART_Config_Receiver                              uart.o
+UART_Config_Receiver_Interrupt                    uart.o
+UART_Config_Transmitter                           uart.o
+UART_Current_Buffer_Index                         uart.o
+UART_Determine_Digit_Numbers                      uart.o
+UART_Flush_Buffer                                 uart.o
+UART_Init                                         uart.o
+                                                  main.o
+UART_Interrupt_Service_Routine                    uart.o
+UART_Last_Received_Byte                           uart.o
+UART_Read_From_Buffer                             uart.o
+UART_Receive_Byte                                 uart.o
+UART_Reset_Last_Received_Byte                     uart.o
+UART_Struct_Init                                  uart.o
+UART_Transmit_Byte                                uart.o
+UART_Transmit_Byte_Bin                            uart.o
+UART_Transmit_Byte_Hex                            uart.o
+UART_Transmit_New_Line                            uart.o
+                                                  main.o
+UART_Transmit_Number                              uart.o
+                                                  main.o
+UART_Transmit_Number_Digits                       uart.o
+UART_Transmit_Space                               uart.o
+                                                  main.o
+UART_Transmit_Text                                uart.o
+                                                  main.o
 __bad_interrupt                                   c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 __bss_end                                         c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
 __bss_start                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
@@ -473,12 +552,16 @@ __data_end                                        c:/winavr-20100110/bin/../lib/
 __data_load_start                                 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
 __data_start                                      c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
 __do_clear_bss                                    c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                                                  uart.o
                                                   onewire.o
 __do_copy_data                                    c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                                                  uart.o
                                                   main.o
 __heap_end                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 __init                                            c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 __stack                                           c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
+__udivmodsi4                                      c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                                                  uart.o
 __vector_1                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 __vector_10                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 __vector_11                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
@@ -488,7 +571,8 @@ __vector_14                                       c:/winavr-20100110/bin/../lib/
 __vector_15                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 __vector_16                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 __vector_17                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
-__vector_18                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
+__vector_18                                       uart.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 __vector_19                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 __vector_2                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
 __vector_20                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm328p.o
