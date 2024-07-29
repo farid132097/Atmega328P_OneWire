@@ -3,29 +3,29 @@ main.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .data         00000006  00800100  00000bea  00000c7e  2**0
+  0 .data         00000006  00800100  00000c66  00000cfa  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  1 .text         00000bea  00000000  00000000  00000094  2**1
+  1 .text         00000c66  00000000  00000000  00000094  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .bss          000000d3  00800106  00800106  00000c84  2**0
+  2 .bss          000000d5  00800106  00800106  00000d00  2**0
                   ALLOC
-  3 .debug_aranges 00000060  00000000  00000000  00000c84  2**0
+  3 .debug_aranges 00000060  00000000  00000000  00000d00  2**0
                   CONTENTS, READONLY, DEBUGGING
-  4 .debug_pubnames 00000756  00000000  00000000  00000ce4  2**0
+  4 .debug_pubnames 00000772  00000000  00000000  00000d60  2**0
                   CONTENTS, READONLY, DEBUGGING
-  5 .debug_info   00001ccd  00000000  00000000  0000143a  2**0
+  5 .debug_info   00001d4d  00000000  00000000  000014d2  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_abbrev 0000068d  00000000  00000000  00003107  2**0
+  6 .debug_abbrev 0000067e  00000000  00000000  0000321f  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_line   0000126f  00000000  00000000  00003794  2**0
+  7 .debug_line   000012bf  00000000  00000000  0000389d  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_frame  00000460  00000000  00000000  00004a04  2**2
+  8 .debug_frame  00000470  00000000  00000000  00004b5c  2**2
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_str    00000818  00000000  00000000  00004e64  2**0
+  9 .debug_str    0000082f  00000000  00000000  00004fcc  2**0
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_loc    0000088b  00000000  00000000  0000567c  2**0
+ 10 .debug_loc    000007fb  00000000  00000000  000057fb  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_ranges 00000240  00000000  00000000  00005f07  2**0
+ 11 .debug_ranges 00000240  00000000  00000000  00005ff6  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -36,7 +36,7 @@ Disassembly of section .text:
    8:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
    c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   10:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  14:	0c 94 15 03 	jmp	0x62a	; 0x62a <__vector_5>
+  14:	0c 94 53 03 	jmp	0x6a6	; 0x6a6 <__vector_5>
   18:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   1c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   20:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
@@ -49,7 +49,7 @@ Disassembly of section .text:
   3c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   40:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   44:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
-  48:	0c 94 89 05 	jmp	0xb12	; 0xb12 <__vector_18>
+  48:	0c 94 c7 05 	jmp	0xb8e	; 0xb8e <__vector_18>
   4c:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   50:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
   54:	0c 94 51 00 	jmp	0xa2	; 0xa2 <__bad_interrupt>
@@ -70,8 +70,8 @@ Disassembly of section .text:
   74:	11 e0       	ldi	r17, 0x01	; 1
   76:	a0 e0       	ldi	r26, 0x00	; 0
   78:	b1 e0       	ldi	r27, 0x01	; 1
-  7a:	ea ee       	ldi	r30, 0xEA	; 234
-  7c:	fb e0       	ldi	r31, 0x0B	; 11
+  7a:	e6 e6       	ldi	r30, 0x66	; 102
+  7c:	fc e0       	ldi	r31, 0x0C	; 12
   7e:	02 c0       	rjmp	.+4      	; 0x84 <.do_copy_data_start>
 
 00000080 <.do_copy_data_loop>:
@@ -93,11 +93,11 @@ Disassembly of section .text:
   92:	1d 92       	st	X+, r1
 
 00000094 <.do_clear_bss_start>:
-  94:	a9 3d       	cpi	r26, 0xD9	; 217
+  94:	ab 3d       	cpi	r26, 0xDB	; 219
   96:	b1 07       	cpc	r27, r17
   98:	e1 f7       	brne	.-8      	; 0x92 <.do_clear_bss_loop>
   9a:	0e 94 53 00 	call	0xa6	; 0xa6 <main>
-  9e:	0c 94 f3 05 	jmp	0xbe6	; 0xbe6 <_exit>
+  9e:	0c 94 31 06 	jmp	0xc62	; 0xc62 <_exit>
 
 000000a2 <__bad_interrupt>:
   a2:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
@@ -114,7 +114,7 @@ int main(void){
   
   #ifdef TX_MODE
   OneWire_Init_Master();
-  aa:	0e 94 52 03 	call	0x6a4	; 0x6a4 <OneWire_Init_Master>
+  aa:	0e 94 90 03 	call	0x720	; 0x720 <OneWire_Init_Master>
   ae:	80 e1       	ldi	r24, 0x10	; 16
   b0:	97 e2       	ldi	r25, 0x27	; 39
     milliseconds can be achieved.
@@ -147,7 +147,7 @@ _delay_loop_2(uint16_t __count)
   
   #ifdef RX_MODE
   OneWire_Init_Slave();
-  c0:	0e 94 5e 03 	call	0x6bc	; 0x6bc <OneWire_Init_Slave>
+  c0:	0e 94 9c 03 	call	0x738	; 0x738 <OneWire_Init_Slave>
   c4:	cc e2       	ldi	r28, 0x2C	; 44
   c6:	d1 e0       	ldi	r29, 0x01	; 1
   
@@ -156,7 +156,7 @@ _delay_loop_2(uint16_t __count)
 	  
 	  #ifdef TX_MODE
 	  if(OneWire_Tx_Reset_Cmd() == 1){
-  c8:	0e 94 34 01 	call	0x268	; 0x268 <OneWire_Tx_Reset_Cmd>
+  c8:	0e 94 38 01 	call	0x270	; 0x270 <OneWire_Tx_Reset_Cmd>
   cc:	81 30       	cpi	r24, 0x01	; 1
   ce:	a9 f4       	brne	.+42     	; 0xfa <main+0x54>
   d0:	ce 01       	movw	r24, r28
@@ -168,19 +168,19 @@ _delay_loop_2(uint16_t __count)
   d8:	96 e0       	ldi	r25, 0x06	; 6
   da:	68 e6       	ldi	r22, 0x68	; 104
   dc:	70 e0       	ldi	r23, 0x00	; 0
-  de:	0e 94 9a 01 	call	0x334	; 0x334 <OneWire_TRX_Cmd_Data>
+  de:	0e 94 9e 01 	call	0x33c	; 0x33c <OneWire_TRX_Cmd_Data>
 	    OneWire_TRX_Cmd_Data(ONEWIRE_CMD_WRITE, 0x01);
   e2:	80 e0       	ldi	r24, 0x00	; 0
   e4:	91 e0       	ldi	r25, 0x01	; 1
   e6:	61 e0       	ldi	r22, 0x01	; 1
   e8:	70 e0       	ldi	r23, 0x00	; 0
-  ea:	0e 94 9a 01 	call	0x334	; 0x334 <OneWire_TRX_Cmd_Data>
+  ea:	0e 94 9e 01 	call	0x33c	; 0x33c <OneWire_TRX_Cmd_Data>
 		OneWire_TRX_Cmd_Data(ONEWIRE_CMD_STOP , 0x07);
   ee:	80 e0       	ldi	r24, 0x00	; 0
   f0:	93 e0       	ldi	r25, 0x03	; 3
   f2:	67 e0       	ldi	r22, 0x07	; 7
   f4:	70 e0       	ldi	r23, 0x00	; 0
-  f6:	0e 94 9a 01 	call	0x334	; 0x334 <OneWire_TRX_Cmd_Data>
+  f6:	0e 94 9e 01 	call	0x33c	; 0x33c <OneWire_TRX_Cmd_Data>
   fa:	80 e1       	ldi	r24, 0x10	; 16
   fc:	97 e2       	ldi	r25, 0x27	; 39
   fe:	fe 01       	movw	r30, r28
@@ -218,1006 +218,992 @@ void OneWire_Struct_Init(void){
  11e:	10 92 3a 01 	sts	0x013A, r1
   OneWire.AddrMatch = 0;
  122:	10 92 3b 01 	sts	0x013B, r1
-  OneWire.DataByte = 0;
- 126:	10 92 3d 01 	sts	0x013D, r1
+  OneWire.RegData = 0;
+ 126:	10 92 41 01 	sts	0x0141, r1
+ 12a:	10 92 40 01 	sts	0x0140, r1
   OneWire.CMD = 0;
- 12a:	10 92 3f 01 	sts	0x013F, r1
- 12e:	10 92 3e 01 	sts	0x013E, r1
+ 12e:	10 92 3d 01 	sts	0x013D, r1
+ 132:	10 92 3c 01 	sts	0x013C, r1
   OneWire.ACK = 0;
- 132:	10 92 40 01 	sts	0x0140, r1
+ 136:	10 92 42 01 	sts	0x0142, r1
   OneWire.NewDataAvailable = 0;
- 136:	10 92 41 01 	sts	0x0141, r1
+ 13a:	10 92 43 01 	sts	0x0143, r1
 }
- 13a:	08 95       	ret
+ 13e:	08 95       	ret
 
-0000013c <OneWire_Flush_Bit_Frame>:
+00000140 <OneWire_Flush_Bit_Frame>:
 
 void OneWire_Flush_Bit_Frame(void){
   OneWire.BitFrame = 0;
- 13c:	10 92 36 01 	sts	0x0136, r1
- 140:	10 92 35 01 	sts	0x0135, r1
+ 140:	10 92 36 01 	sts	0x0136, r1
+ 144:	10 92 35 01 	sts	0x0135, r1
   OneWire.RawBitFrame = 0;
- 144:	10 92 38 01 	sts	0x0138, r1
- 148:	10 92 37 01 	sts	0x0137, r1
+ 148:	10 92 38 01 	sts	0x0138, r1
+ 14c:	10 92 37 01 	sts	0x0137, r1
   OneWire.BitCounter = 0;
- 14c:	10 92 39 01 	sts	0x0139, r1
+ 150:	10 92 39 01 	sts	0x0139, r1
 }
- 150:	08 95       	ret
+ 154:	08 95       	ret
 
-00000152 <OneWire_Flush_Cmd_Reg>:
+00000156 <OneWire_Flush_Cmd_Reg>:
 
 void OneWire_Flush_Cmd_Reg(void){
-  OneWire.DataByte = 0;
- 152:	10 92 3d 01 	sts	0x013D, r1
+  OneWire.RegData = 0;
+ 156:	10 92 41 01 	sts	0x0141, r1
+ 15a:	10 92 40 01 	sts	0x0140, r1
   OneWire.CMD = 0;
- 156:	10 92 3f 01 	sts	0x013F, r1
- 15a:	10 92 3e 01 	sts	0x013E, r1
+ 15e:	10 92 3d 01 	sts	0x013D, r1
+ 162:	10 92 3c 01 	sts	0x013C, r1
   OneWire.ACK = 0;
- 15e:	10 92 40 01 	sts	0x0140, r1
+ 166:	10 92 42 01 	sts	0x0142, r1
   OneWire.NewDataAvailable = 0;
- 162:	10 92 41 01 	sts	0x0141, r1
+ 16a:	10 92 43 01 	sts	0x0143, r1
 }
- 166:	08 95       	ret
+ 16e:	08 95       	ret
 
-00000168 <OneWire_Flush_Data_Buf>:
+00000170 <OneWire_Flush_Data_Buf>:
 
 void OneWire_Flush_Data_Buf(void){
- 168:	80 e0       	ldi	r24, 0x00	; 0
- 16a:	90 e0       	ldi	r25, 0x00	; 0
+ 170:	80 e0       	ldi	r24, 0x00	; 0
+ 172:	90 e0       	ldi	r25, 0x00	; 0
   for(uint8_t i=0; i<ONEWIRE_DATA_BUF; i++){
     OneWire.DataBuf[i] = 0;
- 16c:	fc 01       	movw	r30, r24
- 16e:	eb 5c       	subi	r30, 0xCB	; 203
- 170:	fe 4f       	sbci	r31, 0xFE	; 254
- 172:	15 86       	std	Z+13, r1	; 0x0d
- 174:	01 96       	adiw	r24, 0x01	; 1
+ 174:	fc 01       	movw	r30, r24
+ 176:	eb 5c       	subi	r30, 0xCB	; 203
+ 178:	fe 4f       	sbci	r31, 0xFE	; 254
+ 17a:	17 86       	std	Z+15, r1	; 0x0f
+ 17c:	01 96       	adiw	r24, 0x01	; 1
   OneWire.ACK = 0;
   OneWire.NewDataAvailable = 0;
 }
 
 void OneWire_Flush_Data_Buf(void){
   for(uint8_t i=0; i<ONEWIRE_DATA_BUF; i++){
- 176:	86 39       	cpi	r24, 0x96	; 150
- 178:	91 05       	cpc	r25, r1
- 17a:	c1 f7       	brne	.-16     	; 0x16c <OneWire_Flush_Data_Buf+0x4>
+ 17e:	86 39       	cpi	r24, 0x96	; 150
+ 180:	91 05       	cpc	r25, r1
+ 182:	c1 f7       	brne	.-16     	; 0x174 <OneWire_Flush_Data_Buf+0x4>
     OneWire.DataBuf[i] = 0;
   }
   OneWire.DataBufCounter = 0;
- 17c:	10 92 d8 01 	sts	0x01D8, r1
+ 184:	10 92 da 01 	sts	0x01DA, r1
 }
- 180:	08 95       	ret
+ 188:	08 95       	ret
 
-00000182 <OneWire_TRX_Set_DDR>:
+0000018a <OneWire_TRX_Set_DDR>:
 
 
 
 
 void OneWire_TRX_Set_DDR(uint8_t state){
   if(state == 0){
- 182:	88 23       	and	r24, r24
- 184:	11 f4       	brne	.+4      	; 0x18a <OneWire_TRX_Set_DDR+0x8>
+ 18a:	88 23       	and	r24, r24
+ 18c:	11 f4       	brne	.+4      	; 0x192 <OneWire_TRX_Set_DDR+0x8>
     ONEWIRE_TRX_DDR  &=~ (1<<ONEWIRE_TRX_BP);
- 186:	56 98       	cbi	0x0a, 6	; 10
- 188:	08 95       	ret
+ 18e:	56 98       	cbi	0x0a, 6	; 10
+ 190:	08 95       	ret
   }
   else{
     ONEWIRE_TRX_DDR  |=  (1<<ONEWIRE_TRX_BP);
- 18a:	56 9a       	sbi	0x0a, 6	; 10
- 18c:	08 95       	ret
+ 192:	56 9a       	sbi	0x0a, 6	; 10
+ 194:	08 95       	ret
 
-0000018e <OneWire_TRX_Set_Port>:
+00000196 <OneWire_TRX_Set_Port>:
   }
 }
 
 void OneWire_TRX_Set_Port(uint8_t state){
   if(state == 0){
- 18e:	88 23       	and	r24, r24
- 190:	11 f4       	brne	.+4      	; 0x196 <OneWire_TRX_Set_Port+0x8>
+ 196:	88 23       	and	r24, r24
+ 198:	11 f4       	brne	.+4      	; 0x19e <OneWire_TRX_Set_Port+0x8>
     ONEWIRE_TRX_PORT &=~ (1<<ONEWIRE_TRX_BP);
- 192:	5e 98       	cbi	0x0b, 6	; 11
- 194:	08 95       	ret
+ 19a:	5e 98       	cbi	0x0b, 6	; 11
+ 19c:	08 95       	ret
   }
   else{
     ONEWIRE_TRX_PORT |=  (1<<ONEWIRE_TRX_BP);
- 196:	5e 9a       	sbi	0x0b, 6	; 11
- 198:	08 95       	ret
+ 19e:	5e 9a       	sbi	0x0b, 6	; 11
+ 1a0:	08 95       	ret
 
-0000019a <OneWire_TRX_Get_Input_State>:
+000001a2 <OneWire_TRX_Get_Input_State>:
   }
 }
 
 uint8_t OneWire_TRX_Get_Input_State(void){
   if(ONEWIRE_TRX_PIN & (1<<ONEWIRE_TRX_BP)){
- 19a:	89 b1       	in	r24, 0x09	; 9
- 19c:	90 e0       	ldi	r25, 0x00	; 0
- 19e:	26 e0       	ldi	r18, 0x06	; 6
- 1a0:	96 95       	lsr	r25
- 1a2:	87 95       	ror	r24
- 1a4:	2a 95       	dec	r18
- 1a6:	e1 f7       	brne	.-8      	; 0x1a0 <OneWire_TRX_Get_Input_State+0x6>
+ 1a2:	89 b1       	in	r24, 0x09	; 9
+ 1a4:	90 e0       	ldi	r25, 0x00	; 0
+ 1a6:	26 e0       	ldi	r18, 0x06	; 6
+ 1a8:	96 95       	lsr	r25
+ 1aa:	87 95       	ror	r24
+ 1ac:	2a 95       	dec	r18
+ 1ae:	e1 f7       	brne	.-8      	; 0x1a8 <OneWire_TRX_Get_Input_State+0x6>
     return 1;
   }
   else{
     return 0;
   }
 }
- 1a8:	81 70       	andi	r24, 0x01	; 1
- 1aa:	08 95       	ret
+ 1b0:	81 70       	andi	r24, 0x01	; 1
+ 1b2:	08 95       	ret
 
-000001ac <OneWire_TRX_Set_Logic>:
+000001b4 <OneWire_TRX_Set_Logic>:
 
 void OneWire_TRX_Set_Logic(uint8_t state){
   if(state == 0){
- 1ac:	88 23       	and	r24, r24
- 1ae:	11 f4       	brne	.+4      	; 0x1b4 <OneWire_TRX_Set_Logic+0x8>
+ 1b4:	88 23       	and	r24, r24
+ 1b6:	11 f4       	brne	.+4      	; 0x1bc <OneWire_TRX_Set_Logic+0x8>
 void OneWire_TRX_Set_DDR(uint8_t state){
   if(state == 0){
     ONEWIRE_TRX_DDR  &=~ (1<<ONEWIRE_TRX_BP);
   }
   else{
     ONEWIRE_TRX_DDR  |=  (1<<ONEWIRE_TRX_BP);
- 1b0:	56 9a       	sbi	0x0a, 6	; 10
- 1b2:	08 95       	ret
+ 1b8:	56 9a       	sbi	0x0a, 6	; 10
+ 1ba:	08 95       	ret
 
 
 
 void OneWire_TRX_Set_DDR(uint8_t state){
   if(state == 0){
     ONEWIRE_TRX_DDR  &=~ (1<<ONEWIRE_TRX_BP);
- 1b4:	56 98       	cbi	0x0a, 6	; 10
- 1b6:	08 95       	ret
+ 1bc:	56 98       	cbi	0x0a, 6	; 10
+ 1be:	08 95       	ret
 
-000001b8 <OneWire_TRX_GPIO_Init>:
+000001c0 <OneWire_TRX_GPIO_Init>:
   }
 }
 
 void OneWire_TRX_Set_Port(uint8_t state){
   if(state == 0){
     ONEWIRE_TRX_PORT &=~ (1<<ONEWIRE_TRX_BP);
- 1b8:	5e 98       	cbi	0x0b, 6	; 11
+ 1c0:	5e 98       	cbi	0x0b, 6	; 11
 
 
 
 void OneWire_TRX_Set_DDR(uint8_t state){
   if(state == 0){
     ONEWIRE_TRX_DDR  &=~ (1<<ONEWIRE_TRX_BP);
- 1ba:	56 98       	cbi	0x0a, 6	; 10
+ 1c2:	56 98       	cbi	0x0a, 6	; 10
   ONEWIRE_DBGTX_DDR  |= (1<<ONEWIRE_DBGTX_BP);
   ONEWIRE_DBGTX_PORT &=~(1<<ONEWIRE_DBGTX_BP);
   #endif
   
   #ifdef ONEWIRE_DBGRX_ENABLE
   ONEWIRE_DBGRX_DDR  |= (1<<ONEWIRE_DBGRX_BP);
- 1bc:	56 98       	cbi	0x0a, 6	; 10
- 1be:	54 9a       	sbi	0x0a, 4	; 10
+ 1c4:	56 98       	cbi	0x0a, 6	; 10
+ 1c6:	54 9a       	sbi	0x0a, 4	; 10
   ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 1c0:	5c 98       	cbi	0x0b, 4	; 11
+ 1c8:	5c 98       	cbi	0x0b, 4	; 11
   #endif
 }
- 1c2:	08 95       	ret
+ 1ca:	08 95       	ret
 
-000001c4 <OneWire_TRX_Interrupt_Init>:
+000001cc <OneWire_TRX_Interrupt_Init>:
   #define ONEWIRE_TRX_PCMSK      PCMSK2
   #define ONEWIRE_TRX_PCIF       PCIF2
   #define ONEWIRE_TRX_PCINT_VECT PCINT2_vect
   #endif
   
   PCICR             |= (1<<ONEWIRE_TRX_PCIE);
- 1c4:	e8 e6       	ldi	r30, 0x68	; 104
- 1c6:	f0 e0       	ldi	r31, 0x00	; 0
- 1c8:	80 81       	ld	r24, Z
- 1ca:	84 60       	ori	r24, 0x04	; 4
- 1cc:	80 83       	st	Z, r24
+ 1cc:	e8 e6       	ldi	r30, 0x68	; 104
+ 1ce:	f0 e0       	ldi	r31, 0x00	; 0
+ 1d0:	80 81       	ld	r24, Z
+ 1d2:	84 60       	ori	r24, 0x04	; 4
+ 1d4:	80 83       	st	Z, r24
   PCIFR             |= (1<<ONEWIRE_TRX_PCIF);
- 1ce:	da 9a       	sbi	0x1b, 2	; 27
+ 1d6:	da 9a       	sbi	0x1b, 2	; 27
   ONEWIRE_TRX_PCMSK &=~(1<<ONEWIRE_TRX_BP);
- 1d0:	ed e6       	ldi	r30, 0x6D	; 109
- 1d2:	f0 e0       	ldi	r31, 0x00	; 0
- 1d4:	80 81       	ld	r24, Z
- 1d6:	8f 7b       	andi	r24, 0xBF	; 191
- 1d8:	80 83       	st	Z, r24
+ 1d8:	ed e6       	ldi	r30, 0x6D	; 109
+ 1da:	f0 e0       	ldi	r31, 0x00	; 0
+ 1dc:	80 81       	ld	r24, Z
+ 1de:	8f 7b       	andi	r24, 0xBF	; 191
+ 1e0:	80 83       	st	Z, r24
   
   sei();
- 1da:	78 94       	sei
+ 1e2:	78 94       	sei
 }
- 1dc:	08 95       	ret
+ 1e4:	08 95       	ret
 
-000001de <OneWire_TRX_Interrupt_Enable>:
+000001e6 <OneWire_TRX_Interrupt_Enable>:
 
 
 
 void OneWire_TRX_Interrupt_Enable(void){
   ONEWIRE_TRX_PCMSK |= (1<<ONEWIRE_TRX_BP);
- 1de:	ed e6       	ldi	r30, 0x6D	; 109
- 1e0:	f0 e0       	ldi	r31, 0x00	; 0
- 1e2:	80 81       	ld	r24, Z
- 1e4:	80 64       	ori	r24, 0x40	; 64
- 1e6:	80 83       	st	Z, r24
+ 1e6:	ed e6       	ldi	r30, 0x6D	; 109
+ 1e8:	f0 e0       	ldi	r31, 0x00	; 0
+ 1ea:	80 81       	ld	r24, Z
+ 1ec:	80 64       	ori	r24, 0x40	; 64
+ 1ee:	80 83       	st	Z, r24
 }
- 1e8:	08 95       	ret
+ 1f0:	08 95       	ret
 
-000001ea <OneWire_TRX_Interrupt_Disable>:
+000001f2 <OneWire_TRX_Interrupt_Disable>:
 
 void OneWire_TRX_Interrupt_Disable(void){
   ONEWIRE_TRX_PCMSK &=~(1<<ONEWIRE_TRX_BP);
- 1ea:	ed e6       	ldi	r30, 0x6D	; 109
- 1ec:	f0 e0       	ldi	r31, 0x00	; 0
- 1ee:	80 81       	ld	r24, Z
- 1f0:	8f 7b       	andi	r24, 0xBF	; 191
- 1f2:	80 83       	st	Z, r24
+ 1f2:	ed e6       	ldi	r30, 0x6D	; 109
+ 1f4:	f0 e0       	ldi	r31, 0x00	; 0
+ 1f6:	80 81       	ld	r24, Z
+ 1f8:	8f 7b       	andi	r24, 0xBF	; 191
+ 1fa:	80 83       	st	Z, r24
 }
- 1f4:	08 95       	ret
+ 1fc:	08 95       	ret
 
-000001f6 <OneWire_TRX_Interrupt_Status>:
+000001fe <OneWire_TRX_Interrupt_Status>:
 
 uint8_t OneWire_TRX_Interrupt_Status(void){
   if(ONEWIRE_TRX_PCMSK & (1<<ONEWIRE_TRX_BP)){
- 1f6:	80 91 6d 00 	lds	r24, 0x006D
- 1fa:	90 e0       	ldi	r25, 0x00	; 0
- 1fc:	36 e0       	ldi	r19, 0x06	; 6
- 1fe:	96 95       	lsr	r25
- 200:	87 95       	ror	r24
- 202:	3a 95       	dec	r19
- 204:	e1 f7       	brne	.-8      	; 0x1fe <OneWire_TRX_Interrupt_Status+0x8>
+ 1fe:	80 91 6d 00 	lds	r24, 0x006D
+ 202:	90 e0       	ldi	r25, 0x00	; 0
+ 204:	36 e0       	ldi	r19, 0x06	; 6
+ 206:	96 95       	lsr	r25
+ 208:	87 95       	ror	r24
+ 20a:	3a 95       	dec	r19
+ 20c:	e1 f7       	brne	.-8      	; 0x206 <OneWire_TRX_Interrupt_Status+0x8>
     return 1;
   }
   else{
     return 0;
   }
 }
- 206:	81 70       	andi	r24, 0x01	; 1
- 208:	08 95       	ret
+ 20e:	81 70       	andi	r24, 0x01	; 1
+ 210:	08 95       	ret
 
-0000020a <OneWire_TRX_Falling_Edge_Interrupt>:
+00000212 <OneWire_TRX_Falling_Edge_Interrupt>:
     ONEWIRE_TRX_PORT |=  (1<<ONEWIRE_TRX_BP);
   }
 }
 
 uint8_t OneWire_TRX_Get_Input_State(void){
   if(ONEWIRE_TRX_PIN & (1<<ONEWIRE_TRX_BP)){
- 20a:	89 b1       	in	r24, 0x09	; 9
- 20c:	82 95       	swap	r24
- 20e:	86 95       	lsr	r24
- 210:	86 95       	lsr	r24
- 212:	83 70       	andi	r24, 0x03	; 3
- 214:	80 95       	com	r24
+ 212:	89 b1       	in	r24, 0x09	; 9
+ 214:	82 95       	swap	r24
+ 216:	86 95       	lsr	r24
+ 218:	86 95       	lsr	r24
+ 21a:	83 70       	andi	r24, 0x03	; 3
+ 21c:	80 95       	com	r24
     return 1;
   }
   else{
     return 0;
   }
 }
- 216:	81 70       	andi	r24, 0x01	; 1
- 218:	08 95       	ret
+ 21e:	81 70       	andi	r24, 0x01	; 1
+ 220:	08 95       	ret
 
-0000021a <OneWire_Debug_Tx_Pulse>:
+00000222 <OneWire_Debug_Tx_Pulse>:
   #ifdef ONEWIRE_DBGTX_ENABLE
   ONEWIRE_DBGTX_PORT |= (1<<ONEWIRE_DBGTX_BP);
   _delay_us(1);
   ONEWIRE_DBGTX_PORT &=~(1<<ONEWIRE_DBGTX_BP);
   #endif
 }
- 21a:	08 95       	ret
+ 222:	08 95       	ret
 
-0000021c <OneWire_Debug_Rx_Pulse>:
+00000224 <OneWire_Debug_Rx_Pulse>:
 
 void OneWire_Debug_Rx_Pulse(void){
   #ifdef ONEWIRE_DBGRX_ENABLE
   ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 21c:	5c 9a       	sbi	0x0b, 4	; 11
+ 224:	5c 9a       	sbi	0x0b, 4	; 11
     can be achieved.
 */
 void
 _delay_loop_1(uint8_t __count)
 {
 	__asm__ volatile (
- 21e:	84 e0       	ldi	r24, 0x04	; 4
- 220:	8a 95       	dec	r24
- 222:	f1 f7       	brne	.-4      	; 0x220 <OneWire_Debug_Rx_Pulse+0x4>
+ 226:	84 e0       	ldi	r24, 0x04	; 4
+ 228:	8a 95       	dec	r24
+ 22a:	f1 f7       	brne	.-4      	; 0x228 <OneWire_Debug_Rx_Pulse+0x4>
   _delay_us(1);
   ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 224:	5c 98       	cbi	0x0b, 4	; 11
+ 22c:	5c 98       	cbi	0x0b, 4	; 11
   #endif
 }
- 226:	08 95       	ret
+ 22e:	08 95       	ret
 
-00000228 <OneWire_Delay_Clock_Low_Time>:
- 228:	80 e5       	ldi	r24, 0x50	; 80
- 22a:	8a 95       	dec	r24
- 22c:	f1 f7       	brne	.-4      	; 0x22a <OneWire_Delay_Clock_Low_Time+0x2>
+00000230 <OneWire_Delay_Clock_Low_Time>:
+ 230:	80 e5       	ldi	r24, 0x50	; 80
+ 232:	8a 95       	dec	r24
+ 234:	f1 f7       	brne	.-4      	; 0x232 <OneWire_Delay_Clock_Low_Time+0x2>
 
 
 
 void OneWire_Delay_Clock_Low_Time(void){
   _delay_us(ONEWIRE_CLK_LOW);
 }
- 22e:	08 95       	ret
+ 236:	08 95       	ret
 
-00000230 <OneWire_Delay_Clock_High_Time>:
- 230:	80 e5       	ldi	r24, 0x50	; 80
- 232:	8a 95       	dec	r24
- 234:	f1 f7       	brne	.-4      	; 0x232 <OneWire_Delay_Clock_High_Time+0x2>
+00000238 <OneWire_Delay_Clock_High_Time>:
+ 238:	80 e5       	ldi	r24, 0x50	; 80
+ 23a:	8a 95       	dec	r24
+ 23c:	f1 f7       	brne	.-4      	; 0x23a <OneWire_Delay_Clock_High_Time+0x2>
 
 void OneWire_Delay_Clock_High_Time(void){
   _delay_us(ONEWIRE_CLK_HIGH);
 }
- 236:	08 95       	ret
+ 23e:	08 95       	ret
 
-00000238 <OneWire_Delay_Half_Bit_Time>:
- 238:	80 ea       	ldi	r24, 0xA0	; 160
- 23a:	8a 95       	dec	r24
- 23c:	f1 f7       	brne	.-4      	; 0x23a <OneWire_Delay_Half_Bit_Time+0x2>
+00000240 <OneWire_Delay_Half_Bit_Time>:
+ 240:	80 ea       	ldi	r24, 0xA0	; 160
+ 242:	8a 95       	dec	r24
+ 244:	f1 f7       	brne	.-4      	; 0x242 <OneWire_Delay_Half_Bit_Time+0x2>
 
 void OneWire_Delay_Half_Bit_Time(void){
   _delay_us(ONEWIRE_CLK_HBIT);
 }
- 23e:	08 95       	ret
+ 246:	08 95       	ret
 
-00000240 <OneWire_Delay_Byte_Gap>:
+00000248 <OneWire_Delay_Byte_Gap>:
     milliseconds can be achieved.
  */
 void
 _delay_loop_2(uint16_t __count)
 {
 	__asm__ volatile (
- 240:	88 e5       	ldi	r24, 0x58	; 88
- 242:	92 e0       	ldi	r25, 0x02	; 2
- 244:	01 97       	sbiw	r24, 0x01	; 1
- 246:	f1 f7       	brne	.-4      	; 0x244 <OneWire_Delay_Byte_Gap+0x4>
+ 248:	88 e5       	ldi	r24, 0x58	; 88
+ 24a:	92 e0       	ldi	r25, 0x02	; 2
+ 24c:	01 97       	sbiw	r24, 0x01	; 1
+ 24e:	f1 f7       	brne	.-4      	; 0x24c <OneWire_Delay_Byte_Gap+0x4>
 
 void OneWire_Delay_Byte_Gap(void){
   _delay_us(ONEWIRE_BYTE_GAP);
 }
- 248:	08 95       	ret
+ 250:	08 95       	ret
 
-0000024a <OneWire_Delay_Rx_Int>:
+00000252 <OneWire_Delay_Rx_Int>:
 void OneWire_TRX_Interrupt_Enable(void){
   ONEWIRE_TRX_PCMSK |= (1<<ONEWIRE_TRX_BP);
 }
 
 void OneWire_TRX_Interrupt_Disable(void){
   ONEWIRE_TRX_PCMSK &=~(1<<ONEWIRE_TRX_BP);
- 24a:	ed e6       	ldi	r30, 0x6D	; 109
- 24c:	f0 e0       	ldi	r31, 0x00	; 0
- 24e:	80 81       	ld	r24, Z
- 250:	8f 7b       	andi	r24, 0xBF	; 191
- 252:	80 83       	st	Z, r24
+ 252:	ed e6       	ldi	r30, 0x6D	; 109
+ 254:	f0 e0       	ldi	r31, 0x00	; 0
+ 256:	80 81       	ld	r24, Z
+ 258:	8f 7b       	andi	r24, 0xBF	; 191
+ 25a:	80 83       	st	Z, r24
     can be achieved.
 */
 void
 _delay_loop_1(uint8_t __count)
 {
 	__asm__ volatile (
- 254:	80 e5       	ldi	r24, 0x50	; 80
- 256:	8a 95       	dec	r24
- 258:	f1 f7       	brne	.-4      	; 0x256 <OneWire_Delay_Rx_Int+0xc>
+ 25c:	80 e5       	ldi	r24, 0x50	; 80
+ 25e:	8a 95       	dec	r24
+ 260:	f1 f7       	brne	.-4      	; 0x25e <OneWire_Delay_Rx_Int+0xc>
 }
 
 
 
 void OneWire_TRX_Interrupt_Enable(void){
   ONEWIRE_TRX_PCMSK |= (1<<ONEWIRE_TRX_BP);
- 25a:	80 ea       	ldi	r24, 0xA0	; 160
- 25c:	8a 95       	dec	r24
- 25e:	f1 f7       	brne	.-4      	; 0x25c <OneWire_Delay_Rx_Int+0x12>
- 260:	80 81       	ld	r24, Z
- 262:	80 64       	ori	r24, 0x40	; 64
- 264:	80 83       	st	Z, r24
+ 262:	80 ea       	ldi	r24, 0xA0	; 160
+ 264:	8a 95       	dec	r24
+ 266:	f1 f7       	brne	.-4      	; 0x264 <OneWire_Delay_Rx_Int+0x12>
+ 268:	80 81       	ld	r24, Z
+ 26a:	80 64       	ori	r24, 0x40	; 64
+ 26c:	80 83       	st	Z, r24
 void OneWire_Delay_Rx_Int(void){
   OneWire_TRX_Interrupt_Disable();
   OneWire_Delay_Clock_Low_Time();
   OneWire_Delay_Half_Bit_Time();
   OneWire_TRX_Interrupt_Enable();
 }
- 266:	08 95       	ret
+ 26e:	08 95       	ret
 
-00000268 <OneWire_Tx_Reset_Cmd>:
+00000270 <OneWire_Tx_Reset_Cmd>:
 void OneWire_TRX_Interrupt_Enable(void){
   ONEWIRE_TRX_PCMSK |= (1<<ONEWIRE_TRX_BP);
 }
 
 void OneWire_TRX_Interrupt_Disable(void){
   ONEWIRE_TRX_PCMSK &=~(1<<ONEWIRE_TRX_BP);
- 268:	80 91 6d 00 	lds	r24, 0x006D
- 26c:	8f 7b       	andi	r24, 0xBF	; 191
- 26e:	80 93 6d 00 	sts	0x006D, r24
- 272:	20 e0       	ldi	r18, 0x00	; 0
- 274:	40 e5       	ldi	r20, 0x50	; 80
+ 270:	80 91 6d 00 	lds	r24, 0x006D
+ 274:	8f 7b       	andi	r24, 0xBF	; 191
+ 276:	80 93 6d 00 	sts	0x006D, r24
+ 27a:	20 e0       	ldi	r18, 0x00	; 0
+ 27c:	40 e5       	ldi	r20, 0x50	; 80
 void OneWire_TRX_Set_DDR(uint8_t state){
   if(state == 0){
     ONEWIRE_TRX_DDR  &=~ (1<<ONEWIRE_TRX_BP);
   }
   else{
     ONEWIRE_TRX_DDR  |=  (1<<ONEWIRE_TRX_BP);
- 276:	30 ea       	ldi	r19, 0xA0	; 160
- 278:	56 9a       	sbi	0x0a, 6	; 10
- 27a:	84 2f       	mov	r24, r20
- 27c:	8a 95       	dec	r24
- 27e:	f1 f7       	brne	.-4      	; 0x27c <OneWire_Tx_Reset_Cmd+0x14>
+ 27e:	30 ea       	ldi	r19, 0xA0	; 160
+ 280:	56 9a       	sbi	0x0a, 6	; 10
+ 282:	84 2f       	mov	r24, r20
+ 284:	8a 95       	dec	r24
+ 286:	f1 f7       	brne	.-4      	; 0x284 <OneWire_Tx_Reset_Cmd+0x14>
 
 
 
 void OneWire_TRX_Set_DDR(uint8_t state){
   if(state == 0){
     ONEWIRE_TRX_DDR  &=~ (1<<ONEWIRE_TRX_BP);
- 280:	56 98       	cbi	0x0a, 6	; 10
- 282:	83 2f       	mov	r24, r19
- 284:	8a 95       	dec	r24
- 286:	f1 f7       	brne	.-4      	; 0x284 <OneWire_Tx_Reset_Cmd+0x1c>
+ 288:	56 98       	cbi	0x0a, 6	; 10
+ 28a:	83 2f       	mov	r24, r19
+ 28c:	8a 95       	dec	r24
+ 28e:	f1 f7       	brne	.-4      	; 0x28c <OneWire_Tx_Reset_Cmd+0x1c>
     ONEWIRE_TRX_PORT |=  (1<<ONEWIRE_TRX_BP);
   }
 }
 
 uint8_t OneWire_TRX_Get_Input_State(void){
   if(ONEWIRE_TRX_PIN & (1<<ONEWIRE_TRX_BP)){
- 288:	89 b1       	in	r24, 0x09	; 9
- 28a:	93 2f       	mov	r25, r19
- 28c:	9a 95       	dec	r25
- 28e:	f1 f7       	brne	.-4      	; 0x28c <OneWire_Tx_Reset_Cmd+0x24>
+ 290:	89 b1       	in	r24, 0x09	; 9
+ 292:	93 2f       	mov	r25, r19
+ 294:	9a 95       	dec	r25
+ 296:	f1 f7       	brne	.-4      	; 0x294 <OneWire_Tx_Reset_Cmd+0x24>
 
 
 
 void OneWire_TRX_Set_DDR(uint8_t state){
   if(state == 0){
     ONEWIRE_TRX_DDR  &=~ (1<<ONEWIRE_TRX_BP);
- 290:	56 98       	cbi	0x0a, 6	; 10
- 292:	94 2f       	mov	r25, r20
- 294:	9a 95       	dec	r25
- 296:	f1 f7       	brne	.-4      	; 0x294 <OneWire_Tx_Reset_Cmd+0x2c>
+ 298:	56 98       	cbi	0x0a, 6	; 10
+ 29a:	94 2f       	mov	r25, r20
+ 29c:	9a 95       	dec	r25
+ 29e:	f1 f7       	brne	.-4      	; 0x29c <OneWire_Tx_Reset_Cmd+0x2c>
 	OneWire_Debug_Tx_Pulse();
 	ack_sts = OneWire_TRX_Get_Input_State();
 	OneWire_Delay_Half_Bit_Time();
 	OneWire_TRX_Set_Logic(1);
 	OneWire_Delay_Clock_High_Time();
 	if(ack_sts == 0){
- 298:	86 ff       	sbrs	r24, 6
- 29a:	03 c0       	rjmp	.+6      	; 0x2a2 <OneWire_Tx_Reset_Cmd+0x3a>
+ 2a0:	86 ff       	sbrs	r24, 6
+ 2a2:	03 c0       	rjmp	.+6      	; 0x2aa <OneWire_Tx_Reset_Cmd+0x3a>
 
 
 uint8_t OneWire_Tx_Reset_Cmd(void){
   uint8_t ack_sts=0;
   OneWire_TRX_Interrupt_Disable();
   for(uint8_t i=0;i<(ONEWIRE_FRAME_LEN*2);i++){
- 29c:	2f 5f       	subi	r18, 0xFF	; 255
- 29e:	28 31       	cpi	r18, 0x18	; 24
- 2a0:	59 f7       	brne	.-42     	; 0x278 <OneWire_Tx_Reset_Cmd+0x10>
+ 2a4:	2f 5f       	subi	r18, 0xFF	; 255
+ 2a6:	28 31       	cpi	r18, 0x18	; 24
+ 2a8:	59 f7       	brne	.-42     	; 0x280 <OneWire_Tx_Reset_Cmd+0x10>
 }
 
 
 
 void OneWire_TRX_Interrupt_Enable(void){
   ONEWIRE_TRX_PCMSK |= (1<<ONEWIRE_TRX_BP);
- 2a2:	80 91 6d 00 	lds	r24, 0x006D
- 2a6:	80 64       	ori	r24, 0x40	; 64
- 2a8:	80 93 6d 00 	sts	0x006D, r24
+ 2aa:	80 91 6d 00 	lds	r24, 0x006D
+ 2ae:	80 64       	ori	r24, 0x40	; 64
+ 2b0:	80 93 6d 00 	sts	0x006D, r24
     milliseconds can be achieved.
  */
 void
 _delay_loop_2(uint16_t __count)
 {
 	__asm__ volatile (
- 2ac:	88 e5       	ldi	r24, 0x58	; 88
- 2ae:	92 e0       	ldi	r25, 0x02	; 2
- 2b0:	01 97       	sbiw	r24, 0x01	; 1
- 2b2:	f1 f7       	brne	.-4      	; 0x2b0 <OneWire_Tx_Reset_Cmd+0x48>
+ 2b4:	88 e5       	ldi	r24, 0x58	; 88
+ 2b6:	92 e0       	ldi	r25, 0x02	; 2
+ 2b8:	01 97       	sbiw	r24, 0x01	; 1
+ 2ba:	f1 f7       	brne	.-4      	; 0x2b8 <OneWire_Tx_Reset_Cmd+0x48>
 	}
   }
   OneWire_TRX_Interrupt_Enable();
   OneWire_Delay_Byte_Gap();
   return ack_sts;
 }
- 2b4:	81 e0       	ldi	r24, 0x01	; 1
- 2b6:	08 95       	ret
+ 2bc:	81 e0       	ldi	r24, 0x01	; 1
+ 2be:	08 95       	ret
 
-000002b8 <OneWire_TRX_Frame>:
+000002c0 <OneWire_TRX_Frame>:
 
 
 uint16_t OneWire_TRX_Frame(uint16_t val){
- 2b8:	ac 01       	movw	r20, r24
+ 2c0:	ac 01       	movw	r20, r24
 void OneWire_TRX_Interrupt_Enable(void){
   ONEWIRE_TRX_PCMSK |= (1<<ONEWIRE_TRX_BP);
 }
 
 void OneWire_TRX_Interrupt_Disable(void){
   ONEWIRE_TRX_PCMSK &=~(1<<ONEWIRE_TRX_BP);
- 2ba:	80 91 6d 00 	lds	r24, 0x006D
- 2be:	8f 7b       	andi	r24, 0xBF	; 191
- 2c0:	80 93 6d 00 	sts	0x006D, r24
- 2c4:	20 e0       	ldi	r18, 0x00	; 0
- 2c6:	30 e0       	ldi	r19, 0x00	; 0
- 2c8:	60 e0       	ldi	r22, 0x00	; 0
+ 2c2:	80 91 6d 00 	lds	r24, 0x006D
+ 2c6:	8f 7b       	andi	r24, 0xBF	; 191
+ 2c8:	80 93 6d 00 	sts	0x006D, r24
+ 2cc:	20 e0       	ldi	r18, 0x00	; 0
+ 2ce:	30 e0       	ldi	r19, 0x00	; 0
+ 2d0:	60 e0       	ldi	r22, 0x00	; 0
     can be achieved.
 */
 void
 _delay_loop_1(uint8_t __count)
 {
 	__asm__ volatile (
- 2ca:	e0 e5       	ldi	r30, 0x50	; 80
+ 2d2:	e0 e5       	ldi	r30, 0x50	; 80
 void OneWire_TRX_Set_DDR(uint8_t state){
   if(state == 0){
     ONEWIRE_TRX_DDR  &=~ (1<<ONEWIRE_TRX_BP);
   }
   else{
     ONEWIRE_TRX_DDR  |=  (1<<ONEWIRE_TRX_BP);
- 2cc:	70 ea       	ldi	r23, 0xA0	; 160
- 2ce:	56 9a       	sbi	0x0a, 6	; 10
- 2d0:	8e 2f       	mov	r24, r30
- 2d2:	8a 95       	dec	r24
- 2d4:	f1 f7       	brne	.-4      	; 0x2d2 <OneWire_TRX_Frame+0x1a>
+ 2d4:	70 ea       	ldi	r23, 0xA0	; 160
+ 2d6:	56 9a       	sbi	0x0a, 6	; 10
+ 2d8:	8e 2f       	mov	r24, r30
+ 2da:	8a 95       	dec	r24
+ 2dc:	f1 f7       	brne	.-4      	; 0x2da <OneWire_TRX_Frame+0x1a>
   for(uint8_t i=0;i<ONEWIRE_FRAME_LEN;i++){
 	//Initial Logic Low
 	OneWire_TRX_Set_Logic(0);
     OneWire_Delay_Clock_Low_Time();
 	//Data Controlled By Master
 	if(i < (ONEWIRE_FRAME_LEN-1)){
- 2d6:	6b 30       	cpi	r22, 0x0B	; 11
- 2d8:	21 f0       	breq	.+8      	; 0x2e2 <OneWire_TRX_Frame+0x2a>
+ 2de:	6b 30       	cpi	r22, 0x0B	; 11
+ 2e0:	21 f0       	breq	.+8      	; 0x2ea <OneWire_TRX_Frame+0x2a>
       if(val & 0x800){
- 2da:	53 fd       	sbrc	r21, 3
- 2dc:	02 c0       	rjmp	.+4      	; 0x2e2 <OneWire_TRX_Frame+0x2a>
+ 2e2:	53 fd       	sbrc	r21, 3
+ 2e4:	02 c0       	rjmp	.+4      	; 0x2ea <OneWire_TRX_Frame+0x2a>
 void OneWire_TRX_Set_DDR(uint8_t state){
   if(state == 0){
     ONEWIRE_TRX_DDR  &=~ (1<<ONEWIRE_TRX_BP);
   }
   else{
     ONEWIRE_TRX_DDR  |=  (1<<ONEWIRE_TRX_BP);
- 2de:	56 9a       	sbi	0x0a, 6	; 10
- 2e0:	01 c0       	rjmp	.+2      	; 0x2e4 <OneWire_TRX_Frame+0x2c>
+ 2e6:	56 9a       	sbi	0x0a, 6	; 10
+ 2e8:	01 c0       	rjmp	.+2      	; 0x2ec <OneWire_TRX_Frame+0x2c>
 
 
 
 void OneWire_TRX_Set_DDR(uint8_t state){
   if(state == 0){
     ONEWIRE_TRX_DDR  &=~ (1<<ONEWIRE_TRX_BP);
- 2e2:	56 98       	cbi	0x0a, 6	; 10
- 2e4:	87 2f       	mov	r24, r23
- 2e6:	8a 95       	dec	r24
- 2e8:	f1 f7       	brne	.-4      	; 0x2e6 <OneWire_TRX_Frame+0x2e>
+ 2ea:	56 98       	cbi	0x0a, 6	; 10
+ 2ec:	87 2f       	mov	r24, r23
+ 2ee:	8a 95       	dec	r24
+ 2f0:	f1 f7       	brne	.-4      	; 0x2ee <OneWire_TRX_Frame+0x2e>
 	  OneWire_TRX_Set_Logic(1);
 	}
 	val <<= 1;
 	OneWire_Delay_Half_Bit_Time();
 	OneWire_Debug_Tx_Pulse();
 	rx_val <<= 1;
- 2ea:	22 0f       	add	r18, r18
- 2ec:	33 1f       	adc	r19, r19
+ 2f2:	22 0f       	add	r18, r18
+ 2f4:	33 1f       	adc	r19, r19
     ONEWIRE_TRX_PORT |=  (1<<ONEWIRE_TRX_BP);
   }
 }
 
 uint8_t OneWire_TRX_Get_Input_State(void){
   if(ONEWIRE_TRX_PIN & (1<<ONEWIRE_TRX_BP)){
- 2ee:	89 b1       	in	r24, 0x09	; 9
+ 2f6:	89 b1       	in	r24, 0x09	; 9
 	}
 	val <<= 1;
 	OneWire_Delay_Half_Bit_Time();
 	OneWire_Debug_Tx_Pulse();
 	rx_val <<= 1;
 	rx_val |= OneWire_TRX_Get_Input_State();
- 2f0:	90 e0       	ldi	r25, 0x00	; 0
- 2f2:	a6 e0       	ldi	r26, 0x06	; 6
- 2f4:	96 95       	lsr	r25
- 2f6:	87 95       	ror	r24
- 2f8:	aa 95       	dec	r26
- 2fa:	e1 f7       	brne	.-8      	; 0x2f4 <OneWire_TRX_Frame+0x3c>
- 2fc:	81 70       	andi	r24, 0x01	; 1
- 2fe:	90 70       	andi	r25, 0x00	; 0
- 300:	28 2b       	or	r18, r24
- 302:	39 2b       	or	r19, r25
- 304:	87 2f       	mov	r24, r23
- 306:	8a 95       	dec	r24
- 308:	f1 f7       	brne	.-4      	; 0x306 <OneWire_TRX_Frame+0x4e>
+ 2f8:	90 e0       	ldi	r25, 0x00	; 0
+ 2fa:	a6 e0       	ldi	r26, 0x06	; 6
+ 2fc:	96 95       	lsr	r25
+ 2fe:	87 95       	ror	r24
+ 300:	aa 95       	dec	r26
+ 302:	e1 f7       	brne	.-8      	; 0x2fc <OneWire_TRX_Frame+0x3c>
+ 304:	81 70       	andi	r24, 0x01	; 1
+ 306:	90 70       	andi	r25, 0x00	; 0
+ 308:	28 2b       	or	r18, r24
+ 30a:	39 2b       	or	r19, r25
+ 30c:	87 2f       	mov	r24, r23
+ 30e:	8a 95       	dec	r24
+ 310:	f1 f7       	brne	.-4      	; 0x30e <OneWire_TRX_Frame+0x4e>
 
 
 
 void OneWire_TRX_Set_DDR(uint8_t state){
   if(state == 0){
     ONEWIRE_TRX_DDR  &=~ (1<<ONEWIRE_TRX_BP);
- 30a:	56 98       	cbi	0x0a, 6	; 10
- 30c:	8e 2f       	mov	r24, r30
- 30e:	8a 95       	dec	r24
- 310:	f1 f7       	brne	.-4      	; 0x30e <OneWire_TRX_Frame+0x56>
+ 312:	56 98       	cbi	0x0a, 6	; 10
+ 314:	8e 2f       	mov	r24, r30
+ 316:	8a 95       	dec	r24
+ 318:	f1 f7       	brne	.-4      	; 0x316 <OneWire_TRX_Frame+0x56>
 
 
 uint16_t OneWire_TRX_Frame(uint16_t val){
   uint16_t rx_val=0;
   OneWire_TRX_Interrupt_Disable();
   for(uint8_t i=0;i<ONEWIRE_FRAME_LEN;i++){
- 312:	6f 5f       	subi	r22, 0xFF	; 255
- 314:	6c 30       	cpi	r22, 0x0C	; 12
- 316:	19 f0       	breq	.+6      	; 0x31e <OneWire_TRX_Frame+0x66>
+ 31a:	6f 5f       	subi	r22, 0xFF	; 255
+ 31c:	6c 30       	cpi	r22, 0x0C	; 12
+ 31e:	19 f0       	breq	.+6      	; 0x326 <OneWire_TRX_Frame+0x66>
 	}
 	//Leave For Ack
 	else{
 	  OneWire_TRX_Set_Logic(1);
 	}
 	val <<= 1;
- 318:	44 0f       	add	r20, r20
- 31a:	55 1f       	adc	r21, r21
- 31c:	d8 cf       	rjmp	.-80     	; 0x2ce <OneWire_TRX_Frame+0x16>
+ 320:	44 0f       	add	r20, r20
+ 322:	55 1f       	adc	r21, r21
+ 324:	d8 cf       	rjmp	.-80     	; 0x2d6 <OneWire_TRX_Frame+0x16>
 }
 
 
 
 void OneWire_TRX_Interrupt_Enable(void){
   ONEWIRE_TRX_PCMSK |= (1<<ONEWIRE_TRX_BP);
- 31e:	80 91 6d 00 	lds	r24, 0x006D
- 322:	80 64       	ori	r24, 0x40	; 64
- 324:	80 93 6d 00 	sts	0x006D, r24
+ 326:	80 91 6d 00 	lds	r24, 0x006D
+ 32a:	80 64       	ori	r24, 0x40	; 64
+ 32c:	80 93 6d 00 	sts	0x006D, r24
     milliseconds can be achieved.
  */
 void
 _delay_loop_2(uint16_t __count)
 {
 	__asm__ volatile (
- 328:	88 e5       	ldi	r24, 0x58	; 88
- 32a:	92 e0       	ldi	r25, 0x02	; 2
- 32c:	01 97       	sbiw	r24, 0x01	; 1
- 32e:	f1 f7       	brne	.-4      	; 0x32c <OneWire_TRX_Frame+0x74>
+ 330:	88 e5       	ldi	r24, 0x58	; 88
+ 332:	92 e0       	ldi	r25, 0x02	; 2
+ 334:	01 97       	sbiw	r24, 0x01	; 1
+ 336:	f1 f7       	brne	.-4      	; 0x334 <OneWire_TRX_Frame+0x74>
 	OneWire_Delay_Clock_High_Time();
   }
   OneWire_TRX_Interrupt_Enable();
   OneWire_Delay_Byte_Gap();
   return rx_val;
 }
- 330:	c9 01       	movw	r24, r18
- 332:	08 95       	ret
+ 338:	c9 01       	movw	r24, r18
+ 33a:	08 95       	ret
 
-00000334 <OneWire_TRX_Cmd_Data>:
+0000033c <OneWire_TRX_Cmd_Data>:
 
 
 uint16_t OneWire_TRX_Cmd_Data(uint16_t cmd, uint16_t data){
   uint16_t temp = cmd;
   temp  |= data;
- 334:	68 2b       	or	r22, r24
- 336:	79 2b       	or	r23, r25
+ 33c:	68 2b       	or	r22, r24
+ 33e:	79 2b       	or	r23, r25
   temp <<= 1;
- 338:	66 0f       	add	r22, r22
- 33a:	77 1f       	adc	r23, r23
+ 340:	66 0f       	add	r22, r22
+ 342:	77 1f       	adc	r23, r23
   temp  |= 1;
   temp   = OneWire_TRX_Frame(temp);
- 33c:	cb 01       	movw	r24, r22
- 33e:	81 60       	ori	r24, 0x01	; 1
- 340:	0e 94 5c 01 	call	0x2b8	; 0x2b8 <OneWire_TRX_Frame>
+ 344:	cb 01       	movw	r24, r22
+ 346:	81 60       	ori	r24, 0x01	; 1
+ 348:	0e 94 60 01 	call	0x2c0	; 0x2c0 <OneWire_TRX_Frame>
   return temp;
 }
- 344:	08 95       	ret
+ 34c:	08 95       	ret
 
-00000346 <OneWire_Bit_Frame_Sample>:
+0000034e <OneWire_Handle_Cmd_Data>:
 
 
-void OneWire_Bit_Frame_Sample(void){
-  uint16_t data, cmd;
-  //Last bit of the frame -> ACK bit
-  if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-1)){
- 346:	80 91 39 01 	lds	r24, 0x0139
- 34a:	8b 30       	cpi	r24, 0x0B	; 11
- 34c:	a1 f4       	brne	.+40     	; 0x376 <OneWire_Bit_Frame_Sample+0x30>
+void OneWire_Handle_Cmd_Data(void){
+  //reset request -> Send ack
+  if(OneWire.BitFrame == ONEWIRE_CMD_RESET){
+ 34e:	80 91 35 01 	lds	r24, 0x0135
+ 352:	90 91 36 01 	lds	r25, 0x0136
+ 356:	8f 5f       	subi	r24, 0xFF	; 255
+ 358:	97 40       	sbci	r25, 0x07	; 7
+ 35a:	79 f4       	brne	.+30     	; 0x37a <OneWire_Handle_Cmd_Data+0x2c>
+	OneWire.AddrMatch = 0;
+ 35c:	10 92 3b 01 	sts	0x013B, r1
+    OneWire.BusRstEvent = 1;
+ 360:	81 e0       	ldi	r24, 0x01	; 1
+ 362:	80 93 3a 01 	sts	0x013A, r24
+	OneWire.ACK = 1;
+ 366:	80 93 42 01 	sts	0x0142, r24
   #endif
 }
 
 void OneWire_Debug_Rx_Pulse(void){
   #ifdef ONEWIRE_DBGRX_ENABLE
   ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 34e:	5c 9a       	sbi	0x0b, 4	; 11
+ 36a:	5c 9a       	sbi	0x0b, 4	; 11
     can be achieved.
 */
 void
 _delay_loop_1(uint8_t __count)
 {
 	__asm__ volatile (
- 350:	84 e0       	ldi	r24, 0x04	; 4
- 352:	8a 95       	dec	r24
- 354:	f1 f7       	brne	.-4      	; 0x352 <OneWire_Bit_Frame_Sample+0xc>
+ 36c:	84 e0       	ldi	r24, 0x04	; 4
+ 36e:	98 2f       	mov	r25, r24
+ 370:	9a 95       	dec	r25
+ 372:	f1 f7       	brne	.-4      	; 0x370 <OneWire_Handle_Cmd_Data+0x22>
   _delay_us(1);
   ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 356:	5c 98       	cbi	0x0b, 4	; 11
-  uint16_t data, cmd;
+ 374:	5c 98       	cbi	0x0b, 4	; 11
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 376:	5c 9a       	sbi	0x0b, 4	; 11
+ 378:	1b c0       	rjmp	.+54     	; 0x3b0 <OneWire_Handle_Cmd_Data+0x62>
+	OneWire_Debug_Rx_Pulse();
+	OneWire_Debug_Rx_Pulse();
+  }
+  
+  //Address matched -> Send ack
+  else if((OneWire.CMD == ONEWIRE_CMD_START) && (OneWire.RegData == ONEWIRE_OWN_AADR)){
+ 37a:	80 91 3c 01 	lds	r24, 0x013C
+ 37e:	90 91 3d 01 	lds	r25, 0x013D
+ 382:	80 50       	subi	r24, 0x00	; 0
+ 384:	96 40       	sbci	r25, 0x06	; 6
+ 386:	f9 f4       	brne	.+62     	; 0x3c6 <OneWire_Handle_Cmd_Data+0x78>
+ 388:	80 91 40 01 	lds	r24, 0x0140
+ 38c:	90 91 41 01 	lds	r25, 0x0141
+ 390:	88 36       	cpi	r24, 0x68	; 104
+ 392:	91 05       	cpc	r25, r1
+ 394:	c1 f4       	brne	.+48     	; 0x3c6 <OneWire_Handle_Cmd_Data+0x78>
+	if(OneWire.BusRstEvent == 1){
+ 396:	80 91 3a 01 	lds	r24, 0x013A
+ 39a:	81 30       	cpi	r24, 0x01	; 1
+ 39c:	09 f0       	breq	.+2      	; 0x3a0 <OneWire_Handle_Cmd_Data+0x52>
+ 39e:	79 c0       	rjmp	.+242    	; 0x492 <OneWire_Handle_Cmd_Data+0x144>
+	  OneWire.BusRstEvent = 0;
+ 3a0:	10 92 3a 01 	sts	0x013A, r1
+	  OneWire.AddrMatch = 1;
+ 3a4:	80 93 3b 01 	sts	0x013B, r24
+	  OneWire.ACK = 1;
+ 3a8:	80 93 42 01 	sts	0x0142, r24
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 3ac:	5c 9a       	sbi	0x0b, 4	; 11
+ 3ae:	84 e0       	ldi	r24, 0x04	; 4
+ 3b0:	98 2f       	mov	r25, r24
+ 3b2:	9a 95       	dec	r25
+ 3b4:	f1 f7       	brne	.-4      	; 0x3b2 <OneWire_Handle_Cmd_Data+0x64>
+  _delay_us(1);
+  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
+ 3b6:	5c 98       	cbi	0x0b, 4	; 11
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 3b8:	5c 9a       	sbi	0x0b, 4	; 11
+ 3ba:	98 2f       	mov	r25, r24
+ 3bc:	9a 95       	dec	r25
+ 3be:	f1 f7       	brne	.-4      	; 0x3bc <OneWire_Handle_Cmd_Data+0x6e>
+  _delay_us(1);
+  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
+ 3c0:	5c 98       	cbi	0x0b, 4	; 11
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 3c2:	5c 9a       	sbi	0x0b, 4	; 11
+ 3c4:	2f c0       	rjmp	.+94     	; 0x424 <OneWire_Handle_Cmd_Data+0xd6>
+	  OneWire_Debug_Rx_Pulse();
+	}
+  }
+  
+  //Read cmd -> Send ack
+  else if((OneWire.CMD == ONEWIRE_CMD_READ) && (OneWire.AddrMatch == 1)){
+ 3c6:	80 91 3c 01 	lds	r24, 0x013C
+ 3ca:	90 91 3d 01 	lds	r25, 0x013D
+ 3ce:	80 50       	subi	r24, 0x00	; 0
+ 3d0:	94 40       	sbci	r25, 0x04	; 4
+ 3d2:	89 f4       	brne	.+34     	; 0x3f6 <OneWire_Handle_Cmd_Data+0xa8>
+ 3d4:	20 91 3b 01 	lds	r18, 0x013B
+ 3d8:	21 30       	cpi	r18, 0x01	; 1
+ 3da:	69 f4       	brne	.+26     	; 0x3f6 <OneWire_Handle_Cmd_Data+0xa8>
+	OneWire.RegAddr = OneWire.RegData;
+ 3dc:	80 91 40 01 	lds	r24, 0x0140
+ 3e0:	90 91 41 01 	lds	r25, 0x0141
+ 3e4:	90 93 3f 01 	sts	0x013F, r25
+ 3e8:	80 93 3e 01 	sts	0x013E, r24
+	OneWire.ACK = 1;
+ 3ec:	20 93 42 01 	sts	0x0142, r18
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 3f0:	5c 9a       	sbi	0x0b, 4	; 11
+ 3f2:	84 e0       	ldi	r24, 0x04	; 4
+ 3f4:	e2 cf       	rjmp	.-60     	; 0x3ba <OneWire_Handle_Cmd_Data+0x6c>
+    OneWire_Debug_Rx_Pulse();
+	OneWire_Debug_Rx_Pulse();
+  }
+  
+  //Write cmd -> Send ack
+  else if((OneWire.CMD == ONEWIRE_CMD_WRITE) && (OneWire.AddrMatch == 1)){
+ 3f6:	80 91 3c 01 	lds	r24, 0x013C
+ 3fa:	90 91 3d 01 	lds	r25, 0x013D
+ 3fe:	80 50       	subi	r24, 0x00	; 0
+ 400:	91 40       	sbci	r25, 0x01	; 1
+ 402:	b1 f4       	brne	.+44     	; 0x430 <OneWire_Handle_Cmd_Data+0xe2>
+ 404:	20 91 3b 01 	lds	r18, 0x013B
+ 408:	21 30       	cpi	r18, 0x01	; 1
+ 40a:	91 f4       	brne	.+36     	; 0x430 <OneWire_Handle_Cmd_Data+0xe2>
+	OneWire.RegAddr = OneWire.RegData;
+ 40c:	80 91 40 01 	lds	r24, 0x0140
+ 410:	90 91 41 01 	lds	r25, 0x0141
+ 414:	90 93 3f 01 	sts	0x013F, r25
+ 418:	80 93 3e 01 	sts	0x013E, r24
+	OneWire.ACK = 1;
+ 41c:	20 93 42 01 	sts	0x0142, r18
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 420:	5c 9a       	sbi	0x0b, 4	; 11
+ 422:	84 e0       	ldi	r24, 0x04	; 4
+ 424:	98 2f       	mov	r25, r24
+ 426:	9a 95       	dec	r25
+ 428:	f1 f7       	brne	.-4      	; 0x426 <OneWire_Handle_Cmd_Data+0xd8>
+  _delay_us(1);
+  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
+ 42a:	5c 98       	cbi	0x0b, 4	; 11
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 42c:	5c 9a       	sbi	0x0b, 4	; 11
+ 42e:	0e c0       	rjmp	.+28     	; 0x44c <OneWire_Handle_Cmd_Data+0xfe>
+	OneWire_Debug_Rx_Pulse();
+	OneWire_Debug_Rx_Pulse();
+  }
+  
+  //Continue cmd -> Send ack
+  else if((OneWire.CMD == ONEWIRE_CMD_CONT) && (OneWire.AddrMatch == 1)){
+ 430:	80 91 3c 01 	lds	r24, 0x013C
+ 434:	90 91 3d 01 	lds	r25, 0x013D
+ 438:	89 2b       	or	r24, r25
+ 43a:	71 f4       	brne	.+28     	; 0x458 <OneWire_Handle_Cmd_Data+0x10a>
+ 43c:	80 91 3b 01 	lds	r24, 0x013B
+ 440:	81 30       	cpi	r24, 0x01	; 1
+ 442:	51 f4       	brne	.+20     	; 0x458 <OneWire_Handle_Cmd_Data+0x10a>
+	OneWire.ACK = 1;
+ 444:	80 93 42 01 	sts	0x0142, r24
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 448:	5c 9a       	sbi	0x0b, 4	; 11
+ 44a:	84 e0       	ldi	r24, 0x04	; 4
+ 44c:	98 2f       	mov	r25, r24
+ 44e:	9a 95       	dec	r25
+ 450:	f1 f7       	brne	.-4      	; 0x44e <OneWire_Handle_Cmd_Data+0x100>
+  _delay_us(1);
+  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
+ 452:	5c 98       	cbi	0x0b, 4	; 11
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 454:	5c 9a       	sbi	0x0b, 4	; 11
+ 456:	13 c0       	rjmp	.+38     	; 0x47e <OneWire_Handle_Cmd_Data+0x130>
+    OneWire_Debug_Rx_Pulse();
+	OneWire_Debug_Rx_Pulse();
+  }
+ 
+  //Stop cmd -> Send ack
+  else if((OneWire.CMD == ONEWIRE_CMD_STOP) && (OneWire.AddrMatch == 1)){
+ 458:	80 91 3c 01 	lds	r24, 0x013C
+ 45c:	90 91 3d 01 	lds	r25, 0x013D
+ 460:	80 50       	subi	r24, 0x00	; 0
+ 462:	93 40       	sbci	r25, 0x03	; 3
+ 464:	81 f4       	brne	.+32     	; 0x486 <OneWire_Handle_Cmd_Data+0x138>
+ 466:	80 91 3b 01 	lds	r24, 0x013B
+ 46a:	81 30       	cpi	r24, 0x01	; 1
+ 46c:	61 f4       	brne	.+24     	; 0x486 <OneWire_Handle_Cmd_Data+0x138>
+	OneWire.AddrMatch = 0;
+ 46e:	10 92 3b 01 	sts	0x013B, r1
+    OneWire.BusRstEvent = 0;
+ 472:	10 92 3a 01 	sts	0x013A, r1
+	OneWire.ACK = 1;
+ 476:	80 93 42 01 	sts	0x0142, r24
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 47a:	5c 9a       	sbi	0x0b, 4	; 11
+ 47c:	84 e0       	ldi	r24, 0x04	; 4
+ 47e:	8a 95       	dec	r24
+ 480:	f1 f7       	brne	.-4      	; 0x47e <OneWire_Handle_Cmd_Data+0x130>
+  _delay_us(1);
+  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
+ 482:	5c 98       	cbi	0x0b, 4	; 11
+ 484:	08 95       	ret
+    OneWire_Debug_Rx_Pulse();
+  }
+
+  //Nothing Matched, Send nack
+  else{
+	OneWire.ACK = 0;
+ 486:	10 92 42 01 	sts	0x0142, r1
+    OneWire.AddrMatch = 0;
+ 48a:	10 92 3b 01 	sts	0x013B, r1
+	OneWire.BusRstEvent = 0;
+ 48e:	10 92 3a 01 	sts	0x013A, r1
+ 492:	08 95       	ret
+
+00000494 <OneWire_Bit_Frame_Sample>:
+}
+
+
+void OneWire_Bit_Frame_Sample(void){
+  //Last bit of the frame -> ACK bit
+  if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-1)){
+ 494:	80 91 39 01 	lds	r24, 0x0139
+ 498:	8b 30       	cpi	r24, 0x0B	; 11
+ 49a:	c9 f4       	brne	.+50     	; 0x4ce <OneWire_Bit_Frame_Sample+0x3a>
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 49c:	5c 9a       	sbi	0x0b, 4	; 11
+ 49e:	84 e0       	ldi	r24, 0x04	; 4
+ 4a0:	8a 95       	dec	r24
+ 4a2:	f1 f7       	brne	.-4      	; 0x4a0 <OneWire_Bit_Frame_Sample+0xc>
+  _delay_us(1);
+  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
+ 4a4:	5c 98       	cbi	0x0b, 4	; 11
+void OneWire_Bit_Frame_Sample(void){
   //Last bit of the frame -> ACK bit
   if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-1)){
     //maybe need to disable interrupt
 	OneWire_Debug_Rx_Pulse();
 	if(OneWire.ACK == 1){
- 358:	80 91 40 01 	lds	r24, 0x0140
- 35c:	81 30       	cpi	r24, 0x01	; 1
- 35e:	19 f4       	brne	.+6      	; 0x366 <OneWire_Bit_Frame_Sample+0x20>
+ 4a6:	80 91 42 01 	lds	r24, 0x0142
+ 4aa:	81 30       	cpi	r24, 0x01	; 1
+ 4ac:	19 f4       	brne	.+6      	; 0x4b4 <OneWire_Bit_Frame_Sample+0x20>
 	  OneWire.ACK = 0;
- 360:	10 92 40 01 	sts	0x0140, r1
+ 4ae:	10 92 42 01 	sts	0x0142, r1
 void OneWire_TRX_Set_DDR(uint8_t state){
   if(state == 0){
     ONEWIRE_TRX_DDR  &=~ (1<<ONEWIRE_TRX_BP);
   }
   else{
     ONEWIRE_TRX_DDR  |=  (1<<ONEWIRE_TRX_BP);
- 364:	56 9a       	sbi	0x0a, 6	; 10
- 366:	80 ea       	ldi	r24, 0xA0	; 160
- 368:	98 2f       	mov	r25, r24
- 36a:	9a 95       	dec	r25
- 36c:	f1 f7       	brne	.-4      	; 0x36a <OneWire_Bit_Frame_Sample+0x24>
+ 4b2:	56 9a       	sbi	0x0a, 6	; 10
+ 4b4:	80 ea       	ldi	r24, 0xA0	; 160
+ 4b6:	98 2f       	mov	r25, r24
+ 4b8:	9a 95       	dec	r25
+ 4ba:	f1 f7       	brne	.-4      	; 0x4b8 <OneWire_Bit_Frame_Sample+0x24>
 
 
 
 void OneWire_TRX_Set_DDR(uint8_t state){
   if(state == 0){
     ONEWIRE_TRX_DDR  &=~ (1<<ONEWIRE_TRX_BP);
- 36e:	8a 95       	dec	r24
- 370:	f1 f7       	brne	.-4      	; 0x36e <OneWire_Bit_Frame_Sample+0x28>
- 372:	56 98       	cbi	0x0a, 6	; 10
- 374:	a6 c0       	rjmp	.+332    	; 0x4c2 <OneWire_Bit_Frame_Sample+0x17c>
-	OneWire_Debug_Rx_Pulse();
-	//maybe need to enable interrupt
-  }
-  //Regular bits to sample
-  else{
-    OneWire_Delay_Rx_Int();
- 376:	0e 94 25 01 	call	0x24a	; 0x24a <OneWire_Delay_Rx_Int>
-    OneWire.BitFrame <<= 1;
- 37a:	80 91 35 01 	lds	r24, 0x0135
- 37e:	90 91 36 01 	lds	r25, 0x0136
- 382:	88 0f       	add	r24, r24
- 384:	99 1f       	adc	r25, r25
- 386:	90 93 36 01 	sts	0x0136, r25
- 38a:	80 93 35 01 	sts	0x0135, r24
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 38e:	5c 9a       	sbi	0x0b, 4	; 11
- 390:	64 e0       	ldi	r22, 0x04	; 4
- 392:	86 2f       	mov	r24, r22
- 394:	8a 95       	dec	r24
- 396:	f1 f7       	brne	.-4      	; 0x394 <OneWire_Bit_Frame_Sample+0x4e>
-  _delay_us(1);
-  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 398:	5c 98       	cbi	0x0b, 4	; 11
-  //Regular bits to sample
-  else{
-    OneWire_Delay_Rx_Int();
-    OneWire.BitFrame <<= 1;
-    OneWire_Debug_Rx_Pulse();
-    OneWire.BitFrame |= OneWire_TRX_Get_Input_State();
- 39a:	20 91 35 01 	lds	r18, 0x0135
- 39e:	30 91 36 01 	lds	r19, 0x0136
-    ONEWIRE_TRX_PORT |=  (1<<ONEWIRE_TRX_BP);
-  }
-}
-
-uint8_t OneWire_TRX_Get_Input_State(void){
-  if(ONEWIRE_TRX_PIN & (1<<ONEWIRE_TRX_BP)){
- 3a2:	89 b1       	in	r24, 0x09	; 9
-  //Regular bits to sample
-  else{
-    OneWire_Delay_Rx_Int();
-    OneWire.BitFrame <<= 1;
-    OneWire_Debug_Rx_Pulse();
-    OneWire.BitFrame |= OneWire_TRX_Get_Input_State();
- 3a4:	90 e0       	ldi	r25, 0x00	; 0
- 3a6:	46 e0       	ldi	r20, 0x06	; 6
- 3a8:	96 95       	lsr	r25
- 3aa:	87 95       	ror	r24
- 3ac:	4a 95       	dec	r20
- 3ae:	e1 f7       	brne	.-8      	; 0x3a8 <OneWire_Bit_Frame_Sample+0x62>
- 3b0:	81 70       	andi	r24, 0x01	; 1
- 3b2:	90 70       	andi	r25, 0x00	; 0
- 3b4:	82 2b       	or	r24, r18
- 3b6:	93 2b       	or	r25, r19
- 3b8:	90 93 36 01 	sts	0x0136, r25
- 3bc:	80 93 35 01 	sts	0x0135, r24
-	
-	
-	if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-2)){
- 3c0:	80 91 39 01 	lds	r24, 0x0139
- 3c4:	8a 30       	cpi	r24, 0x0A	; 10
- 3c6:	09 f0       	breq	.+2      	; 0x3ca <OneWire_Bit_Frame_Sample+0x84>
- 3c8:	85 c0       	rjmp	.+266    	; 0x4d4 <OneWire_Bit_Frame_Sample+0x18e>
-	  cmd  = OneWire.BitFrame & ONEWIRE_CMD_MASK;
- 3ca:	40 91 35 01 	lds	r20, 0x0135
- 3ce:	50 91 36 01 	lds	r21, 0x0136
-	  data = OneWire.BitFrame & ONEWIRE_DATA_MASK;
- 3d2:	20 91 35 01 	lds	r18, 0x0135
- 3d6:	30 91 36 01 	lds	r19, 0x0136
-	  
-	  
-	  
-	  //reset request -> Send ack
-	  if(OneWire.BitFrame == ONEWIRE_CMD_RESET){
- 3da:	80 91 35 01 	lds	r24, 0x0135
- 3de:	90 91 36 01 	lds	r25, 0x0136
- 3e2:	8f 5f       	subi	r24, 0xFF	; 255
- 3e4:	97 40       	sbci	r25, 0x07	; 7
- 3e6:	31 f5       	brne	.+76     	; 0x434 <OneWire_Bit_Frame_Sample+0xee>
-	    OneWire.AddrMatch = 0;
- 3e8:	10 92 3b 01 	sts	0x013B, r1
-		OneWire.BusRstEvent = 1;
- 3ec:	81 e0       	ldi	r24, 0x01	; 1
- 3ee:	80 93 3a 01 	sts	0x013A, r24
-	    OneWire.ACK = 1;
- 3f2:	80 93 40 01 	sts	0x0140, r24
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 3f6:	5c 9a       	sbi	0x0b, 4	; 11
- 3f8:	86 2f       	mov	r24, r22
- 3fa:	8a 95       	dec	r24
- 3fc:	f1 f7       	brne	.-4      	; 0x3fa <OneWire_Bit_Frame_Sample+0xb4>
-  _delay_us(1);
-  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 3fe:	5c 98       	cbi	0x0b, 4	; 11
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 400:	5c 9a       	sbi	0x0b, 4	; 11
- 402:	86 2f       	mov	r24, r22
- 404:	8a 95       	dec	r24
- 406:	f1 f7       	brne	.-4      	; 0x404 <OneWire_Bit_Frame_Sample+0xbe>
-  _delay_us(1);
-  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 408:	5c 98       	cbi	0x0b, 4	; 11
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 40a:	5c 9a       	sbi	0x0b, 4	; 11
- 40c:	86 2f       	mov	r24, r22
- 40e:	8a 95       	dec	r24
- 410:	f1 f7       	brne	.-4      	; 0x40e <OneWire_Bit_Frame_Sample+0xc8>
-  _delay_us(1);
-  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 412:	5c 98       	cbi	0x0b, 4	; 11
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 414:	5c 9a       	sbi	0x0b, 4	; 11
- 416:	86 2f       	mov	r24, r22
- 418:	8a 95       	dec	r24
- 41a:	f1 f7       	brne	.-4      	; 0x418 <OneWire_Bit_Frame_Sample+0xd2>
-  _delay_us(1);
-  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 41c:	5c 98       	cbi	0x0b, 4	; 11
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 41e:	5c 9a       	sbi	0x0b, 4	; 11
- 420:	86 2f       	mov	r24, r22
- 422:	8a 95       	dec	r24
- 424:	f1 f7       	brne	.-4      	; 0x422 <OneWire_Bit_Frame_Sample+0xdc>
-  _delay_us(1);
-  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 426:	5c 98       	cbi	0x0b, 4	; 11
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 428:	5c 9a       	sbi	0x0b, 4	; 11
- 42a:	86 2f       	mov	r24, r22
- 42c:	8a 95       	dec	r24
- 42e:	f1 f7       	brne	.-4      	; 0x42c <OneWire_Bit_Frame_Sample+0xe6>
-  _delay_us(1);
-  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 430:	5c 98       	cbi	0x0b, 4	; 11
- 432:	50 c0       	rjmp	.+160    	; 0x4d4 <OneWire_Bit_Frame_Sample+0x18e>
-    OneWire_Debug_Rx_Pulse();
-    OneWire.BitFrame |= OneWire_TRX_Get_Input_State();
-	
-	
-	if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-2)){
-	  cmd  = OneWire.BitFrame & ONEWIRE_CMD_MASK;
- 434:	ca 01       	movw	r24, r20
- 436:	80 70       	andi	r24, 0x00	; 0
- 438:	97 70       	andi	r25, 0x07	; 7
-	  data = OneWire.BitFrame & ONEWIRE_DATA_MASK;
- 43a:	30 70       	andi	r19, 0x00	; 0
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-	  }
-	 
-	  //Address matched -> Send ack
-	  else if((cmd == ONEWIRE_CMD_START) && (data == ONEWIRE_OWN_AADR)){
- 43c:	46 e0       	ldi	r20, 0x06	; 6
- 43e:	80 30       	cpi	r24, 0x00	; 0
- 440:	94 07       	cpc	r25, r20
- 442:	79 f4       	brne	.+30     	; 0x462 <OneWire_Bit_Frame_Sample+0x11c>
- 444:	28 36       	cpi	r18, 0x68	; 104
- 446:	31 05       	cpc	r19, r1
- 448:	79 f5       	brne	.+94     	; 0x4a8 <OneWire_Bit_Frame_Sample+0x162>
-	    if(OneWire.BusRstEvent == 1){
- 44a:	80 91 3a 01 	lds	r24, 0x013A
- 44e:	81 30       	cpi	r24, 0x01	; 1
- 450:	09 f0       	breq	.+2      	; 0x454 <OneWire_Bit_Frame_Sample+0x10e>
- 452:	40 c0       	rjmp	.+128    	; 0x4d4 <OneWire_Bit_Frame_Sample+0x18e>
-		  OneWire.BusRstEvent = 0;
- 454:	10 92 3a 01 	sts	0x013A, r1
-	      OneWire.AddrMatch = 1;
- 458:	80 93 3b 01 	sts	0x013B, r24
-	      OneWire.ACK = 1;
- 45c:	80 93 40 01 	sts	0x0140, r24
- 460:	cf cf       	rjmp	.-98     	; 0x400 <OneWire_Bit_Frame_Sample+0xba>
-		  OneWire_Debug_Rx_Pulse();
-		}
-	  }
-	  
-	  //Read cmd -> Send ack
-	  else if((cmd == ONEWIRE_CMD_READ) && (OneWire.AddrMatch == 1)){
- 462:	74 e0       	ldi	r23, 0x04	; 4
- 464:	80 30       	cpi	r24, 0x00	; 0
- 466:	97 07       	cpc	r25, r23
- 468:	49 f4       	brne	.+18     	; 0x47c <OneWire_Bit_Frame_Sample+0x136>
- 46a:	80 91 3b 01 	lds	r24, 0x013B
- 46e:	81 30       	cpi	r24, 0x01	; 1
- 470:	59 f5       	brne	.+86     	; 0x4c8 <OneWire_Bit_Frame_Sample+0x182>
-	    OneWire.RegAddr = data;
- 472:	20 93 3c 01 	sts	0x013C, r18
-	    OneWire.ACK = 1;
- 476:	80 93 40 01 	sts	0x0140, r24
- 47a:	c7 cf       	rjmp	.-114    	; 0x40a <OneWire_Bit_Frame_Sample+0xc4>
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-	  }
-	  
-	  //Write cmd -> Send ack
-	  else if((cmd == ONEWIRE_CMD_WRITE) && (OneWire.AddrMatch == 1)){
- 47c:	41 e0       	ldi	r20, 0x01	; 1
- 47e:	80 30       	cpi	r24, 0x00	; 0
- 480:	94 07       	cpc	r25, r20
- 482:	49 f4       	brne	.+18     	; 0x496 <OneWire_Bit_Frame_Sample+0x150>
- 484:	80 91 3b 01 	lds	r24, 0x013B
- 488:	81 30       	cpi	r24, 0x01	; 1
- 48a:	f1 f4       	brne	.+60     	; 0x4c8 <OneWire_Bit_Frame_Sample+0x182>
-	    OneWire.RegAddr = data;
- 48c:	20 93 3c 01 	sts	0x013C, r18
-	    OneWire.ACK = 1;
- 490:	80 93 40 01 	sts	0x0140, r24
- 494:	bf cf       	rjmp	.-130    	; 0x414 <OneWire_Bit_Frame_Sample+0xce>
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-	  }
-	  
-	  //Continue cmd -> Send ack
-	  else if((cmd == ONEWIRE_CMD_CONT) && (OneWire.AddrMatch == 1)){
- 496:	00 97       	sbiw	r24, 0x00	; 0
- 498:	39 f4       	brne	.+14     	; 0x4a8 <OneWire_Bit_Frame_Sample+0x162>
- 49a:	80 91 3b 01 	lds	r24, 0x013B
- 49e:	81 30       	cpi	r24, 0x01	; 1
- 4a0:	99 f4       	brne	.+38     	; 0x4c8 <OneWire_Bit_Frame_Sample+0x182>
-	    OneWire.ACK = 1;
- 4a2:	80 93 40 01 	sts	0x0140, r24
- 4a6:	bb cf       	rjmp	.-138    	; 0x41e <OneWire_Bit_Frame_Sample+0xd8>
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-	  }
-	  
-	  //Stop cmd -> Send ack
-	  else if((cmd == ONEWIRE_CMD_STOP) && (OneWire.AddrMatch == 1)){
- 4a8:	80 50       	subi	r24, 0x00	; 0
- 4aa:	93 40       	sbci	r25, 0x03	; 3
- 4ac:	69 f4       	brne	.+26     	; 0x4c8 <OneWire_Bit_Frame_Sample+0x182>
- 4ae:	80 91 3b 01 	lds	r24, 0x013B
- 4b2:	81 30       	cpi	r24, 0x01	; 1
- 4b4:	49 f4       	brne	.+18     	; 0x4c8 <OneWire_Bit_Frame_Sample+0x182>
-	    OneWire.AddrMatch = 0;
- 4b6:	10 92 3b 01 	sts	0x013B, r1
-		OneWire.BusRstEvent = 0;
- 4ba:	10 92 3a 01 	sts	0x013A, r1
-	    OneWire.ACK = 1;
- 4be:	80 93 40 01 	sts	0x0140, r24
+ 4bc:	8a 95       	dec	r24
+ 4be:	f1 f7       	brne	.-4      	; 0x4bc <OneWire_Bit_Frame_Sample+0x28>
+ 4c0:	56 98       	cbi	0x0a, 6	; 10
   #endif
 }
 
@@ -1226,1587 +1212,1661 @@ void OneWire_Debug_Rx_Pulse(void){
   ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
  4c2:	5c 9a       	sbi	0x0b, 4	; 11
  4c4:	84 e0       	ldi	r24, 0x04	; 4
- 4c6:	b2 cf       	rjmp	.-156    	; 0x42c <OneWire_Bit_Frame_Sample+0xe6>
-		OneWire_Debug_Rx_Pulse();
-	  }
-	  
-	  //Nothing Matched, Send nack
-	  else{
-	    OneWire.ACK = 0;
- 4c8:	10 92 40 01 	sts	0x0140, r1
-		OneWire.AddrMatch = 0;
- 4cc:	10 92 3b 01 	sts	0x013B, r1
-		OneWire.BusRstEvent = 0;
- 4d0:	10 92 3a 01 	sts	0x013A, r1
-	  }
-	  
-	}
-	
-  }
-  OneWire.BitCounter++;
- 4d4:	80 91 39 01 	lds	r24, 0x0139
- 4d8:	8f 5f       	subi	r24, 0xFF	; 255
- 4da:	80 93 39 01 	sts	0x0139, r24
-}
- 4de:	08 95       	ret
-
-000004e0 <OneWire_Bit_Counter_Overflow>:
-
-
-uint8_t OneWire_Bit_Counter_Overflow(void){
-  if(OneWire.BitCounter >= ONEWIRE_FRAME_LEN){
- 4e0:	80 91 39 01 	lds	r24, 0x0139
- 4e4:	8c 30       	cpi	r24, 0x0C	; 12
- 4e6:	10 f4       	brcc	.+4      	; 0x4ec <OneWire_Bit_Counter_Overflow+0xc>
- 4e8:	80 e0       	ldi	r24, 0x00	; 0
- 4ea:	08 95       	ret
-    OneWire.BitCounter = 0;
- 4ec:	10 92 39 01 	sts	0x0139, r1
-	
-	OneWire.BitFrame = 0; ///////////////////////////////test
- 4f0:	10 92 36 01 	sts	0x0136, r1
- 4f4:	10 92 35 01 	sts	0x0135, r1
- 4f8:	81 e0       	ldi	r24, 0x01	; 1
-	return 1;
-  }
-  else{
-    return 0;
-  }
-}
- 4fa:	08 95       	ret
-
-000004fc <OneWire_Build_Bit_Frame>:
-
-
-uint16_t OneWire_Build_Bit_Frame(void){
-  uint16_t temp = 0xFFFF;
-  OneWire_Bit_Frame_Sample();
- 4fc:	0e 94 a3 01 	call	0x346	; 0x346 <OneWire_Bit_Frame_Sample>
-  OneWire.BitCounter++;
-}
-
-
-uint8_t OneWire_Bit_Counter_Overflow(void){
-  if(OneWire.BitCounter >= ONEWIRE_FRAME_LEN){
- 500:	80 91 39 01 	lds	r24, 0x0139
- 504:	8c 30       	cpi	r24, 0x0C	; 12
- 506:	18 f4       	brcc	.+6      	; 0x50e <OneWire_Build_Bit_Frame+0x12>
- 508:	2f ef       	ldi	r18, 0xFF	; 255
- 50a:	3f ef       	ldi	r19, 0xFF	; 255
- 50c:	0e c0       	rjmp	.+28     	; 0x52a <OneWire_Build_Bit_Frame+0x2e>
-    OneWire.BitCounter = 0;
- 50e:	10 92 39 01 	sts	0x0139, r1
-	
-	OneWire.BitFrame = 0; ///////////////////////////////test
- 512:	10 92 36 01 	sts	0x0136, r1
- 516:	10 92 35 01 	sts	0x0135, r1
-
-uint16_t OneWire_Build_Bit_Frame(void){
-  uint16_t temp = 0xFFFF;
-  OneWire_Bit_Frame_Sample();
-  if(OneWire_Bit_Counter_Overflow() == 1){
-    temp = OneWire.BitFrame;
- 51a:	20 91 35 01 	lds	r18, 0x0135
- 51e:	30 91 36 01 	lds	r19, 0x0136
-	OneWire.BitFrame = 0;
- 522:	10 92 36 01 	sts	0x0136, r1
- 526:	10 92 35 01 	sts	0x0135, r1
-  }
-  return temp;
-}
- 52a:	c9 01       	movw	r24, r18
- 52c:	08 95       	ret
-
-0000052e <OneWire_Extract_Cmd_Data>:
-
-void OneWire_Extract_Cmd_Data(void){
-  uint16_t temp = OneWire_Build_Bit_Frame();
- 52e:	0e 94 7e 02 	call	0x4fc	; 0x4fc <OneWire_Build_Bit_Frame>
- 532:	9c 01       	movw	r18, r24
-  if(temp != 0xFFFF){
- 534:	8f ef       	ldi	r24, 0xFF	; 255
- 536:	2f 3f       	cpi	r18, 0xFF	; 255
- 538:	38 07       	cpc	r19, r24
- 53a:	b9 f0       	breq	.+46     	; 0x56a <OneWire_Extract_Cmd_Data+0x3c>
-    OneWire.RawBitFrame = temp;
- 53c:	30 93 38 01 	sts	0x0138, r19
- 540:	20 93 37 01 	sts	0x0137, r18
-	OneWire.CMD = temp & ONEWIRE_CMD_MASK;
- 544:	c9 01       	movw	r24, r18
- 546:	80 70       	andi	r24, 0x00	; 0
- 548:	97 70       	andi	r25, 0x07	; 7
- 54a:	90 93 3f 01 	sts	0x013F, r25
- 54e:	80 93 3e 01 	sts	0x013E, r24
-	OneWire.ACK = temp & ONEWIRE_ACK_MASK;
- 552:	82 2f       	mov	r24, r18
- 554:	81 70       	andi	r24, 0x01	; 1
- 556:	80 93 40 01 	sts	0x0140, r24
-	temp >>= 1;
- 55a:	36 95       	lsr	r19
- 55c:	27 95       	ror	r18
-	temp &= 0xFF;
-	OneWire.DataByte = temp;
- 55e:	30 70       	andi	r19, 0x00	; 0
- 560:	20 93 3d 01 	sts	0x013D, r18
-	OneWire.NewDataAvailable = 1;
- 564:	81 e0       	ldi	r24, 0x01	; 1
- 566:	80 93 41 01 	sts	0x0141, r24
- 56a:	08 95       	ret
-
-0000056c <OneWire_Handle_Data>:
-  }
-}
-
-void OneWire_Handle_Data(void){
-  OneWire_Extract_Cmd_Data();
- 56c:	0e 94 97 02 	call	0x52e	; 0x52e <OneWire_Extract_Cmd_Data>
-  if(OneWire.NewDataAvailable == 1){
- 570:	80 91 41 01 	lds	r24, 0x0141
- 574:	81 30       	cpi	r24, 0x01	; 1
- 576:	09 f0       	breq	.+2      	; 0x57a <OneWire_Handle_Data+0xe>
- 578:	50 c0       	rjmp	.+160    	; 0x61a <OneWire_Handle_Data+0xae>
-    if( (OneWire.RawBitFrame & 0xFFE)==0xFFE ){
- 57a:	80 91 37 01 	lds	r24, 0x0137
- 57e:	90 91 38 01 	lds	r25, 0x0138
- 582:	8e 7f       	andi	r24, 0xFE	; 254
- 584:	9f 70       	andi	r25, 0x0F	; 15
- 586:	8e 5f       	subi	r24, 0xFE	; 254
- 588:	9f 40       	sbci	r25, 0x0F	; 15
- 58a:	e1 f4       	brne	.+56     	; 0x5c4 <OneWire_Handle_Data+0x58>
-  OneWire.ACK = 0;
-  OneWire.NewDataAvailable = 0;
-}
-
-void OneWire_Flush_Bit_Frame(void){
-  OneWire.BitFrame = 0;
- 58c:	10 92 36 01 	sts	0x0136, r1
- 590:	10 92 35 01 	sts	0x0135, r1
-  OneWire.RawBitFrame = 0;
- 594:	10 92 38 01 	sts	0x0138, r1
- 598:	10 92 37 01 	sts	0x0137, r1
-  OneWire.BitCounter = 0;
- 59c:	10 92 39 01 	sts	0x0139, r1
-}
-
-void OneWire_Flush_Cmd_Reg(void){
-  OneWire.DataByte = 0;
- 5a0:	10 92 3d 01 	sts	0x013D, r1
-  OneWire.CMD = 0;
- 5a4:	10 92 3f 01 	sts	0x013F, r1
- 5a8:	10 92 3e 01 	sts	0x013E, r1
-  OneWire.ACK = 0;
- 5ac:	10 92 40 01 	sts	0x0140, r1
-  OneWire.NewDataAvailable = 0;
- 5b0:	10 92 41 01 	sts	0x0141, r1
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 5b4:	5c 9a       	sbi	0x0b, 4	; 11
- 5b6:	84 e0       	ldi	r24, 0x04	; 4
- 5b8:	98 2f       	mov	r25, r24
- 5ba:	9a 95       	dec	r25
- 5bc:	f1 f7       	brne	.-4      	; 0x5ba <OneWire_Handle_Data+0x4e>
+ 4c6:	8a 95       	dec	r24
+ 4c8:	f1 f7       	brne	.-4      	; 0x4c6 <OneWire_Bit_Frame_Sample+0x32>
   _delay_us(1);
   ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 5be:	5c 98       	cbi	0x0b, 4	; 11
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 5c0:	5c 9a       	sbi	0x0b, 4	; 11
- 5c2:	09 c0       	rjmp	.+18     	; 0x5d6 <OneWire_Handle_Data+0x6a>
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-    }
-    else if(OneWire.CMD == ONEWIRE_CMD_START){
- 5c4:	80 91 3e 01 	lds	r24, 0x013E
- 5c8:	90 91 3f 01 	lds	r25, 0x013F
- 5cc:	80 50       	subi	r24, 0x00	; 0
- 5ce:	96 40       	sbci	r25, 0x06	; 6
- 5d0:	41 f4       	brne	.+16     	; 0x5e2 <OneWire_Handle_Data+0x76>
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 5d2:	5c 9a       	sbi	0x0b, 4	; 11
- 5d4:	84 e0       	ldi	r24, 0x04	; 4
- 5d6:	98 2f       	mov	r25, r24
- 5d8:	9a 95       	dec	r25
- 5da:	f1 f7       	brne	.-4      	; 0x5d8 <OneWire_Handle_Data+0x6c>
-  _delay_us(1);
-  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 5dc:	5c 98       	cbi	0x0b, 4	; 11
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 5de:	5c 9a       	sbi	0x0b, 4	; 11
- 5e0:	08 c0       	rjmp	.+16     	; 0x5f2 <OneWire_Handle_Data+0x86>
-      //renew buf
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-    }
-    else if(OneWire.CMD == ONEWIRE_CMD_CONT){
- 5e2:	80 91 3e 01 	lds	r24, 0x013E
- 5e6:	90 91 3f 01 	lds	r25, 0x013F
- 5ea:	89 2b       	or	r24, r25
- 5ec:	41 f4       	brne	.+16     	; 0x5fe <OneWire_Handle_Data+0x92>
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 5ee:	5c 9a       	sbi	0x0b, 4	; 11
- 5f0:	84 e0       	ldi	r24, 0x04	; 4
- 5f2:	98 2f       	mov	r25, r24
- 5f4:	9a 95       	dec	r25
- 5f6:	f1 f7       	brne	.-4      	; 0x5f4 <OneWire_Handle_Data+0x88>
-  _delay_us(1);
-  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 5f8:	5c 98       	cbi	0x0b, 4	; 11
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 5fa:	5c 9a       	sbi	0x0b, 4	; 11
- 5fc:	09 c0       	rjmp	.+18     	; 0x610 <OneWire_Handle_Data+0xa4>
-    else if(OneWire.CMD == ONEWIRE_CMD_CONT){
-      //renew buf
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-    }
-    else if(OneWire.CMD == ONEWIRE_CMD_STOP){
- 5fe:	80 91 3e 01 	lds	r24, 0x013E
- 602:	90 91 3f 01 	lds	r25, 0x013F
- 606:	80 50       	subi	r24, 0x00	; 0
- 608:	93 40       	sbci	r25, 0x03	; 3
- 60a:	29 f4       	brne	.+10     	; 0x616 <OneWire_Handle_Data+0xaa>
-  #endif
-}
-
-void OneWire_Debug_Rx_Pulse(void){
-  #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
- 60c:	5c 9a       	sbi	0x0b, 4	; 11
- 60e:	84 e0       	ldi	r24, 0x04	; 4
- 610:	8a 95       	dec	r24
- 612:	f1 f7       	brne	.-4      	; 0x610 <OneWire_Handle_Data+0xa4>
-  _delay_us(1);
-  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
- 614:	5c 98       	cbi	0x0b, 4	; 11
-    }
-    else if(OneWire.CMD == ONEWIRE_CMD_STOP){
-      //renew buf
-	  OneWire_Debug_Rx_Pulse();
-    }
-	OneWire.NewDataAvailable = 0;
- 616:	10 92 41 01 	sts	0x0141, r1
- 61a:	08 95       	ret
-
-0000061c <OneWire_Buf_Sample_And_Update>:
-
-void OneWire_Buf_Sample_And_Update(void){
-/*  OneWire.FrameBuf[OneWire.FrameBufIndex] = OneWire.FrameVal;
-  OneWire.FrameVal = 0;
-  OneWire.FrameBufIndex++;*/
-}
- 61c:	08 95       	ret
-
-0000061e <OneWire_Buf_Counter_Overflow>:
-  }
-  else{
-    OneWire.FrameCounter++;
-	return 0;
-  }*/
-}
- 61e:	08 95       	ret
-
-00000620 <OneWire_Fill_Buf>:
-	OneWire.CmdVal = OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_RW_MASK;
-	OneWire.CmdValReg = (OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_REG_MASK)>>1;
-	OneWire_Flush_Frame_Buf();
+ 4ca:	5c 98       	cbi	0x0b, 4	; 11
+ 4cc:	3d c0       	rjmp	.+122    	; 0x548 <OneWire_Bit_Frame_Sample+0xb4>
 	OneWire_Debug_Rx_Pulse();
-  }*/
-}
- 620:	08 95       	ret
-
-00000622 <OneWire_Fill_Buf_Copy_Data>:
-	OneWire.CmdValReg = 0;
-	OneWire.FeedbackDataLoaded = 0;
-	OneWire.FeedbackCounter = 0;
-	OneWire_Debug_Rx_Pulse();
-  }*/
-}
- 622:	08 95       	ret
-
-00000624 <OneWire_Read_Mode_Feedback>:
-  OneWire.FeedbackData <<= 1;
-  OneWire_Delay_Half_Bit_Time();
-  OneWire_Delay_Half_Bit_Time();
-  OneWire_TRX_Set_Logic(1);
-  OneWire_TRX_Interrupt_Enable();*/
-}
- 624:	08 95       	ret
-
-00000626 <OneWire_Master_Send_Data>:
-	  temp = DataByte | (data[i]<<1);
-	}
-	OneWire_TRX_Byte(temp);
+	//maybe need to enable interrupt
   }
-  _delay_us(200);*/
-}
- 626:	08 95       	ret
-
-00000628 <OneWire_Master_Receive_Data>:
-  _delay_ms(1);
-  temp = OneWire_TRX_Byte(EndByte | (0xFF<<1));
-  temp >>= 1;
-  temp &= 0xFF;
-  return (uint8_t)temp;*/
-}
- 628:	08 95       	ret
-
-0000062a <__vector_5>:
-
-
-
-
-
-ISR(ONEWIRE_TRX_PCINT_VECT){
- 62a:	1f 92       	push	r1
- 62c:	0f 92       	push	r0
- 62e:	0f b6       	in	r0, 0x3f	; 63
- 630:	0f 92       	push	r0
- 632:	11 24       	eor	r1, r1
- 634:	2f 93       	push	r18
- 636:	3f 93       	push	r19
- 638:	4f 93       	push	r20
- 63a:	5f 93       	push	r21
- 63c:	6f 93       	push	r22
- 63e:	7f 93       	push	r23
- 640:	8f 93       	push	r24
- 642:	9f 93       	push	r25
- 644:	af 93       	push	r26
- 646:	bf 93       	push	r27
- 648:	ef 93       	push	r30
- 64a:	ff 93       	push	r31
-void OneWire_TRX_Interrupt_Disable(void){
-  ONEWIRE_TRX_PCMSK &=~(1<<ONEWIRE_TRX_BP);
+  //Regular bits to sample
+  else{
+    OneWire_Delay_Rx_Int();
+ 4ce:	0e 94 29 01 	call	0x252	; 0x252 <OneWire_Delay_Rx_Int>
+    OneWire.BitFrame <<= 1;
+ 4d2:	80 91 35 01 	lds	r24, 0x0135
+ 4d6:	90 91 36 01 	lds	r25, 0x0136
+ 4da:	88 0f       	add	r24, r24
+ 4dc:	99 1f       	adc	r25, r25
+ 4de:	90 93 36 01 	sts	0x0136, r25
+ 4e2:	80 93 35 01 	sts	0x0135, r24
+  #endif
 }
 
-uint8_t OneWire_TRX_Interrupt_Status(void){
-  if(ONEWIRE_TRX_PCMSK & (1<<ONEWIRE_TRX_BP)){
- 64c:	80 91 6d 00 	lds	r24, 0x006D
- 650:	86 ff       	sbrs	r24, 6
- 652:	0e c0       	rjmp	.+28     	; 0x670 <__vector_5+0x46>
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 4e6:	5c 9a       	sbi	0x0b, 4	; 11
+ 4e8:	84 e0       	ldi	r24, 0x04	; 4
+ 4ea:	8a 95       	dec	r24
+ 4ec:	f1 f7       	brne	.-4      	; 0x4ea <OneWire_Bit_Frame_Sample+0x56>
+  _delay_us(1);
+  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
+ 4ee:	5c 98       	cbi	0x0b, 4	; 11
+  //Regular bits to sample
+  else{
+    OneWire_Delay_Rx_Int();
+    OneWire.BitFrame <<= 1;
+    OneWire_Debug_Rx_Pulse();
+    OneWire.BitFrame |= OneWire_TRX_Get_Input_State();
+ 4f0:	20 91 35 01 	lds	r18, 0x0135
+ 4f4:	30 91 36 01 	lds	r19, 0x0136
     ONEWIRE_TRX_PORT |=  (1<<ONEWIRE_TRX_BP);
   }
 }
 
 uint8_t OneWire_TRX_Get_Input_State(void){
   if(ONEWIRE_TRX_PIN & (1<<ONEWIRE_TRX_BP)){
- 654:	4e 99       	sbic	0x09, 6	; 9
- 656:	0c c0       	rjmp	.+24     	; 0x670 <__vector_5+0x46>
-  //TRX Interrupt Fired
-  if( OneWire_TRX_Interrupt_Status() == 1){        
-	//Falling Edge Interrupt
-    if(OneWire_TRX_Falling_Edge_Interrupt() == 1){
-	  //handle frame bits and ack
-	  OneWire_Bit_Frame_Sample();
- 658:	0e 94 a3 01 	call	0x346	; 0x346 <OneWire_Bit_Frame_Sample>
+ 4f8:	89 b1       	in	r24, 0x09	; 9
+  //Regular bits to sample
+  else{
+    OneWire_Delay_Rx_Int();
+    OneWire.BitFrame <<= 1;
+    OneWire_Debug_Rx_Pulse();
+    OneWire.BitFrame |= OneWire_TRX_Get_Input_State();
+ 4fa:	90 e0       	ldi	r25, 0x00	; 0
+ 4fc:	46 e0       	ldi	r20, 0x06	; 6
+ 4fe:	96 95       	lsr	r25
+ 500:	87 95       	ror	r24
+ 502:	4a 95       	dec	r20
+ 504:	e1 f7       	brne	.-8      	; 0x4fe <OneWire_Bit_Frame_Sample+0x6a>
+ 506:	81 70       	andi	r24, 0x01	; 1
+ 508:	90 70       	andi	r25, 0x00	; 0
+ 50a:	82 2b       	or	r24, r18
+ 50c:	93 2b       	or	r25, r19
+ 50e:	90 93 36 01 	sts	0x0136, r25
+ 512:	80 93 35 01 	sts	0x0135, r24
+	
+	if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-2)){
+ 516:	80 91 39 01 	lds	r24, 0x0139
+ 51a:	8a 30       	cpi	r24, 0x0A	; 10
+ 51c:	a9 f4       	brne	.+42     	; 0x548 <OneWire_Bit_Frame_Sample+0xb4>
+	  OneWire.CMD     = OneWire.BitFrame & ONEWIRE_CMD_MASK;
+ 51e:	80 91 35 01 	lds	r24, 0x0135
+ 522:	90 91 36 01 	lds	r25, 0x0136
+ 526:	80 70       	andi	r24, 0x00	; 0
+ 528:	97 70       	andi	r25, 0x07	; 7
+ 52a:	90 93 3d 01 	sts	0x013D, r25
+ 52e:	80 93 3c 01 	sts	0x013C, r24
+	  OneWire.RegData = OneWire.BitFrame & ONEWIRE_DATA_MASK;
+ 532:	80 91 35 01 	lds	r24, 0x0135
+ 536:	90 91 36 01 	lds	r25, 0x0136
+ 53a:	90 70       	andi	r25, 0x00	; 0
+ 53c:	90 93 41 01 	sts	0x0141, r25
+ 540:	80 93 40 01 	sts	0x0140, r24
+	  OneWire_Handle_Cmd_Data();
+ 544:	0e 94 a7 01 	call	0x34e	; 0x34e <OneWire_Handle_Cmd_Data>
+	}
+	
+  }
+  OneWire.BitCounter++;
+ 548:	80 91 39 01 	lds	r24, 0x0139
+ 54c:	8f 5f       	subi	r24, 0xFF	; 255
+ 54e:	80 93 39 01 	sts	0x0139, r24
+}
+ 552:	08 95       	ret
+
+00000554 <OneWire_Bit_Counter_Overflow>:
+
+
+uint8_t OneWire_Bit_Counter_Overflow(void){
+  if(OneWire.BitCounter >= ONEWIRE_FRAME_LEN){
+ 554:	80 91 39 01 	lds	r24, 0x0139
+ 558:	8c 30       	cpi	r24, 0x0C	; 12
+ 55a:	10 f4       	brcc	.+4      	; 0x560 <OneWire_Bit_Counter_Overflow+0xc>
+ 55c:	80 e0       	ldi	r24, 0x00	; 0
+ 55e:	08 95       	ret
+    OneWire.BitCounter = 0;
+ 560:	10 92 39 01 	sts	0x0139, r1
+	
+	OneWire.BitFrame = 0; ///////////////////////////////test
+ 564:	10 92 36 01 	sts	0x0136, r1
+ 568:	10 92 35 01 	sts	0x0135, r1
+ 56c:	81 e0       	ldi	r24, 0x01	; 1
+	return 1;
+  }
+  else{
+    return 0;
+  }
+}
+ 56e:	08 95       	ret
+
+00000570 <OneWire_Build_Bit_Frame>:
+
+
+uint16_t OneWire_Build_Bit_Frame(void){
+  uint16_t temp = 0xFFFF;
+  OneWire_Bit_Frame_Sample();
+ 570:	0e 94 4a 02 	call	0x494	; 0x494 <OneWire_Bit_Frame_Sample>
   OneWire.BitCounter++;
 }
 
 
 uint8_t OneWire_Bit_Counter_Overflow(void){
   if(OneWire.BitCounter >= ONEWIRE_FRAME_LEN){
- 65c:	80 91 39 01 	lds	r24, 0x0139
- 660:	8c 30       	cpi	r24, 0x0C	; 12
- 662:	30 f0       	brcs	.+12     	; 0x670 <__vector_5+0x46>
+ 574:	80 91 39 01 	lds	r24, 0x0139
+ 578:	8c 30       	cpi	r24, 0x0C	; 12
+ 57a:	18 f4       	brcc	.+6      	; 0x582 <OneWire_Build_Bit_Frame+0x12>
+ 57c:	2f ef       	ldi	r18, 0xFF	; 255
+ 57e:	3f ef       	ldi	r19, 0xFF	; 255
+ 580:	0e c0       	rjmp	.+28     	; 0x59e <OneWire_Build_Bit_Frame+0x2e>
     OneWire.BitCounter = 0;
- 664:	10 92 39 01 	sts	0x0139, r1
+ 582:	10 92 39 01 	sts	0x0139, r1
 	
 	OneWire.BitFrame = 0; ///////////////////////////////test
- 668:	10 92 36 01 	sts	0x0136, r1
- 66c:	10 92 35 01 	sts	0x0135, r1
+ 586:	10 92 36 01 	sts	0x0136, r1
+ 58a:	10 92 35 01 	sts	0x0135, r1
+
+uint16_t OneWire_Build_Bit_Frame(void){
+  uint16_t temp = 0xFFFF;
+  OneWire_Bit_Frame_Sample();
+  if(OneWire_Bit_Counter_Overflow() == 1){
+    temp = OneWire.BitFrame;
+ 58e:	20 91 35 01 	lds	r18, 0x0135
+ 592:	30 91 36 01 	lds	r19, 0x0136
+	OneWire.BitFrame = 0;
+ 596:	10 92 36 01 	sts	0x0136, r1
+ 59a:	10 92 35 01 	sts	0x0135, r1
+  }
+  return temp;
+}
+ 59e:	c9 01       	movw	r24, r18
+ 5a0:	08 95       	ret
+
+000005a2 <OneWire_Extract_Cmd_Data>:
+
+void OneWire_Extract_Cmd_Data(void){
+  uint16_t temp = OneWire_Build_Bit_Frame();
+ 5a2:	0e 94 b8 02 	call	0x570	; 0x570 <OneWire_Build_Bit_Frame>
+ 5a6:	9c 01       	movw	r18, r24
+  if(temp != 0xFFFF){
+ 5a8:	8f ef       	ldi	r24, 0xFF	; 255
+ 5aa:	2f 3f       	cpi	r18, 0xFF	; 255
+ 5ac:	38 07       	cpc	r19, r24
+ 5ae:	c9 f0       	breq	.+50     	; 0x5e2 <OneWire_Extract_Cmd_Data+0x40>
+    OneWire.RawBitFrame = temp;
+ 5b0:	30 93 38 01 	sts	0x0138, r19
+ 5b4:	20 93 37 01 	sts	0x0137, r18
+	OneWire.CMD = temp & ONEWIRE_CMD_MASK;
+ 5b8:	c9 01       	movw	r24, r18
+ 5ba:	80 70       	andi	r24, 0x00	; 0
+ 5bc:	97 70       	andi	r25, 0x07	; 7
+ 5be:	90 93 3d 01 	sts	0x013D, r25
+ 5c2:	80 93 3c 01 	sts	0x013C, r24
+	OneWire.ACK = temp & ONEWIRE_ACK_MASK;
+ 5c6:	82 2f       	mov	r24, r18
+ 5c8:	81 70       	andi	r24, 0x01	; 1
+ 5ca:	80 93 42 01 	sts	0x0142, r24
+	temp >>= 1;
+ 5ce:	36 95       	lsr	r19
+ 5d0:	27 95       	ror	r18
+	temp &= 0xFF;
+ 5d2:	30 70       	andi	r19, 0x00	; 0
+	OneWire.RegData = temp;
+ 5d4:	30 93 41 01 	sts	0x0141, r19
+ 5d8:	20 93 40 01 	sts	0x0140, r18
+	OneWire.NewDataAvailable = 1;
+ 5dc:	81 e0       	ldi	r24, 0x01	; 1
+ 5de:	80 93 43 01 	sts	0x0143, r24
+ 5e2:	08 95       	ret
+
+000005e4 <OneWire_Handle_Data>:
+  }
+}
+
+void OneWire_Handle_Data(void){
+  OneWire_Extract_Cmd_Data();
+ 5e4:	0e 94 d1 02 	call	0x5a2	; 0x5a2 <OneWire_Extract_Cmd_Data>
+  if(OneWire.NewDataAvailable == 1){
+ 5e8:	80 91 43 01 	lds	r24, 0x0143
+ 5ec:	81 30       	cpi	r24, 0x01	; 1
+ 5ee:	09 f0       	breq	.+2      	; 0x5f2 <OneWire_Handle_Data+0xe>
+ 5f0:	52 c0       	rjmp	.+164    	; 0x696 <OneWire_Handle_Data+0xb2>
+    if( (OneWire.RawBitFrame & 0xFFE)==0xFFE ){
+ 5f2:	80 91 37 01 	lds	r24, 0x0137
+ 5f6:	90 91 38 01 	lds	r25, 0x0138
+ 5fa:	8e 7f       	andi	r24, 0xFE	; 254
+ 5fc:	9f 70       	andi	r25, 0x0F	; 15
+ 5fe:	8e 5f       	subi	r24, 0xFE	; 254
+ 600:	9f 40       	sbci	r25, 0x0F	; 15
+ 602:	f1 f4       	brne	.+60     	; 0x640 <OneWire_Handle_Data+0x5c>
+  OneWire.ACK = 0;
+  OneWire.NewDataAvailable = 0;
+}
+
+void OneWire_Flush_Bit_Frame(void){
+  OneWire.BitFrame = 0;
+ 604:	10 92 36 01 	sts	0x0136, r1
+ 608:	10 92 35 01 	sts	0x0135, r1
+  OneWire.RawBitFrame = 0;
+ 60c:	10 92 38 01 	sts	0x0138, r1
+ 610:	10 92 37 01 	sts	0x0137, r1
+  OneWire.BitCounter = 0;
+ 614:	10 92 39 01 	sts	0x0139, r1
+}
+
+void OneWire_Flush_Cmd_Reg(void){
+  OneWire.RegData = 0;
+ 618:	10 92 41 01 	sts	0x0141, r1
+ 61c:	10 92 40 01 	sts	0x0140, r1
+  OneWire.CMD = 0;
+ 620:	10 92 3d 01 	sts	0x013D, r1
+ 624:	10 92 3c 01 	sts	0x013C, r1
+  OneWire.ACK = 0;
+ 628:	10 92 42 01 	sts	0x0142, r1
+  OneWire.NewDataAvailable = 0;
+ 62c:	10 92 43 01 	sts	0x0143, r1
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 630:	5c 9a       	sbi	0x0b, 4	; 11
+ 632:	84 e0       	ldi	r24, 0x04	; 4
+ 634:	98 2f       	mov	r25, r24
+ 636:	9a 95       	dec	r25
+ 638:	f1 f7       	brne	.-4      	; 0x636 <OneWire_Handle_Data+0x52>
+  _delay_us(1);
+  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
+ 63a:	5c 98       	cbi	0x0b, 4	; 11
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 63c:	5c 9a       	sbi	0x0b, 4	; 11
+ 63e:	09 c0       	rjmp	.+18     	; 0x652 <OneWire_Handle_Data+0x6e>
+	  OneWire_Debug_Rx_Pulse();
+	  OneWire_Debug_Rx_Pulse();
+	  OneWire_Debug_Rx_Pulse();
+	  OneWire_Debug_Rx_Pulse();
+    }
+    else if(OneWire.CMD == ONEWIRE_CMD_START){
+ 640:	80 91 3c 01 	lds	r24, 0x013C
+ 644:	90 91 3d 01 	lds	r25, 0x013D
+ 648:	80 50       	subi	r24, 0x00	; 0
+ 64a:	96 40       	sbci	r25, 0x06	; 6
+ 64c:	41 f4       	brne	.+16     	; 0x65e <OneWire_Handle_Data+0x7a>
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 64e:	5c 9a       	sbi	0x0b, 4	; 11
+ 650:	84 e0       	ldi	r24, 0x04	; 4
+ 652:	98 2f       	mov	r25, r24
+ 654:	9a 95       	dec	r25
+ 656:	f1 f7       	brne	.-4      	; 0x654 <OneWire_Handle_Data+0x70>
+  _delay_us(1);
+  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
+ 658:	5c 98       	cbi	0x0b, 4	; 11
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 65a:	5c 9a       	sbi	0x0b, 4	; 11
+ 65c:	08 c0       	rjmp	.+16     	; 0x66e <OneWire_Handle_Data+0x8a>
+      //renew buf
+	  OneWire_Debug_Rx_Pulse();
+	  OneWire_Debug_Rx_Pulse();
+	  OneWire_Debug_Rx_Pulse();
+    }
+    else if(OneWire.CMD == ONEWIRE_CMD_CONT){
+ 65e:	80 91 3c 01 	lds	r24, 0x013C
+ 662:	90 91 3d 01 	lds	r25, 0x013D
+ 666:	89 2b       	or	r24, r25
+ 668:	41 f4       	brne	.+16     	; 0x67a <OneWire_Handle_Data+0x96>
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 66a:	5c 9a       	sbi	0x0b, 4	; 11
+ 66c:	84 e0       	ldi	r24, 0x04	; 4
+ 66e:	98 2f       	mov	r25, r24
+ 670:	9a 95       	dec	r25
+ 672:	f1 f7       	brne	.-4      	; 0x670 <OneWire_Handle_Data+0x8c>
+  _delay_us(1);
+  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
+ 674:	5c 98       	cbi	0x0b, 4	; 11
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 676:	5c 9a       	sbi	0x0b, 4	; 11
+ 678:	09 c0       	rjmp	.+18     	; 0x68c <OneWire_Handle_Data+0xa8>
+    else if(OneWire.CMD == ONEWIRE_CMD_CONT){
+      //renew buf
+	  OneWire_Debug_Rx_Pulse();
+	  OneWire_Debug_Rx_Pulse();
+    }
+    else if(OneWire.CMD == ONEWIRE_CMD_STOP){
+ 67a:	80 91 3c 01 	lds	r24, 0x013C
+ 67e:	90 91 3d 01 	lds	r25, 0x013D
+ 682:	80 50       	subi	r24, 0x00	; 0
+ 684:	93 40       	sbci	r25, 0x03	; 3
+ 686:	29 f4       	brne	.+10     	; 0x692 <OneWire_Handle_Data+0xae>
+  #endif
+}
+
+void OneWire_Debug_Rx_Pulse(void){
+  #ifdef ONEWIRE_DBGRX_ENABLE
+  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+ 688:	5c 9a       	sbi	0x0b, 4	; 11
+ 68a:	84 e0       	ldi	r24, 0x04	; 4
+ 68c:	8a 95       	dec	r24
+ 68e:	f1 f7       	brne	.-4      	; 0x68c <OneWire_Handle_Data+0xa8>
+  _delay_us(1);
+  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
+ 690:	5c 98       	cbi	0x0b, 4	; 11
+    }
+    else if(OneWire.CMD == ONEWIRE_CMD_STOP){
+      //renew buf
+	  OneWire_Debug_Rx_Pulse();
+    }
+	OneWire.NewDataAvailable = 0;
+ 692:	10 92 43 01 	sts	0x0143, r1
+ 696:	08 95       	ret
+
+00000698 <OneWire_Buf_Sample_And_Update>:
+
+void OneWire_Buf_Sample_And_Update(void){
+/*  OneWire.FrameBuf[OneWire.FrameBufIndex] = OneWire.FrameVal;
+  OneWire.FrameVal = 0;
+  OneWire.FrameBufIndex++;*/
+}
+ 698:	08 95       	ret
+
+0000069a <OneWire_Buf_Counter_Overflow>:
+  }
+  else{
+    OneWire.FrameCounter++;
+	return 0;
+  }*/
+}
+ 69a:	08 95       	ret
+
+0000069c <OneWire_Fill_Buf>:
+	OneWire.CmdVal = OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_RW_MASK;
+	OneWire.CmdValReg = (OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_REG_MASK)>>1;
+	OneWire_Flush_Frame_Buf();
+	OneWire_Debug_Rx_Pulse();
+  }*/
+}
+ 69c:	08 95       	ret
+
+0000069e <OneWire_Fill_Buf_Copy_Data>:
+	OneWire.CmdValReg = 0;
+	OneWire.FeedbackDataLoaded = 0;
+	OneWire.FeedbackCounter = 0;
+	OneWire_Debug_Rx_Pulse();
+  }*/
+}
+ 69e:	08 95       	ret
+
+000006a0 <OneWire_Read_Mode_Feedback>:
+  OneWire.FeedbackData <<= 1;
+  OneWire_Delay_Half_Bit_Time();
+  OneWire_Delay_Half_Bit_Time();
+  OneWire_TRX_Set_Logic(1);
+  OneWire_TRX_Interrupt_Enable();*/
+}
+ 6a0:	08 95       	ret
+
+000006a2 <OneWire_Master_Send_Data>:
+	  temp = DataByte | (data[i]<<1);
+	}
+	OneWire_TRX_Byte(temp);
+  }
+  _delay_us(200);*/
+}
+ 6a2:	08 95       	ret
+
+000006a4 <OneWire_Master_Receive_Data>:
+  _delay_ms(1);
+  temp = OneWire_TRX_Byte(EndByte | (0xFF<<1));
+  temp >>= 1;
+  temp &= 0xFF;
+  return (uint8_t)temp;*/
+}
+ 6a4:	08 95       	ret
+
+000006a6 <__vector_5>:
+
+
+
+
+
+ISR(ONEWIRE_TRX_PCINT_VECT){
+ 6a6:	1f 92       	push	r1
+ 6a8:	0f 92       	push	r0
+ 6aa:	0f b6       	in	r0, 0x3f	; 63
+ 6ac:	0f 92       	push	r0
+ 6ae:	11 24       	eor	r1, r1
+ 6b0:	2f 93       	push	r18
+ 6b2:	3f 93       	push	r19
+ 6b4:	4f 93       	push	r20
+ 6b6:	5f 93       	push	r21
+ 6b8:	6f 93       	push	r22
+ 6ba:	7f 93       	push	r23
+ 6bc:	8f 93       	push	r24
+ 6be:	9f 93       	push	r25
+ 6c0:	af 93       	push	r26
+ 6c2:	bf 93       	push	r27
+ 6c4:	ef 93       	push	r30
+ 6c6:	ff 93       	push	r31
+void OneWire_TRX_Interrupt_Disable(void){
+  ONEWIRE_TRX_PCMSK &=~(1<<ONEWIRE_TRX_BP);
+}
+
+uint8_t OneWire_TRX_Interrupt_Status(void){
+  if(ONEWIRE_TRX_PCMSK & (1<<ONEWIRE_TRX_BP)){
+ 6c8:	80 91 6d 00 	lds	r24, 0x006D
+ 6cc:	86 ff       	sbrs	r24, 6
+ 6ce:	0e c0       	rjmp	.+28     	; 0x6ec <__vector_5+0x46>
+    ONEWIRE_TRX_PORT |=  (1<<ONEWIRE_TRX_BP);
+  }
+}
+
+uint8_t OneWire_TRX_Get_Input_State(void){
+  if(ONEWIRE_TRX_PIN & (1<<ONEWIRE_TRX_BP)){
+ 6d0:	4e 99       	sbic	0x09, 6	; 9
+ 6d2:	0c c0       	rjmp	.+24     	; 0x6ec <__vector_5+0x46>
+  //TRX Interrupt Fired
+  if( OneWire_TRX_Interrupt_Status() == 1){        
+	//Falling Edge Interrupt
+    if(OneWire_TRX_Falling_Edge_Interrupt() == 1){
+	  //handle frame bits and ack
+	  OneWire_Bit_Frame_Sample();
+ 6d4:	0e 94 4a 02 	call	0x494	; 0x494 <OneWire_Bit_Frame_Sample>
+  OneWire.BitCounter++;
+}
+
+
+uint8_t OneWire_Bit_Counter_Overflow(void){
+  if(OneWire.BitCounter >= ONEWIRE_FRAME_LEN){
+ 6d8:	80 91 39 01 	lds	r24, 0x0139
+ 6dc:	8c 30       	cpi	r24, 0x0C	; 12
+ 6de:	30 f0       	brcs	.+12     	; 0x6ec <__vector_5+0x46>
+    OneWire.BitCounter = 0;
+ 6e0:	10 92 39 01 	sts	0x0139, r1
+	
+	OneWire.BitFrame = 0; ///////////////////////////////test
+ 6e4:	10 92 36 01 	sts	0x0136, r1
+ 6e8:	10 92 35 01 	sts	0x0135, r1
 	  //handle frame bits and ack
 	  OneWire_Bit_Frame_Sample();
 	  OneWire_Bit_Counter_Overflow();
 	}
   }
 }
- 670:	ff 91       	pop	r31
- 672:	ef 91       	pop	r30
- 674:	bf 91       	pop	r27
- 676:	af 91       	pop	r26
- 678:	9f 91       	pop	r25
- 67a:	8f 91       	pop	r24
- 67c:	7f 91       	pop	r23
- 67e:	6f 91       	pop	r22
- 680:	5f 91       	pop	r21
- 682:	4f 91       	pop	r20
- 684:	3f 91       	pop	r19
- 686:	2f 91       	pop	r18
- 688:	0f 90       	pop	r0
- 68a:	0f be       	out	0x3f, r0	; 63
- 68c:	0f 90       	pop	r0
- 68e:	1f 90       	pop	r1
- 690:	18 95       	reti
+ 6ec:	ff 91       	pop	r31
+ 6ee:	ef 91       	pop	r30
+ 6f0:	bf 91       	pop	r27
+ 6f2:	af 91       	pop	r26
+ 6f4:	9f 91       	pop	r25
+ 6f6:	8f 91       	pop	r24
+ 6f8:	7f 91       	pop	r23
+ 6fa:	6f 91       	pop	r22
+ 6fc:	5f 91       	pop	r21
+ 6fe:	4f 91       	pop	r20
+ 700:	3f 91       	pop	r19
+ 702:	2f 91       	pop	r18
+ 704:	0f 90       	pop	r0
+ 706:	0f be       	out	0x3f, r0	; 63
+ 708:	0f 90       	pop	r0
+ 70a:	1f 90       	pop	r1
+ 70c:	18 95       	reti
 
-00000692 <OneWire_Get_Data_Buf>:
+0000070e <OneWire_Get_Data_Buf>:
 
 
 
 
 uint8_t OneWire_Get_Data_Buf(uint8_t index){
   return OneWire.DataBuf[index];
- 692:	e5 e3       	ldi	r30, 0x35	; 53
- 694:	f1 e0       	ldi	r31, 0x01	; 1
- 696:	e8 0f       	add	r30, r24
- 698:	f1 1d       	adc	r31, r1
- 69a:	85 85       	ldd	r24, Z+13	; 0x0d
+ 70e:	e5 e3       	ldi	r30, 0x35	; 53
+ 710:	f1 e0       	ldi	r31, 0x01	; 1
+ 712:	e8 0f       	add	r30, r24
+ 714:	f1 1d       	adc	r31, r1
+ 716:	87 85       	ldd	r24, Z+15	; 0x0f
 }
- 69c:	08 95       	ret
+ 718:	08 95       	ret
 
-0000069e <OneWire_Get_Data_Buf_Index>:
+0000071a <OneWire_Get_Data_Buf_Index>:
 
 uint8_t OneWire_Get_Data_Buf_Index(void){
   return OneWire.DataBufCounter;
- 69e:	80 91 d8 01 	lds	r24, 0x01D8
+ 71a:	80 91 da 01 	lds	r24, 0x01DA
 }
- 6a2:	08 95       	ret
+ 71e:	08 95       	ret
 
-000006a4 <OneWire_Init_Master>:
+00000720 <OneWire_Init_Master>:
 
 
 
 
 void OneWire_Init_Master(void){
   OneWire_Struct_Init();
- 6a4:	0e 94 85 00 	call	0x10a	; 0x10a <OneWire_Struct_Init>
+ 720:	0e 94 85 00 	call	0x10a	; 0x10a <OneWire_Struct_Init>
   OneWire_TRX_GPIO_Init();
- 6a8:	0e 94 dc 00 	call	0x1b8	; 0x1b8 <OneWire_TRX_GPIO_Init>
+ 724:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <OneWire_TRX_GPIO_Init>
   OneWire_TRX_Interrupt_Init();
- 6ac:	0e 94 e2 00 	call	0x1c4	; 0x1c4 <OneWire_TRX_Interrupt_Init>
+ 728:	0e 94 e6 00 	call	0x1cc	; 0x1cc <OneWire_TRX_Interrupt_Init>
 void OneWire_TRX_Interrupt_Enable(void){
   ONEWIRE_TRX_PCMSK |= (1<<ONEWIRE_TRX_BP);
 }
 
 void OneWire_TRX_Interrupt_Disable(void){
   ONEWIRE_TRX_PCMSK &=~(1<<ONEWIRE_TRX_BP);
- 6b0:	ed e6       	ldi	r30, 0x6D	; 109
- 6b2:	f0 e0       	ldi	r31, 0x00	; 0
- 6b4:	80 81       	ld	r24, Z
- 6b6:	8f 7b       	andi	r24, 0xBF	; 191
- 6b8:	80 83       	st	Z, r24
+ 72c:	ed e6       	ldi	r30, 0x6D	; 109
+ 72e:	f0 e0       	ldi	r31, 0x00	; 0
+ 730:	80 81       	ld	r24, Z
+ 732:	8f 7b       	andi	r24, 0xBF	; 191
+ 734:	80 83       	st	Z, r24
 void OneWire_Init_Master(void){
   OneWire_Struct_Init();
   OneWire_TRX_GPIO_Init();
   OneWire_TRX_Interrupt_Init();
   OneWire_TRX_Interrupt_Disable();
 }
- 6ba:	08 95       	ret
+ 736:	08 95       	ret
 
-000006bc <OneWire_Init_Slave>:
+00000738 <OneWire_Init_Slave>:
 
 void OneWire_Init_Slave(void){
   OneWire_Struct_Init();
- 6bc:	0e 94 85 00 	call	0x10a	; 0x10a <OneWire_Struct_Init>
+ 738:	0e 94 85 00 	call	0x10a	; 0x10a <OneWire_Struct_Init>
   OneWire_TRX_GPIO_Init();
- 6c0:	0e 94 dc 00 	call	0x1b8	; 0x1b8 <OneWire_TRX_GPIO_Init>
+ 73c:	0e 94 e0 00 	call	0x1c0	; 0x1c0 <OneWire_TRX_GPIO_Init>
   OneWire_TRX_Interrupt_Init();
- 6c4:	0e 94 e2 00 	call	0x1c4	; 0x1c4 <OneWire_TRX_Interrupt_Init>
+ 740:	0e 94 e6 00 	call	0x1cc	; 0x1cc <OneWire_TRX_Interrupt_Init>
 }
 
 
 
 void OneWire_TRX_Interrupt_Enable(void){
   ONEWIRE_TRX_PCMSK |= (1<<ONEWIRE_TRX_BP);
- 6c8:	ed e6       	ldi	r30, 0x6D	; 109
- 6ca:	f0 e0       	ldi	r31, 0x00	; 0
- 6cc:	80 81       	ld	r24, Z
- 6ce:	80 64       	ori	r24, 0x40	; 64
- 6d0:	80 83       	st	Z, r24
+ 744:	ed e6       	ldi	r30, 0x6D	; 109
+ 746:	f0 e0       	ldi	r31, 0x00	; 0
+ 748:	80 81       	ld	r24, Z
+ 74a:	80 64       	ori	r24, 0x40	; 64
+ 74c:	80 83       	st	Z, r24
 void OneWire_Init_Slave(void){
   OneWire_Struct_Init();
   OneWire_TRX_GPIO_Init();
   OneWire_TRX_Interrupt_Init();
   OneWire_TRX_Interrupt_Enable();
- 6d2:	08 95       	ret
+ 74e:	08 95       	ret
 
-000006d4 <UART_Struct_Init>:
+00000750 <UART_Struct_Init>:
 
 
 
 
 void UART_Struct_Init(void){
   UART.Error=0;
- 6d4:	10 92 06 01 	sts	0x0106, r1
- 6d8:	e7 e0       	ldi	r30, 0x07	; 7
- 6da:	f1 e0       	ldi	r31, 0x01	; 1
+ 750:	10 92 06 01 	sts	0x0106, r1
+ 754:	e7 e0       	ldi	r30, 0x07	; 7
+ 756:	f1 e0       	ldi	r31, 0x01	; 1
   for(uint8_t i=0;i<8;i++){
     UART.Digits[i]=0;
- 6dc:	11 92       	st	Z+, r1
+ 758:	11 92       	st	Z+, r1
 
 
 
 void UART_Struct_Init(void){
   UART.Error=0;
   for(uint8_t i=0;i<8;i++){
- 6de:	81 e0       	ldi	r24, 0x01	; 1
- 6e0:	ef 30       	cpi	r30, 0x0F	; 15
- 6e2:	f8 07       	cpc	r31, r24
- 6e4:	d9 f7       	brne	.-10     	; 0x6dc <UART_Struct_Init+0x8>
+ 75a:	81 e0       	ldi	r24, 0x01	; 1
+ 75c:	ef 30       	cpi	r30, 0x0F	; 15
+ 75e:	f8 07       	cpc	r31, r24
+ 760:	d9 f7       	brne	.-10     	; 0x758 <UART_Struct_Init+0x8>
     UART.Digits[i]=0;
   }
   UART.InputNumberDigits=0;
- 6e6:	10 82       	st	Z, r1
+ 762:	10 82       	st	Z, r1
     
   #ifdef UART_ENABLE_RX_INT
   UART.LastByteReceived=0;
- 6e8:	11 82       	std	Z+1, r1	; 0x01
+ 764:	11 82       	std	Z+1, r1	; 0x01
   UART.BufferSize=UART_BUFFER_SIZE;
- 6ea:	80 e2       	ldi	r24, 0x20	; 32
- 6ec:	90 e0       	ldi	r25, 0x00	; 0
- 6ee:	93 a3       	std	Z+35, r25	; 0x23
- 6f0:	82 a3       	std	Z+34, r24	; 0x22
+ 766:	80 e2       	ldi	r24, 0x20	; 32
+ 768:	90 e0       	ldi	r25, 0x00	; 0
+ 76a:	93 a3       	std	Z+35, r25	; 0x23
+ 76c:	82 a3       	std	Z+34, r24	; 0x22
   UART.BufferIndex=0;
- 6f2:	15 a2       	std	Z+37, r1	; 0x25
- 6f4:	14 a2       	std	Z+36, r1	; 0x24
- 6f6:	20 e0       	ldi	r18, 0x00	; 0
- 6f8:	04 c0       	rjmp	.+8      	; 0x702 <UART_Struct_Init+0x2e>
+ 76e:	15 a2       	std	Z+37, r1	; 0x25
+ 770:	14 a2       	std	Z+36, r1	; 0x24
+ 772:	20 e0       	ldi	r18, 0x00	; 0
+ 774:	04 c0       	rjmp	.+8      	; 0x77e <UART_Struct_Init+0x2e>
   for(uint8_t i=0;i<UART.BufferSize;i++){
     UART.Buffer[i]=0;
- 6fa:	ea 5f       	subi	r30, 0xFA	; 250
- 6fc:	fe 4f       	sbci	r31, 0xFE	; 254
- 6fe:	13 86       	std	Z+11, r1	; 0x0b
+ 776:	ea 5f       	subi	r30, 0xFA	; 250
+ 778:	fe 4f       	sbci	r31, 0xFE	; 254
+ 77a:	13 86       	std	Z+11, r1	; 0x0b
     
   #ifdef UART_ENABLE_RX_INT
   UART.LastByteReceived=0;
   UART.BufferSize=UART_BUFFER_SIZE;
   UART.BufferIndex=0;
   for(uint8_t i=0;i<UART.BufferSize;i++){
- 700:	2f 5f       	subi	r18, 0xFF	; 255
- 702:	80 91 31 01 	lds	r24, 0x0131
- 706:	90 91 32 01 	lds	r25, 0x0132
- 70a:	e2 2f       	mov	r30, r18
- 70c:	f0 e0       	ldi	r31, 0x00	; 0
- 70e:	e8 17       	cp	r30, r24
- 710:	f9 07       	cpc	r31, r25
- 712:	98 f3       	brcs	.-26     	; 0x6fa <UART_Struct_Init+0x26>
+ 77c:	2f 5f       	subi	r18, 0xFF	; 255
+ 77e:	80 91 31 01 	lds	r24, 0x0131
+ 782:	90 91 32 01 	lds	r25, 0x0132
+ 786:	e2 2f       	mov	r30, r18
+ 788:	f0 e0       	ldi	r31, 0x00	; 0
+ 78a:	e8 17       	cp	r30, r24
+ 78c:	f9 07       	cpc	r31, r25
+ 78e:	98 f3       	brcs	.-26     	; 0x776 <UART_Struct_Init+0x26>
     UART.Buffer[i]=0;
   }
   #endif
   
 }
- 714:	08 95       	ret
+ 790:	08 95       	ret
 
-00000716 <UART_Config_GPIO>:
+00000792 <UART_Config_GPIO>:
 
 
 void UART_Config_GPIO(void){
 	
 }
- 716:	08 95       	ret
+ 792:	08 95       	ret
 
-00000718 <UART_Config_Clock>:
+00000794 <UART_Config_Clock>:
 
 void UART_Config_Clock(void){
   
 }
- 718:	08 95       	ret
+ 794:	08 95       	ret
 
-0000071a <UART_Config_BAUD_Rate>:
+00000796 <UART_Config_BAUD_Rate>:
 
 void UART_Config_BAUD_Rate(uint32_t baud_rate){
- 71a:	9b 01       	movw	r18, r22
- 71c:	ac 01       	movw	r20, r24
+ 796:	9b 01       	movw	r18, r22
+ 798:	ac 01       	movw	r20, r24
   #ifdef UART_DOUBLE_SPEED
   uint32_t UBRR_VAL = ((F_CPU/8)/baud_rate)-1 ;
- 71e:	60 e6       	ldi	r22, 0x60	; 96
- 720:	73 ee       	ldi	r23, 0xE3	; 227
- 722:	86 e1       	ldi	r24, 0x16	; 22
- 724:	90 e0       	ldi	r25, 0x00	; 0
- 726:	0e 94 d1 05 	call	0xba2	; 0xba2 <__udivmodsi4>
- 72a:	21 50       	subi	r18, 0x01	; 1
- 72c:	30 40       	sbci	r19, 0x00	; 0
- 72e:	40 40       	sbci	r20, 0x00	; 0
- 730:	50 40       	sbci	r21, 0x00	; 0
+ 79a:	60 e6       	ldi	r22, 0x60	; 96
+ 79c:	73 ee       	ldi	r23, 0xE3	; 227
+ 79e:	86 e1       	ldi	r24, 0x16	; 22
+ 7a0:	90 e0       	ldi	r25, 0x00	; 0
+ 7a2:	0e 94 0f 06 	call	0xc1e	; 0xc1e <__udivmodsi4>
+ 7a6:	21 50       	subi	r18, 0x01	; 1
+ 7a8:	30 40       	sbci	r19, 0x00	; 0
+ 7aa:	40 40       	sbci	r20, 0x00	; 0
+ 7ac:	50 40       	sbci	r21, 0x00	; 0
   UCSR0A|=(1<<U2X0);  
- 732:	e0 ec       	ldi	r30, 0xC0	; 192
- 734:	f0 e0       	ldi	r31, 0x00	; 0
- 736:	80 81       	ld	r24, Z
- 738:	82 60       	ori	r24, 0x02	; 2
- 73a:	80 83       	st	Z, r24
+ 7ae:	e0 ec       	ldi	r30, 0xC0	; 192
+ 7b0:	f0 e0       	ldi	r31, 0x00	; 0
+ 7b2:	80 81       	ld	r24, Z
+ 7b4:	82 60       	ori	r24, 0x02	; 2
+ 7b6:	80 83       	st	Z, r24
   #else
   UCSR0A&=~(1<<U2X0);  
   uint32_t UBRR_VAL = ((F_CPU/16)/baud_rate)-1 ;
   #endif
   UBRR0H = (UBRR_VAL >> 8) & 0xFF;
- 73c:	bb 27       	eor	r27, r27
- 73e:	a5 2f       	mov	r26, r21
- 740:	94 2f       	mov	r25, r20
- 742:	83 2f       	mov	r24, r19
- 744:	80 93 c5 00 	sts	0x00C5, r24
+ 7b8:	bb 27       	eor	r27, r27
+ 7ba:	a5 2f       	mov	r26, r21
+ 7bc:	94 2f       	mov	r25, r20
+ 7be:	83 2f       	mov	r24, r19
+ 7c0:	80 93 c5 00 	sts	0x00C5, r24
   UBRR0L = UBRR_VAL & 0xFF ;
- 748:	20 93 c4 00 	sts	0x00C4, r18
+ 7c4:	20 93 c4 00 	sts	0x00C4, r18
 }
- 74c:	08 95       	ret
+ 7c8:	08 95       	ret
 
-0000074e <UART_Config_Transmitter>:
+000007ca <UART_Config_Transmitter>:
 
 
 void UART_Config_Transmitter(void){
   UCSR0B|=(1<<TXEN0);
- 74e:	e1 ec       	ldi	r30, 0xC1	; 193
- 750:	f0 e0       	ldi	r31, 0x00	; 0
- 752:	80 81       	ld	r24, Z
- 754:	88 60       	ori	r24, 0x08	; 8
- 756:	80 83       	st	Z, r24
+ 7ca:	e1 ec       	ldi	r30, 0xC1	; 193
+ 7cc:	f0 e0       	ldi	r31, 0x00	; 0
+ 7ce:	80 81       	ld	r24, Z
+ 7d0:	88 60       	ori	r24, 0x08	; 8
+ 7d2:	80 83       	st	Z, r24
   UCSR0C=(1<<UCSZ00)| (1<<UCSZ01);
- 758:	86 e0       	ldi	r24, 0x06	; 6
- 75a:	80 93 c2 00 	sts	0x00C2, r24
+ 7d4:	86 e0       	ldi	r24, 0x06	; 6
+ 7d6:	80 93 c2 00 	sts	0x00C2, r24
 }
- 75e:	08 95       	ret
+ 7da:	08 95       	ret
 
-00000760 <UART_Config_Receiver>:
+000007dc <UART_Config_Receiver>:
 
 
 void UART_Config_Receiver(void){
   UCSR0B|=(1<<RXEN0);
- 760:	e1 ec       	ldi	r30, 0xC1	; 193
- 762:	f0 e0       	ldi	r31, 0x00	; 0
- 764:	80 81       	ld	r24, Z
- 766:	80 61       	ori	r24, 0x10	; 16
- 768:	80 83       	st	Z, r24
+ 7dc:	e1 ec       	ldi	r30, 0xC1	; 193
+ 7de:	f0 e0       	ldi	r31, 0x00	; 0
+ 7e0:	80 81       	ld	r24, Z
+ 7e2:	80 61       	ori	r24, 0x10	; 16
+ 7e4:	80 83       	st	Z, r24
   UCSR0C=(1<<UCSZ00)| (1<<UCSZ01);
- 76a:	86 e0       	ldi	r24, 0x06	; 6
- 76c:	80 93 c2 00 	sts	0x00C2, r24
+ 7e6:	86 e0       	ldi	r24, 0x06	; 6
+ 7e8:	80 93 c2 00 	sts	0x00C2, r24
 }
- 770:	08 95       	ret
+ 7ec:	08 95       	ret
 
-00000772 <UART_Config_Receiver_Interrupt>:
+000007ee <UART_Config_Receiver_Interrupt>:
 
 void UART_Config_Receiver_Interrupt(void){
   UCSR0B|=(1<<RXCIE0);
- 772:	e1 ec       	ldi	r30, 0xC1	; 193
- 774:	f0 e0       	ldi	r31, 0x00	; 0
- 776:	80 81       	ld	r24, Z
- 778:	80 68       	ori	r24, 0x80	; 128
- 77a:	80 83       	st	Z, r24
+ 7ee:	e1 ec       	ldi	r30, 0xC1	; 193
+ 7f0:	f0 e0       	ldi	r31, 0x00	; 0
+ 7f2:	80 81       	ld	r24, Z
+ 7f4:	80 68       	ori	r24, 0x80	; 128
+ 7f6:	80 83       	st	Z, r24
   sei();
- 77c:	78 94       	sei
+ 7f8:	78 94       	sei
 }
- 77e:	08 95       	ret
+ 7fa:	08 95       	ret
 
-00000780 <UART_Transmit_Byte>:
+000007fc <UART_Transmit_Byte>:
 
 
 
 
 
 void UART_Transmit_Byte(uint8_t val){
- 780:	98 2f       	mov	r25, r24
+ 7fc:	98 2f       	mov	r25, r24
   while(!(UCSR0A & (1<<UDRE0)));
- 782:	80 91 c0 00 	lds	r24, 0x00C0
- 786:	85 ff       	sbrs	r24, 5
- 788:	fc cf       	rjmp	.-8      	; 0x782 <UART_Transmit_Byte+0x2>
+ 7fe:	80 91 c0 00 	lds	r24, 0x00C0
+ 802:	85 ff       	sbrs	r24, 5
+ 804:	fc cf       	rjmp	.-8      	; 0x7fe <UART_Transmit_Byte+0x2>
   UDR0=val;
- 78a:	90 93 c6 00 	sts	0x00C6, r25
+ 806:	90 93 c6 00 	sts	0x00C6, r25
 }
- 78e:	08 95       	ret
+ 80a:	08 95       	ret
 
-00000790 <UART_Receive_Byte>:
+0000080c <UART_Receive_Byte>:
 
 uint8_t UART_Receive_Byte(void){
- 790:	df 93       	push	r29
- 792:	cf 93       	push	r28
- 794:	0f 92       	push	r0
- 796:	cd b7       	in	r28, 0x3d	; 61
- 798:	de b7       	in	r29, 0x3e	; 62
+ 80c:	df 93       	push	r29
+ 80e:	cf 93       	push	r28
+ 810:	0f 92       	push	r0
+ 812:	cd b7       	in	r28, 0x3d	; 61
+ 814:	de b7       	in	r29, 0x3e	; 62
   volatile uint8_t val=0;
- 79a:	19 82       	std	Y+1, r1	; 0x01
+ 816:	19 82       	std	Y+1, r1	; 0x01
   if( UCSR0A & (1<<FE0) ){
- 79c:	80 91 c0 00 	lds	r24, 0x00C0
- 7a0:	84 ff       	sbrs	r24, 4
- 7a2:	05 c0       	rjmp	.+10     	; 0x7ae <UART_Receive_Byte+0x1e>
+ 818:	80 91 c0 00 	lds	r24, 0x00C0
+ 81c:	84 ff       	sbrs	r24, 4
+ 81e:	05 c0       	rjmp	.+10     	; 0x82a <UART_Receive_Byte+0x1e>
     val=UDR0;
- 7a4:	80 91 c6 00 	lds	r24, 0x00C6
- 7a8:	89 83       	std	Y+1, r24	; 0x01
+ 820:	80 91 c6 00 	lds	r24, 0x00C6
+ 824:	89 83       	std	Y+1, r24	; 0x01
     UART.Error=0x01;
- 7aa:	81 e0       	ldi	r24, 0x01	; 1
- 7ac:	08 c0       	rjmp	.+16     	; 0x7be <UART_Receive_Byte+0x2e>
+ 826:	81 e0       	ldi	r24, 0x01	; 1
+ 828:	08 c0       	rjmp	.+16     	; 0x83a <UART_Receive_Byte+0x2e>
   }else if(UCSR0A & (1<<DOR0) ){
- 7ae:	80 91 c0 00 	lds	r24, 0x00C0
- 7b2:	83 ff       	sbrs	r24, 3
- 7b4:	07 c0       	rjmp	.+14     	; 0x7c4 <UART_Receive_Byte+0x34>
+ 82a:	80 91 c0 00 	lds	r24, 0x00C0
+ 82e:	83 ff       	sbrs	r24, 3
+ 830:	07 c0       	rjmp	.+14     	; 0x840 <UART_Receive_Byte+0x34>
     val=UDR0;
- 7b6:	80 91 c6 00 	lds	r24, 0x00C6
- 7ba:	89 83       	std	Y+1, r24	; 0x01
+ 832:	80 91 c6 00 	lds	r24, 0x00C6
+ 836:	89 83       	std	Y+1, r24	; 0x01
     UART.Error=0x02;
- 7bc:	82 e0       	ldi	r24, 0x02	; 2
- 7be:	80 93 06 01 	sts	0x0106, r24
- 7c2:	05 c0       	rjmp	.+10     	; 0x7ce <UART_Receive_Byte+0x3e>
+ 838:	82 e0       	ldi	r24, 0x02	; 2
+ 83a:	80 93 06 01 	sts	0x0106, r24
+ 83e:	05 c0       	rjmp	.+10     	; 0x84a <UART_Receive_Byte+0x3e>
   }else{
     val=UDR0;
- 7c4:	80 91 c6 00 	lds	r24, 0x00C6
- 7c8:	89 83       	std	Y+1, r24	; 0x01
+ 840:	80 91 c6 00 	lds	r24, 0x00C6
+ 844:	89 83       	std	Y+1, r24	; 0x01
     UART.Error=0x00;
- 7ca:	10 92 06 01 	sts	0x0106, r1
+ 846:	10 92 06 01 	sts	0x0106, r1
   }
   return val;
- 7ce:	89 81       	ldd	r24, Y+1	; 0x01
+ 84a:	89 81       	ldd	r24, Y+1	; 0x01
 }
- 7d0:	0f 90       	pop	r0
- 7d2:	cf 91       	pop	r28
- 7d4:	df 91       	pop	r29
- 7d6:	08 95       	ret
+ 84c:	0f 90       	pop	r0
+ 84e:	cf 91       	pop	r28
+ 850:	df 91       	pop	r29
+ 852:	08 95       	ret
 
-000007d8 <UART_Last_Received_Byte>:
+00000854 <UART_Last_Received_Byte>:
 
 uint8_t UART_Last_Received_Byte(void){
   return UART.LastByteReceived;
- 7d8:	80 91 10 01 	lds	r24, 0x0110
+ 854:	80 91 10 01 	lds	r24, 0x0110
 }
- 7dc:	08 95       	ret
+ 858:	08 95       	ret
 
-000007de <UART_Reset_Last_Received_Byte>:
+0000085a <UART_Reset_Last_Received_Byte>:
 
 void UART_Reset_Last_Received_Byte(void){
   UART.LastByteReceived = 0;
- 7de:	10 92 10 01 	sts	0x0110, r1
+ 85a:	10 92 10 01 	sts	0x0110, r1
 }
- 7e2:	08 95       	ret
+ 85e:	08 95       	ret
 
-000007e4 <UART_Transmit_Byte_Hex>:
+00000860 <UART_Transmit_Byte_Hex>:
 
 
 
 
 void UART_Transmit_Byte_Hex(uint32_t val){
- 7e4:	1f 93       	push	r17
- 7e6:	cf 93       	push	r28
- 7e8:	df 93       	push	r29
- 7ea:	ab 01       	movw	r20, r22
- 7ec:	bc 01       	movw	r22, r24
+ 860:	1f 93       	push	r17
+ 862:	cf 93       	push	r28
+ 864:	df 93       	push	r29
+ 866:	ab 01       	movw	r20, r22
+ 868:	bc 01       	movw	r22, r24
   uint16_t hex_digit, index=0, loop_counter=0;
   if(val <= 0xFF){
- 7ee:	4f 3f       	cpi	r20, 0xFF	; 255
- 7f0:	51 05       	cpc	r21, r1
- 7f2:	61 05       	cpc	r22, r1
- 7f4:	71 05       	cpc	r23, r1
- 7f6:	09 f0       	breq	.+2      	; 0x7fa <UART_Transmit_Byte_Hex+0x16>
- 7f8:	28 f4       	brcc	.+10     	; 0x804 <UART_Transmit_Byte_Hex+0x20>
- 7fa:	e8 e0       	ldi	r30, 0x08	; 8
- 7fc:	f0 e0       	ldi	r31, 0x00	; 0
- 7fe:	c2 e0       	ldi	r28, 0x02	; 2
- 800:	d0 e0       	ldi	r29, 0x00	; 0
- 802:	11 c0       	rjmp	.+34     	; 0x826 <UART_Transmit_Byte_Hex+0x42>
+ 86a:	4f 3f       	cpi	r20, 0xFF	; 255
+ 86c:	51 05       	cpc	r21, r1
+ 86e:	61 05       	cpc	r22, r1
+ 870:	71 05       	cpc	r23, r1
+ 872:	09 f0       	breq	.+2      	; 0x876 <UART_Transmit_Byte_Hex+0x16>
+ 874:	28 f4       	brcc	.+10     	; 0x880 <UART_Transmit_Byte_Hex+0x20>
+ 876:	e8 e0       	ldi	r30, 0x08	; 8
+ 878:	f0 e0       	ldi	r31, 0x00	; 0
+ 87a:	c2 e0       	ldi	r28, 0x02	; 2
+ 87c:	d0 e0       	ldi	r29, 0x00	; 0
+ 87e:	11 c0       	rjmp	.+34     	; 0x8a2 <UART_Transmit_Byte_Hex+0x42>
     index=8;
     loop_counter=2;
   }else if(val <= 0xFFFF){
- 804:	40 30       	cpi	r20, 0x00	; 0
- 806:	80 e0       	ldi	r24, 0x00	; 0
- 808:	58 07       	cpc	r21, r24
- 80a:	81 e0       	ldi	r24, 0x01	; 1
- 80c:	68 07       	cpc	r22, r24
- 80e:	80 e0       	ldi	r24, 0x00	; 0
- 810:	78 07       	cpc	r23, r24
- 812:	28 f0       	brcs	.+10     	; 0x81e <UART_Transmit_Byte_Hex+0x3a>
- 814:	e0 e2       	ldi	r30, 0x20	; 32
- 816:	f0 e0       	ldi	r31, 0x00	; 0
- 818:	c8 e0       	ldi	r28, 0x08	; 8
- 81a:	d0 e0       	ldi	r29, 0x00	; 0
- 81c:	04 c0       	rjmp	.+8      	; 0x826 <UART_Transmit_Byte_Hex+0x42>
- 81e:	e0 e1       	ldi	r30, 0x10	; 16
- 820:	f0 e0       	ldi	r31, 0x00	; 0
- 822:	c4 e0       	ldi	r28, 0x04	; 4
- 824:	d0 e0       	ldi	r29, 0x00	; 0
+ 880:	40 30       	cpi	r20, 0x00	; 0
+ 882:	80 e0       	ldi	r24, 0x00	; 0
+ 884:	58 07       	cpc	r21, r24
+ 886:	81 e0       	ldi	r24, 0x01	; 1
+ 888:	68 07       	cpc	r22, r24
+ 88a:	80 e0       	ldi	r24, 0x00	; 0
+ 88c:	78 07       	cpc	r23, r24
+ 88e:	28 f0       	brcs	.+10     	; 0x89a <UART_Transmit_Byte_Hex+0x3a>
+ 890:	e0 e2       	ldi	r30, 0x20	; 32
+ 892:	f0 e0       	ldi	r31, 0x00	; 0
+ 894:	c8 e0       	ldi	r28, 0x08	; 8
+ 896:	d0 e0       	ldi	r29, 0x00	; 0
+ 898:	04 c0       	rjmp	.+8      	; 0x8a2 <UART_Transmit_Byte_Hex+0x42>
+ 89a:	e0 e1       	ldi	r30, 0x10	; 16
+ 89c:	f0 e0       	ldi	r31, 0x00	; 0
+ 89e:	c4 e0       	ldi	r28, 0x04	; 4
+ 8a0:	d0 e0       	ldi	r29, 0x00	; 0
 
 
 
 
 void UART_Transmit_Byte(uint8_t val){
   while(!(UCSR0A & (1<<UDRE0)));
- 826:	80 91 c0 00 	lds	r24, 0x00C0
- 82a:	85 ff       	sbrs	r24, 5
- 82c:	fc cf       	rjmp	.-8      	; 0x826 <UART_Transmit_Byte_Hex+0x42>
+ 8a2:	80 91 c0 00 	lds	r24, 0x00C0
+ 8a6:	85 ff       	sbrs	r24, 5
+ 8a8:	fc cf       	rjmp	.-8      	; 0x8a2 <UART_Transmit_Byte_Hex+0x42>
   UDR0=val;
- 82e:	80 e3       	ldi	r24, 0x30	; 48
- 830:	80 93 c6 00 	sts	0x00C6, r24
+ 8aa:	80 e3       	ldi	r24, 0x30	; 48
+ 8ac:	80 93 c6 00 	sts	0x00C6, r24
 
 
 
 
 void UART_Transmit_Byte(uint8_t val){
   while(!(UCSR0A & (1<<UDRE0)));
- 834:	80 91 c0 00 	lds	r24, 0x00C0
- 838:	85 ff       	sbrs	r24, 5
- 83a:	fc cf       	rjmp	.-8      	; 0x834 <UART_Transmit_Byte_Hex+0x50>
+ 8b0:	80 91 c0 00 	lds	r24, 0x00C0
+ 8b4:	85 ff       	sbrs	r24, 5
+ 8b6:	fc cf       	rjmp	.-8      	; 0x8b0 <UART_Transmit_Byte_Hex+0x50>
   UDR0=val;
- 83c:	88 e7       	ldi	r24, 0x78	; 120
- 83e:	80 93 c6 00 	sts	0x00C6, r24
- 842:	10 e0       	ldi	r17, 0x00	; 0
- 844:	1f c0       	rjmp	.+62     	; 0x884 <UART_Transmit_Byte_Hex+0xa0>
+ 8b8:	88 e7       	ldi	r24, 0x78	; 120
+ 8ba:	80 93 c6 00 	sts	0x00C6, r24
+ 8be:	10 e0       	ldi	r17, 0x00	; 0
+ 8c0:	1f c0       	rjmp	.+62     	; 0x900 <__stack+0x1>
     loop_counter=8;
   }
   UART_Transmit_Byte('0');
   UART_Transmit_Byte('x');
 	for(uint8_t i=0;i<loop_counter;i++){
 	  index-=4;
- 846:	34 97       	sbiw	r30, 0x04	; 4
+ 8c2:	34 97       	sbiw	r30, 0x04	; 4
 	  hex_digit=(uint8_t)((val>>index) & 0x0F);
- 848:	db 01       	movw	r26, r22
- 84a:	ca 01       	movw	r24, r20
- 84c:	0e 2e       	mov	r0, r30
- 84e:	04 c0       	rjmp	.+8      	; 0x858 <UART_Transmit_Byte_Hex+0x74>
- 850:	b6 95       	lsr	r27
- 852:	a7 95       	ror	r26
- 854:	97 95       	ror	r25
- 856:	87 95       	ror	r24
- 858:	0a 94       	dec	r0
- 85a:	d2 f7       	brpl	.-12     	; 0x850 <UART_Transmit_Byte_Hex+0x6c>
- 85c:	90 e0       	ldi	r25, 0x00	; 0
- 85e:	8f 70       	andi	r24, 0x0F	; 15
- 860:	90 70       	andi	r25, 0x00	; 0
+ 8c4:	db 01       	movw	r26, r22
+ 8c6:	ca 01       	movw	r24, r20
+ 8c8:	0e 2e       	mov	r0, r30
+ 8ca:	04 c0       	rjmp	.+8      	; 0x8d4 <UART_Transmit_Byte_Hex+0x74>
+ 8cc:	b6 95       	lsr	r27
+ 8ce:	a7 95       	ror	r26
+ 8d0:	97 95       	ror	r25
+ 8d2:	87 95       	ror	r24
+ 8d4:	0a 94       	dec	r0
+ 8d6:	d2 f7       	brpl	.-12     	; 0x8cc <UART_Transmit_Byte_Hex+0x6c>
+ 8d8:	90 e0       	ldi	r25, 0x00	; 0
+ 8da:	8f 70       	andi	r24, 0x0F	; 15
+ 8dc:	90 70       	andi	r25, 0x00	; 0
 	  if(hex_digit>9){
- 862:	8a 30       	cpi	r24, 0x0A	; 10
- 864:	91 05       	cpc	r25, r1
- 866:	20 f0       	brcs	.+8      	; 0x870 <UART_Transmit_Byte_Hex+0x8c>
+ 8de:	8a 30       	cpi	r24, 0x0A	; 10
+ 8e0:	91 05       	cpc	r25, r1
+ 8e2:	20 f0       	brcs	.+8      	; 0x8ec <UART_Transmit_Byte_Hex+0x8c>
 	    hex_digit+=55;
- 868:	9c 01       	movw	r18, r24
- 86a:	29 5c       	subi	r18, 0xC9	; 201
- 86c:	3f 4f       	sbci	r19, 0xFF	; 255
- 86e:	03 c0       	rjmp	.+6      	; 0x876 <UART_Transmit_Byte_Hex+0x92>
+ 8e4:	9c 01       	movw	r18, r24
+ 8e6:	29 5c       	subi	r18, 0xC9	; 201
+ 8e8:	3f 4f       	sbci	r19, 0xFF	; 255
+ 8ea:	03 c0       	rjmp	.+6      	; 0x8f2 <UART_Transmit_Byte_Hex+0x92>
 	  }else {
 	    hex_digit+=48;
- 870:	9c 01       	movw	r18, r24
- 872:	20 5d       	subi	r18, 0xD0	; 208
- 874:	3f 4f       	sbci	r19, 0xFF	; 255
+ 8ec:	9c 01       	movw	r18, r24
+ 8ee:	20 5d       	subi	r18, 0xD0	; 208
+ 8f0:	3f 4f       	sbci	r19, 0xFF	; 255
 
 
 
 
 void UART_Transmit_Byte(uint8_t val){
   while(!(UCSR0A & (1<<UDRE0)));
- 876:	80 91 c0 00 	lds	r24, 0x00C0
- 87a:	85 ff       	sbrs	r24, 5
- 87c:	fc cf       	rjmp	.-8      	; 0x876 <UART_Transmit_Byte_Hex+0x92>
+ 8f2:	80 91 c0 00 	lds	r24, 0x00C0
+ 8f6:	85 ff       	sbrs	r24, 5
+ 8f8:	fc cf       	rjmp	.-8      	; 0x8f2 <UART_Transmit_Byte_Hex+0x92>
   UDR0=val;
- 87e:	20 93 c6 00 	sts	0x00C6, r18
+ 8fa:	20 93 c6 00 	sts	0x00C6, r18
     index=32;
     loop_counter=8;
   }
   UART_Transmit_Byte('0');
   UART_Transmit_Byte('x');
 	for(uint8_t i=0;i<loop_counter;i++){
- 882:	1f 5f       	subi	r17, 0xFF	; 255
- 884:	81 2f       	mov	r24, r17
- 886:	90 e0       	ldi	r25, 0x00	; 0
- 888:	8c 17       	cp	r24, r28
- 88a:	9d 07       	cpc	r25, r29
- 88c:	e0 f2       	brcs	.-72     	; 0x846 <UART_Transmit_Byte_Hex+0x62>
+ 8fe:	1f 5f       	subi	r17, 0xFF	; 255
+ 900:	81 2f       	mov	r24, r17
+ 902:	90 e0       	ldi	r25, 0x00	; 0
+ 904:	8c 17       	cp	r24, r28
+ 906:	9d 07       	cpc	r25, r29
+ 908:	e0 f2       	brcs	.-72     	; 0x8c2 <UART_Transmit_Byte_Hex+0x62>
 	  }else {
 	    hex_digit+=48;
 	  }
 	  UART_Transmit_Byte((uint8_t)hex_digit);
 	}
 }
- 88e:	df 91       	pop	r29
- 890:	cf 91       	pop	r28
- 892:	1f 91       	pop	r17
- 894:	08 95       	ret
+ 90a:	df 91       	pop	r29
+ 90c:	cf 91       	pop	r28
+ 90e:	1f 91       	pop	r17
+ 910:	08 95       	ret
 
-00000896 <UART_Transmit_Byte_Bin>:
+00000912 <UART_Transmit_Byte_Bin>:
 
 
 void UART_Transmit_Byte_Bin(uint32_t val){
- 896:	cf 92       	push	r12
- 898:	df 92       	push	r13
- 89a:	ef 92       	push	r14
- 89c:	ff 92       	push	r15
- 89e:	0f 93       	push	r16
- 8a0:	1f 93       	push	r17
- 8a2:	cf 93       	push	r28
- 8a4:	df 93       	push	r29
- 8a6:	ab 01       	movw	r20, r22
- 8a8:	bc 01       	movw	r22, r24
+ 912:	cf 92       	push	r12
+ 914:	df 92       	push	r13
+ 916:	ef 92       	push	r14
+ 918:	ff 92       	push	r15
+ 91a:	0f 93       	push	r16
+ 91c:	1f 93       	push	r17
+ 91e:	cf 93       	push	r28
+ 920:	df 93       	push	r29
+ 922:	ab 01       	movw	r20, r22
+ 924:	bc 01       	movw	r22, r24
   uint8_t loop_counter=0;
   if(val <= 0xFF){
- 8aa:	4f 3f       	cpi	r20, 0xFF	; 255
- 8ac:	51 05       	cpc	r21, r1
- 8ae:	61 05       	cpc	r22, r1
- 8b0:	71 05       	cpc	r23, r1
- 8b2:	09 f0       	breq	.+2      	; 0x8b6 <UART_Transmit_Byte_Bin+0x20>
- 8b4:	10 f4       	brcc	.+4      	; 0x8ba <UART_Transmit_Byte_Bin+0x24>
- 8b6:	97 e0       	ldi	r25, 0x07	; 7
- 8b8:	0b c0       	rjmp	.+22     	; 0x8d0 <UART_Transmit_Byte_Bin+0x3a>
+ 926:	4f 3f       	cpi	r20, 0xFF	; 255
+ 928:	51 05       	cpc	r21, r1
+ 92a:	61 05       	cpc	r22, r1
+ 92c:	71 05       	cpc	r23, r1
+ 92e:	09 f0       	breq	.+2      	; 0x932 <UART_Transmit_Byte_Bin+0x20>
+ 930:	10 f4       	brcc	.+4      	; 0x936 <UART_Transmit_Byte_Bin+0x24>
+ 932:	97 e0       	ldi	r25, 0x07	; 7
+ 934:	0b c0       	rjmp	.+22     	; 0x94c <UART_Transmit_Byte_Bin+0x3a>
     loop_counter=7;
   }else if(val <= 0xFFFF){
- 8ba:	40 30       	cpi	r20, 0x00	; 0
- 8bc:	80 e0       	ldi	r24, 0x00	; 0
- 8be:	58 07       	cpc	r21, r24
- 8c0:	81 e0       	ldi	r24, 0x01	; 1
- 8c2:	68 07       	cpc	r22, r24
- 8c4:	80 e0       	ldi	r24, 0x00	; 0
- 8c6:	78 07       	cpc	r23, r24
- 8c8:	10 f0       	brcs	.+4      	; 0x8ce <UART_Transmit_Byte_Bin+0x38>
- 8ca:	9f e1       	ldi	r25, 0x1F	; 31
- 8cc:	01 c0       	rjmp	.+2      	; 0x8d0 <UART_Transmit_Byte_Bin+0x3a>
- 8ce:	9f e0       	ldi	r25, 0x0F	; 15
+ 936:	40 30       	cpi	r20, 0x00	; 0
+ 938:	80 e0       	ldi	r24, 0x00	; 0
+ 93a:	58 07       	cpc	r21, r24
+ 93c:	81 e0       	ldi	r24, 0x01	; 1
+ 93e:	68 07       	cpc	r22, r24
+ 940:	80 e0       	ldi	r24, 0x00	; 0
+ 942:	78 07       	cpc	r23, r24
+ 944:	10 f0       	brcs	.+4      	; 0x94a <UART_Transmit_Byte_Bin+0x38>
+ 946:	9f e1       	ldi	r25, 0x1F	; 31
+ 948:	01 c0       	rjmp	.+2      	; 0x94c <UART_Transmit_Byte_Bin+0x3a>
+ 94a:	9f e0       	ldi	r25, 0x0F	; 15
 
 
 
 
 void UART_Transmit_Byte(uint8_t val){
   while(!(UCSR0A & (1<<UDRE0)));
- 8d0:	80 91 c0 00 	lds	r24, 0x00C0
- 8d4:	85 ff       	sbrs	r24, 5
- 8d6:	fc cf       	rjmp	.-8      	; 0x8d0 <UART_Transmit_Byte_Bin+0x3a>
+ 94c:	80 91 c0 00 	lds	r24, 0x00C0
+ 950:	85 ff       	sbrs	r24, 5
+ 952:	fc cf       	rjmp	.-8      	; 0x94c <UART_Transmit_Byte_Bin+0x3a>
   UDR0=val;
- 8d8:	80 e3       	ldi	r24, 0x30	; 48
- 8da:	80 93 c6 00 	sts	0x00C6, r24
+ 954:	80 e3       	ldi	r24, 0x30	; 48
+ 956:	80 93 c6 00 	sts	0x00C6, r24
 
 
 
 
 void UART_Transmit_Byte(uint8_t val){
   while(!(UCSR0A & (1<<UDRE0)));
- 8de:	80 91 c0 00 	lds	r24, 0x00C0
- 8e2:	85 ff       	sbrs	r24, 5
- 8e4:	fc cf       	rjmp	.-8      	; 0x8de <UART_Transmit_Byte_Bin+0x48>
+ 95a:	80 91 c0 00 	lds	r24, 0x00C0
+ 95e:	85 ff       	sbrs	r24, 5
+ 960:	fc cf       	rjmp	.-8      	; 0x95a <UART_Transmit_Byte_Bin+0x48>
   UDR0=val;
- 8e6:	82 e6       	ldi	r24, 0x62	; 98
- 8e8:	80 93 c6 00 	sts	0x00C6, r24
- 8ec:	20 e0       	ldi	r18, 0x00	; 0
- 8ee:	30 e0       	ldi	r19, 0x00	; 0
+ 962:	82 e6       	ldi	r24, 0x62	; 98
+ 964:	80 93 c6 00 	sts	0x00C6, r24
+ 968:	20 e0       	ldi	r18, 0x00	; 0
+ 96a:	30 e0       	ldi	r19, 0x00	; 0
 	  UART_Transmit_Byte((uint8_t)hex_digit);
 	}
 }
 
 
 void UART_Transmit_Byte_Bin(uint32_t val){
- 8f0:	e9 2f       	mov	r30, r25
- 8f2:	f0 e0       	ldi	r31, 0x00	; 0
+ 96c:	e9 2f       	mov	r30, r25
+ 96e:	f0 e0       	ldi	r31, 0x00	; 0
 
 
 
 void UART_Transmit_Byte(uint8_t val){
   while(!(UCSR0A & (1<<UDRE0)));
   UDR0=val;
- 8f4:	00 e3       	ldi	r16, 0x30	; 48
+ 970:	00 e3       	ldi	r16, 0x30	; 48
     loop_counter=31;
   }
   
   UART_Transmit_Byte('0');
   UART_Transmit_Byte('b');
   for(int i=loop_counter; i>=0; i--){
- 8f6:	11 e3       	ldi	r17, 0x31	; 49
- 8f8:	ef 01       	movw	r28, r30
- 8fa:	21 96       	adiw	r28, 0x01	; 1
+ 972:	11 e3       	ldi	r17, 0x31	; 49
+ 974:	ef 01       	movw	r28, r30
+ 976:	21 96       	adiw	r28, 0x01	; 1
     if( (val>>i) & 1){
- 8fc:	cf 01       	movw	r24, r30
- 8fe:	82 1b       	sub	r24, r18
- 900:	93 0b       	sbc	r25, r19
- 902:	6a 01       	movw	r12, r20
- 904:	7b 01       	movw	r14, r22
- 906:	04 c0       	rjmp	.+8      	; 0x910 <__stack+0x11>
- 908:	f6 94       	lsr	r15
- 90a:	e7 94       	ror	r14
- 90c:	d7 94       	ror	r13
- 90e:	c7 94       	ror	r12
- 910:	8a 95       	dec	r24
- 912:	d2 f7       	brpl	.-12     	; 0x908 <__stack+0x9>
- 914:	d7 01       	movw	r26, r14
- 916:	c6 01       	movw	r24, r12
- 918:	81 70       	andi	r24, 0x01	; 1
- 91a:	90 70       	andi	r25, 0x00	; 0
- 91c:	89 2b       	or	r24, r25
- 91e:	39 f0       	breq	.+14     	; 0x92e <__stack+0x2f>
+ 978:	cf 01       	movw	r24, r30
+ 97a:	82 1b       	sub	r24, r18
+ 97c:	93 0b       	sbc	r25, r19
+ 97e:	6a 01       	movw	r12, r20
+ 980:	7b 01       	movw	r14, r22
+ 982:	04 c0       	rjmp	.+8      	; 0x98c <UART_Transmit_Byte_Bin+0x7a>
+ 984:	f6 94       	lsr	r15
+ 986:	e7 94       	ror	r14
+ 988:	d7 94       	ror	r13
+ 98a:	c7 94       	ror	r12
+ 98c:	8a 95       	dec	r24
+ 98e:	d2 f7       	brpl	.-12     	; 0x984 <UART_Transmit_Byte_Bin+0x72>
+ 990:	d7 01       	movw	r26, r14
+ 992:	c6 01       	movw	r24, r12
+ 994:	81 70       	andi	r24, 0x01	; 1
+ 996:	90 70       	andi	r25, 0x00	; 0
+ 998:	89 2b       	or	r24, r25
+ 99a:	39 f0       	breq	.+14     	; 0x9aa <UART_Transmit_Byte_Bin+0x98>
 
 
 
 
 void UART_Transmit_Byte(uint8_t val){
   while(!(UCSR0A & (1<<UDRE0)));
- 920:	80 91 c0 00 	lds	r24, 0x00C0
- 924:	85 ff       	sbrs	r24, 5
- 926:	fc cf       	rjmp	.-8      	; 0x920 <__stack+0x21>
+ 99c:	80 91 c0 00 	lds	r24, 0x00C0
+ 9a0:	85 ff       	sbrs	r24, 5
+ 9a2:	fc cf       	rjmp	.-8      	; 0x99c <UART_Transmit_Byte_Bin+0x8a>
   UDR0=val;
- 928:	10 93 c6 00 	sts	0x00C6, r17
- 92c:	06 c0       	rjmp	.+12     	; 0x93a <__stack+0x3b>
+ 9a4:	10 93 c6 00 	sts	0x00C6, r17
+ 9a8:	06 c0       	rjmp	.+12     	; 0x9b6 <UART_Transmit_Byte_Bin+0xa4>
 
 
 
 
 void UART_Transmit_Byte(uint8_t val){
   while(!(UCSR0A & (1<<UDRE0)));
- 92e:	80 91 c0 00 	lds	r24, 0x00C0
- 932:	85 ff       	sbrs	r24, 5
- 934:	fc cf       	rjmp	.-8      	; 0x92e <__stack+0x2f>
+ 9aa:	80 91 c0 00 	lds	r24, 0x00C0
+ 9ae:	85 ff       	sbrs	r24, 5
+ 9b0:	fc cf       	rjmp	.-8      	; 0x9aa <UART_Transmit_Byte_Bin+0x98>
   UDR0=val;
- 936:	00 93 c6 00 	sts	0x00C6, r16
- 93a:	2f 5f       	subi	r18, 0xFF	; 255
- 93c:	3f 4f       	sbci	r19, 0xFF	; 255
+ 9b2:	00 93 c6 00 	sts	0x00C6, r16
+ 9b6:	2f 5f       	subi	r18, 0xFF	; 255
+ 9b8:	3f 4f       	sbci	r19, 0xFF	; 255
     loop_counter=31;
   }
   
   UART_Transmit_Byte('0');
   UART_Transmit_Byte('b');
   for(int i=loop_counter; i>=0; i--){
- 93e:	2c 17       	cp	r18, r28
- 940:	3d 07       	cpc	r19, r29
- 942:	e1 f6       	brne	.-72     	; 0x8fc <UART_Transmit_Byte_Bin+0x66>
+ 9ba:	2c 17       	cp	r18, r28
+ 9bc:	3d 07       	cpc	r19, r29
+ 9be:	e1 f6       	brne	.-72     	; 0x978 <UART_Transmit_Byte_Bin+0x66>
       UART_Transmit_Byte( 49 );   
     }else{
       UART_Transmit_Byte( 48 );         
     }
   }
 }
- 944:	df 91       	pop	r29
- 946:	cf 91       	pop	r28
- 948:	1f 91       	pop	r17
- 94a:	0f 91       	pop	r16
- 94c:	ff 90       	pop	r15
- 94e:	ef 90       	pop	r14
- 950:	df 90       	pop	r13
- 952:	cf 90       	pop	r12
- 954:	08 95       	ret
+ 9c0:	df 91       	pop	r29
+ 9c2:	cf 91       	pop	r28
+ 9c4:	1f 91       	pop	r17
+ 9c6:	0f 91       	pop	r16
+ 9c8:	ff 90       	pop	r15
+ 9ca:	ef 90       	pop	r14
+ 9cc:	df 90       	pop	r13
+ 9ce:	cf 90       	pop	r12
+ 9d0:	08 95       	ret
 
-00000956 <UART_Transmit_Text>:
+000009d2 <UART_Transmit_Text>:
 
 
 void UART_Transmit_Text(char *str){
- 956:	ac 01       	movw	r20, r24
- 958:	20 e0       	ldi	r18, 0x00	; 0
- 95a:	07 c0       	rjmp	.+14     	; 0x96a <UART_Transmit_Text+0x14>
+ 9d2:	ac 01       	movw	r20, r24
+ 9d4:	20 e0       	ldi	r18, 0x00	; 0
+ 9d6:	07 c0       	rjmp	.+14     	; 0x9e6 <UART_Transmit_Text+0x14>
 
 
 
 
 void UART_Transmit_Byte(uint8_t val){
   while(!(UCSR0A & (1<<UDRE0)));
- 95c:	80 91 c0 00 	lds	r24, 0x00C0
- 960:	85 ff       	sbrs	r24, 5
- 962:	fc cf       	rjmp	.-8      	; 0x95c <UART_Transmit_Text+0x6>
+ 9d8:	80 91 c0 00 	lds	r24, 0x00C0
+ 9dc:	85 ff       	sbrs	r24, 5
+ 9de:	fc cf       	rjmp	.-8      	; 0x9d8 <UART_Transmit_Text+0x6>
   UDR0=val;
- 964:	e0 93 c6 00 	sts	0x00C6, r30
+ 9e0:	e0 93 c6 00 	sts	0x00C6, r30
 
 void UART_Transmit_Text(char *str){
     uint8_t i=0;
     while(str[i]!='\0'){
         UART_Transmit_Byte(str[i]);
         i++;
- 968:	2f 5f       	subi	r18, 0xFF	; 255
+ 9e4:	2f 5f       	subi	r18, 0xFF	; 255
 }
 
 
 void UART_Transmit_Text(char *str){
     uint8_t i=0;
     while(str[i]!='\0'){
- 96a:	fa 01       	movw	r30, r20
- 96c:	e2 0f       	add	r30, r18
- 96e:	f1 1d       	adc	r31, r1
- 970:	e0 81       	ld	r30, Z
- 972:	ee 23       	and	r30, r30
- 974:	99 f7       	brne	.-26     	; 0x95c <UART_Transmit_Text+0x6>
+ 9e6:	fa 01       	movw	r30, r20
+ 9e8:	e2 0f       	add	r30, r18
+ 9ea:	f1 1d       	adc	r31, r1
+ 9ec:	e0 81       	ld	r30, Z
+ 9ee:	ee 23       	and	r30, r30
+ 9f0:	99 f7       	brne	.-26     	; 0x9d8 <UART_Transmit_Text+0x6>
         UART_Transmit_Byte(str[i]);
         i++;
     }
 }
- 976:	08 95       	ret
+ 9f2:	08 95       	ret
 
-00000978 <UART_Transmit_New_Line>:
+000009f4 <UART_Transmit_New_Line>:
 
 void UART_Transmit_New_Line(void){
     UART_Transmit_Text("\r\n");
- 978:	80 e0       	ldi	r24, 0x00	; 0
- 97a:	91 e0       	ldi	r25, 0x01	; 1
- 97c:	0e 94 ab 04 	call	0x956	; 0x956 <UART_Transmit_Text>
+ 9f4:	80 e0       	ldi	r24, 0x00	; 0
+ 9f6:	91 e0       	ldi	r25, 0x01	; 1
+ 9f8:	0e 94 e9 04 	call	0x9d2	; 0x9d2 <UART_Transmit_Text>
 }
- 980:	08 95       	ret
+ 9fc:	08 95       	ret
 
-00000982 <UART_Transmit_Space>:
+000009fe <UART_Transmit_Space>:
 
 void UART_Transmit_Space(void){
     UART_Transmit_Text(" ");
- 982:	83 e0       	ldi	r24, 0x03	; 3
- 984:	91 e0       	ldi	r25, 0x01	; 1
- 986:	0e 94 ab 04 	call	0x956	; 0x956 <UART_Transmit_Text>
+ 9fe:	83 e0       	ldi	r24, 0x03	; 3
+ a00:	91 e0       	ldi	r25, 0x01	; 1
+ a02:	0e 94 e9 04 	call	0x9d2	; 0x9d2 <UART_Transmit_Text>
 }
- 98a:	08 95       	ret
+ a06:	08 95       	ret
 
-0000098c <UART_Determine_Digit_Numbers>:
+00000a08 <UART_Determine_Digit_Numbers>:
 
 void UART_Determine_Digit_Numbers(uint32_t num){
- 98c:	bf 92       	push	r11
- 98e:	cf 92       	push	r12
- 990:	df 92       	push	r13
- 992:	ef 92       	push	r14
- 994:	ff 92       	push	r15
- 996:	0f 93       	push	r16
- 998:	1f 93       	push	r17
- 99a:	6b 01       	movw	r12, r22
- 99c:	7c 01       	movw	r14, r24
+ a08:	bf 92       	push	r11
+ a0a:	cf 92       	push	r12
+ a0c:	df 92       	push	r13
+ a0e:	ef 92       	push	r14
+ a10:	ff 92       	push	r15
+ a12:	0f 93       	push	r16
+ a14:	1f 93       	push	r17
+ a16:	6b 01       	movw	r12, r22
+ a18:	7c 01       	movw	r14, r24
   uint8_t i=0;
   if(num==0){
- 99e:	61 15       	cp	r22, r1
- 9a0:	71 05       	cpc	r23, r1
- 9a2:	81 05       	cpc	r24, r1
- 9a4:	91 05       	cpc	r25, r1
- 9a6:	31 f4       	brne	.+12     	; 0x9b4 <UART_Determine_Digit_Numbers+0x28>
+ a1a:	61 15       	cp	r22, r1
+ a1c:	71 05       	cpc	r23, r1
+ a1e:	81 05       	cpc	r24, r1
+ a20:	91 05       	cpc	r25, r1
+ a22:	31 f4       	brne	.+12     	; 0xa30 <UART_Determine_Digit_Numbers+0x28>
     UART.Digits[0]=0;
- 9a8:	10 92 07 01 	sts	0x0107, r1
+ a24:	10 92 07 01 	sts	0x0107, r1
     UART.InputNumberDigits=1;
- 9ac:	81 e0       	ldi	r24, 0x01	; 1
- 9ae:	80 93 0f 01 	sts	0x010F, r24
- 9b2:	23 c0       	rjmp	.+70     	; 0x9fa <UART_Determine_Digit_Numbers+0x6e>
- 9b4:	bb 24       	eor	r11, r11
+ a28:	81 e0       	ldi	r24, 0x01	; 1
+ a2a:	80 93 0f 01 	sts	0x010F, r24
+ a2e:	23 c0       	rjmp	.+70     	; 0xa76 <UART_Determine_Digit_Numbers+0x6e>
+ a30:	bb 24       	eor	r11, r11
   }else{
     while(num!=0){
       UART.Digits[i]=num%10;
- 9b6:	0b 2d       	mov	r16, r11
- 9b8:	10 e0       	ldi	r17, 0x00	; 0
- 9ba:	0a 5f       	subi	r16, 0xFA	; 250
- 9bc:	1e 4f       	sbci	r17, 0xFE	; 254
- 9be:	c7 01       	movw	r24, r14
- 9c0:	b6 01       	movw	r22, r12
- 9c2:	2a e0       	ldi	r18, 0x0A	; 10
- 9c4:	30 e0       	ldi	r19, 0x00	; 0
- 9c6:	40 e0       	ldi	r20, 0x00	; 0
- 9c8:	50 e0       	ldi	r21, 0x00	; 0
- 9ca:	0e 94 d1 05 	call	0xba2	; 0xba2 <__udivmodsi4>
- 9ce:	f8 01       	movw	r30, r16
- 9d0:	61 83       	std	Z+1, r22	; 0x01
+ a32:	0b 2d       	mov	r16, r11
+ a34:	10 e0       	ldi	r17, 0x00	; 0
+ a36:	0a 5f       	subi	r16, 0xFA	; 250
+ a38:	1e 4f       	sbci	r17, 0xFE	; 254
+ a3a:	c7 01       	movw	r24, r14
+ a3c:	b6 01       	movw	r22, r12
+ a3e:	2a e0       	ldi	r18, 0x0A	; 10
+ a40:	30 e0       	ldi	r19, 0x00	; 0
+ a42:	40 e0       	ldi	r20, 0x00	; 0
+ a44:	50 e0       	ldi	r21, 0x00	; 0
+ a46:	0e 94 0f 06 	call	0xc1e	; 0xc1e <__udivmodsi4>
+ a4a:	f8 01       	movw	r30, r16
+ a4c:	61 83       	std	Z+1, r22	; 0x01
       num/=10;
- 9d2:	c7 01       	movw	r24, r14
- 9d4:	b6 01       	movw	r22, r12
- 9d6:	2a e0       	ldi	r18, 0x0A	; 10
- 9d8:	30 e0       	ldi	r19, 0x00	; 0
- 9da:	40 e0       	ldi	r20, 0x00	; 0
- 9dc:	50 e0       	ldi	r21, 0x00	; 0
- 9de:	0e 94 d1 05 	call	0xba2	; 0xba2 <__udivmodsi4>
- 9e2:	c9 01       	movw	r24, r18
- 9e4:	da 01       	movw	r26, r20
- 9e6:	6c 01       	movw	r12, r24
- 9e8:	7d 01       	movw	r14, r26
+ a4e:	c7 01       	movw	r24, r14
+ a50:	b6 01       	movw	r22, r12
+ a52:	2a e0       	ldi	r18, 0x0A	; 10
+ a54:	30 e0       	ldi	r19, 0x00	; 0
+ a56:	40 e0       	ldi	r20, 0x00	; 0
+ a58:	50 e0       	ldi	r21, 0x00	; 0
+ a5a:	0e 94 0f 06 	call	0xc1e	; 0xc1e <__udivmodsi4>
+ a5e:	c9 01       	movw	r24, r18
+ a60:	da 01       	movw	r26, r20
+ a62:	6c 01       	movw	r12, r24
+ a64:	7d 01       	movw	r14, r26
       i++;
- 9ea:	b3 94       	inc	r11
+ a66:	b3 94       	inc	r11
   uint8_t i=0;
   if(num==0){
     UART.Digits[0]=0;
     UART.InputNumberDigits=1;
   }else{
     while(num!=0){
- 9ec:	c1 14       	cp	r12, r1
- 9ee:	d1 04       	cpc	r13, r1
- 9f0:	e1 04       	cpc	r14, r1
- 9f2:	f1 04       	cpc	r15, r1
- 9f4:	01 f7       	brne	.-64     	; 0x9b6 <UART_Determine_Digit_Numbers+0x2a>
+ a68:	c1 14       	cp	r12, r1
+ a6a:	d1 04       	cpc	r13, r1
+ a6c:	e1 04       	cpc	r14, r1
+ a6e:	f1 04       	cpc	r15, r1
+ a70:	01 f7       	brne	.-64     	; 0xa32 <UART_Determine_Digit_Numbers+0x2a>
       UART.Digits[i]=num%10;
       num/=10;
       i++;
     }
 	UART.InputNumberDigits=i;
- 9f6:	b0 92 0f 01 	sts	0x010F, r11
+ a72:	b0 92 0f 01 	sts	0x010F, r11
   }
 }
- 9fa:	1f 91       	pop	r17
- 9fc:	0f 91       	pop	r16
- 9fe:	ff 90       	pop	r15
- a00:	ef 90       	pop	r14
- a02:	df 90       	pop	r13
- a04:	cf 90       	pop	r12
- a06:	bf 90       	pop	r11
- a08:	08 95       	ret
+ a76:	1f 91       	pop	r17
+ a78:	0f 91       	pop	r16
+ a7a:	ff 90       	pop	r15
+ a7c:	ef 90       	pop	r14
+ a7e:	df 90       	pop	r13
+ a80:	cf 90       	pop	r12
+ a82:	bf 90       	pop	r11
+ a84:	08 95       	ret
 
-00000a0a <UART_Transmit_Number_Digits>:
+00000a86 <UART_Transmit_Number_Digits>:
 
 void UART_Transmit_Number_Digits(void){
   for(uint8_t i=UART.InputNumberDigits; i>0; i--){
- a0a:	e0 91 0f 01 	lds	r30, 0x010F
- a0e:	0f c0       	rjmp	.+30     	; 0xa2e <UART_Transmit_Number_Digits+0x24>
+ a86:	e0 91 0f 01 	lds	r30, 0x010F
+ a8a:	0f c0       	rjmp	.+30     	; 0xaaa <UART_Transmit_Number_Digits+0x24>
     uint8_t temp=i;
     temp-=1;
- a10:	2e 2f       	mov	r18, r30
- a12:	21 50       	subi	r18, 0x01	; 1
+ a8c:	2e 2f       	mov	r18, r30
+ a8e:	21 50       	subi	r18, 0x01	; 1
     temp=UART.Digits[temp];
- a14:	e2 2f       	mov	r30, r18
- a16:	f0 e0       	ldi	r31, 0x00	; 0
- a18:	ea 5f       	subi	r30, 0xFA	; 250
- a1a:	fe 4f       	sbci	r31, 0xFE	; 254
- a1c:	91 81       	ldd	r25, Z+1	; 0x01
+ a90:	e2 2f       	mov	r30, r18
+ a92:	f0 e0       	ldi	r31, 0x00	; 0
+ a94:	ea 5f       	subi	r30, 0xFA	; 250
+ a96:	fe 4f       	sbci	r31, 0xFE	; 254
+ a98:	91 81       	ldd	r25, Z+1	; 0x01
 
 
 
 
 void UART_Transmit_Byte(uint8_t val){
   while(!(UCSR0A & (1<<UDRE0)));
- a1e:	80 91 c0 00 	lds	r24, 0x00C0
- a22:	85 ff       	sbrs	r24, 5
- a24:	fc cf       	rjmp	.-8      	; 0xa1e <UART_Transmit_Number_Digits+0x14>
+ a9a:	80 91 c0 00 	lds	r24, 0x00C0
+ a9e:	85 ff       	sbrs	r24, 5
+ aa0:	fc cf       	rjmp	.-8      	; 0xa9a <UART_Transmit_Number_Digits+0x14>
 void UART_Transmit_Number_Digits(void){
   for(uint8_t i=UART.InputNumberDigits; i>0; i--){
     uint8_t temp=i;
     temp-=1;
     temp=UART.Digits[temp];
     temp+=48;
- a26:	90 5d       	subi	r25, 0xD0	; 208
+ aa2:	90 5d       	subi	r25, 0xD0	; 208
 
 
 
 void UART_Transmit_Byte(uint8_t val){
   while(!(UCSR0A & (1<<UDRE0)));
   UDR0=val;
- a28:	90 93 c6 00 	sts	0x00C6, r25
- a2c:	e2 2f       	mov	r30, r18
+ aa4:	90 93 c6 00 	sts	0x00C6, r25
+ aa8:	e2 2f       	mov	r30, r18
 	UART.InputNumberDigits=i;
   }
 }
 
 void UART_Transmit_Number_Digits(void){
   for(uint8_t i=UART.InputNumberDigits; i>0; i--){
- a2e:	ee 23       	and	r30, r30
- a30:	79 f7       	brne	.-34     	; 0xa10 <UART_Transmit_Number_Digits+0x6>
+ aaa:	ee 23       	and	r30, r30
+ aac:	79 f7       	brne	.-34     	; 0xa8c <UART_Transmit_Number_Digits+0x6>
     temp-=1;
     temp=UART.Digits[temp];
     temp+=48;
     UART_Transmit_Byte(temp);
   }
 }
- a32:	08 95       	ret
+ aae:	08 95       	ret
 
-00000a34 <UART_Transmit_Number>:
+00000ab0 <UART_Transmit_Number>:
 
 void UART_Transmit_Number(int32_t num){
- a34:	9b 01       	movw	r18, r22
- a36:	ac 01       	movw	r20, r24
+ ab0:	9b 01       	movw	r18, r22
+ ab2:	ac 01       	movw	r20, r24
   if(num<0){UART_Transmit_Byte('-');num=-num;}
- a38:	97 ff       	sbrs	r25, 7
- a3a:	0e c0       	rjmp	.+28     	; 0xa58 <UART_Transmit_Number+0x24>
+ ab4:	97 ff       	sbrs	r25, 7
+ ab6:	0e c0       	rjmp	.+28     	; 0xad4 <UART_Transmit_Number+0x24>
 
 
 
 
 void UART_Transmit_Byte(uint8_t val){
   while(!(UCSR0A & (1<<UDRE0)));
- a3c:	80 91 c0 00 	lds	r24, 0x00C0
- a40:	85 ff       	sbrs	r24, 5
- a42:	fc cf       	rjmp	.-8      	; 0xa3c <UART_Transmit_Number+0x8>
+ ab8:	80 91 c0 00 	lds	r24, 0x00C0
+ abc:	85 ff       	sbrs	r24, 5
+ abe:	fc cf       	rjmp	.-8      	; 0xab8 <UART_Transmit_Number+0x8>
   UDR0=val;
- a44:	8d e2       	ldi	r24, 0x2D	; 45
- a46:	80 93 c6 00 	sts	0x00C6, r24
+ ac0:	8d e2       	ldi	r24, 0x2D	; 45
+ ac2:	80 93 c6 00 	sts	0x00C6, r24
     UART_Transmit_Byte(temp);
   }
 }
 
 void UART_Transmit_Number(int32_t num){
   if(num<0){UART_Transmit_Byte('-');num=-num;}
- a4a:	50 95       	com	r21
- a4c:	40 95       	com	r20
- a4e:	30 95       	com	r19
- a50:	21 95       	neg	r18
- a52:	3f 4f       	sbci	r19, 0xFF	; 255
- a54:	4f 4f       	sbci	r20, 0xFF	; 255
- a56:	5f 4f       	sbci	r21, 0xFF	; 255
+ ac6:	50 95       	com	r21
+ ac8:	40 95       	com	r20
+ aca:	30 95       	com	r19
+ acc:	21 95       	neg	r18
+ ace:	3f 4f       	sbci	r19, 0xFF	; 255
+ ad0:	4f 4f       	sbci	r20, 0xFF	; 255
+ ad2:	5f 4f       	sbci	r21, 0xFF	; 255
   UART_Determine_Digit_Numbers((uint32_t)num);
- a58:	ca 01       	movw	r24, r20
- a5a:	b9 01       	movw	r22, r18
- a5c:	0e 94 c6 04 	call	0x98c	; 0x98c <UART_Determine_Digit_Numbers>
+ ad4:	ca 01       	movw	r24, r20
+ ad6:	b9 01       	movw	r22, r18
+ ad8:	0e 94 04 05 	call	0xa08	; 0xa08 <UART_Determine_Digit_Numbers>
   UART_Transmit_Number_Digits();
- a60:	0e 94 05 05 	call	0xa0a	; 0xa0a <UART_Transmit_Number_Digits>
+ adc:	0e 94 43 05 	call	0xa86	; 0xa86 <UART_Transmit_Number_Digits>
 }
- a64:	08 95       	ret
+ ae0:	08 95       	ret
 
-00000a66 <UART_Read_From_Buffer>:
+00000ae2 <UART_Read_From_Buffer>:
 
 
 
 uint8_t UART_Read_From_Buffer(uint16_t index){
   return UART.Buffer[index];
- a66:	fc 01       	movw	r30, r24
- a68:	ea 5f       	subi	r30, 0xFA	; 250
- a6a:	fe 4f       	sbci	r31, 0xFE	; 254
- a6c:	83 85       	ldd	r24, Z+11	; 0x0b
+ ae2:	fc 01       	movw	r30, r24
+ ae4:	ea 5f       	subi	r30, 0xFA	; 250
+ ae6:	fe 4f       	sbci	r31, 0xFE	; 254
+ ae8:	83 85       	ldd	r24, Z+11	; 0x0b
 }
- a6e:	08 95       	ret
+ aea:	08 95       	ret
 
-00000a70 <UART_Current_Buffer_Index>:
+00000aec <UART_Current_Buffer_Index>:
 
 
 uint16_t UART_Current_Buffer_Index(void){
   return UART.BufferIndex;
- a70:	20 91 33 01 	lds	r18, 0x0133
- a74:	30 91 34 01 	lds	r19, 0x0134
+ aec:	20 91 33 01 	lds	r18, 0x0133
+ af0:	30 91 34 01 	lds	r19, 0x0134
 }
- a78:	c9 01       	movw	r24, r18
- a7a:	08 95       	ret
+ af4:	c9 01       	movw	r24, r18
+ af6:	08 95       	ret
 
-00000a7c <UART_Flush_Buffer>:
+00000af8 <UART_Flush_Buffer>:
 
 
 
 void UART_Flush_Buffer(void){
   #ifdef UART_ENABLE_RX_INT
   UART.Error=0x00;
- a7c:	10 92 06 01 	sts	0x0106, r1
- a80:	20 e0       	ldi	r18, 0x00	; 0
- a82:	30 e0       	ldi	r19, 0x00	; 0
- a84:	06 c0       	rjmp	.+12     	; 0xa92 <UART_Flush_Buffer+0x16>
+ af8:	10 92 06 01 	sts	0x0106, r1
+ afc:	20 e0       	ldi	r18, 0x00	; 0
+ afe:	30 e0       	ldi	r19, 0x00	; 0
+ b00:	06 c0       	rjmp	.+12     	; 0xb0e <UART_Flush_Buffer+0x16>
   for(uint16_t i=0;i<UART.BufferSize;i++){
     UART.Buffer[i]=0x00;
- a86:	f9 01       	movw	r30, r18
- a88:	ea 5f       	subi	r30, 0xFA	; 250
- a8a:	fe 4f       	sbci	r31, 0xFE	; 254
- a8c:	13 86       	std	Z+11, r1	; 0x0b
+ b02:	f9 01       	movw	r30, r18
+ b04:	ea 5f       	subi	r30, 0xFA	; 250
+ b06:	fe 4f       	sbci	r31, 0xFE	; 254
+ b08:	13 86       	std	Z+11, r1	; 0x0b
 
 
 void UART_Flush_Buffer(void){
   #ifdef UART_ENABLE_RX_INT
   UART.Error=0x00;
   for(uint16_t i=0;i<UART.BufferSize;i++){
- a8e:	2f 5f       	subi	r18, 0xFF	; 255
- a90:	3f 4f       	sbci	r19, 0xFF	; 255
- a92:	80 91 31 01 	lds	r24, 0x0131
- a96:	90 91 32 01 	lds	r25, 0x0132
- a9a:	28 17       	cp	r18, r24
- a9c:	39 07       	cpc	r19, r25
- a9e:	98 f3       	brcs	.-26     	; 0xa86 <UART_Flush_Buffer+0xa>
+ b0a:	2f 5f       	subi	r18, 0xFF	; 255
+ b0c:	3f 4f       	sbci	r19, 0xFF	; 255
+ b0e:	80 91 31 01 	lds	r24, 0x0131
+ b12:	90 91 32 01 	lds	r25, 0x0132
+ b16:	28 17       	cp	r18, r24
+ b18:	39 07       	cpc	r19, r25
+ b1a:	98 f3       	brcs	.-26     	; 0xb02 <UART_Flush_Buffer+0xa>
     UART.Buffer[i]=0x00;
   }
   UART.BufferIndex=0;
- aa0:	10 92 34 01 	sts	0x0134, r1
- aa4:	10 92 33 01 	sts	0x0133, r1
+ b1c:	10 92 34 01 	sts	0x0134, r1
+ b20:	10 92 33 01 	sts	0x0133, r1
   #endif
 }
- aa8:	08 95       	ret
+ b24:	08 95       	ret
 
-00000aaa <UART_Interrupt_Service_Routine>:
+00000b26 <UART_Interrupt_Service_Routine>:
 
 
 
 #ifdef UART_ENABLE_RX_INT
 void UART_Interrupt_Service_Routine(void){
- aaa:	df 93       	push	r29
- aac:	cf 93       	push	r28
- aae:	0f 92       	push	r0
- ab0:	cd b7       	in	r28, 0x3d	; 61
- ab2:	de b7       	in	r29, 0x3e	; 62
+ b26:	df 93       	push	r29
+ b28:	cf 93       	push	r28
+ b2a:	0f 92       	push	r0
+ b2c:	cd b7       	in	r28, 0x3d	; 61
+ b2e:	de b7       	in	r29, 0x3e	; 62
   volatile uint8_t received_byte=0;
- ab4:	19 82       	std	Y+1, r1	; 0x01
+ b30:	19 82       	std	Y+1, r1	; 0x01
   received_byte=(uint8_t)UART_Receive_Byte();
- ab6:	0e 94 c8 03 	call	0x790	; 0x790 <UART_Receive_Byte>
- aba:	89 83       	std	Y+1, r24	; 0x01
+ b32:	0e 94 06 04 	call	0x80c	; 0x80c <UART_Receive_Byte>
+ b36:	89 83       	std	Y+1, r24	; 0x01
   if(UART.Error==0x00){
- abc:	80 91 06 01 	lds	r24, 0x0106
- ac0:	88 23       	and	r24, r24
- ac2:	19 f5       	brne	.+70     	; 0xb0a <UART_Interrupt_Service_Routine+0x60>
+ b38:	80 91 06 01 	lds	r24, 0x0106
+ b3c:	88 23       	and	r24, r24
+ b3e:	19 f5       	brne	.+70     	; 0xb86 <UART_Interrupt_Service_Routine+0x60>
     UART.LastByteReceived=received_byte;
- ac4:	89 81       	ldd	r24, Y+1	; 0x01
- ac6:	80 93 10 01 	sts	0x0110, r24
+ b40:	89 81       	ldd	r24, Y+1	; 0x01
+ b42:	80 93 10 01 	sts	0x0110, r24
     UART.Buffer[UART.BufferIndex]=received_byte;
- aca:	e0 91 33 01 	lds	r30, 0x0133
- ace:	f0 91 34 01 	lds	r31, 0x0134
- ad2:	89 81       	ldd	r24, Y+1	; 0x01
- ad4:	ea 5f       	subi	r30, 0xFA	; 250
- ad6:	fe 4f       	sbci	r31, 0xFE	; 254
- ad8:	83 87       	std	Z+11, r24	; 0x0b
+ b46:	e0 91 33 01 	lds	r30, 0x0133
+ b4a:	f0 91 34 01 	lds	r31, 0x0134
+ b4e:	89 81       	ldd	r24, Y+1	; 0x01
+ b50:	ea 5f       	subi	r30, 0xFA	; 250
+ b52:	fe 4f       	sbci	r31, 0xFE	; 254
+ b54:	83 87       	std	Z+11, r24	; 0x0b
     UART.BufferIndex++;
- ada:	80 91 33 01 	lds	r24, 0x0133
- ade:	90 91 34 01 	lds	r25, 0x0134
- ae2:	01 96       	adiw	r24, 0x01	; 1
- ae4:	90 93 34 01 	sts	0x0134, r25
- ae8:	80 93 33 01 	sts	0x0133, r24
+ b56:	80 91 33 01 	lds	r24, 0x0133
+ b5a:	90 91 34 01 	lds	r25, 0x0134
+ b5e:	01 96       	adiw	r24, 0x01	; 1
+ b60:	90 93 34 01 	sts	0x0134, r25
+ b64:	80 93 33 01 	sts	0x0133, r24
 
     if(UART.BufferIndex>=UART.BufferSize){
- aec:	20 91 33 01 	lds	r18, 0x0133
- af0:	30 91 34 01 	lds	r19, 0x0134
- af4:	80 91 31 01 	lds	r24, 0x0131
- af8:	90 91 32 01 	lds	r25, 0x0132
- afc:	28 17       	cp	r18, r24
- afe:	39 07       	cpc	r19, r25
- b00:	20 f0       	brcs	.+8      	; 0xb0a <UART_Interrupt_Service_Routine+0x60>
+ b68:	20 91 33 01 	lds	r18, 0x0133
+ b6c:	30 91 34 01 	lds	r19, 0x0134
+ b70:	80 91 31 01 	lds	r24, 0x0131
+ b74:	90 91 32 01 	lds	r25, 0x0132
+ b78:	28 17       	cp	r18, r24
+ b7a:	39 07       	cpc	r19, r25
+ b7c:	20 f0       	brcs	.+8      	; 0xb86 <UART_Interrupt_Service_Routine+0x60>
       UART.BufferIndex=0;
- b02:	10 92 34 01 	sts	0x0134, r1
- b06:	10 92 33 01 	sts	0x0133, r1
+ b7e:	10 92 34 01 	sts	0x0134, r1
+ b82:	10 92 33 01 	sts	0x0133, r1
     }
   }
 }
- b0a:	0f 90       	pop	r0
- b0c:	cf 91       	pop	r28
- b0e:	df 91       	pop	r29
- b10:	08 95       	ret
+ b86:	0f 90       	pop	r0
+ b88:	cf 91       	pop	r28
+ b8a:	df 91       	pop	r29
+ b8c:	08 95       	ret
 
-00000b12 <__vector_18>:
+00000b8e <__vector_18>:
 #endif
 
 
 #ifdef UART_ENABLE_RX_INT
 ISR(USART_RX_vect){
- b12:	1f 92       	push	r1
- b14:	0f 92       	push	r0
- b16:	0f b6       	in	r0, 0x3f	; 63
- b18:	0f 92       	push	r0
- b1a:	11 24       	eor	r1, r1
- b1c:	2f 93       	push	r18
- b1e:	3f 93       	push	r19
- b20:	4f 93       	push	r20
- b22:	5f 93       	push	r21
- b24:	6f 93       	push	r22
- b26:	7f 93       	push	r23
- b28:	8f 93       	push	r24
- b2a:	9f 93       	push	r25
- b2c:	af 93       	push	r26
- b2e:	bf 93       	push	r27
- b30:	ef 93       	push	r30
- b32:	ff 93       	push	r31
+ b8e:	1f 92       	push	r1
+ b90:	0f 92       	push	r0
+ b92:	0f b6       	in	r0, 0x3f	; 63
+ b94:	0f 92       	push	r0
+ b96:	11 24       	eor	r1, r1
+ b98:	2f 93       	push	r18
+ b9a:	3f 93       	push	r19
+ b9c:	4f 93       	push	r20
+ b9e:	5f 93       	push	r21
+ ba0:	6f 93       	push	r22
+ ba2:	7f 93       	push	r23
+ ba4:	8f 93       	push	r24
+ ba6:	9f 93       	push	r25
+ ba8:	af 93       	push	r26
+ baa:	bf 93       	push	r27
+ bac:	ef 93       	push	r30
+ bae:	ff 93       	push	r31
   UART_Interrupt_Service_Routine();
- b34:	0e 94 55 05 	call	0xaaa	; 0xaaa <UART_Interrupt_Service_Routine>
+ bb0:	0e 94 93 05 	call	0xb26	; 0xb26 <UART_Interrupt_Service_Routine>
 }
- b38:	ff 91       	pop	r31
- b3a:	ef 91       	pop	r30
- b3c:	bf 91       	pop	r27
- b3e:	af 91       	pop	r26
- b40:	9f 91       	pop	r25
- b42:	8f 91       	pop	r24
- b44:	7f 91       	pop	r23
- b46:	6f 91       	pop	r22
- b48:	5f 91       	pop	r21
- b4a:	4f 91       	pop	r20
- b4c:	3f 91       	pop	r19
- b4e:	2f 91       	pop	r18
- b50:	0f 90       	pop	r0
- b52:	0f be       	out	0x3f, r0	; 63
- b54:	0f 90       	pop	r0
- b56:	1f 90       	pop	r1
- b58:	18 95       	reti
+ bb4:	ff 91       	pop	r31
+ bb6:	ef 91       	pop	r30
+ bb8:	bf 91       	pop	r27
+ bba:	af 91       	pop	r26
+ bbc:	9f 91       	pop	r25
+ bbe:	8f 91       	pop	r24
+ bc0:	7f 91       	pop	r23
+ bc2:	6f 91       	pop	r22
+ bc4:	5f 91       	pop	r21
+ bc6:	4f 91       	pop	r20
+ bc8:	3f 91       	pop	r19
+ bca:	2f 91       	pop	r18
+ bcc:	0f 90       	pop	r0
+ bce:	0f be       	out	0x3f, r0	; 63
+ bd0:	0f 90       	pop	r0
+ bd2:	1f 90       	pop	r1
+ bd4:	18 95       	reti
 
-00000b5a <UART_Init>:
+00000bd6 <UART_Init>:
 #endif
 
 
 
 void UART_Init(uint32_t baud){
- b5a:	ef 92       	push	r14
- b5c:	ff 92       	push	r15
- b5e:	0f 93       	push	r16
- b60:	1f 93       	push	r17
- b62:	7b 01       	movw	r14, r22
- b64:	8c 01       	movw	r16, r24
+ bd6:	ef 92       	push	r14
+ bd8:	ff 92       	push	r15
+ bda:	0f 93       	push	r16
+ bdc:	1f 93       	push	r17
+ bde:	7b 01       	movw	r14, r22
+ be0:	8c 01       	movw	r16, r24
   UART_Struct_Init();
- b66:	0e 94 6a 03 	call	0x6d4	; 0x6d4 <UART_Struct_Init>
+ be2:	0e 94 a8 03 	call	0x750	; 0x750 <UART_Struct_Init>
   UART_Config_GPIO();
   UART_Config_Clock();
   UART_Config_BAUD_Rate(baud);
- b6a:	c8 01       	movw	r24, r16
- b6c:	b7 01       	movw	r22, r14
- b6e:	0e 94 8d 03 	call	0x71a	; 0x71a <UART_Config_BAUD_Rate>
+ be6:	c8 01       	movw	r24, r16
+ be8:	b7 01       	movw	r22, r14
+ bea:	0e 94 cb 03 	call	0x796	; 0x796 <UART_Config_BAUD_Rate>
   UBRR0L = UBRR_VAL & 0xFF ;
 }
 
 
 void UART_Config_Transmitter(void){
   UCSR0B|=(1<<TXEN0);
- b72:	e1 ec       	ldi	r30, 0xC1	; 193
- b74:	f0 e0       	ldi	r31, 0x00	; 0
- b76:	80 81       	ld	r24, Z
- b78:	88 60       	ori	r24, 0x08	; 8
- b7a:	80 83       	st	Z, r24
+ bee:	e1 ec       	ldi	r30, 0xC1	; 193
+ bf0:	f0 e0       	ldi	r31, 0x00	; 0
+ bf2:	80 81       	ld	r24, Z
+ bf4:	88 60       	ori	r24, 0x08	; 8
+ bf6:	80 83       	st	Z, r24
   UCSR0C=(1<<UCSZ00)| (1<<UCSZ01);
- b7c:	a2 ec       	ldi	r26, 0xC2	; 194
- b7e:	b0 e0       	ldi	r27, 0x00	; 0
- b80:	96 e0       	ldi	r25, 0x06	; 6
- b82:	9c 93       	st	X, r25
+ bf8:	a2 ec       	ldi	r26, 0xC2	; 194
+ bfa:	b0 e0       	ldi	r27, 0x00	; 0
+ bfc:	96 e0       	ldi	r25, 0x06	; 6
+ bfe:	9c 93       	st	X, r25
 }
 
 
 void UART_Config_Receiver(void){
   UCSR0B|=(1<<RXEN0);
- b84:	80 81       	ld	r24, Z
- b86:	80 61       	ori	r24, 0x10	; 16
- b88:	80 83       	st	Z, r24
+ c00:	80 81       	ld	r24, Z
+ c02:	80 61       	ori	r24, 0x10	; 16
+ c04:	80 83       	st	Z, r24
   UCSR0C=(1<<UCSZ00)| (1<<UCSZ01);
- b8a:	9c 93       	st	X, r25
+ c06:	9c 93       	st	X, r25
 }
 
 void UART_Config_Receiver_Interrupt(void){
   UCSR0B|=(1<<RXCIE0);
- b8c:	80 81       	ld	r24, Z
- b8e:	80 68       	ori	r24, 0x80	; 128
- b90:	80 83       	st	Z, r24
+ c08:	80 81       	ld	r24, Z
+ c0a:	80 68       	ori	r24, 0x80	; 128
+ c0c:	80 83       	st	Z, r24
   sei();
- b92:	78 94       	sei
+ c0e:	78 94       	sei
   
   #ifdef UART_ENABLE_RX_INT
   UART_Config_Receiver_Interrupt();
   #endif
   
   UART_Flush_Buffer();
- b94:	0e 94 3e 05 	call	0xa7c	; 0xa7c <UART_Flush_Buffer>
+ c10:	0e 94 7c 05 	call	0xaf8	; 0xaf8 <UART_Flush_Buffer>
 }
- b98:	1f 91       	pop	r17
- b9a:	0f 91       	pop	r16
- b9c:	ff 90       	pop	r15
- b9e:	ef 90       	pop	r14
- ba0:	08 95       	ret
+ c14:	1f 91       	pop	r17
+ c16:	0f 91       	pop	r16
+ c18:	ff 90       	pop	r15
+ c1a:	ef 90       	pop	r14
+ c1c:	08 95       	ret
 
-00000ba2 <__udivmodsi4>:
- ba2:	a1 e2       	ldi	r26, 0x21	; 33
- ba4:	1a 2e       	mov	r1, r26
- ba6:	aa 1b       	sub	r26, r26
- ba8:	bb 1b       	sub	r27, r27
- baa:	fd 01       	movw	r30, r26
- bac:	0d c0       	rjmp	.+26     	; 0xbc8 <__udivmodsi4_ep>
+00000c1e <__udivmodsi4>:
+ c1e:	a1 e2       	ldi	r26, 0x21	; 33
+ c20:	1a 2e       	mov	r1, r26
+ c22:	aa 1b       	sub	r26, r26
+ c24:	bb 1b       	sub	r27, r27
+ c26:	fd 01       	movw	r30, r26
+ c28:	0d c0       	rjmp	.+26     	; 0xc44 <__udivmodsi4_ep>
 
-00000bae <__udivmodsi4_loop>:
- bae:	aa 1f       	adc	r26, r26
- bb0:	bb 1f       	adc	r27, r27
- bb2:	ee 1f       	adc	r30, r30
- bb4:	ff 1f       	adc	r31, r31
- bb6:	a2 17       	cp	r26, r18
- bb8:	b3 07       	cpc	r27, r19
- bba:	e4 07       	cpc	r30, r20
- bbc:	f5 07       	cpc	r31, r21
- bbe:	20 f0       	brcs	.+8      	; 0xbc8 <__udivmodsi4_ep>
- bc0:	a2 1b       	sub	r26, r18
- bc2:	b3 0b       	sbc	r27, r19
- bc4:	e4 0b       	sbc	r30, r20
- bc6:	f5 0b       	sbc	r31, r21
+00000c2a <__udivmodsi4_loop>:
+ c2a:	aa 1f       	adc	r26, r26
+ c2c:	bb 1f       	adc	r27, r27
+ c2e:	ee 1f       	adc	r30, r30
+ c30:	ff 1f       	adc	r31, r31
+ c32:	a2 17       	cp	r26, r18
+ c34:	b3 07       	cpc	r27, r19
+ c36:	e4 07       	cpc	r30, r20
+ c38:	f5 07       	cpc	r31, r21
+ c3a:	20 f0       	brcs	.+8      	; 0xc44 <__udivmodsi4_ep>
+ c3c:	a2 1b       	sub	r26, r18
+ c3e:	b3 0b       	sbc	r27, r19
+ c40:	e4 0b       	sbc	r30, r20
+ c42:	f5 0b       	sbc	r31, r21
 
-00000bc8 <__udivmodsi4_ep>:
- bc8:	66 1f       	adc	r22, r22
- bca:	77 1f       	adc	r23, r23
- bcc:	88 1f       	adc	r24, r24
- bce:	99 1f       	adc	r25, r25
- bd0:	1a 94       	dec	r1
- bd2:	69 f7       	brne	.-38     	; 0xbae <__udivmodsi4_loop>
- bd4:	60 95       	com	r22
- bd6:	70 95       	com	r23
- bd8:	80 95       	com	r24
- bda:	90 95       	com	r25
- bdc:	9b 01       	movw	r18, r22
- bde:	ac 01       	movw	r20, r24
- be0:	bd 01       	movw	r22, r26
- be2:	cf 01       	movw	r24, r30
- be4:	08 95       	ret
+00000c44 <__udivmodsi4_ep>:
+ c44:	66 1f       	adc	r22, r22
+ c46:	77 1f       	adc	r23, r23
+ c48:	88 1f       	adc	r24, r24
+ c4a:	99 1f       	adc	r25, r25
+ c4c:	1a 94       	dec	r1
+ c4e:	69 f7       	brne	.-38     	; 0xc2a <__udivmodsi4_loop>
+ c50:	60 95       	com	r22
+ c52:	70 95       	com	r23
+ c54:	80 95       	com	r24
+ c56:	90 95       	com	r25
+ c58:	9b 01       	movw	r18, r22
+ c5a:	ac 01       	movw	r20, r24
+ c5c:	bd 01       	movw	r22, r26
+ c5e:	cf 01       	movw	r24, r30
+ c60:	08 95       	ret
 
-00000be6 <_exit>:
- be6:	f8 94       	cli
+00000c62 <_exit>:
+ c62:	f8 94       	cli
 
-00000be8 <__stop_program>:
- be8:	ff cf       	rjmp	.-2      	; 0xbe8 <__stop_program>
+00000c64 <__stop_program>:
+ c64:	ff cf       	rjmp	.-2      	; 0xc64 <__stop_program>

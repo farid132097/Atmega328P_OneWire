@@ -11,10 +11,11 @@ typedef struct onewire_t{
   volatile uint8_t  BitCounter;
   volatile uint8_t  BusRstEvent;
   volatile uint8_t  AddrMatch;
-  volatile uint8_t  RegAddr;
   
-  volatile uint8_t  DataByte;
   volatile uint16_t CMD;
+  volatile uint16_t RegAddr;
+  volatile uint16_t RegData;
+
   volatile uint8_t  ACK;
   volatile uint8_t  NewDataAvailable;
   volatile uint8_t  DataBuf[ONEWIRE_DATA_BUF];
@@ -29,7 +30,7 @@ void OneWire_Struct_Init(void){
   OneWire.BitCounter = 0;
   OneWire.BusRstEvent = 0;
   OneWire.AddrMatch = 0;
-  OneWire.DataByte = 0;
+  OneWire.RegData = 0;
   OneWire.CMD = 0;
   OneWire.ACK = 0;
   OneWire.NewDataAvailable = 0;
@@ -42,7 +43,7 @@ void OneWire_Flush_Bit_Frame(void){
 }
 
 void OneWire_Flush_Cmd_Reg(void){
-  OneWire.DataByte = 0;
+  OneWire.RegData = 0;
   OneWire.CMD = 0;
   OneWire.ACK = 0;
   OneWire.NewDataAvailable = 0;
@@ -298,8 +299,78 @@ uint16_t OneWire_TRX_Cmd_Data(uint16_t cmd, uint16_t data){
 }
 
 
+void OneWire_Handle_Cmd_Data(void){
+  //reset request -> Send ack
+  if(OneWire.BitFrame == ONEWIRE_CMD_RESET){
+	OneWire.AddrMatch = 0;
+    OneWire.BusRstEvent = 1;
+	OneWire.ACK = 1;
+    OneWire_Debug_Rx_Pulse();
+	OneWire_Debug_Rx_Pulse();
+	OneWire_Debug_Rx_Pulse();
+	OneWire_Debug_Rx_Pulse();
+	OneWire_Debug_Rx_Pulse();
+	OneWire_Debug_Rx_Pulse();
+  }
+  
+  //Address matched -> Send ack
+  else if((OneWire.CMD == ONEWIRE_CMD_START) && (OneWire.RegData == ONEWIRE_OWN_AADR)){
+	if(OneWire.BusRstEvent == 1){
+	  OneWire.BusRstEvent = 0;
+	  OneWire.AddrMatch = 1;
+	  OneWire.ACK = 1;
+	  OneWire_Debug_Rx_Pulse();
+	  OneWire_Debug_Rx_Pulse();
+	  OneWire_Debug_Rx_Pulse();
+	  OneWire_Debug_Rx_Pulse();
+	  OneWire_Debug_Rx_Pulse();
+	}
+  }
+  
+  //Read cmd -> Send ack
+  else if((OneWire.CMD == ONEWIRE_CMD_READ) && (OneWire.AddrMatch == 1)){
+	OneWire.RegAddr = OneWire.RegData;
+	OneWire.ACK = 1;
+    OneWire_Debug_Rx_Pulse();
+    OneWire_Debug_Rx_Pulse();
+    OneWire_Debug_Rx_Pulse();
+	OneWire_Debug_Rx_Pulse();
+  }
+  
+  //Write cmd -> Send ack
+  else if((OneWire.CMD == ONEWIRE_CMD_WRITE) && (OneWire.AddrMatch == 1)){
+	OneWire.RegAddr = OneWire.RegData;
+	OneWire.ACK = 1;
+    OneWire_Debug_Rx_Pulse();
+	OneWire_Debug_Rx_Pulse();
+	OneWire_Debug_Rx_Pulse();
+  }
+  
+  //Continue cmd -> Send ack
+  else if((OneWire.CMD == ONEWIRE_CMD_CONT) && (OneWire.AddrMatch == 1)){
+	OneWire.ACK = 1;
+    OneWire_Debug_Rx_Pulse();
+	OneWire_Debug_Rx_Pulse();
+  }
+ 
+  //Stop cmd -> Send ack
+  else if((OneWire.CMD == ONEWIRE_CMD_STOP) && (OneWire.AddrMatch == 1)){
+	OneWire.AddrMatch = 0;
+    OneWire.BusRstEvent = 0;
+	OneWire.ACK = 1;
+    OneWire_Debug_Rx_Pulse();
+  }
+
+  //Nothing Matched, Send nack
+  else{
+	OneWire.ACK = 0;
+    OneWire.AddrMatch = 0;
+	OneWire.BusRstEvent = 0;
+  }
+}
+
+
 void OneWire_Bit_Frame_Sample(void){
-  uint16_t data, cmd;
   //Last bit of the frame -> ACK bit
   if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-1)){
     //maybe need to disable interrupt
@@ -323,84 +394,10 @@ void OneWire_Bit_Frame_Sample(void){
     OneWire_Debug_Rx_Pulse();
     OneWire.BitFrame |= OneWire_TRX_Get_Input_State();
 	
-	
 	if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-2)){
-	  cmd  = OneWire.BitFrame & ONEWIRE_CMD_MASK;
-	  data = OneWire.BitFrame & ONEWIRE_DATA_MASK;
-	  
-	  
-	  
-	  //reset request -> Send ack
-	  if(OneWire.BitFrame == ONEWIRE_CMD_RESET){
-	    OneWire.AddrMatch = 0;
-		OneWire.BusRstEvent = 1;
-	    OneWire.ACK = 1;
-		//OneWire.BitFrame = 0;
-        //OneWire.BitCounter = 0xFF;
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-	  }
-	 
-	  //Address matched -> Send ack
-	  else if((cmd == ONEWIRE_CMD_START) && (data == ONEWIRE_OWN_AADR)){
-	    if(OneWire.BusRstEvent == 1){
-		  OneWire.BusRstEvent = 0;
-	      OneWire.AddrMatch = 1;
-	      OneWire.ACK = 1;
-		  OneWire_Debug_Rx_Pulse();
-		  OneWire_Debug_Rx_Pulse();
-		  OneWire_Debug_Rx_Pulse();
-		  OneWire_Debug_Rx_Pulse();
-		  OneWire_Debug_Rx_Pulse();
-		}
-	  }
-	  
-	  //Read cmd -> Send ack
-	  else if((cmd == ONEWIRE_CMD_READ) && (OneWire.AddrMatch == 1)){
-	    OneWire.RegAddr = data;
-	    OneWire.ACK = 1;
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-	  }
-	  
-	  //Write cmd -> Send ack
-	  else if((cmd == ONEWIRE_CMD_WRITE) && (OneWire.AddrMatch == 1)){
-	    OneWire.RegAddr = data;
-	    OneWire.ACK = 1;
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-	  }
-	  
-	  //Continue cmd -> Send ack
-	  else if((cmd == ONEWIRE_CMD_CONT) && (OneWire.AddrMatch == 1)){
-	    OneWire.ACK = 1;
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-	  }
-	  
-	  //Stop cmd -> Send ack
-	  else if((cmd == ONEWIRE_CMD_STOP) && (OneWire.AddrMatch == 1)){
-	    OneWire.AddrMatch = 0;
-		OneWire.BusRstEvent = 0;
-	    OneWire.ACK = 1;
-		OneWire_Debug_Rx_Pulse();
-	  }
-	  
-	  //Nothing Matched, Send nack
-	  else{
-	    OneWire.ACK = 0;
-		OneWire.AddrMatch = 0;
-		OneWire.BusRstEvent = 0;
-		
-	  }
-	  
+	  OneWire.CMD     = OneWire.BitFrame & ONEWIRE_CMD_MASK;
+	  OneWire.RegData = OneWire.BitFrame & ONEWIRE_DATA_MASK;
+	  OneWire_Handle_Cmd_Data();
 	}
 	
   }
@@ -440,7 +437,7 @@ void OneWire_Extract_Cmd_Data(void){
 	OneWire.ACK = temp & ONEWIRE_ACK_MASK;
 	temp >>= 1;
 	temp &= 0xFF;
-	OneWire.DataByte = temp;
+	OneWire.RegData = temp;
 	OneWire.NewDataAvailable = 1;
   }
 }

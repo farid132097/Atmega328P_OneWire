@@ -89,6 +89,7 @@ uint8_t  OneWire_Tx_Reset_Cmd(void);
 uint16_t OneWire_TRX_Frame(uint16_t val);
 uint16_t OneWire_TRX_Cmd_Data(uint16_t cmd, uint16_t data);
 
+void     OneWire_Handle_Cmd_Data(void);
 void     OneWire_Bit_Frame_Sample(void);
 uint8_t  OneWire_Bit_Counter_Overflow(void);
 uint16_t OneWire_Build_Bit_Frame(void);
