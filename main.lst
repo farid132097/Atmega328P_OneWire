@@ -10,145 +10,101 @@
   18               	main:
   19               	.LFB6:
   20               	.LM1:
-  21 0000 CF93      		push r28
-  22 0002 DF93      		push r29
-  23               	/* prologue: function */
-  24               	/* frame size = 0 */
-  25               	.LM2:
-  26 0004 0E94 0000 		call OneWire_Init_Master
-  27 0008 80E1      		ldi r24,lo8(10000)
-  28 000a 97E2      		ldi r25,hi8(10000)
-  29               	.LVL0:
-  30               	.LBB36:
-  31               	.LBB37:
-  32               	.LBB38:
-  33               	.LBB39:
-  34               	.LM3:
-  35 000c 2CE2      		ldi r18,lo8(300)
-  36 000e 31E0      		ldi r19,hi8(300)
-  37               	.L2:
-  38 0010 F901      		movw r30,r18
-  39               	.LVL1:
-  40               	/* #APP */
-  41               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
-  42 0012 3197      		1: sbiw r30,1
-  43 0014 01F4      		brne 1b
-  44               	 ;  0 "" 2
-  45               	/* #NOAPP */
-  46               	.LBE39:
-  47               	.LBE38:
-  48               	.LM4:
-  49 0016 0197      		sbiw r24,1
-  50               	.LM5:
-  51 0018 01F4      		brne .L2
-  52               	.LBE37:
-  53               	.LBE36:
-  54               	.LM6:
-  55 001a 0E94 0000 		call OneWire_Init_Slave
-  56               	.LVL2:
-  57               	.LBB40:
-  58               	.LBB41:
-  59               	.LBB42:
-  60               	.LBB43:
-  61               	.LBB44:
-  62               	.LBB45:
-  63               	.LM7:
-  64 001e CCE2      		ldi r28,lo8(300)
-  65 0020 D1E0      		ldi r29,hi8(300)
-  66               	.LVL3:
-  67               	.L5:
-  68               	.LBE45:
-  69               	.LBE44:
-  70               	.LBE43:
-  71               	.LBE42:
-  72               	.LBE41:
-  73               	.LBE40:
-  74               	.LM8:
-  75 0022 0E94 0000 		call OneWire_Tx_Reset_Cmd
-  76               	.LVL4:
-  77 0026 8130      		cpi r24,lo8(1)
-  78 0028 01F4      		brne .L10
-  79               	.L3:
-  80               	.LBB51:
-  81               	.LBB50:
-  82               	.LBB49:
-  83               	.LBB48:
-  84               	.LBB47:
-  85               	.LBB46:
-  86               	.LM9:
-  87 002a CE01      		movw r24,r28
-  88               	.LVL5:
-  89               	/* #APP */
-  90               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
-  91 002c 0197      		1: sbiw r24,1
-  92 002e 01F4      		brne 1b
-  93               	 ;  0 "" 2
-  94               	/* #NOAPP */
-  95               	.LBE46:
-  96               	.LBE47:
-  97               	.LBE48:
-  98               	.LBE49:
-  99               	.LBE50:
- 100               	.LBE51:
- 101               	.LM10:
- 102 0030 80E0      		ldi r24,lo8(1536)
- 103 0032 96E0      		ldi r25,hi8(1536)
- 104               	.LVL6:
- 105 0034 68E6      		ldi r22,lo8(104)
- 106 0036 70E0      		ldi r23,hi8(104)
- 107 0038 0E94 0000 		call OneWire_TRX_Cmd_Data
- 108               	.LM11:
- 109 003c 80E0      		ldi r24,lo8(256)
- 110 003e 91E0      		ldi r25,hi8(256)
- 111 0040 61E0      		ldi r22,lo8(1)
- 112 0042 70E0      		ldi r23,hi8(1)
- 113 0044 0E94 0000 		call OneWire_TRX_Cmd_Data
- 114               	.LM12:
- 115 0048 80E0      		ldi r24,lo8(768)
- 116 004a 93E0      		ldi r25,hi8(768)
- 117 004c 67E0      		ldi r22,lo8(7)
- 118 004e 70E0      		ldi r23,hi8(7)
- 119 0050 0E94 0000 		call OneWire_TRX_Cmd_Data
- 120               	.L10:
- 121 0054 80E1      		ldi r24,lo8(10000)
- 122 0056 97E2      		ldi r25,hi8(10000)
- 123               	.LVL7:
- 124               	.L7:
- 125               	.LBB52:
- 126               	.LBB53:
- 127               	.LBB54:
- 128               	.LBB55:
- 129               	.LM13:
- 130 0058 FE01      		movw r30,r28
- 131               	/* #APP */
- 132               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 133 005a 3197      		1: sbiw r30,1
- 134 005c 01F4      		brne 1b
- 135               	 ;  0 "" 2
- 136               	/* #NOAPP */
- 137               	.LBE55:
- 138               	.LBE54:
- 139               	.LM14:
- 140 005e 0197      		sbiw r24,1
- 141               	.LM15:
- 142 0060 01F0      		breq .L5
- 143 0062 00C0      		rjmp .L7
- 144               	.LBE53:
- 145               	.LBE52:
- 146               	.LFE6:
- 172               	.Letext0:
+  21 0000 1F93      		push r17
+  22 0002 CF93      		push r28
+  23 0004 DF93      		push r29
+  24               	/* prologue: function */
+  25               	/* frame size = 0 */
+  26               	.LM2:
+  27 0006 0E94 0000 		call OneWire_Init_Slave
+  28               	.LM3:
+  29 000a 60E0      		ldi r22,lo8(38400)
+  30 000c 76E9      		ldi r23,hi8(38400)
+  31 000e 80E0      		ldi r24,hlo8(38400)
+  32 0010 90E0      		ldi r25,hhi8(38400)
+  33 0012 0E94 0000 		call UART_Init
+  34               	.LBB13:
+  35               	.LBB14:
+  36               	.LBB15:
+  37               	.LBB16:
+  38               	.LM4:
+  39 0016 C0ED      		ldi r28,lo8(2000)
+  40 0018 D7E0      		ldi r29,hi8(2000)
+  41               	.LVL0:
+  42               	.L5:
+  43               	.LBE16:
+  44               	.LBE15:
+  45               	.LBE14:
+  46               	.LBE13:
+  47               	.LM5:
+  48 001a 0E94 0000 		call OneWire_Get_Data_Ready
+  49               	.LVL1:
+  50 001e 8130      		cpi r24,lo8(1)
+  51 0020 01F4      		brne .L2
+  52 0022 10E0      		ldi r17,lo8(0)
+  53 0024 00C0      		rjmp .L3
+  54               	.L4:
+  55               	.LBB20:
+  56               	.LM6:
+  57 0026 812F      		mov r24,r17
+  58 0028 0E94 0000 		call OneWire_Get_Data_Buf
+  59 002c 90E0      		ldi r25,lo8(0)
+  60 002e A0E0      		ldi r26,lo8(0)
+  61 0030 B0E0      		ldi r27,hi8(0)
+  62 0032 BC01      		movw r22,r24
+  63 0034 CD01      		movw r24,r26
+  64 0036 0E94 0000 		call UART_Transmit_Byte_Hex
+  65               	.LM7:
+  66 003a 0E94 0000 		call UART_Transmit_Space
+  67               	.LM8:
+  68 003e 1F5F      		subi r17,lo8(-(1))
+  69               	.L3:
+  70 0040 0E94 0000 		call OneWire_Get_Data_Buf_Index
+  71 0044 1817      		cp r17,r24
+  72 0046 00F0      		brlo .L4
+  73               	.LBE20:
+  74               	.LM9:
+  75 0048 0E94 0000 		call UART_Transmit_New_Line
+  76               	.LM10:
+  77 004c 0E94 0000 		call OneWire_Flush_Data_Buf
+  78               	.L2:
+  79               	.LBB21:
+  80               	.LBB19:
+  81               	.LBB18:
+  82               	.LBB17:
+  83               	.LM11:
+  84 0050 CE01      		movw r24,r28
+  85               	.LVL2:
+  86               	/* #APP */
+  87               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  88 0052 0197      		1: sbiw r24,1
+  89 0054 01F4      		brne 1b
+  90               	 ;  0 "" 2
+  91               	/* #NOAPP */
+  92 0056 00C0      		rjmp .L5
+  93               	.LBE17:
+  94               	.LBE18:
+  95               	.LBE19:
+  96               	.LBE21:
+  97               	.LFE6:
+ 123               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\WALTON\AppData\Local\Temp/ccjVlJAr.s:2      *ABS*:0000003f __SREG__
-C:\Users\WALTON\AppData\Local\Temp/ccjVlJAr.s:3      *ABS*:0000003e __SP_H__
-C:\Users\WALTON\AppData\Local\Temp/ccjVlJAr.s:4      *ABS*:0000003d __SP_L__
-C:\Users\WALTON\AppData\Local\Temp/ccjVlJAr.s:5      *ABS*:00000034 __CCP__
-C:\Users\WALTON\AppData\Local\Temp/ccjVlJAr.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\WALTON\AppData\Local\Temp/ccjVlJAr.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\WALTON\AppData\Local\Temp/ccjVlJAr.s:18     .text:00000000 main
+C:\Users\farid\AppData\Local\Temp/ccgW6qIC.s:2      *ABS*:0000003f __SREG__
+C:\Users\farid\AppData\Local\Temp/ccgW6qIC.s:3      *ABS*:0000003e __SP_H__
+C:\Users\farid\AppData\Local\Temp/ccgW6qIC.s:4      *ABS*:0000003d __SP_L__
+C:\Users\farid\AppData\Local\Temp/ccgW6qIC.s:5      *ABS*:00000034 __CCP__
+C:\Users\farid\AppData\Local\Temp/ccgW6qIC.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\farid\AppData\Local\Temp/ccgW6qIC.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\farid\AppData\Local\Temp/ccgW6qIC.s:18     .text:00000000 main
 
 UNDEFINED SYMBOLS
-OneWire_Init_Master
 OneWire_Init_Slave
-OneWire_Tx_Reset_Cmd
-OneWire_TRX_Cmd_Data
+UART_Init
+OneWire_Get_Data_Ready
+OneWire_Get_Data_Buf
+UART_Transmit_Byte_Hex
+UART_Transmit_Space
+OneWire_Get_Data_Buf_Index
+UART_Transmit_New_Line
+OneWire_Flush_Data_Buf

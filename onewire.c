@@ -7,17 +7,24 @@
 
 typedef struct onewire_t{
   volatile uint16_t BitFrame;
-  volatile uint16_t RawBitFrame;
   volatile uint8_t  BitCounter;
+  
   volatile uint8_t  BusRstEvent;
   volatile uint8_t  AddrMatch;
   
-  volatile uint16_t CMD;
-  volatile uint16_t RegAddr;
-  volatile uint16_t RegData;
+  volatile uint16_t FrameCMD;
+  volatile uint16_t FrameData;
+  
+  volatile uint16_t TempMode;
+  volatile uint16_t SelectedMode;
+  
+  volatile uint16_t AddrReg;
+  volatile uint16_t DataReg;
 
   volatile uint8_t  ACK;
-  volatile uint8_t  NewDataAvailable;
+  volatile uint8_t  DataReady;
+  volatile uint8_t  SessionEnd;
+  
   volatile uint8_t  DataBuf[ONEWIRE_DATA_BUF];
   volatile uint8_t  DataBufCounter;
 }onewire_t;
@@ -26,27 +33,35 @@ onewire_t OneWire;
 
 void OneWire_Struct_Init(void){
   OneWire.BitFrame = 0;
-  OneWire.RawBitFrame = 0;
   OneWire.BitCounter = 0;
+  
   OneWire.BusRstEvent = 0;
   OneWire.AddrMatch = 0;
-  OneWire.RegData = 0;
-  OneWire.CMD = 0;
+  
+  OneWire.FrameCMD = 0;
+  OneWire.FrameData = 0;
   OneWire.ACK = 0;
-  OneWire.NewDataAvailable = 0;
+  
+  OneWire.TempMode = 0;
+  OneWire.SelectedMode = 0;
+  
+  OneWire.AddrReg = 0;
+  OneWire.DataReg = 0;
+  
+  
+  OneWire.DataReady = 0;
+  OneWire.SessionEnd = 1;
 }
 
 void OneWire_Flush_Bit_Frame(void){
   OneWire.BitFrame = 0;
-  OneWire.RawBitFrame = 0;
   OneWire.BitCounter = 0;
 }
 
-void OneWire_Flush_Cmd_Reg(void){
-  OneWire.RegData = 0;
-  OneWire.CMD = 0;
+void OneWire_Flush_Frame(void){
+  OneWire.FrameCMD = 0;
+  OneWire.FrameData = 0;
   OneWire.ACK = 0;
-  OneWire.NewDataAvailable = 0;
 }
 
 void OneWire_Flush_Data_Buf(void){
@@ -184,19 +199,29 @@ uint8_t OneWire_TRX_Falling_Edge_Interrupt(void){
 
 
 
-void OneWire_Debug_Tx_Pulse(void){
+void OneWire_Debug_Tx_Pulse(uint8_t repeat){
   #ifdef ONEWIRE_DBGTX_ENABLE
-  ONEWIRE_DBGTX_PORT |= (1<<ONEWIRE_DBGTX_BP);
-  _delay_us(1);
-  ONEWIRE_DBGTX_PORT &=~(1<<ONEWIRE_DBGTX_BP);
+  for(uint8_t i=0; i<repeat; i++){
+    ONEWIRE_DBGTX_PORT |= (1<<ONEWIRE_DBGTX_BP);
+    asm("nop");
+	asm("nop");
+    ONEWIRE_DBGTX_PORT &=~(1<<ONEWIRE_DBGTX_BP);
+    asm("nop");
+	asm("nop");
+  }
   #endif
 }
 
-void OneWire_Debug_Rx_Pulse(void){
+void OneWire_Debug_Rx_Pulse(uint8_t repeat){
   #ifdef ONEWIRE_DBGRX_ENABLE
-  ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
-  _delay_us(1);
-  ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
+  for(uint8_t i=0; i<repeat; i++){
+    ONEWIRE_DBGRX_PORT |= (1<<ONEWIRE_DBGRX_BP);
+    asm("nop");
+	asm("nop");
+    ONEWIRE_DBGRX_PORT &=~(1<<ONEWIRE_DBGRX_BP);
+	asm("nop");
+	asm("nop");
+  }
   #endif
 }
 
@@ -238,7 +263,7 @@ uint8_t OneWire_Tx_Reset_Cmd(void){
 	
 	//leave for ack
 	OneWire_Delay_Half_Bit_Time();
-	OneWire_Debug_Tx_Pulse();
+	OneWire_Debug_Tx_Pulse(1);
 	ack_sts = OneWire_TRX_Get_Input_State();
 	OneWire_Delay_Half_Bit_Time();
 	OneWire_TRX_Set_Logic(1);
@@ -275,7 +300,7 @@ uint16_t OneWire_TRX_Frame(uint16_t val){
 	}
 	val <<= 1;
 	OneWire_Delay_Half_Bit_Time();
-	OneWire_Debug_Tx_Pulse();
+	OneWire_Debug_Tx_Pulse(1);
 	rx_val <<= 1;
 	rx_val |= OneWire_TRX_Get_Input_State();
 	OneWire_Delay_Half_Bit_Time();
@@ -299,68 +324,91 @@ uint16_t OneWire_TRX_Cmd_Data(uint16_t cmd, uint16_t data){
 }
 
 
+
+
+
+void OneWire_Handle_Reset_Event(void){
+  OneWire.AddrMatch = 0;
+  OneWire.BusRstEvent = 1;
+  OneWire.TempMode = 0;
+  OneWire.SelectedMode = 0;
+  OneWire.ACK = 1;
+  OneWire_Debug_Rx_Pulse(6);
+}
+
+
+void OneWire_Handle_Start_Event(void){
+  OneWire.BusRstEvent = 0;
+  OneWire.AddrMatch = 1;
+  OneWire.SessionEnd = 0;
+  OneWire.ACK = 1;
+  OneWire_Debug_Rx_Pulse(5);
+}
+
+
+void OneWire_Handle_Read_Event(void){
+  OneWire.AddrReg = OneWire.FrameData;
+  OneWire.TempMode = ONEWIRE_CMD_READ;
+  OneWire.ACK = 1;
+  OneWire_Debug_Rx_Pulse(4);
+}
+
+void OneWire_Handle_Write_Event(void){
+  OneWire.AddrReg = OneWire.FrameData;
+  OneWire.TempMode = ONEWIRE_CMD_WRITE;
+  OneWire.ACK = 1;
+  OneWire_Debug_Rx_Pulse(3);
+}
+
+void OneWire_Handle_Cont_Event(void){
+  OneWire.ACK = 1;
+  if(OneWire.TempMode == ONEWIRE_CMD_WRITE){
+	OneWire.DataBuf[OneWire.DataBufCounter] = OneWire.FrameData;
+	OneWire.DataBufCounter++;
+	if(OneWire.DataBufCounter>=ONEWIRE_DATA_BUF){
+	  OneWire.DataBufCounter = 0;
+	}
+  }
+  OneWire_Debug_Rx_Pulse(2);
+}
+
+void OneWire_Handle_Stop_Event(void){
+  OneWire.AddrMatch = 0;
+  OneWire.BusRstEvent = 0;
+  OneWire.SessionEnd = 1;
+  OneWire.ACK = 1;
+  OneWire_Debug_Rx_Pulse(1);
+}
+
+
+
 void OneWire_Handle_Cmd_Data(void){
   //reset request -> Send ack
   if(OneWire.BitFrame == ONEWIRE_CMD_RESET){
-	OneWire.AddrMatch = 0;
-    OneWire.BusRstEvent = 1;
-	OneWire.ACK = 1;
-    OneWire_Debug_Rx_Pulse();
-	OneWire_Debug_Rx_Pulse();
-	OneWire_Debug_Rx_Pulse();
-	OneWire_Debug_Rx_Pulse();
-	OneWire_Debug_Rx_Pulse();
-	OneWire_Debug_Rx_Pulse();
+	OneWire_Handle_Reset_Event();
   }
-  
   //Address matched -> Send ack
-  else if((OneWire.CMD == ONEWIRE_CMD_START) && (OneWire.RegData == ONEWIRE_OWN_AADR)){
+  else if((OneWire.FrameCMD == ONEWIRE_CMD_START) && (OneWire.FrameData == ONEWIRE_OWN_AADR)){
 	if(OneWire.BusRstEvent == 1){
-	  OneWire.BusRstEvent = 0;
-	  OneWire.AddrMatch = 1;
-	  OneWire.ACK = 1;
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
+	  OneWire_Handle_Start_Event();
 	}
   }
-  
   //Read cmd -> Send ack
-  else if((OneWire.CMD == ONEWIRE_CMD_READ) && (OneWire.AddrMatch == 1)){
-	OneWire.RegAddr = OneWire.RegData;
-	OneWire.ACK = 1;
-    OneWire_Debug_Rx_Pulse();
-    OneWire_Debug_Rx_Pulse();
-    OneWire_Debug_Rx_Pulse();
-	OneWire_Debug_Rx_Pulse();
+  else if((OneWire.FrameCMD == ONEWIRE_CMD_READ) && (OneWire.AddrMatch == 1)){
+	OneWire_Handle_Read_Event();
   }
-  
   //Write cmd -> Send ack
-  else if((OneWire.CMD == ONEWIRE_CMD_WRITE) && (OneWire.AddrMatch == 1)){
-	OneWire.RegAddr = OneWire.RegData;
-	OneWire.ACK = 1;
-    OneWire_Debug_Rx_Pulse();
-	OneWire_Debug_Rx_Pulse();
-	OneWire_Debug_Rx_Pulse();
+  else if((OneWire.FrameCMD == ONEWIRE_CMD_WRITE) && (OneWire.AddrMatch == 1)){
+	OneWire_Handle_Write_Event();
   }
-  
   //Continue cmd -> Send ack
-  else if((OneWire.CMD == ONEWIRE_CMD_CONT) && (OneWire.AddrMatch == 1)){
-	OneWire.ACK = 1;
-    OneWire_Debug_Rx_Pulse();
-	OneWire_Debug_Rx_Pulse();
+  else if((OneWire.FrameCMD == ONEWIRE_CMD_CONT) && (OneWire.AddrMatch == 1)){
+	OneWire_Handle_Cont_Event();
   }
- 
   //Stop cmd -> Send ack
-  else if((OneWire.CMD == ONEWIRE_CMD_STOP) && (OneWire.AddrMatch == 1)){
-	OneWire.AddrMatch = 0;
-    OneWire.BusRstEvent = 0;
-	OneWire.ACK = 1;
-    OneWire_Debug_Rx_Pulse();
+  else if((OneWire.FrameCMD == ONEWIRE_CMD_STOP) && (OneWire.AddrMatch == 1)){
+	OneWire_Handle_Stop_Event();
   }
-
   //Nothing Matched, Send nack
   else{
 	OneWire.ACK = 0;
@@ -369,209 +417,120 @@ void OneWire_Handle_Cmd_Data(void){
   }
 }
 
+void OneWire_Select_Mode(void){
+  if(OneWire.TempMode == ONEWIRE_CMD_WRITE){
+	OneWire.SelectedMode = ONEWIRE_CMD_WRITE;
+  }
+  else if(OneWire.TempMode == ONEWIRE_CMD_READ){
+	OneWire.SelectedMode = ONEWIRE_CMD_READ;
+	if(OneWire.DataReady == 0){
+	  OneWire_Debug_Rx_Pulse(7);
+	  OneWire_Set_Data_Reg(0x9C);
+	  OneWire.DataReady = 1;
+	}
+  }
+  else{
+	OneWire.SelectedMode = 0;
+  }
+}
+
+
+void OneWire_Master_Process_Cmd_Data(void){
+  OneWire_Delay_Rx_Int();
+  OneWire.BitFrame <<= 1;
+  OneWire_Debug_Rx_Pulse(1);
+  OneWire.BitFrame |= OneWire_TRX_Get_Input_State();
+  if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-2)){
+	OneWire.FrameCMD  = OneWire.BitFrame & ONEWIRE_CMD_MASK;
+	OneWire.FrameData = OneWire.BitFrame & ONEWIRE_DATA_MASK;
+	OneWire_Handle_Cmd_Data();
+  }
+}
+
+void OneWire_Master_Process_Ack(void){
+  //maybe need to disable interrupt
+  OneWire_Debug_Rx_Pulse(1);
+  if(OneWire.ACK == 1){
+	OneWire.ACK = 0;
+    OneWire_TRX_Set_Logic(0);
+  }
+  OneWire_Delay_Half_Bit_Time();
+  OneWire_Delay_Half_Bit_Time();
+  OneWire_TRX_Set_Logic(1);
+  OneWire_Debug_Rx_Pulse(1);
+  //maybe need to enable interrupt
+}
+
+
+
 
 void OneWire_Bit_Frame_Sample(void){
-  //Last bit of the frame -> ACK bit
-  if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-1)){
-    //maybe need to disable interrupt
-	OneWire_Debug_Rx_Pulse();
-	if(OneWire.ACK == 1){
-	  OneWire.ACK = 0;
-      OneWire_TRX_Set_Logic(0);
-	}
-	OneWire_Delay_Half_Bit_Time();
-	//OneWire.BitFrame <<= 1;
-	//OneWire.BitFrame |= OneWire_TRX_Get_Input_State();
-    OneWire_Delay_Half_Bit_Time();
-	OneWire_TRX_Set_Logic(1);
-	OneWire_Debug_Rx_Pulse();
-	//maybe need to enable interrupt
-  }
-  //Regular bits to sample
-  else{
-    OneWire_Delay_Rx_Int();
-    OneWire.BitFrame <<= 1;
-    OneWire_Debug_Rx_Pulse();
-    OneWire.BitFrame |= OneWire_TRX_Get_Input_State();
-	
-	if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-2)){
-	  OneWire.CMD     = OneWire.BitFrame & ONEWIRE_CMD_MASK;
-	  OneWire.RegData = OneWire.BitFrame & ONEWIRE_DATA_MASK;
-	  OneWire_Handle_Cmd_Data();
+
+  if( (OneWire.SelectedMode == ONEWIRE_CMD_WRITE) || (OneWire.SelectedMode == 0) ){
+  
+    if(OneWire.BitCounter <= (ONEWIRE_FRAME_LEN-2)){
+	  OneWire_Master_Process_Cmd_Data();
 	}
 	
+	else if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-1)){
+	  OneWire_Master_Process_Ack();
+	}
   }
+  else if(OneWire.SelectedMode == ONEWIRE_CMD_READ){
+    OneWire_Read_Mode_Feedback();
+  }
+  
+  
   OneWire.BitCounter++;
-}
-
-
-uint8_t OneWire_Bit_Counter_Overflow(void){
   if(OneWire.BitCounter >= ONEWIRE_FRAME_LEN){
-    OneWire.BitCounter = 0;
-	
-	OneWire.BitFrame = 0; ///////////////////////////////test
-	
-	return 1;
+    OneWire_Flush_Bit_Frame();
+	OneWire_Select_Mode();
   }
-  else{
-    return 0;
-  }
-}
-
-
-uint16_t OneWire_Build_Bit_Frame(void){
-  uint16_t temp = 0xFFFF;
-  OneWire_Bit_Frame_Sample();
-  if(OneWire_Bit_Counter_Overflow() == 1){
-    temp = OneWire.BitFrame;
-	OneWire.BitFrame = 0;
-  }
-  return temp;
-}
-
-void OneWire_Extract_Cmd_Data(void){
-  uint16_t temp = OneWire_Build_Bit_Frame();
-  if(temp != 0xFFFF){
-    OneWire.RawBitFrame = temp;
-	OneWire.CMD = temp & ONEWIRE_CMD_MASK;
-	OneWire.ACK = temp & ONEWIRE_ACK_MASK;
-	temp >>= 1;
-	temp &= 0xFF;
-	OneWire.RegData = temp;
-	OneWire.NewDataAvailable = 1;
-  }
-}
-
-void OneWire_Handle_Data(void){
-  OneWire_Extract_Cmd_Data();
-  if(OneWire.NewDataAvailable == 1){
-    if( (OneWire.RawBitFrame & 0xFFE)==0xFFE ){
-      //reset request
-	  OneWire_Flush_Bit_Frame();
-	  OneWire_Flush_Cmd_Reg();
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-    }
-    else if(OneWire.CMD == ONEWIRE_CMD_START){
-      //renew buf
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-    }
-    else if(OneWire.CMD == ONEWIRE_CMD_CONT){
-      //renew buf
-	  OneWire_Debug_Rx_Pulse();
-	  OneWire_Debug_Rx_Pulse();
-    }
-    else if(OneWire.CMD == ONEWIRE_CMD_STOP){
-      //renew buf
-	  OneWire_Debug_Rx_Pulse();
-    }
-	OneWire.NewDataAvailable = 0;
-  }
-}
-
-void OneWire_Buf_Sample_And_Update(void){
-/*  OneWire.FrameBuf[OneWire.FrameBufIndex] = OneWire.FrameVal;
-  OneWire.FrameVal = 0;
-  OneWire.FrameBufIndex++;*/
-}
-
-uint8_t OneWire_Buf_Counter_Overflow(void){
-  /*if(OneWire.FrameBufIndex >= ONEWIRE_FRAME_BUF){
-    OneWire.FrameBufIndex = 0;
-	OneWire.FrameCounter++;
-	return 1;
-  }
-  else{
-    OneWire.FrameCounter++;
-	return 0;
-  }*/
-}
-
-void OneWire_Fill_Buf(void){
-  /*OneWire_Buf_Sample_And_Update();
-  OneWire_Buf_Counter_Overflow();
-  
-  if((OneWire.FrameBufIndex > 0) && ((OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_START_CMD) == ONEWIRE_START_CMD) ){
-    OneWire.CmdReceived = 1;
-	OneWire.CmdVal = OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_RW_MASK;
-	OneWire.CmdValReg = (OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_REG_MASK)>>1;
-	OneWire_Flush_Frame_Buf();
-	OneWire_Debug_Rx_Pulse();
-  }*/
-}
-
-void OneWire_Fill_Buf_Copy_Data(void){
-  /*OneWire_Buf_Sample_And_Update();
-  OneWire_Buf_Counter_Overflow();
-  
-  if( (OneWire.FrameBuf[OneWire.FrameBufIndex-1] & ONEWIRE_STOP_CMD) == ONEWIRE_STOP_CMD){
-    //Copy data to DataBuf
-    for(uint8_t i=0;i<OneWire.FrameBufIndex;i++){
-	  OneWire.DataBuf[OneWire.DataBufIndex] = (OneWire.FrameBuf[i]>>1) & 0xFF;
-	  OneWire.DataBufIndex++;
-	  if(OneWire.DataBufIndex >= ONEWIRE_DATA_BUF){
-	    OneWire.DataBufIndex = 0;
-	  }
-	}
-    OneWire.CmdReceived = 0;
-	OneWire_Flush_Frame_Buf();
-	OneWire.CmdVal = 0;
-	OneWire.CmdValReg = 0;
-	OneWire.FeedbackDataLoaded = 0;
-	OneWire.FeedbackCounter = 0;
-	OneWire_Debug_Rx_Pulse();
-  }*/
 }
 
 
 void OneWire_Read_Mode_Feedback(void){
-  /*OneWire_TRX_Interrupt_Disable();
-  if(OneWire.FeedbackData & 0x800){
+  OneWire_TRX_Interrupt_Disable();
+  if(OneWire.DataReg & 0x800){
 	OneWire_TRX_Set_Logic(1);
   }else{
 	OneWire_TRX_Set_Logic(0);
   }
-  OneWire.FeedbackData <<= 1;
+  OneWire.DataReg <<= 1;
   OneWire_Delay_Half_Bit_Time();
+  OneWire_Debug_Rx_Pulse(1);
   OneWire_Delay_Half_Bit_Time();
   OneWire_TRX_Set_Logic(1);
-  OneWire_TRX_Interrupt_Enable();*/
+  if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-1)){
+    OneWire.TempMode = 0;
+    OneWire.SelectedMode = 0;
+	OneWire.DataReady = 0;
+	OneWire_Debug_Rx_Pulse(2);
+  }
+  OneWire_TRX_Interrupt_Enable();
 }
 
 
 void OneWire_Master_Send_Data(uint8_t *data, uint8_t len){
-  /*uint16_t StartByte = ONEWIRE_START_CMD | ONEWIRE_WRITE_CMD | 1;
-  uint16_t DataByte  = ONEWIRE_CONT_CMD  | ONEWIRE_WRITE_CMD | 1;
-  uint16_t EndByte   = ONEWIRE_STOP_CMD  | ONEWIRE_WRITE_CMD | 1;
-  uint16_t temp      = 0;
-  OneWire_TRX_Byte(StartByte);
-  _delay_us(100);
+  OneWire_TRX_Cmd_Data(ONEWIRE_CMD_START, ONEWIRE_OWN_AADR);
+  OneWire_TRX_Cmd_Data(ONEWIRE_CMD_WRITE, 0x00);
   for(uint8_t i=0;i<len;i++){
-    if(i == (len-1)){
-	  temp = EndByte  | (data[i]<<1);
-	}
-	else{
-	  temp = DataByte | (data[i]<<1);
-	}
-	OneWire_TRX_Byte(temp);
+    OneWire_TRX_Cmd_Data(ONEWIRE_CMD_CONT,  data[i]);
   }
-  _delay_us(200);*/
+  OneWire_TRX_Cmd_Data(ONEWIRE_CMD_STOP , 0x00);
 }
 
 uint8_t OneWire_Master_Receive_Data(uint8_t addr){
-  /*uint16_t StartByte = ONEWIRE_START_CMD | ONEWIRE_READ_CMD | 1;
-  uint16_t EndByte   = ONEWIRE_STOP_CMD  | ONEWIRE_READ_CMD | 1;
-  uint16_t temp      = 0;
-  OneWire_TRX_Byte(StartByte | (addr<<1));
-  _delay_ms(1);
-  temp = OneWire_TRX_Byte(EndByte | (0xFF<<1));
-  temp >>= 1;
-  temp &= 0xFF;
-  return (uint8_t)temp;*/
+  OneWire_TRX_Cmd_Data(ONEWIRE_CMD_START, ONEWIRE_OWN_AADR);
+  OneWire_TRX_Cmd_Data(ONEWIRE_CMD_READ , addr);
+  uint16_t temp0 = OneWire_TRX_Cmd_Data(ONEWIRE_CMD_CONT , 0xFF);
+  uint16_t temp1 = OneWire_TRX_Cmd_Data(ONEWIRE_CMD_STOP , 0x00);
+  temp0 >>= 1;
+  temp0 &= 0xFF;
+  if((temp1 & 0x01) == 1){
+    temp0 = 0;
+  }
+  return temp0;
 }
 
 
@@ -585,15 +544,29 @@ ISR(ONEWIRE_TRX_PCINT_VECT){
     if(OneWire_TRX_Falling_Edge_Interrupt() == 1){
 	  //handle frame bits and ack
 	  OneWire_Bit_Frame_Sample();
-	  OneWire_Bit_Counter_Overflow();
 	}
   }
 }
 
 
+void OneWire_Set_Data_Reg(uint8_t val){
+  OneWire.DataReg = val;
+  OneWire.DataReg <<=1;
+  OneWire.DataReg  |= (ONEWIRE_CMD_READ<<1) | 1;
+}
 
+uint8_t OneWire_Get_Session_End(void){
+  return OneWire.SessionEnd;
+}
 
-
+uint8_t OneWire_Get_Data_Ready(void){
+  if((OneWire_Get_Session_End() == 1) && (OneWire_Get_Data_Buf_Index() !=0) ){
+    return 1;
+  }
+  else{
+    return 0;
+  }
+}
 
 uint8_t OneWire_Get_Data_Buf(uint8_t index){
   return OneWire.DataBuf[index];
