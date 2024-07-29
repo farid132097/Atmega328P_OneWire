@@ -10,450 +10,145 @@
   18               	main:
   19               	.LFB6:
   20               	.LM1:
-  21 0000 EF92      		push r14
-  22 0002 FF92      		push r15
-  23 0004 0F93      		push r16
-  24 0006 1F93      		push r17
-  25 0008 CF93      		push r28
-  26 000a DF93      		push r29
-  27               	/* prologue: function */
-  28               	/* frame size = 0 */
-  29               	.LM2:
-  30 000c 0E94 0000 		call OneWire_Init_Master
-  31 0010 80E1      		ldi r24,lo8(10000)
-  32 0012 97E2      		ldi r25,hi8(10000)
-  33               	.LVL0:
-  34               	.LBB146:
-  35               	.LBB147:
-  36               	.LBB148:
-  37               	.LBB149:
-  38               	.LM3:
-  39 0014 2CE2      		ldi r18,lo8(300)
-  40 0016 31E0      		ldi r19,hi8(300)
-  41               	.L2:
-  42 0018 F901      		movw r30,r18
-  43               	.LVL1:
-  44               	/* #APP */
-  45               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
-  46 001a 3197      		1: sbiw r30,1
-  47 001c 01F4      		brne 1b
-  48               	 ;  0 "" 2
-  49               	/* #NOAPP */
-  50               	.LBE149:
-  51               	.LBE148:
-  52               	.LM4:
-  53 001e 0197      		sbiw r24,1
-  54               	.LM5:
-  55 0020 01F4      		brne .L2
-  56               	.LBE147:
-  57               	.LBE146:
-  58               	.LBB150:
-  59               	.LBB151:
-  60               	.LBB152:
-  61               	.LBB153:
-  62               	.LBB154:
-  63               	.LBB155:
-  64               	.LM6:
-  65 0022 88EB      		ldi r24,lo8(3000)
-  66 0024 E82E      		mov r14,r24
-  67 0026 8BE0      		ldi r24,hi8(3000)
-  68 0028 F82E      		mov r15,r24
-  69               	.LVL2:
-  70               	.LBE155:
-  71               	.LBE154:
-  72               	.LBE153:
-  73               	.LBE152:
-  74               	.LBE151:
-  75               	.LBE150:
-  76               	.LBB161:
-  77               	.LBB162:
-  78               	.LBB163:
-  79               	.LBB164:
-  80               	.LBB165:
-  81               	.LBB166:
-  82 002a CCE2      		ldi r28,lo8(300)
-  83 002c D1E0      		ldi r29,hi8(300)
-  84               	.LBE166:
-  85               	.LBE165:
-  86               	.LBE164:
-  87               	.LBE163:
-  88               	.LBE162:
-  89               	.LBE161:
-  90               	.LBB172:
-  91               	.LBB173:
-  92               	.LBB174:
-  93               	.LBB175:
-  94               	.LBB176:
-  95               	.LBB177:
-  96 002e 08E5      		ldi r16,lo8(600)
-  97 0030 12E0      		ldi r17,hi8(600)
-  98               	.LVL3:
-  99               	.L10:
- 100               	.LBE177:
- 101               	.LBE176:
- 102               	.LBE175:
- 103               	.LBE174:
- 104               	.LBE173:
- 105               	.LBE172:
- 106               	.LM7:
- 107 0032 0E94 0000 		call OneWire_Tx_Reset_Cmd
- 108               	.LVL4:
- 109 0036 8130      		cpi r24,lo8(1)
- 110 0038 01F0      		breq .+2
- 111 003a 00C0      		rjmp .L11
- 112               	.L3:
- 113               	.LBB183:
- 114               	.LBB160:
- 115               	.LBB159:
- 116               	.LBB158:
- 117               	.LBB157:
- 118               	.LBB156:
- 119               	.LM8:
- 120 003c C701      		movw r24,r14
- 121               	.LVL5:
- 122               	/* #APP */
- 123               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 124 003e 0197      		1: sbiw r24,1
- 125 0040 01F4      		brne 1b
- 126               	 ;  0 "" 2
- 127               	/* #NOAPP */
- 128               	.LBE156:
- 129               	.LBE157:
- 130               	.LBE158:
- 131               	.LBE159:
- 132               	.LBE160:
- 133               	.LBE183:
- 134               	.LM9:
- 135 0042 81ED      		ldi r24,lo8(209)
- 136 0044 90E0      		ldi r25,hi8(209)
- 137               	.LVL6:
- 138 0046 0E94 0000 		call OneWire_TRX_Frame
- 139               	.LBB184:
- 140               	.LBB171:
- 141               	.LBB170:
- 142               	.LBB169:
- 143               	.LBB168:
- 144               	.LBB167:
- 145               	.LM10:
- 146 004a CE01      		movw r24,r28
- 147               	.LVL7:
- 148               	/* #APP */
- 149               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 150 004c 0197      		1: sbiw r24,1
- 151 004e 01F4      		brne 1b
- 152               	 ;  0 "" 2
- 153               	/* #NOAPP */
- 154               	.LBE167:
- 155               	.LBE168:
- 156               	.LBE169:
- 157               	.LBE170:
- 158               	.LBE171:
- 159               	.LBE184:
- 160               	.LM11:
- 161 0050 83E0      		ldi r24,lo8(3)
- 162 0052 90E0      		ldi r25,hi8(3)
- 163               	.LVL8:
- 164 0054 0E94 0000 		call OneWire_TRX_Frame
- 165               	.LBB185:
- 166               	.LBB186:
- 167               	.LBB187:
- 168               	.LBB188:
- 169               	.LBB189:
- 170               	.LBB190:
- 171               	.LM12:
- 172 0058 CE01      		movw r24,r28
- 173               	.LVL9:
- 174               	/* #APP */
- 175               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 176 005a 0197      		1: sbiw r24,1
- 177 005c 01F4      		brne 1b
- 178               	 ;  0 "" 2
- 179               	/* #NOAPP */
- 180               	.LBE190:
- 181               	.LBE189:
- 182               	.LBE188:
- 183               	.LBE187:
- 184               	.LBE186:
- 185               	.LBE185:
- 186               	.LM13:
- 187 005e 85E0      		ldi r24,lo8(5)
- 188 0060 90E0      		ldi r25,hi8(5)
- 189               	.LVL10:
- 190 0062 0E94 0000 		call OneWire_TRX_Frame
- 191               	.LBB191:
- 192               	.LBB192:
- 193               	.LBB193:
- 194               	.LBB194:
- 195               	.LBB195:
- 196               	.LBB196:
- 197               	.LM14:
- 198 0066 CE01      		movw r24,r28
- 199               	.LVL11:
- 200               	/* #APP */
- 201               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 202 0068 0197      		1: sbiw r24,1
- 203 006a 01F4      		brne 1b
- 204               	 ;  0 "" 2
- 205               	/* #NOAPP */
- 206               	.LBE196:
- 207               	.LBE195:
- 208               	.LBE194:
- 209               	.LBE193:
- 210               	.LBE192:
- 211               	.LBE191:
- 212               	.LM15:
- 213 006c 87E0      		ldi r24,lo8(7)
- 214 006e 90E0      		ldi r25,hi8(7)
- 215               	.LVL12:
- 216 0070 0E94 0000 		call OneWire_TRX_Frame
- 217               	.LBB197:
- 218               	.LBB198:
- 219               	.LBB199:
- 220               	.LBB200:
- 221               	.LBB201:
- 222               	.LBB202:
- 223               	.LM16:
- 224 0074 CE01      		movw r24,r28
- 225               	.LVL13:
- 226               	/* #APP */
- 227               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 228 0076 0197      		1: sbiw r24,1
- 229 0078 01F4      		brne 1b
- 230               	 ;  0 "" 2
- 231               	/* #NOAPP */
- 232               	.LBE202:
- 233               	.LBE201:
- 234               	.LBE200:
- 235               	.LBE199:
- 236               	.LBE198:
- 237               	.LBE197:
- 238               	.LM17:
- 239 007a 89E0      		ldi r24,lo8(9)
- 240 007c 90E0      		ldi r25,hi8(9)
- 241               	.LVL14:
- 242 007e 0E94 0000 		call OneWire_TRX_Frame
- 243               	.LBB203:
- 244               	.LBB204:
- 245               	.LBB205:
- 246               	.LBB206:
- 247               	.LBB207:
- 248               	.LBB208:
- 249               	.LM18:
- 250 0082 CE01      		movw r24,r28
- 251               	.LVL15:
- 252               	/* #APP */
- 253               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 254 0084 0197      		1: sbiw r24,1
- 255 0086 01F4      		brne 1b
- 256               	 ;  0 "" 2
- 257               	/* #NOAPP */
- 258               	.LBE208:
- 259               	.LBE207:
- 260               	.LBE206:
- 261               	.LBE205:
- 262               	.LBE204:
- 263               	.LBE203:
- 264               	.LM19:
- 265 0088 8BE0      		ldi r24,lo8(11)
- 266 008a 90E0      		ldi r25,hi8(11)
- 267               	.LVL16:
- 268 008c 0E94 0000 		call OneWire_TRX_Frame
- 269               	.LBB209:
- 270               	.LBB182:
- 271               	.LBB181:
- 272               	.LBB180:
- 273               	.LBB179:
- 274               	.LBB178:
- 275               	.LM20:
- 276 0090 C801      		movw r24,r16
- 277               	.LVL17:
- 278               	/* #APP */
- 279               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 280 0092 0197      		1: sbiw r24,1
- 281 0094 01F4      		brne 1b
- 282               	 ;  0 "" 2
- 283               	/* #NOAPP */
- 284               	.LBE178:
- 285               	.LBE179:
- 286               	.LBE180:
- 287               	.LBE181:
- 288               	.LBE182:
- 289               	.LBE209:
- 290               	.LM21:
- 291 0096 83ED      		ldi r24,lo8(211)
- 292 0098 90E0      		ldi r25,hi8(211)
- 293               	.LVL18:
- 294 009a 0E94 0000 		call OneWire_TRX_Frame
- 295               	.LBB210:
- 296               	.LBB211:
- 297               	.LBB212:
- 298               	.LBB213:
- 299               	.LBB214:
- 300               	.LBB215:
- 301               	.LM22:
- 302 009e CE01      		movw r24,r28
- 303               	.LVL19:
- 304               	/* #APP */
- 305               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 306 00a0 0197      		1: sbiw r24,1
- 307 00a2 01F4      		brne 1b
- 308               	 ;  0 "" 2
- 309               	/* #NOAPP */
- 310               	.LBE215:
- 311               	.LBE214:
- 312               	.LBE213:
- 313               	.LBE212:
- 314               	.LBE211:
- 315               	.LBE210:
- 316               	.LM23:
- 317 00a4 83E0      		ldi r24,lo8(3)
- 318 00a6 90E0      		ldi r25,hi8(3)
- 319               	.LVL20:
- 320 00a8 0E94 0000 		call OneWire_TRX_Frame
- 321               	.LBB216:
- 322               	.LBB217:
- 323               	.LBB218:
- 324               	.LBB219:
- 325               	.LBB220:
- 326               	.LBB221:
- 327               	.LM24:
- 328 00ac CE01      		movw r24,r28
- 329               	.LVL21:
- 330               	/* #APP */
- 331               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 332 00ae 0197      		1: sbiw r24,1
- 333 00b0 01F4      		brne 1b
- 334               	 ;  0 "" 2
- 335               	/* #NOAPP */
- 336               	.LBE221:
- 337               	.LBE220:
- 338               	.LBE219:
- 339               	.LBE218:
- 340               	.LBE217:
- 341               	.LBE216:
- 342               	.LM25:
- 343 00b2 85E0      		ldi r24,lo8(5)
- 344 00b4 90E0      		ldi r25,hi8(5)
- 345               	.LVL22:
- 346 00b6 0E94 0000 		call OneWire_TRX_Frame
- 347               	.LBB222:
- 348               	.LBB223:
- 349               	.LBB224:
- 350               	.LBB225:
- 351               	.LBB226:
- 352               	.LBB227:
- 353               	.LM26:
- 354 00ba CE01      		movw r24,r28
- 355               	.LVL23:
- 356               	/* #APP */
- 357               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 358 00bc 0197      		1: sbiw r24,1
- 359 00be 01F4      		brne 1b
- 360               	 ;  0 "" 2
- 361               	/* #NOAPP */
- 362               	.LBE227:
- 363               	.LBE226:
- 364               	.LBE225:
- 365               	.LBE224:
- 366               	.LBE223:
- 367               	.LBE222:
- 368               	.LM27:
- 369 00c0 87E0      		ldi r24,lo8(7)
- 370 00c2 90E0      		ldi r25,hi8(7)
- 371               	.LVL24:
- 372 00c4 0E94 0000 		call OneWire_TRX_Frame
- 373               	.LBB228:
- 374               	.LBB229:
- 375               	.LBB230:
- 376               	.LBB231:
- 377               	.LBB232:
- 378               	.LBB233:
- 379               	.LM28:
- 380 00c8 CE01      		movw r24,r28
- 381               	.LVL25:
- 382               	/* #APP */
- 383               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 384 00ca 0197      		1: sbiw r24,1
- 385 00cc 01F4      		brne 1b
- 386               	 ;  0 "" 2
- 387               	/* #NOAPP */
- 388               	.LBE233:
- 389               	.LBE232:
- 390               	.LBE231:
- 391               	.LBE230:
- 392               	.LBE229:
- 393               	.LBE228:
- 394               	.LM29:
- 395 00ce 89E0      		ldi r24,lo8(9)
- 396 00d0 90E0      		ldi r25,hi8(9)
- 397               	.LVL26:
- 398 00d2 0E94 0000 		call OneWire_TRX_Frame
- 399               	.LBB234:
- 400               	.LBB235:
- 401               	.LBB236:
- 402               	.LBB237:
- 403               	.LBB238:
- 404               	.LBB239:
- 405               	.LM30:
- 406 00d6 CE01      		movw r24,r28
- 407               	.LVL27:
- 408               	/* #APP */
- 409               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 410 00d8 0197      		1: sbiw r24,1
- 411 00da 01F4      		brne 1b
- 412               	 ;  0 "" 2
- 413               	/* #NOAPP */
- 414               	.LBE239:
- 415               	.LBE238:
- 416               	.LBE237:
- 417               	.LBE236:
- 418               	.LBE235:
- 419               	.LBE234:
- 420               	.LM31:
- 421 00dc 8BE0      		ldi r24,lo8(11)
- 422 00de 90E0      		ldi r25,hi8(11)
- 423               	.LVL28:
- 424 00e0 0E94 0000 		call OneWire_TRX_Frame
- 425               	.L11:
- 426 00e4 80E1      		ldi r24,lo8(10000)
- 427 00e6 97E2      		ldi r25,hi8(10000)
- 428               	.LVL29:
- 429               	.L7:
- 430               	.LBB240:
- 431               	.LBB241:
- 432               	.LBB242:
- 433               	.LBB243:
- 434               	.LM32:
- 435 00e8 FE01      		movw r30,r28
- 436               	/* #APP */
- 437               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
- 438 00ea 3197      		1: sbiw r30,1
- 439 00ec 01F4      		brne 1b
- 440               	 ;  0 "" 2
- 441               	/* #NOAPP */
- 442               	.LBE243:
- 443               	.LBE242:
- 444               	.LM33:
- 445 00ee 0197      		sbiw r24,1
- 446               	.LM34:
- 447 00f0 01F4      		brne .+2
- 448 00f2 00C0      		rjmp .L10
- 449 00f4 00C0      		rjmp .L7
- 450               	.LBE241:
- 451               	.LBE240:
- 452               	.LFE6:
- 478               	.Letext0:
+  21 0000 CF93      		push r28
+  22 0002 DF93      		push r29
+  23               	/* prologue: function */
+  24               	/* frame size = 0 */
+  25               	.LM2:
+  26 0004 0E94 0000 		call OneWire_Init_Master
+  27 0008 80E1      		ldi r24,lo8(10000)
+  28 000a 97E2      		ldi r25,hi8(10000)
+  29               	.LVL0:
+  30               	.LBB36:
+  31               	.LBB37:
+  32               	.LBB38:
+  33               	.LBB39:
+  34               	.LM3:
+  35 000c 2CE2      		ldi r18,lo8(300)
+  36 000e 31E0      		ldi r19,hi8(300)
+  37               	.L2:
+  38 0010 F901      		movw r30,r18
+  39               	.LVL1:
+  40               	/* #APP */
+  41               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  42 0012 3197      		1: sbiw r30,1
+  43 0014 01F4      		brne 1b
+  44               	 ;  0 "" 2
+  45               	/* #NOAPP */
+  46               	.LBE39:
+  47               	.LBE38:
+  48               	.LM4:
+  49 0016 0197      		sbiw r24,1
+  50               	.LM5:
+  51 0018 01F4      		brne .L2
+  52               	.LBE37:
+  53               	.LBE36:
+  54               	.LM6:
+  55 001a 0E94 0000 		call OneWire_Init_Slave
+  56               	.LVL2:
+  57               	.LBB40:
+  58               	.LBB41:
+  59               	.LBB42:
+  60               	.LBB43:
+  61               	.LBB44:
+  62               	.LBB45:
+  63               	.LM7:
+  64 001e CCE2      		ldi r28,lo8(300)
+  65 0020 D1E0      		ldi r29,hi8(300)
+  66               	.LVL3:
+  67               	.L5:
+  68               	.LBE45:
+  69               	.LBE44:
+  70               	.LBE43:
+  71               	.LBE42:
+  72               	.LBE41:
+  73               	.LBE40:
+  74               	.LM8:
+  75 0022 0E94 0000 		call OneWire_Tx_Reset_Cmd
+  76               	.LVL4:
+  77 0026 8130      		cpi r24,lo8(1)
+  78 0028 01F4      		brne .L10
+  79               	.L3:
+  80               	.LBB51:
+  81               	.LBB50:
+  82               	.LBB49:
+  83               	.LBB48:
+  84               	.LBB47:
+  85               	.LBB46:
+  86               	.LM9:
+  87 002a CE01      		movw r24,r28
+  88               	.LVL5:
+  89               	/* #APP */
+  90               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  91 002c 0197      		1: sbiw r24,1
+  92 002e 01F4      		brne 1b
+  93               	 ;  0 "" 2
+  94               	/* #NOAPP */
+  95               	.LBE46:
+  96               	.LBE47:
+  97               	.LBE48:
+  98               	.LBE49:
+  99               	.LBE50:
+ 100               	.LBE51:
+ 101               	.LM10:
+ 102 0030 80E0      		ldi r24,lo8(1536)
+ 103 0032 96E0      		ldi r25,hi8(1536)
+ 104               	.LVL6:
+ 105 0034 68E6      		ldi r22,lo8(104)
+ 106 0036 70E0      		ldi r23,hi8(104)
+ 107 0038 0E94 0000 		call OneWire_TRX_Cmd_Data
+ 108               	.LM11:
+ 109 003c 80E0      		ldi r24,lo8(256)
+ 110 003e 91E0      		ldi r25,hi8(256)
+ 111 0040 61E0      		ldi r22,lo8(1)
+ 112 0042 70E0      		ldi r23,hi8(1)
+ 113 0044 0E94 0000 		call OneWire_TRX_Cmd_Data
+ 114               	.LM12:
+ 115 0048 80E0      		ldi r24,lo8(768)
+ 116 004a 93E0      		ldi r25,hi8(768)
+ 117 004c 67E0      		ldi r22,lo8(7)
+ 118 004e 70E0      		ldi r23,hi8(7)
+ 119 0050 0E94 0000 		call OneWire_TRX_Cmd_Data
+ 120               	.L10:
+ 121 0054 80E1      		ldi r24,lo8(10000)
+ 122 0056 97E2      		ldi r25,hi8(10000)
+ 123               	.LVL7:
+ 124               	.L7:
+ 125               	.LBB52:
+ 126               	.LBB53:
+ 127               	.LBB54:
+ 128               	.LBB55:
+ 129               	.LM13:
+ 130 0058 FE01      		movw r30,r28
+ 131               	/* #APP */
+ 132               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 133 005a 3197      		1: sbiw r30,1
+ 134 005c 01F4      		brne 1b
+ 135               	 ;  0 "" 2
+ 136               	/* #NOAPP */
+ 137               	.LBE55:
+ 138               	.LBE54:
+ 139               	.LM14:
+ 140 005e 0197      		sbiw r24,1
+ 141               	.LM15:
+ 142 0060 01F0      		breq .L5
+ 143 0062 00C0      		rjmp .L7
+ 144               	.LBE53:
+ 145               	.LBE52:
+ 146               	.LFE6:
+ 172               	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 main.c
-C:\Users\WALTON\AppData\Local\Temp/ccGDX0bT.s:2      *ABS*:0000003f __SREG__
-C:\Users\WALTON\AppData\Local\Temp/ccGDX0bT.s:3      *ABS*:0000003e __SP_H__
-C:\Users\WALTON\AppData\Local\Temp/ccGDX0bT.s:4      *ABS*:0000003d __SP_L__
-C:\Users\WALTON\AppData\Local\Temp/ccGDX0bT.s:5      *ABS*:00000034 __CCP__
-C:\Users\WALTON\AppData\Local\Temp/ccGDX0bT.s:6      *ABS*:00000000 __tmp_reg__
-C:\Users\WALTON\AppData\Local\Temp/ccGDX0bT.s:7      *ABS*:00000001 __zero_reg__
-C:\Users\WALTON\AppData\Local\Temp/ccGDX0bT.s:18     .text:00000000 main
+C:\Users\WALTON\AppData\Local\Temp/cczKGUPM.s:2      *ABS*:0000003f __SREG__
+C:\Users\WALTON\AppData\Local\Temp/cczKGUPM.s:3      *ABS*:0000003e __SP_H__
+C:\Users\WALTON\AppData\Local\Temp/cczKGUPM.s:4      *ABS*:0000003d __SP_L__
+C:\Users\WALTON\AppData\Local\Temp/cczKGUPM.s:5      *ABS*:00000034 __CCP__
+C:\Users\WALTON\AppData\Local\Temp/cczKGUPM.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\WALTON\AppData\Local\Temp/cczKGUPM.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\WALTON\AppData\Local\Temp/cczKGUPM.s:18     .text:00000000 main
 
 UNDEFINED SYMBOLS
 OneWire_Init_Master
+OneWire_Init_Slave
 OneWire_Tx_Reset_Cmd
-OneWire_TRX_Frame
+OneWire_TRX_Cmd_Data

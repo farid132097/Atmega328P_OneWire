@@ -9,6 +9,7 @@ typedef struct onewire_t{
   volatile uint16_t BitFrame;
   volatile uint16_t RawBitFrame;
   volatile uint8_t  BitCounter;
+  volatile uint8_t  BusRstEvent;
   volatile uint8_t  AddrMatch;
   volatile uint8_t  RegAddr;
   
@@ -26,6 +27,7 @@ void OneWire_Struct_Init(void){
   OneWire.BitFrame = 0;
   OneWire.RawBitFrame = 0;
   OneWire.BitCounter = 0;
+  OneWire.BusRstEvent = 0;
   OneWire.AddrMatch = 0;
   OneWire.DataByte = 0;
   OneWire.CMD = 0;
@@ -286,7 +288,14 @@ uint16_t OneWire_TRX_Frame(uint16_t val){
 }
 
 
-
+uint16_t OneWire_TRX_Cmd_Data(uint16_t cmd, uint16_t data){
+  uint16_t temp = cmd;
+  temp  |= data;
+  temp <<= 1;
+  temp  |= 1;
+  temp   = OneWire_TRX_Frame(temp);
+  return temp;
+}
 
 
 void OneWire_Bit_Frame_Sample(void){
@@ -300,8 +309,8 @@ void OneWire_Bit_Frame_Sample(void){
       OneWire_TRX_Set_Logic(0);
 	}
 	OneWire_Delay_Half_Bit_Time();
-	OneWire.BitFrame <<= 1;
-	OneWire.BitFrame |= OneWire_TRX_Get_Input_State();
+	//OneWire.BitFrame <<= 1;
+	//OneWire.BitFrame |= OneWire_TRX_Get_Input_State();
     OneWire_Delay_Half_Bit_Time();
 	OneWire_TRX_Set_Logic(1);
 	OneWire_Debug_Rx_Pulse();
@@ -314,17 +323,20 @@ void OneWire_Bit_Frame_Sample(void){
     OneWire_Debug_Rx_Pulse();
     OneWire.BitFrame |= OneWire_TRX_Get_Input_State();
 	
+	
 	if(OneWire.BitCounter == (ONEWIRE_FRAME_LEN-2)){
-	  data = OneWire.BitFrame & ONEWIRE_DATA_MASK;
 	  cmd  = OneWire.BitFrame & ONEWIRE_CMD_MASK;
-	 
+	  data = OneWire.BitFrame & ONEWIRE_DATA_MASK;
+	  
+	  
+	  
 	  //reset request -> Send ack
 	  if(OneWire.BitFrame == ONEWIRE_CMD_RESET){
 	    OneWire.AddrMatch = 0;
+		OneWire.BusRstEvent = 1;
 	    OneWire.ACK = 1;
-		OneWire.BitFrame = 0;
-        //OneWire.RawBitFrame = 0;
-        OneWire.BitCounter = 0xFF;
+		//OneWire.BitFrame = 0;
+        //OneWire.BitCounter = 0xFF;
 		OneWire_Debug_Rx_Pulse();
 		OneWire_Debug_Rx_Pulse();
 		OneWire_Debug_Rx_Pulse();
@@ -335,15 +347,18 @@ void OneWire_Bit_Frame_Sample(void){
 	 
 	  //Address matched -> Send ack
 	  else if((cmd == ONEWIRE_CMD_START) && (data == ONEWIRE_OWN_AADR)){
-	    OneWire.AddrMatch = 1;
-	    OneWire.ACK = 1;
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
-		OneWire_Debug_Rx_Pulse();
+	    if(OneWire.BusRstEvent == 1){
+		  OneWire.BusRstEvent = 0;
+	      OneWire.AddrMatch = 1;
+	      OneWire.ACK = 1;
+		  OneWire_Debug_Rx_Pulse();
+		  OneWire_Debug_Rx_Pulse();
+		  OneWire_Debug_Rx_Pulse();
+		  OneWire_Debug_Rx_Pulse();
+		  OneWire_Debug_Rx_Pulse();
+		}
 	  }
-	 
+	  
 	  //Read cmd -> Send ack
 	  else if((cmd == ONEWIRE_CMD_READ) && (OneWire.AddrMatch == 1)){
 	    OneWire.RegAddr = data;
@@ -373,6 +388,7 @@ void OneWire_Bit_Frame_Sample(void){
 	  //Stop cmd -> Send ack
 	  else if((cmd == ONEWIRE_CMD_STOP) && (OneWire.AddrMatch == 1)){
 	    OneWire.AddrMatch = 0;
+		OneWire.BusRstEvent = 0;
 	    OneWire.ACK = 1;
 		OneWire_Debug_Rx_Pulse();
 	  }
@@ -380,8 +396,13 @@ void OneWire_Bit_Frame_Sample(void){
 	  //Nothing Matched, Send nack
 	  else{
 	    OneWire.ACK = 0;
+		OneWire.AddrMatch = 0;
+		OneWire.BusRstEvent = 0;
+		
 	  }
+	  
 	}
+	
   }
   OneWire.BitCounter++;
 }
@@ -390,6 +411,9 @@ void OneWire_Bit_Frame_Sample(void){
 uint8_t OneWire_Bit_Counter_Overflow(void){
   if(OneWire.BitCounter >= ONEWIRE_FRAME_LEN){
     OneWire.BitCounter = 0;
+	
+	OneWire.BitFrame = 0; ///////////////////////////////test
+	
 	return 1;
   }
   else{
@@ -565,8 +589,6 @@ ISR(ONEWIRE_TRX_PCINT_VECT){
 	  //handle frame bits and ack
 	  OneWire_Bit_Frame_Sample();
 	  OneWire_Bit_Counter_Overflow();
-	  //test
-	  OneWire.BitFrame = 0;
 	}
   }
 }

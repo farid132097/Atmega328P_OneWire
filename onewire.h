@@ -33,7 +33,7 @@
 #define  ONEWIRE_CLK_LOW     20
 #define  ONEWIRE_CLK_HIGH    20
 #define  ONEWIRE_CLK_HBIT    40
-#define  ONEWIRE_BYTE_GAP    100
+#define  ONEWIRE_BYTE_GAP    200
 
 //Frame Len in bits (Max 15)
 #define  ONEWIRE_FRAME_LEN   12
@@ -44,6 +44,10 @@
 
 #define  ONEWIRE_CMD_RESET   0x7FF
 #define  ONEWIRE_CMD_MASK    0x700
+#define  ONEWIRE_DATA_MASK   0x0FF
+#define  ONEWIRE_ACK_MASK    0x001
+
+#define  ONEWIRE_CMD_ERROR   0x700
 #define  ONEWIRE_CMD_START   0x600
 #define  ONEWIRE_CMD_READ    0x400
 #define  ONEWIRE_CMD_STOP    0x300
@@ -51,8 +55,7 @@
 #define  ONEWIRE_CMD_WRITE   0x100
 #define  ONEWIRE_CMD_CONT    0x000
 
-#define  ONEWIRE_DATA_MASK   0x0FF
-#define  ONEWIRE_ACK_MASK    0x001
+
 
 
 void     OneWire_Struct_Init(void);
@@ -84,6 +87,7 @@ void     OneWire_Delay_Rx_Int(void);
 
 uint8_t  OneWire_Tx_Reset_Cmd(void);
 uint16_t OneWire_TRX_Frame(uint16_t val);
+uint16_t OneWire_TRX_Cmd_Data(uint16_t cmd, uint16_t data);
 
 void     OneWire_Bit_Frame_Sample(void);
 uint8_t  OneWire_Bit_Counter_Overflow(void);
